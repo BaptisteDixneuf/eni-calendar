@@ -12,6 +12,16 @@
   <name>fr.eni.calendar</name>
   <description>Projet ENI calendar</description>
   
+  
+	<properties>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <spring.version>4.3.2.RELEASE</spring.version>
+	    <servlet.version>3.1.0</servlet.version>
+        <jsf.version>2.2.8</jsf.version>
+        <primefaces.version>6.0</primefaces.version>
+	</properties>
+  
+  
 	<!-- ================================================================================ -->
 	<!-- BUILD -->
 	<!-- ================================================================================ -->
@@ -36,13 +46,39 @@
   </build>
   
   
-  <dependencies>
-  	<dependency>
-  		<groupId>javax.servlet</groupId>
-  		<artifactId>servlet-api</artifactId>
-  		 <version>2.4</version>
-    <scope>provided</scope>
-  	</dependency>
+  <dependencies>  	
+  	<dependency> 
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
+     </dependency>
+     <dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>${servlet.version}</version>
+</dependency>
+<dependency>
+    <groupId>com.sun.faces</groupId>
+    <artifactId>jsf-api</artifactId>
+    <version>${jsf.version}</version>           
+</dependency>
+<dependency>
+    <groupId>com.sun.faces</groupId>
+    <artifactId>jsf-impl</artifactId>
+    <version>${jsf.version}</version>            
+</dependency>
+<dependency>
+    <groupId>org.primefaces</groupId>
+    <artifactId>primefaces</artifactId>
+    <version>${primefaces.version}</version>
+</dependency>
+
   </dependencies>
   
   
