@@ -1,0 +1,15 @@
+{
+   "build": {
+      "type": "maven",
+      "goal": "package"
+   },
+   "deploy": {
+      "container": "TOMCAT8",
+      "war": [
+         {
+            "file": "target/eni-calendar-0.0.1-SNAPSHOT.war",
+            "context": "/eni-calendar"
+         }         
+      ]
+   }
+}
