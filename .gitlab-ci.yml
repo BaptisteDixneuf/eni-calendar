@@ -5,7 +5,8 @@ push_to_clever:
     - echo -n "$PRIVATE_KEY" | ssh-add - >/dev/null
     #- ssh-add $PRIVATE_KEY
     #- echo $PRIVATE_KEY > ~/.ssh/id_rsa
-    - echo -n "$PRIVATE_KEY"
+    - touch > ~/.ssh/id_rsa
+    - echo -n "$PRIVATE_KEY" > ~/.ssh/id_rsa
     #- cat ~/.ssh/id_rsa.pub
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
