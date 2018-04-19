@@ -1,4 +1,4 @@
-#push_to_heroku:
-  #script:
-    #- git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/nameless-meadow-18034.git
-    #- git push -f heroku master
+push_to_clever:
+  script:
+    - git remote add heroku git+ssh://git@push-par-clevercloud-customers.services.clever-cloud.com/app_f8eb8c1d-3713-4145-83a2-2be8d445de7c.git
+    - git push -f clever master
