@@ -1,31 +1,9 @@
-before_script:
-  ##
-  ## Install ssh-agent if not already installed, it is required by Docker.
-  ## (change apt-get to yum if you use an RPM-based image)
-  ##
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-
-  ##
-  ## Run ssh-agent (inside the build environment)
-  ##
-  - eval $(ssh-agent -s)
-
-  ##
-  ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
-  ## We're using tr to fix line endings which makes ed25519 keys work
-  ## without extra base64 encoding.
-  ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
-  ##
-  - echo "$PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-
-  ##
-  ## Create the SSH directory and give it the right permissions
-  ##
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
-
-
 push_to_clever:
   script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
     - git remote add clever git+ssh://git@push-par-clevercloud-customers.services.clever-cloud.com/app_f8eb8c1d-3713-4145-83a2-2be8d445de7c.git
     - git push -u clever master
