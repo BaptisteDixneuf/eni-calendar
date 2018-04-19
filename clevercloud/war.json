@@ -8,7 +8,7 @@
       "war": [
          {
             "file": "target/eni-calendar-0.0.1-SNAPSHOT.war",
-            "context": "/eni-calendar"
+            "context": "/eni-calendar/"
          }         
       ]
    }
