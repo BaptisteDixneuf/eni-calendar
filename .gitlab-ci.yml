@@ -3,6 +3,7 @@ push_to_clever:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
     - echo -n "$PRIVATE_KEY" | ssh-add - >/dev/null
+    - cat ~/.ssh/id_rsa.pub
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - git remote add clever git+ssh://git@push-par-clevercloud-customers.services.clever-cloud.com/app_f8eb8c1d-3713-4145-83a2-2be8d445de7c.git
