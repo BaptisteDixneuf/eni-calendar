@@ -9,6 +9,6 @@ push_to_clever:
     - touch ~/.ssh/id_rsa
     - echo -n "$PRIVATE_KEY" > ~/.ssh/id_rsa
     - cat ~/.ssh/id_rsa
-    - chmod 777 ~/.ssh/id_rsa.pub
+    - chmod 777 ~/.ssh/id_rsa
     - git remote add clever git+ssh://git@push-par-clevercloud-customers.services.clever-cloud.com/app_f8eb8c1d-3713-4145-83a2-2be8d445de7c.git
     - git push -u clever master
