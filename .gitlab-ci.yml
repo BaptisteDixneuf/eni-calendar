@@ -3,6 +3,7 @@ push_to_clever:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
     - echo -n "$PRIVATE_KEY" | ssh-add - >/dev/null
+    - echo $PRIVATE_KEY > ~/.ssh/id_rsa
     - cat ~/.ssh/id_rsa.pub
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
