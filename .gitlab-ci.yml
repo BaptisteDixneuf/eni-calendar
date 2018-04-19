@@ -1,4 +1,4 @@
 push_to_clever:
   script:
     - git remote add clever git+ssh://git@push-par-clevercloud-customers.services.clever-cloud.com/app_f8eb8c1d-3713-4145-83a2-2be8d445de7c.git
-    - git push -f clever master
+    - git push -u clever master
