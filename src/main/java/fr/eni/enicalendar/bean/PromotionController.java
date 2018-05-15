@@ -9,7 +9,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import fr.eni.enicalendar.persistence.entities.Promotion;
-import fr.eni.enicalendar.service.EniCalendarRepositoryService;
 import fr.eni.enicalendar.service.PromotionServiceInterface;
 
 
