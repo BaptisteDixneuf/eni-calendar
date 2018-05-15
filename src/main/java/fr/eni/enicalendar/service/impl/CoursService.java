@@ -12,8 +12,8 @@ import fr.eni.enicalendar.service.CoursServiceInterface;
 @Service
 public class CoursService implements CoursServiceInterface{
 
-	 @Autowired
-	 private CoursRepository coursRepository;
+	@Autowired
+	private CoursRepository coursRepository;
 	 
 	 
 	@Override
