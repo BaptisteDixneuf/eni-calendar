@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head></h:head>
+    <body>
+        <h1>Liste des promotions de l'ENI</h1>
+        <h:form>
+            <p:dataTable var="promotion" value="#{promotionController.promotions}" widgetVar="titreTable" emptyMessage="Auncune promotion ne correspond">
+                <p:column headerText="Code Promotion" sortBy="#{promotion.codePromotion}" filterBy="#{promotion.codePromotion}">
+                    <h:outputText value="#{promotion.codePromotion}"/>
+                </p:column>
+                <p:column headerText="Libelle de la promotion" sortBy="#{promotion.libelle}" filterBy="#{promotion.libelle}">
+                    <h:outputText value="#{promotion.libelle}"/>
+                </p:column>
+                <p:column headerText="Date de debut" sortBy="#{promotion.dateDebut}" filterBy="#{promotion.dateDebut}">
+                    <h:outputText value="#{promotion.dateDebut}"/>
+                </p:column>
+                <p:column headerText="Date de fin" sortBy="#{promotion.dateFin}" filterBy="#{promotion.dateFin}">
+                    <h:outputText value="#{promotion.dateFin}"/>
+                </p:column>
+          </p:dataTable>
+    </h:form>
+</body>
+</html>
