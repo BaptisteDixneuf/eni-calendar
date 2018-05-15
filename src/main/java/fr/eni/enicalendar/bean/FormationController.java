@@ -9,29 +9,26 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import fr.eni.enicalendar.persistence.entities.Formation;
-import fr.eni.enicalendar.persistence.entities.Titre;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 
-
-@ManagedBean(name="formationController")
+@ManagedBean(name = "formationController")
 @ViewScoped
-public class FormationController implements Serializable{
+public class FormationController implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
-	private List<Formation> formations;   
-	
+	private List<Formation> formations;
+
 	@ManagedProperty(value = "#{formationService}")
-    private FormationServiceInterface formationService; 
-	
+	private FormationServiceInterface formationService;
+
 	@PostConstruct
-    public void setup()  {
-    	formations = formationService.findAllFormations();       
-    }
+	public void setup() {
+		formations = formationService.findAllFormations();
+	}
 
 	public List<Formation> getFormations() {
 		return formations;
@@ -45,7 +42,8 @@ public class FormationController implements Serializable{
 	}
 
 	/**
-	 * @param formationService the formationService to set
+	 * @param formationService
+	 *            the formationService to set
 	 */
 	public void setFormationService(FormationServiceInterface formationService) {
 		this.formationService = formationService;
@@ -54,8 +52,5 @@ public class FormationController implements Serializable{
 	public void setFormations(List<Formation> formations) {
 		this.formations = formations;
 	}
-	
-	
-	
-	
+
 }
