@@ -13,19 +13,18 @@ public class Titre implements Serializable {
 
 	/**
 	 * Serial UID
-	 */	
+	 */
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "CodeTitre")
 	private String codeTitre;
-	
+
 	@Column(name = "LibelleCourt")
 	private String libelleCourt;
-	
+
 	@Column(name = "LibelleLong")
 	private String libelleLong;
-
-
 
 	/**
 	 * @return the codeTitre
@@ -35,7 +34,8 @@ public class Titre implements Serializable {
 	}
 
 	/**
-	 * @param codeTitre the codeTitre to set
+	 * @param codeTitre
+	 *            the codeTitre to set
 	 */
 	public void setCodeTitre(String codeTitre) {
 		this.codeTitre = codeTitre;
@@ -49,7 +49,8 @@ public class Titre implements Serializable {
 	}
 
 	/**
-	 * @param libelleCourt the libelleCourt to set
+	 * @param libelleCourt
+	 *            the libelleCourt to set
 	 */
 	public void setLibelleCourt(String libelleCourt) {
 		this.libelleCourt = libelleCourt;
@@ -63,12 +64,11 @@ public class Titre implements Serializable {
 	}
 
 	/**
-	 * @param libelleLong the libelleLong to set
+	 * @param libelleLong
+	 *            the libelleLong to set
 	 */
 	public void setLibelleLong(String libelleLong) {
 		this.libelleLong = libelleLong;
 	}
-	
-	
 
 }

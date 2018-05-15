@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.eni.enicalendar.persistence.entities.Titre;
 
-public interface EniCalendarRepositoryService {
+public interface TitreServiceInterface {
 
 	List<Titre> findAllTitre();
    
