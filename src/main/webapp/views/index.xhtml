@@ -5,9 +5,35 @@ xmlns:f="http://java.sun.com/jsf/core"
 xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:p="http://primefaces.org/ui">
  
-    <h:head></h:head>
+    <h:head>
+    <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    <h:outputStylesheet library="js" name="bootstrap.min.js" />
+    </h:head>
+    
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"></link>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    
     <body>
-        <h1>Spring MVC Web with Primefaces - Clever cloud : http://app-f8eb8c1d-3713-4145-83a2-2be8d445de7c.cleverapps.io/eni-calendar/ </h1>
+        <h1 class="grid_10 omega">Spring MVC Web with Primefaces - Clever cloud : http://app-f8eb8c1d-3713-4145-83a2-2be8d445de7c.cleverapps.io/eni-calendar/ </h1>
+        <div class="container">
+
+      <div class="navbar navbar-default">
+
+  <ul class="nav navbar-nav">
+
+    <li class="active"> <a href="#">Accueil</a> </li>
+
+    <li> <a href="#">Liens</a> </li>
+
+    <li> <a href="#">Témoignages</a> </li>
+
+    <li class="disabled"> <a href="#">Références</a> </li>
+
+  </ul>
+
+</div>
+    </div>
         <h:form>
             <p:dataTable var="titre" value="#{titreController.titres}" widgetVar="titreTable" emptyMessage="Auncun titre ne correspond">
                 <p:column headerText="Id" sortBy="#{titre.codeTitre}" filterBy="#{titre.codeTitre}">
