@@ -12,6 +12,11 @@ import javax.faces.bean.ViewScoped;
 import fr.eni.enicalendar.persistence.entities.Titre;
 import fr.eni.enicalendar.service.EniCalendarRepositoryService;
 
+/**
+ * DOC : http://objis.com/tutoriel-jsf2-n4-managed-bean-jsf-el/
+ * @author DIXNEUF Baptiste
+ *
+ */
 
 @ManagedBean(name="titreBean")
 @ViewScoped
