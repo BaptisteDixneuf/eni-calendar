@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head></h:head>
+    <body>
+        <h1>Cours</h1>
+         <h:form>
+            <p:dataTable var="cours" value="#{coursController.cours}" widgetVar="titreTable" emptyMessage="Auncun titre ne correspond">
+                <p:column headerText="Id" sortBy="#{cours.idCours}" filterBy="#{cours.idCours}">
+                    <h:outputText value="#{cours.idCours}"/>
+                </p:column>
+                <p:column headerText="Date début" sortBy="#{cours.dateDebut}" filterBy="#{cours.dateDebut}">
+                    <h:outputText value="#{cours.dateDebut}"/>
+                </p:column>
+                <p:column headerText="Date fin" sortBy="#{cours.dateFin}" filterBy="#{cours.dateFin}">
+                    <h:outputText value="#{cours.dateFin}"/>
+                </p:column>
+                <p:column headerText="libelle Cours" sortBy="#{cours.libelleCours}" filterBy="#{cours.libelleCours}">
+                    <h:outputText value="#{cours.libelleCours}"/>
+                </p:column>
+                <p:column headerText="dureePrevueEnHeures" sortBy="#{cours.dureePrevueEnHeures}" filterBy="#{cours.dureePrevueEnHeures}">
+                    <h:outputText value="#{cours.dureePrevueEnHeures}"/>
+                </p:column>              
+          </p:dataTable>
+    </h:form>
+</body>
+</html>

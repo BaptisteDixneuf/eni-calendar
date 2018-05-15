@@ -9,16 +9,16 @@ xmlns:p="http://primefaces.org/ui">
     <body>
         <h1>Spring MVC Web with Primefaces - Clever cloud : http://app-f8eb8c1d-3713-4145-83a2-2be8d445de7c.cleverapps.io/eni-calendar/ </h1>
         <h:form>
-            <p:dataTable var="titre" value="#{titreController.titres}" widgetVar="titreTable" emptyMessage="Auncun titre ne correspond">
-                <p:column headerText="Id" sortBy="#{titre.codeTitre}" filterBy="#{titre.codeTitre}">
-                    <h:outputText value="#{titre.codeTitre}"/>
+            <p:dataTable var="formation" value="#{formationController.formations}" widgetVar="formationsTable" emptyMessage="Auncun titre ne correspond">
+                <p:column headerText="Id" sortBy="#{formation.codeFormation}" filterBy="#{formation.codeFormation}">
+                    <h:outputText value="#{formation.codeFormation}"/>
                 </p:column>
-                <p:column headerText="Titre Court" sortBy="#{titre.libelleCourt}" filterBy="#{titre.libelleCourt}">
+                <!-- <p:column headerText="Titre Court" sortBy="#{titre.libelleCourt}" filterBy="#{titre.libelleCourt}">
                     <h:outputText value="#{titre.libelleCourt}"/>
                 </p:column>
                 <p:column headerText="Titre long" sortBy="#{titre.libelleLong}" filterBy="#{titre.libelleLong}">
                     <h:outputText value="#{titre.libelleLong}"/>
-                </p:column>
+                </p:column> -->
           </p:dataTable>
     </h:form>
 </body>
