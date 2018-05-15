@@ -10,7 +10,7 @@ import fr.eni.enicalendar.persistence.repositories.CoursRepository;
 import fr.eni.enicalendar.service.CoursServiceInterface;
 
 @Service
-public class CoursService implements CoursServiceInterface{
+public class CoursService implements CoursServiceInterface {
 
 	@Autowired
 	private CoursRepository coursRepository;
@@ -21,15 +21,4 @@ public class CoursService implements CoursServiceInterface{
 		return coursRepository.findAll();
 	}
 
-	@Override
-	public String concatenationLibelle() {
-		List<Cours> cours = findAllCours();
-		String libelle = "";
-		for (Cours cours2 : cours) {
-			libelle = libelle + cours2.getIdCours();
-		}
-		return libelle;
-	}
-
-	
 }

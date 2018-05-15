@@ -8,5 +8,5 @@ public interface CoursServiceInterface {
 	
 	List<Cours> findAllCours();
 	
-	String concatenationLibelle();
+	
 }

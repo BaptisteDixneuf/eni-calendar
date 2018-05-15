@@ -12,23 +12,20 @@ import javax.persistence.Table;
 public class Formation implements Serializable {
 
 	/**
-	 * 
+	 * Serial UID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
 	@Id
 	@Column(name = "CodeFormation")
 	private String codeFormation;
-	
+
 	@Column(name = "LibelleCourt")
 	private String libelleCourt;
-	
+
 	@Column(name = "LibelleLong")
 	private String libelleLong;
 
-	
-	
 	/**
 	 * @return the codeFormation
 	 */
@@ -37,7 +34,8 @@ public class Formation implements Serializable {
 	}
 
 	/**
-	 * @param codeFormation the codeFormation to set
+	 * @param codeFormation
+	 *            the codeFormation to set
 	 */
 	public void setCodeFormation(String codeFormation) {
 		this.codeFormation = codeFormation;
@@ -51,7 +49,8 @@ public class Formation implements Serializable {
 	}
 
 	/**
-	 * @param libelleCourt the libelleCourt to set
+	 * @param libelleCourt
+	 *            the libelleCourt to set
 	 */
 	public void setLibelleCourt(String libelleCourt) {
 		this.libelleCourt = libelleCourt;
@@ -65,7 +64,8 @@ public class Formation implements Serializable {
 	}
 
 	/**
-	 * @param libelleLong the libelleLong to set
+	 * @param libelleLong
+	 *            the libelleLong to set
 	 */
 	public void setLibelleLong(String libelleLong) {
 		this.libelleLong = libelleLong;
@@ -77,8 +77,5 @@ public class Formation implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
-	
-	
+
 }

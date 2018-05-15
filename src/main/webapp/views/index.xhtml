@@ -9,7 +9,7 @@ xmlns:p="http://primefaces.org/ui">
     <body>
         <h1>Spring MVC Web with Primefaces - Clever cloud : http://app-f8eb8c1d-3713-4145-83a2-2be8d445de7c.cleverapps.io/eni-calendar/ </h1>
         <h:form>
-            <p:dataTable var="titre" value="#{titreBean.titres}" widgetVar="titreTable" emptyMessage="Auncun titre ne correspond">
+            <p:dataTable var="titre" value="#{titreController.titres}" widgetVar="titreTable" emptyMessage="Auncun titre ne correspond">
                 <p:column headerText="Id" sortBy="#{titre.codeTitre}" filterBy="#{titre.codeTitre}">
                     <h:outputText value="#{titre.codeTitre}"/>
                 </p:column>

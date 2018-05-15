@@ -1,45 +1,48 @@
 package fr.eni.enicalendar.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import fr.eni.enicalendar.persistence.entities.Cours;
 import fr.eni.enicalendar.service.CoursServiceInterface;
 
-@ManagedBean(name="coursController")
+@ManagedBean(name = "coursController")
 @ViewScoped
 public class CoursController implements Serializable {
 
-	 /**
-	  * Serial UID
-	  */
+	/**
+	 * Serial UID
+	 */
 	private static final long serialVersionUID = 1L;
-	
-	private String test;
-	
+
+	private List<Cours> cours;
+
 	@ManagedProperty(value = "#{coursService}")
-    private CoursServiceInterface coursService;  
-	
+	private CoursServiceInterface coursService;
+
 	@PostConstruct
-    public void setup()  {
-		test = coursService.concatenationLibelle();
+	public void setup() {
+		cours = coursService.findAllCours();
 	}
 
 	/**
-	 * @return the test
+	 * @return the cours
 	 */
-	public String getTest() {
-		return test;
+	public List<Cours> getCours() {
+		return cours;
 	}
 
 	/**
-	 * @param test the test to set
+	 * @param cours
+	 *            the cours to set
 	 */
-	public void setTest(String test) {
-		this.test = test;
+	public void setCours(List<Cours> cours) {
+		this.cours = cours;
 	}
 
 	/**
@@ -50,13 +53,11 @@ public class CoursController implements Serializable {
 	}
 
 	/**
-	 * @param coursService the coursService to set
+	 * @param coursService
+	 *            the coursService to set
 	 */
 	public void setCoursService(CoursServiceInterface coursService) {
 		this.coursService = coursService;
-	}	
-	
-	
-	
-	
+	}
+
 }
