@@ -1,11 +1,11 @@
-package fr.eni.enicalendar.persistence.repositories;
+package fr.eni.enicalendar.persistence.erp.repositories;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import fr.eni.enicalendar.persistence.entities.Titre;
+import fr.eni.enicalendar.persistence.erp.entities.Titre;
 
 /**
  * Doc https://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html

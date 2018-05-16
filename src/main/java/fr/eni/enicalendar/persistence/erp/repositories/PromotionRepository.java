@@ -1,10 +1,10 @@
-package fr.eni.enicalendar.persistence.repositories;
+package fr.eni.enicalendar.persistence.erp.repositories;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import fr.eni.enicalendar.persistence.entities.Promotion;
+import fr.eni.enicalendar.persistence.erp.entities.Promotion;
 
 
 public interface PromotionRepository extends JpaRepository<Promotion, String>{

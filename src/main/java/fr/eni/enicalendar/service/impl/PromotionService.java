@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.eni.enicalendar.persistence.entities.Promotion;
-import fr.eni.enicalendar.persistence.repositories.PromotionRepository;
+import fr.eni.enicalendar.persistence.erp.entities.Promotion;
+import fr.eni.enicalendar.persistence.erp.repositories.PromotionRepository;
 import fr.eni.enicalendar.service.PromotionServiceInterface;
 
 @Service

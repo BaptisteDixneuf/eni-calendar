@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
-import fr.eni.enicalendar.persistence.entities.Titre;
+import fr.eni.enicalendar.persistence.erp.entities.Titre;
 import fr.eni.enicalendar.service.TitreServiceInterface;
 
 /**

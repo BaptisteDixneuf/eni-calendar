@@ -1,4 +1,4 @@
-package fr.eni.enicalendar.persistence;
+package fr.eni.enicalendar.persistence.app;
 
 import java.util.Properties;
 
@@ -27,20 +27,20 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories
 @EnableTransactionManagement
 @Configuration
-@ComponentScan(basePackages = { "fr.eni.enicalendar.persistence" })
+@ComponentScan(basePackages = { "fr.eni.enicalendar.persistence.app" })
 @PropertySource(value = { "classpath:eni.properties" })
-public class PersistenceJPAConfiguration {
+public class PersistenceJPAConfigurationAPP {
 
 	@Autowired
 	private Environment environment;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PersistenceJPAConfiguration.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PersistenceJPAConfigurationAPP.class);
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan("fr.eni.enicalendar.persistence.entities");
+		em.setPackagesToScan("fr.eni.enicalendar.persistence.app.entities");
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);

@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.eni.enicalendar.persistence.entities.Formation;
-import fr.eni.enicalendar.persistence.repositories.FormationRepository;
+import fr.eni.enicalendar.persistence.erp.entities.Formation;
+import fr.eni.enicalendar.persistence.erp.repositories.FormationRepository;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 
 

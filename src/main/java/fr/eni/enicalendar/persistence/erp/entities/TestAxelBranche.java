@@ -1,4 +1,4 @@
-package fr.eni.enicalendar.persistence.entities;
+package fr.eni.enicalendar.persistence.erp.entities;
 
 public class TestAxelBranche {
 
