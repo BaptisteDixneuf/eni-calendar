@@ -28,7 +28,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @Configuration
 @ComponentScan(basePackages = { "fr.eni.enicalendar.persistence.erp" })
-@PropertySource(value = { "classpath:eni.properties" })
+@PropertySource(value = { "classpath:eni-erp.properties" })
 public class PersistenceJPAConfigurationERP {
 
 	@Autowired
