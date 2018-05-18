@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.eni.enicalendar.persistence.erp.entities.Titre;
 import fr.eni.enicalendar.persistence.erp.repositories.TitreRepository;
@@ -19,6 +20,7 @@ public class TitreService implements TitreServiceInterface {
 	@Autowired
 	private TitreRepository titreRepository;
 
+	@Transactional("erpTransactionManager")
 	public List<Titre> findAllTitre() {
 		LOGGER.info("findAllTitre");
 		return titreRepository.findAll();
