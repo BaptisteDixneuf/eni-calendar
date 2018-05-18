@@ -1,5 +1,6 @@
 package fr.eni.enicalendar.service.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,7 +13,12 @@ import fr.eni.enicalendar.persistence.app.repositories.UtilisateurRepository;
 import fr.eni.enicalendar.service.UtilisateurServiceInterface;
 
 @Service
-public class UtilisateurService implements UtilisateurServiceInterface {
+public class UtilisateurService implements UtilisateurServiceInterface, Serializable {
+
+	/**
+	 * Serial UID
+	 */
+	private static final long serialVersionUID = 4669403011752136207L;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UtilisateurService.class);
 

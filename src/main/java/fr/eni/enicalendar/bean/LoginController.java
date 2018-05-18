@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +18,7 @@ import fr.eni.enicalendar.service.UtilisateurServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "loginController")
-@SessionScoped
+@ViewScoped
 public class LoginController implements Serializable {
 
 	/**
@@ -48,8 +48,8 @@ public class LoginController implements Serializable {
 			session.setAttribute("email", email);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionCompte.xhtml");
 		} else {
-			FacesContext.getCurrentInstance().addMessage("general", new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Incorrect Username and Passowrd", "Incorrect Username and Passowrd"));
+			FacesContext.getCurrentInstance().addMessage("general",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email/Mot de passe invalide", ""));
 		}
 	}
 
