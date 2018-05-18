@@ -34,7 +34,6 @@ public class GestionCompteController implements Serializable {
 	public void setup() {
 		LOGGER.info("GestionCompteController setup");
 		utilisateur = utilisateurService.findByEmail(SessionUtils.getEmail());
-		int a = 1 + 9;
 	}
 
 	/**
