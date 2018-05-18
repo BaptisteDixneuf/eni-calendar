@@ -15,23 +15,25 @@
 <body>
 	<ui:include src="menu.xhtml"></ui:include>
 
-	<h:form>
-		
-		<h3>Page de connexion</h3>
-		
-		<p:messages for="general"></p:messages>
-		
-		<p:outputLabel for="email" value="Email" />
-		<p:inputText id="email" value="#{loginController.email}"></p:inputText>
-		<p:messages for="email"></p:messages>
-		<br></br><br></br>
-		
-		<p:outputLabel for="password" value="Mot de passe" />
-		<p:password id="password" value="#{loginController.password}"></p:password>
-		<p:messages for="password"></p:messages>
-		
-		<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" update="@form" ></p:commandButton>
-		
-	</h:form>
+	<div class="container">
+		<h:form>
+			
+			<h3>Page de connexion</h3>
+			
+			<p:messages for="general"></p:messages>
+			
+			<p:outputLabel for="email" value="Email" />
+			<p:inputText id="email" value="#{loginController.email}"></p:inputText>
+			<p:messages for="email"></p:messages>
+			<br></br><br></br>
+			
+			<p:outputLabel for="password" value="Mot de passe" />
+			<p:password id="password" value="#{loginController.password}"></p:password>
+			<p:messages for="password"></p:messages>
+			
+			<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" update="@form" ></p:commandButton>
+			
+		</h:form>
+	</div>
 </body>
 </html>
