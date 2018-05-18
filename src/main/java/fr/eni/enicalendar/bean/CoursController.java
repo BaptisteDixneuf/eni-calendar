@@ -8,6 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.service.CoursServiceInterface;
 
@@ -20,6 +23,8 @@ public class CoursController implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(CoursController.class);
+
 	private List<Cours> cours;
 
 	@ManagedProperty(value = "#{coursService}")
@@ -27,6 +32,7 @@ public class CoursController implements Serializable {
 
 	@PostConstruct
 	public void setup() {
+		LOGGER.info("CoursController setup");
 		cours = coursService.findAllCours();
 	}
 

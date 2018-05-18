@@ -8,4 +8,8 @@ public interface UtilisateurServiceInterface {
 
 	List<Utilisateur> findAllUtilisateurs();
 
+	Boolean valide(String email, String password);
+
+	Utilisateur findByEmail(String email);
+
 }

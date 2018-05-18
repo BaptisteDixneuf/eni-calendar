@@ -8,6 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.eni.enicalendar.persistence.app.entities.Utilisateur;
 import fr.eni.enicalendar.persistence.erp.entities.Titre;
 import fr.eni.enicalendar.service.TitreServiceInterface;
@@ -29,6 +32,8 @@ public class TitreController implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(TitreController.class);
+
 	private List<Titre> titres;
 
 	@ManagedProperty(value = "#{titreService}")
@@ -41,7 +46,7 @@ public class TitreController implements Serializable {
 
 	@PostConstruct
 	public void setup() {
-
+		LOGGER.info("TitreController setup");
 		titres = titreService.findAllTitre();
 		utilisateurs = utilisateurService.findAllUtilisateurs();
 	}
