@@ -1,7 +1,8 @@
 package fr.eni.enicalendar.service;
 
 import java.util.List;
-import fr.eni.enicalendar.persistence.entities.Formation;
+
+import fr.eni.enicalendar.persistence.erp.entities.Formation;
 
 public interface FormationServiceInterface {
 

@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
-import fr.eni.enicalendar.persistence.entities.Cours;
+import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.service.CoursServiceInterface;
 
 @ManagedBean(name = "coursController")

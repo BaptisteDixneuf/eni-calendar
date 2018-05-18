@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.eni.enicalendar.persistence.entities.Titre;
-import fr.eni.enicalendar.persistence.repositories.TitreRepository;
+import fr.eni.enicalendar.persistence.erp.entities.Titre;
+import fr.eni.enicalendar.persistence.erp.repositories.TitreRepository;
 import fr.eni.enicalendar.service.TitreServiceInterface;
 
 @Service
@@ -19,6 +19,7 @@ public class TitreService implements TitreServiceInterface {
 	@Autowired
 	private TitreRepository titreRepository;
 
+	@Override
 	public List<Titre> findAllTitre() {
 		LOGGER.info("findAllTitre");
 		return titreRepository.findAll();

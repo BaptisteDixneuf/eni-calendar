@@ -8,8 +8,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
-import fr.eni.enicalendar.persistence.entities.Titre;
+import fr.eni.enicalendar.persistence.app.entities.Utilisateur;
+import fr.eni.enicalendar.persistence.erp.entities.Titre;
 import fr.eni.enicalendar.service.TitreServiceInterface;
+import fr.eni.enicalendar.service.UtilisateurServiceInterface;
 
 /**
  * DOC : http://objis.com/tutoriel-jsf2-n4-managed-bean-jsf-el/
@@ -32,10 +34,16 @@ public class TitreController implements Serializable {
 	@ManagedProperty(value = "#{titreService}")
 	private TitreServiceInterface titreService;
 
+	@ManagedProperty(value = "#{utilisateurService}")
+	private UtilisateurServiceInterface utilisateurService;
+
+	private List<Utilisateur> utilisateurs;
+
 	@PostConstruct
 	public void setup() {
 
 		titres = titreService.findAllTitre();
+		utilisateurs = utilisateurService.findAllUtilisateurs();
 	}
 
 	/**
@@ -66,6 +74,36 @@ public class TitreController implements Serializable {
 	 */
 	public void setTitres(List<Titre> titres) {
 		this.titres = titres;
+	}
+
+	/**
+	 * @return the utilisateurService
+	 */
+	public UtilisateurServiceInterface getUtilisateurService() {
+		return utilisateurService;
+	}
+
+	/**
+	 * @param utilisateurService
+	 *            the utilisateurService to set
+	 */
+	public void setUtilisateurService(UtilisateurServiceInterface utilisateurService) {
+		this.utilisateurService = utilisateurService;
+	}
+
+	/**
+	 * @return the utilisateurs
+	 */
+	public List<Utilisateur> getUtilisateurs() {
+		return utilisateurs;
+	}
+
+	/**
+	 * @param utilisateurs
+	 *            the utilisateurs to set
+	 */
+	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+		this.utilisateurs = utilisateurs;
 	}
 
 }
