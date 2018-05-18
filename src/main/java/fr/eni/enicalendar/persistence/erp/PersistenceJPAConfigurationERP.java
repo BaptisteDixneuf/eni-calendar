@@ -29,7 +29,7 @@ public class PersistenceJPAConfigurationERP {
 	@Primary
 	public LocalContainerEntityManagerFactoryBean erpEntityManager() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(userDataSource());
+		em.setDataSource(erpDataSource());
 		em.setPackagesToScan(new String[] { "fr.eni.enicalendar.persistence.erp.entities" });
 
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -45,7 +45,7 @@ public class PersistenceJPAConfigurationERP {
 
 	@Primary
 	@Bean
-	public DataSource userDataSource() {
+	public DataSource erpDataSource() {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(env.getProperty("erp.datasource.driver.class.name"));

@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import fr.eni.enicalendar.persistence.erp.entities.Promotion;
 import fr.eni.enicalendar.persistence.erp.repositories.PromotionRepository;
@@ -21,7 +20,6 @@ public class PromotionService implements PromotionServiceInterface {
 	private PromotionRepository promotionRepository;
 
 	@Override
-	@Transactional("erpTransactionManager")
 	public List<Promotion> findAllPromotion() {
 		List<Promotion> retour = null;
 		LOGGER.info("findAllPromotion");

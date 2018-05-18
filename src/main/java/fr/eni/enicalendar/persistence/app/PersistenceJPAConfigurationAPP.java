@@ -29,7 +29,7 @@ public class PersistenceJPAConfigurationAPP {
 	@Primary
 	public LocalContainerEntityManagerFactoryBean appEntityManager() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(userDataSource());
+		em.setDataSource(appDataSource());
 		em.setPackagesToScan(new String[] { "fr.eni.enicalendar.persistence.app.entities" });
 
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -45,7 +45,7 @@ public class PersistenceJPAConfigurationAPP {
 
 	@Primary
 	@Bean
-	public DataSource userDataSource() {
+	public DataSource appDataSource() {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(env.getProperty("app.datasource.driver.class.name"));
