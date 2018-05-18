@@ -14,16 +14,9 @@ public class SessionUtils {
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
 
-	public static String getUserName() {
+	public static String getEmail() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		return session.getAttribute("username").toString();
+		return session.getAttribute("email").toString();
 	}
 
-	public static String getUserId() {
-		HttpSession session = getSession();
-		if (session != null)
-			return (String) session.getAttribute("userid");
-		else
-			return null;
-	}
 }

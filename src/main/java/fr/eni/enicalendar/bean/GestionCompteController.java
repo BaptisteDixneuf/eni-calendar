@@ -1,10 +1,11 @@
 package fr.eni.enicalendar.bean;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,7 @@ import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "gestionCompteController")
 @ViewScoped
-public class GestionCompteController {
+public class GestionCompteController implements Serializable {
 
 	/**
 	 * Serial UID
@@ -31,9 +32,8 @@ public class GestionCompteController {
 
 	@PostConstruct
 	public void setup() {
-		HttpSession session = SessionUtils.getSession();
-		String email = (String) session.getAttribute("email");
-		utilisateur = utilisateurService.findByEmail(email);
+		LOGGER.info("GestionCompteController setup");
+		utilisateur = utilisateurService.findByEmail(SessionUtils.getEmail());
 	}
 
 	/**

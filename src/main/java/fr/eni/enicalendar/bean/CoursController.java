@@ -32,6 +32,7 @@ public class CoursController implements Serializable {
 
 	@PostConstruct
 	public void setup() {
+		LOGGER.info("CoursController setup");
 		cours = coursService.findAllCours();
 	}
 

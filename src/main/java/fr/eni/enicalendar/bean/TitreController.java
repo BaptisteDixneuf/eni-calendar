@@ -46,7 +46,7 @@ public class TitreController implements Serializable {
 
 	@PostConstruct
 	public void setup() {
-
+		LOGGER.info("TitreController setup");
 		titres = titreService.findAllTitre();
 		utilisateurs = utilisateurService.findAllUtilisateurs();
 	}

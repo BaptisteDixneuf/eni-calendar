@@ -32,6 +32,7 @@ public class PromotionController implements Serializable {
 
 	@PostConstruct
 	public void setup() {
+		LOGGER.info("PromotionController setup");
 		promotions = promotionService.findAllPromotion();
 	}
 

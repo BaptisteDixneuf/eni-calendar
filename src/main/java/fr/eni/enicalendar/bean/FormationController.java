@@ -32,6 +32,7 @@ public class FormationController implements Serializable {
 
 	@PostConstruct
 	public void setup() {
+		LOGGER.info("FormationController setup");
 		formations = formationService.findAllFormations();
 	}
 
