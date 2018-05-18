@@ -20,14 +20,17 @@ public class Utilisateur implements Serializable {
 	@Column(name = "UT_ID")
 	private Integer id;
 
-	@Column(name = "UT_NOM")
+	@Column(name = "UT_NOM", columnDefinition = "TEXT")
 	private String nom;
 
-	@Column(name = "UT_PRENOM")
+	@Column(name = "UT_PRENOM", columnDefinition = "TEXT")
 	private String prenom;
 
-	@Column(name = "UT_EMAIL")
+	@Column(name = "UT_EMAIL", columnDefinition = "TEXT")
 	private String email;
+
+	@Column(name = "UT_PASSWORD", columnDefinition = "TEXT")
+	private String password;
 
 	/**
 	 * @return the id
@@ -87,6 +90,21 @@ public class Utilisateur implements Serializable {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password
+	 *            the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

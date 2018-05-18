@@ -25,4 +25,19 @@ public class UtilisateurService implements UtilisateurServiceInterface {
 		return utilisateurRepository.findAll();
 	}
 
+	@Override
+	public Boolean valide(String email, String password) {
+		Boolean retour = false;
+		Utilisateur utilisateur = utilisateurRepository.findByEmail(email);
+		if (utilisateur != null && password.equals(utilisateur.getPassword())) {
+			retour = true;
+		}
+		return retour;
+	}
+
+	@Override
+	public Utilisateur findByEmail(String email) {
+		return utilisateurRepository.findByEmail(email);
+	}
+
 }
