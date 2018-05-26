@@ -7,12 +7,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.context.annotation.SessionScope;
 
 import fr.eni.enicalendar.service.UtilisateurServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
@@ -25,7 +25,7 @@ import fr.eni.enicalendar.utils.SessionUtils;
  *
  */
 @ManagedBean(name = "loginController")
-@SessionScope
+@ViewScoped
 public class LoginController implements Serializable {
 
 	/**
@@ -65,7 +65,8 @@ public class LoginController implements Serializable {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute(SessionUtils.SESSION_EMAIL, email);
 			LOGGER.info("Connexion de l'utilisater : " + email);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionCompte.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("/eni-calendar/views/rechercheStagiaire.xhtml");
 		} else {
 			FacesContext.getCurrentInstance().addMessage("general",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email/Mot de passe invalide", ""));
