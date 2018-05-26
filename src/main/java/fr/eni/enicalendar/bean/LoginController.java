@@ -64,6 +64,7 @@ public class LoginController implements Serializable {
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute(SessionUtils.SESSION_EMAIL, email);
+			LOGGER.info("Connexion de l'utilisater : " + email);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionCompte.xhtml");
 		} else {
 			FacesContext.getCurrentInstance().addMessage("general",
@@ -74,12 +75,13 @@ public class LoginController implements Serializable {
 	/**
 	 * Permet de déconnecter un utilisateur
 	 * 
-	 * @return String page vers laquelle redirigé
+	 * @throws IOException
 	 */
-	public String logout() {
+	public void logout() throws IOException {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
-		return "login";
+		LOGGER.info("Déconnexion de l'utilisater : " + email);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/login.xhtml");
 	}
 
 	/**
