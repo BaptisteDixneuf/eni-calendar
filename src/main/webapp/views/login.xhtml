@@ -18,20 +18,23 @@
 	<div class="container">
 		<h:form>
 			
-			<h3>Page de connexion</h3>
+			<h1>Page de connexion</h1>
 			
 			<p:messages for="general"></p:messages>
 			
-			<p:outputLabel for="email" value="Email" />
-			<p:inputText id="email" value="#{loginController.email}"></p:inputText>
-			<p:messages for="email"></p:messages>
-			<br></br><br></br>
+			<div class="form-group">
+				<p:outputLabel for="email" value="Email" />
+				<p:inputText id="email" value="#{loginController.email}"  styleClass="form-control"></p:inputText>
+				<p:messages for="email"></p:messages>
+			</div>
 			
-			<p:outputLabel for="password" value="Mot de passe" />
-			<p:password id="password" value="#{loginController.password}"></p:password>
-			<p:messages for="password"></p:messages>
+			<div class="form-group">
+				<p:outputLabel for="password" value="Mot de passe" />
+				<p:password id="password" value="#{loginController.password}"  styleClass="form-control"></p:password>
+				<p:messages for="password"></p:messages>
+			</div>
 			
-			<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" update="@form" ></p:commandButton>
+			<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" update="@form" styleClass="btn btn-primary"></p:commandButton>
 			
 		</h:form>
 	</div>

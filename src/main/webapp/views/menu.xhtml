@@ -6,11 +6,15 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+	<!-- CSS -->
+	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/bootstrap/css/bootstrap.css"  />
+	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/app/style.css" />
+	
+	<!-- JS -->
 	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 	<script type="text/javascript" src="#{request.contextPath}/style/app/js/menu.js"></script>
-	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/app/style.css" />
+	
 </h:head>
 
 
@@ -80,7 +84,12 @@
         </div>
       </li>
       <li class="p-2 nav-item active">
-        <a class="nav-link" href="#">$Utilisateur <span class="sr-only">(current)</span></a>
+      	<h:panelGroup rendered="#{menuController.utilisateur != null}">
+        	<a class="nav-link" href="#">#{menuController.utilisateur.nom} #{menuController.utilisateur.prenom}<span class="sr-only">(current)</span></a>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{menuController.utilisateur == null}">
+        	<a class="nav-link" href="#">Utilisateur<span class="sr-only">(current)</span></a>
+        </h:panelGroup>
       </li>
       </ul>
 	</div>

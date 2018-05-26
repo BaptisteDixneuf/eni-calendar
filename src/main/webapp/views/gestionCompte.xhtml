@@ -14,8 +14,9 @@
 
 <body>
 	<ui:include src="menu.xhtml"></ui:include>
-
-	<p:outputLabel id="nom" value="#{gestionCompteController.utilisateur.nom}"></p:outputLabel>
-	<p:outputLabel id="nom" value="#{gestionCompteController.utilisateur.prenom}"></p:outputLabel>
+	
+	<div class="container">
+		#{gestionCompteController.utilisateur.nom} #{gestionCompteController.utilisateur.prenom}
+	</div>
 </body>
 </html>

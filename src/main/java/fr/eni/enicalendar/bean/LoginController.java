@@ -7,18 +7,25 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.context.annotation.SessionScope;
 
 import fr.eni.enicalendar.service.UtilisateurServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
 
+/***
+ * Controlleur qui permet de connecter/déconnecter un utilisateur <br>
+ * Utilisation de la session
+ * 
+ * @author Baptiste DIXNEUF
+ *
+ */
 @ManagedBean(name = "loginController")
-@ViewScoped
+@SessionScope
 public class LoginController implements Serializable {
 
 	/**
@@ -28,9 +35,15 @@ public class LoginController implements Serializable {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
+	/**
+	 * Les services
+	 */
 	@ManagedProperty(value = "#{utilisateurService}")
 	private UtilisateurServiceInterface utilisateurService;
 
+	/**
+	 * Les données saisies par l'utilsateur dans le formulaire
+	 */
 	private String password;
 
 	private String email;
@@ -40,12 +53,17 @@ public class LoginController implements Serializable {
 		LOGGER.info("LoginController setup");
 	}
 
-	// validate login
+	/**
+	 * Permet de valider le couple email / mot de passe d'un compte utilisateur
+	 * 
+	 * @throws IOException
+	 *             exception
+	 */
 	public void validateUsernamePassword() throws IOException {
 		boolean valid = utilisateurService.valide(email, password);
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("email", email);
+			session.setAttribute(SessionUtils.SESSION_EMAIL, email);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionCompte.xhtml");
 		} else {
 			FacesContext.getCurrentInstance().addMessage("general",
@@ -53,7 +71,11 @@ public class LoginController implements Serializable {
 		}
 	}
 
-	// logout event, invalidate session
+	/**
+	 * Permet de déconnecter un utilisateur
+	 * 
+	 * @return String page vers laquelle redirigé
+	 */
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
