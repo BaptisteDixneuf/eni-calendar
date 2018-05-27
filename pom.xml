@@ -166,7 +166,13 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<version>6.2.2.jre8</version>
 		</dependency>
-
+		
+		<!-- Envoi de mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
 
 
 		<!-- tests -->
