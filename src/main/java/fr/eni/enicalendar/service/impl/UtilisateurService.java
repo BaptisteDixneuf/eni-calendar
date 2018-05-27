@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.eni.enicalendar.persistence.app.entities.Utilisateur;
@@ -35,7 +36,11 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 	public Boolean valide(String email, String password) {
 		Boolean retour = false;
 		Utilisateur utilisateur = utilisateurRepository.findByEmail(email);
-		if (utilisateur != null && password.equals(utilisateur.getPassword())) {
+
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		// TODO : à revoir
+		LOGGER.info(passwordEncoder.encode(password));
+		if (utilisateur != null && passwordEncoder.matches(password, utilisateur.getPassword())) {
 			retour = true;
 		}
 		return retour;

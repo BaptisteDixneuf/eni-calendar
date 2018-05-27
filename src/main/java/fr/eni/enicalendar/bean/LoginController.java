@@ -17,6 +17,13 @@ import org.slf4j.LoggerFactory;
 import fr.eni.enicalendar.service.UtilisateurServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
 
+/***
+ * Controlleur qui permet de connecter/déconnecter un utilisateur <br>
+ * Utilisation de la session
+ * 
+ * @author Baptiste DIXNEUF
+ *
+ */
 @ManagedBean(name = "loginController")
 @ViewScoped
 public class LoginController implements Serializable {
@@ -28,9 +35,15 @@ public class LoginController implements Serializable {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
+	/**
+	 * Les services
+	 */
 	@ManagedProperty(value = "#{utilisateurService}")
 	private UtilisateurServiceInterface utilisateurService;
 
+	/**
+	 * Les données saisies par l'utilsateur dans le formulaire
+	 */
 	private String password;
 
 	private String email;
@@ -40,24 +53,36 @@ public class LoginController implements Serializable {
 		LOGGER.info("LoginController setup");
 	}
 
-	// validate login
+	/**
+	 * Permet de valider le couple email / mot de passe d'un compte utilisateur
+	 * 
+	 * @throws IOException
+	 *             exception
+	 */
 	public void validateUsernamePassword() throws IOException {
 		boolean valid = utilisateurService.valide(email, password);
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("email", email);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionCompte.xhtml");
+			session.setAttribute(SessionUtils.SESSION_EMAIL, email);
+			LOGGER.info("Connexion de l'utilisater : " + email);
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("/eni-calendar/views/rechercheStagiaire.xhtml");
 		} else {
 			FacesContext.getCurrentInstance().addMessage("general",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email/Mot de passe invalide", ""));
 		}
 	}
 
-	// logout event, invalidate session
-	public String logout() {
+	/**
+	 * Permet de déconnecter un utilisateur
+	 * 
+	 * @throws IOException
+	 */
+	public void logout() throws IOException {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
-		return "login";
+		LOGGER.info("Déconnexion de l'utilisater : " + email);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/login.xhtml");
 	}
 
 	/**
