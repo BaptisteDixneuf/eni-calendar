@@ -41,7 +41,7 @@ public class AuthorizationFilter implements Filter {
 			String reqURI = reqt.getRequestURI();
 			if (reqURI.indexOf("/login.xhtml") >= 0 || (ses != null && ses.getAttribute("email") != null)
 					|| reqURI.indexOf("/public/") >= 0 || reqURI.contains("javax.faces.resource")) {
-				LOGGER.info("Déjà connecté");
+				LOGGER.info("Déjà connecté ou sur la page de login");
 				chain.doFilter(request, response);
 			} else {
 				LOGGER.info("Pas connecté");

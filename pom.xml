@@ -83,6 +83,11 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring.data.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.0.5.RELEASE</version>
+		</dependency>
 
 		<!-- Logging -->
 		<dependency>
@@ -161,6 +166,14 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<version>6.2.2.jre8</version>
 		</dependency>
+		
+		<!-- Envoi de mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
 
 		<!-- tests -->
 		<dependency>
