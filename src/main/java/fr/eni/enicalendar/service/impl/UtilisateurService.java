@@ -1,9 +1,6 @@
 package fr.eni.enicalendar.service.impl;
 
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -25,8 +22,6 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 	private static final long serialVersionUID = 4669403011752136207L;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UtilisateurService.class);
-
-	private static final String SALT = "EniCalendar";
 
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
@@ -54,23 +49,6 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 	@Override
 	public Utilisateur findByEmail(String email) {
 		return utilisateurRepository.findByEmail(email);
-	}
-
-	private String get_SHA_512_SecurePassword(String passwordToHash, String salt) {
-		String generatedPassword = null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-512");
-			md.update(salt.getBytes(StandardCharsets.UTF_8));
-			byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < bytes.length; i++) {
-				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-			}
-			generatedPassword = sb.toString();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		return generatedPassword;
 	}
 
 }
