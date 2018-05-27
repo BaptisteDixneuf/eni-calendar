@@ -1,11 +1,15 @@
 package fr.eni.enicalendar.service.impl;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.eni.enicalendar.persistence.app.entities.Utilisateur;
@@ -22,6 +26,8 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UtilisateurService.class);
 
+	private static final String SALT = "EniCalendar";
+
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
 
@@ -35,7 +41,11 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 	public Boolean valide(String email, String password) {
 		Boolean retour = false;
 		Utilisateur utilisateur = utilisateurRepository.findByEmail(email);
-		if (utilisateur != null && password.equals(utilisateur.getPassword())) {
+
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		// TODO : à revoir
+		LOGGER.info(passwordEncoder.encode(password));
+		if (utilisateur != null && passwordEncoder.matches(password, utilisateur.getPassword())) {
 			retour = true;
 		}
 		return retour;
@@ -44,6 +54,23 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 	@Override
 	public Utilisateur findByEmail(String email) {
 		return utilisateurRepository.findByEmail(email);
+	}
+
+	private String get_SHA_512_SecurePassword(String passwordToHash, String salt) {
+		String generatedPassword = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+			md.update(salt.getBytes(StandardCharsets.UTF_8));
+			byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < bytes.length; i++) {
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			generatedPassword = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return generatedPassword;
 	}
 
 }
