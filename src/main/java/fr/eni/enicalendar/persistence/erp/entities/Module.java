@@ -24,9 +24,9 @@ public class Module implements Serializable {
 	private String libelle;
 
 	@Column(name = "DureeEnHeures")
-	private Integer dureeEnHeures;
+	private Short dureeEnHeures;
 
-	@Column(name = "DureeEnSemaines")
+	@Column(name = "DureeEnSemaines", columnDefinition = "TINYINT")
 	private Integer dureeEnSemaines;
 
 	@Column(name = "PrixPublicEnCours")
@@ -74,7 +74,7 @@ public class Module implements Serializable {
 	/**
 	 * @return the dureeEnHeures
 	 */
-	public Integer getDureeEnHeures() {
+	public Short getDureeEnHeures() {
 		return dureeEnHeures;
 	}
 
@@ -82,7 +82,7 @@ public class Module implements Serializable {
 	 * @param dureeEnHeures
 	 *            the dureeEnHeures to set
 	 */
-	public void setDureeEnHeures(Integer dureeEnHeures) {
+	public void setDureeEnHeures(Short dureeEnHeures) {
 		this.dureeEnHeures = dureeEnHeures;
 	}
 

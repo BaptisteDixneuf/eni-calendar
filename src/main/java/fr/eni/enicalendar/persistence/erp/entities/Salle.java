@@ -18,7 +18,7 @@ public class Salle implements Serializable {
 
 	@Id
 	@Column(name = "CodeSalle")
-	private Integer codeSalle;
+	private String codeSalle;
 
 	@Column(name = "Libelle")
 	private String libelle;
@@ -32,7 +32,7 @@ public class Salle implements Serializable {
 	/**
 	 * @return the codeSalle
 	 */
-	public Integer getCodeSalle() {
+	public String getCodeSalle() {
 		return codeSalle;
 	}
 
@@ -40,7 +40,7 @@ public class Salle implements Serializable {
 	 * @param codeSalle
 	 *            the codeSalle to set
 	 */
-	public void setCodeSalle(Integer codeSalle) {
+	public void setCodeSalle(String codeSalle) {
 		this.codeSalle = codeSalle;
 	}
 
