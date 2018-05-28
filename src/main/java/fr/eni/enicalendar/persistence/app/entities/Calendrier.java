@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -47,6 +49,10 @@ public class Calendrier implements Serializable {
 
 	@Column(name = "CA_DATE_FIN_MAX")
 	private Date dateFinMax;
+
+	@ManyToOne
+	@JoinColumn(name = "EC_ID")
+	private EtatCalendrier etatCalendrier;
 
 	/**
 	 * @return the nomCalendrier
@@ -121,6 +127,96 @@ public class Calendrier implements Serializable {
 	 */
 	public void setDateFinMax(Date dateFinMax) {
 		this.dateFinMax = dateFinMax;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the idStagiaireERP
+	 */
+	public Integer getIdStagiaireERP() {
+		return idStagiaireERP;
+	}
+
+	/**
+	 * @param idStagiaireERP
+	 *            the idStagiaireERP to set
+	 */
+	public void setIdStagiaireERP(Integer idStagiaireERP) {
+		this.idStagiaireERP = idStagiaireERP;
+	}
+
+	/**
+	 * @return the idEntrepriseERP
+	 */
+	public Integer getIdEntrepriseERP() {
+		return idEntrepriseERP;
+	}
+
+	/**
+	 * @param idEntrepriseERP
+	 *            the idEntrepriseERP to set
+	 */
+	public void setIdEntrepriseERP(Integer idEntrepriseERP) {
+		this.idEntrepriseERP = idEntrepriseERP;
+	}
+
+	/**
+	 * @return the idLieuFormationERP
+	 */
+	public Integer getIdLieuFormationERP() {
+		return idLieuFormationERP;
+	}
+
+	/**
+	 * @param idLieuFormationERP
+	 *            the idLieuFormationERP to set
+	 */
+	public void setIdLieuFormationERP(Integer idLieuFormationERP) {
+		this.idLieuFormationERP = idLieuFormationERP;
+	}
+
+	/**
+	 * @return the idFormationERP
+	 */
+	public Integer getIdFormationERP() {
+		return idFormationERP;
+	}
+
+	/**
+	 * @param idFormationERP
+	 *            the idFormationERP to set
+	 */
+	public void setIdFormationERP(Integer idFormationERP) {
+		this.idFormationERP = idFormationERP;
+	}
+
+	/**
+	 * @return the etatCalendrier
+	 */
+	public EtatCalendrier getEtatCalendrier() {
+		return etatCalendrier;
+	}
+
+	/**
+	 * @param etatCalendrier
+	 *            the etatCalendrier to set
+	 */
+	public void setEtatCalendrier(EtatCalendrier etatCalendrier) {
+		this.etatCalendrier = etatCalendrier;
 	}
 
 }
