@@ -28,7 +28,6 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 
 	@Override
 	public List<Utilisateur> findAllUtilisateurs() {
-		LOGGER.info("findAllTitre");
 		return utilisateurRepository.findAll();
 	}
 
