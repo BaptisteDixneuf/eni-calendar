@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "DISPENSE")
-public class Dispense implements Serializable {
+@Table(name = "ROLE_UTILISATEUR")
+public class RoleUtilisateur implements Serializable {
 
 	/**
 	 * Serial UID
@@ -17,11 +17,11 @@ public class Dispense implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "DI_ID")
+	@Column(name = "RU_ID")
 	private Integer id;
 
-	@Column(name = "DI_ID_MODULE_ERP")
-	private Integer idModuleERP;
+	@Column(name = "RU_LIBELLE_ROLE")
+	private String libelle;
 
 	/**
 	 * @return the id
@@ -39,18 +39,18 @@ public class Dispense implements Serializable {
 	}
 
 	/**
-	 * @return the idModuleERP
+	 * @return the libelle
 	 */
-	public Integer getIdModuleERP() {
-		return idModuleERP;
+	public String getLibelle() {
+		return libelle;
 	}
 
 	/**
-	 * @param idModuleERP
-	 *            the idModuleERP to set
+	 * @param libelle
+	 *            the libelle to set
 	 */
-	public void setIdModuleERP(Integer idModuleERP) {
-		this.idModuleERP = idModuleERP;
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
 }
