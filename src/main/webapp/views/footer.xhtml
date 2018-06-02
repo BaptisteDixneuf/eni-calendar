@@ -14,35 +14,20 @@
 	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 	<script type="text/javascript" src="#{request.contextPath}/style/app/js/menu.js"></script>
+	
 </h:head>
 
-<body>
-	
 
-	<div class="container">
-		<div class="log-in">
-		<h:form>
-			
-			<h1>ENI Calendar</h1>
-			
-			<p:messages for="general"></p:messages>
-			
-			<div class="form-group m-t-50">
-				<p:outputLabel for="email" value="Email" />
-				<p:inputText id="email" value="#{loginController.email}"  styleClass="form-control"></p:inputText>
-				<p:messages for="email"></p:messages>
-			</div>
-			
-			<div class="form-group">
-				<p:outputLabel for="password" value="Mot de passe" />
-				<p:password id="password" value="#{loginController.password}"  styleClass="form-control"></p:password>
-				<p:messages for="password"></p:messages>
-			</div>
-			
-			<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" update="@form" styleClass="btn btn-primary"></p:commandButton>
-			
-		</h:form>
-		</div>
-	</div>
+<body>
+<nav class="navbar-footer">
+	<div class="footer">
+          <a class="nav-item" href="#">Plan du site</a>
+
+          <a class="nav-item" href="#">Mentions légales</a>
+          
+          <a class="nav-item" href="#">Accessibilité</a>
+    </div>
+</nav>
+
 </body>
 </html>
