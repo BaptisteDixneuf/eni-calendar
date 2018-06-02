@@ -28,6 +28,13 @@
   align-self: center;
 }
 
+.nav-item {
+  margin-left: 5%;
+  align-self: center;
+  color: black;
+}
+
+
 .nav-item.active {
   align-self: center;
   margin-left: 20%;
@@ -41,6 +48,23 @@
 .d-flex.flex-row-reverse {
   margin-right: 5%;
 }
+
+.navbar-footer {
+  margin-top: 20%;
+  display: flex;
+  justify-content: center;
+  background-color: #e1e1d0;
+  height: 50px;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
 
 
 
