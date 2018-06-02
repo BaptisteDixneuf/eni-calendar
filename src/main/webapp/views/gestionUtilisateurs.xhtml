@@ -19,14 +19,14 @@
 		<h1>Liste des utilisateurs de l'application</h1>
         <h:form>
             <p:dataTable var="utilisateurs" value="#{gestionUtilisateursController.utilisateurs}" widgetVar="titreTable" emptyMessage="Auncun utilisateur ne correspond">
-                <p:column headerText="Nom" sortBy="#{utilisateur.nom}" filterBy="#{utilisateur.nom}">
-                    <h:outputText value="#{utilisateur.nom}"/>
+                <p:column headerText="Nom" sortBy="#{utilisateurs.nom}" filterBy="#{utilisateurs.nom}">
+                    <h:outputText value="#{utilisateurs.nom}"/>
                 </p:column>
-                <p:column headerText="Prenom" sortBy="#{utilisateur.prenom}" filterBy="#{utilisateur.prenom}">
-                    <h:outputText value="#{utilisateur.prenom}"/>
+                <p:column headerText="Prenom" sortBy="#{utilisateurs.prenom}" filterBy="#{utilisateurs.prenom}">
+                    <h:outputText value="#{utilisateurs.prenom}"/>
                 </p:column>
-                <p:column headerText="Email" sortBy="#{utilisateur.email}" filterBy="#{utilisateur.email}">
-                    <h:outputText value="#{utilisateur.email}"/>
+                <p:column headerText="Email" sortBy="#{utilisateurs.email}" filterBy="#{utilisateurs.email}">
+                    <h:outputText value="#{utilisateurs.email}"/>
                 </p:column>
           </p:dataTable>
     </h:form>
