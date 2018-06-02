@@ -7,6 +7,9 @@ xmlns:p="http://primefaces.org/ui">
  
     <h:head></h:head>
     <body>
+    
+    <ui:include src="menu.xhtml"></ui:include>
+    
         <h1>Liste des promotions de l'ENI</h1>
         <h:form>
             <p:dataTable var="promotion" value="#{promotionController.promotions}" widgetVar="titreTable" emptyMessage="Auncune promotion ne correspond">
@@ -24,5 +27,7 @@ xmlns:p="http://primefaces.org/ui">
                 </p:column>
           </p:dataTable>
     </h:form>
+    
+    <ui:include src="footer.xhtml"></ui:include>
 </body>
 </html>
