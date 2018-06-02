@@ -1,5 +1,6 @@
 .bg-light {
   background-color: #003380 !important;
+  margin-bottom: 2% !important;
 }
 
 .mr-auto {
@@ -62,6 +63,8 @@
   display: flex;
   justify-content: center;
 }
+
+
 
 
 
