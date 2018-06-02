@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +33,10 @@ public class Utilisateur implements Serializable {
 
 	@Column(name = "UT_PASSWORD", columnDefinition = "TEXT")
 	private String password;
+
+	@ManyToOne
+	@JoinColumn(name = "RU_ID")
+	private RoleUtilisateur role;
 
 	/**
 	 * @return the id
@@ -105,6 +111,21 @@ public class Utilisateur implements Serializable {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the role
+	 */
+	public RoleUtilisateur getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role
+	 *            the role to set
+	 */
+	public void setRole(RoleUtilisateur role) {
+		this.role = role;
 	}
 
 }
