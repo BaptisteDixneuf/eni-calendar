@@ -29,6 +29,9 @@
                 <p:column headerText="Email" sortBy="#{utilisateurs.email}" filterBy="#{utilisateurs.email}">
                     <h:outputText value="#{utilisateurs.email}"/>
                 </p:column>
+                <p:column headerText="Role" sortBy="#{utilisateurs.role.libelle}" filterBy="#{utilisateurs.role.libelle}">
+                    <h:outputText value="#{utilisateurs.role.libelle}"/>
+                </p:column>
           </p:dataTable>
    
     </h:form>

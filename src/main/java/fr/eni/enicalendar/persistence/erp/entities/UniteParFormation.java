@@ -20,10 +20,10 @@ public class UniteParFormation implements Serializable {
 	@Column(name = "Id")
 	private Integer id;
 
-	@Column(name = "CodeFormation")
+	@Column(name = "CodeFormation", columnDefinition = "char")
 	private String codeFormation;
 
-	@Column(name = "Position")
+	@Column(name = "Position", columnDefinition = "TINYINT")
 	private String position;
 
 	@Column(name = "IdUniteFormation")

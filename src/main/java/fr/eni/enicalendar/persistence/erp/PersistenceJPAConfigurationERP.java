@@ -35,8 +35,7 @@ public class PersistenceJPAConfigurationERP {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
 		HashMap<String, Object> properties = new HashMap<>();
-		// properties.put("hibernate.hbm2ddl.auto",
-		// env.getProperty("erp.datasource.hibernate.ddl.auto"));
+		properties.put("hibernate.hbm2ddl.auto", env.getProperty("erp.datasource.hibernate.ddl.auto"));
 		properties.put("hibernate.dialect", env.getProperty("erp.datasource.hibernate.dialect"));
 		em.setJpaPropertyMap(properties);
 

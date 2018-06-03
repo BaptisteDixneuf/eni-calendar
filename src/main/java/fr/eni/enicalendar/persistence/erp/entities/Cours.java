@@ -1,12 +1,17 @@
 package fr.eni.enicalendar.persistence.erp.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Cours")
@@ -18,12 +23,16 @@ public class Cours implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "IdCours")
+	@GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+	@GeneratedValue(generator = "generator")
+	@Column(name = "IdCours", columnDefinition = "uniqueidentifier")
 	private String idCours;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "Debut")
 	private Date dateDebut;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "Fin")
 	private Date dateFin;
 
@@ -31,7 +40,7 @@ public class Cours implements Serializable {
 	private String libelleCours;
 
 	@Column(name = "dureePrevueEnHeures")
-	private Integer dureePrevueEnHeures;
+	private Short dureePrevueEnHeures;
 
 	/**
 	 * @return the idCours
@@ -96,7 +105,7 @@ public class Cours implements Serializable {
 	/**
 	 * @return the dureePrevueEnHeures
 	 */
-	public Integer getDureePrevueEnHeures() {
+	public Short getDureePrevueEnHeures() {
 		return dureePrevueEnHeures;
 	}
 
@@ -104,7 +113,7 @@ public class Cours implements Serializable {
 	 * @param dureePrevueEnHeures
 	 *            the dureePrevueEnHeures to set
 	 */
-	public void setDureePrevueEnHeures(Integer dureePrevueEnHeures) {
+	public void setDureePrevueEnHeures(Short dureePrevueEnHeures) {
 		this.dureePrevueEnHeures = dureePrevueEnHeures;
 	}
 

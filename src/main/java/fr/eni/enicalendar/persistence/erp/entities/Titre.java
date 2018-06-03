@@ -17,7 +17,7 @@ public class Titre implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "CodeTitre")
+	@Column(name = "CodeTitre", columnDefinition = "char")
 	private String codeTitre;
 
 	@Column(name = "LibelleCourt")

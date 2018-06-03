@@ -17,7 +17,7 @@ public class Formation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "CodeFormation")
+	@Column(name = "CodeFormation", columnDefinition = "char")
 	private String codeFormation;
 
 	@Column(name = "LibelleCourt")

@@ -20,7 +20,7 @@ public class Lieu implements Serializable {
 	@Column(name = "CodeLieu")
 	private Integer id;
 
-	@Column(name = "Libelle")
+	@Column(name = "Libelle", length = 50, columnDefinition = "NVARCHAR")
 	private String libelle;
 
 	@Column(name = "archive")
