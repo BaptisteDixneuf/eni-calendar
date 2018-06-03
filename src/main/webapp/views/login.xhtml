@@ -21,8 +21,8 @@
 
 	<div class="container">
 		<div class="log-in">
+		
 		<h:form>
-			
 			<h1>ENI Calendar</h1>
 			
 			<p:messages for="general"></p:messages>
@@ -39,10 +39,11 @@
 				<p:messages for="password"></p:messages>
 			</div>
 			
-			<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" update="@form" styleClass="btn btn-primary"></p:commandButton>
-			
+			<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" update="@form" styleClass="btn btn-primary"></p:commandButton>	
 		</h:form>
+		
 		</div>
 	</div>
+	
 </body>
 </html>
