@@ -17,7 +17,7 @@
 	
 	<div class="container">
 		<h1>Liste des utilisateurs de l'application</h1>
-		 <a class="bouton-ajout" href="#{request.contextPath}/views/ajoutUtilisateur.xhtml">+ Créer un nouvel utilisateur</a>
+		 <a class="bouton-ajout" href="#{request.contextPath}/views/creation-modificationUtilisateur.xhtml">+ Créer un nouvel utilisateur</a>
         <h:form>
             <p:dataTable var="utilisateurs" value="#{gestionUtilisateursController.utilisateurs}" widgetVar="titreTable" emptyMessage="Auncun utilisateur ne correspond">
                 <p:column headerText="Nom" sortBy="#{utilisateurs.nom}" filterBy="#{utilisateurs.nom}">

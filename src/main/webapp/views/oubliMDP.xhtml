@@ -24,26 +24,23 @@
 		
 		<h:form>
 			<h1>ENI Calendar</h1>
-			
+			<h3>Mot de passe oublié?</h3>
 			<p:messages for="general"></p:messages>
 			
 			<div class="form-group m-t-50">
-				<p:outputLabel for="email" value="Email" />
-				<p:inputText id="email" value="#{loginController.email}"  styleClass="form-control"></p:inputText>
+				<p:outputLabel for="email" value="Adresse-email" />
+				<p:inputText id="email" value="Exemple"  styleClass="form-control"></p:inputText>
 				<p:messages for="email"></p:messages>
 			</div>
 			
-			<div class="form-group">
-				<p:outputLabel for="password" value="Mot de passe" />
-				<p:password id="password" value="#{loginController.password}"  styleClass="form-control"></p:password>
-				<p:messages for="password"></p:messages>
+			<div class="">
+				Votre nouveau mot de passe sera obligatoirement envoyé sur l’adresse e-mail que vous aviez renseignée lors de la création de votre compte.
 			</div>
 			
-			<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" update="@form" styleClass="btn btn-primary"></p:commandButton>	
+				
 		</h:form>
 		
 		</div>
-		<a class="oubliMdp" href="#{request.contextPath}/views/oubliMDP.xhtml">Mot de passe oublié</a>
 	</div>
 	
 </body>
