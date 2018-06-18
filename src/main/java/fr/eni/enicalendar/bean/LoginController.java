@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.eni.enicalendar.persistence.app.entities.Utilisateur;
 import fr.eni.enicalendar.service.UtilisateurServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
 
@@ -47,6 +48,10 @@ public class LoginController implements Serializable {
 	private String password;
 
 	private String email;
+	
+
+	//variable pour l'oubli de mdp
+	private Utilisateur utilisateur;
 
 	@PostConstruct
 	public void setup() {
@@ -84,6 +89,25 @@ public class LoginController implements Serializable {
 		LOGGER.info("Déconnexion de l'utilisater : " + email);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/login.xhtml");
 	}
+	
+	
+	/**
+	 * Permet de renvoyer un mdp à un utilisateur ayant oublié le sien
+	 * 
+	 * @throws IOException
+	 */
+	public void oubliMdp() throws IOException {
+		HttpSession session = SessionUtils.getSession();
+		utilisateur = utilisateurService.findByEmail(email);
+		
+		//mettre en place l'envoi de l'email
+		if (utilisateur != null) {
+			
+		}
+		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/login.xhtml");
+	}
+	
 
 	/**
 	 * @return the utilisateurService
