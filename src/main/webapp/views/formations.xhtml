@@ -7,7 +7,11 @@ xmlns:p="http://primefaces.org/ui">
  
     <h:head></h:head>
     <body>
-        <h1>Spring MVC Web with Primefaces - Clever cloud : http://app-f8eb8c1d-3713-4145-83a2-2be8d445de7c.cleverapps.io/eni-calendar/ </h1>
+    
+    <ui:include src="menu.xhtml"></ui:include>
+    
+    
+        <h1>Les formations</h1>
         <h:form>
             <p:dataTable var="formation" value="#{formationController.formations}" widgetVar="formationsTable" emptyMessage="Auncun titre ne correspond">
                 <p:column headerText="Id" sortBy="#{formation.codeFormation}" filterBy="#{formation.codeFormation}">
@@ -21,5 +25,7 @@ xmlns:p="http://primefaces.org/ui">
                 </p:column> -->
           </p:dataTable>
     </h:form>
+    
+    <ui:include src="footer.xhtml"></ui:include>
 </body>
 </html>

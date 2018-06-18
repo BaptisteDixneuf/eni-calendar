@@ -26,7 +26,7 @@ public class UniteFormation implements Serializable {
 	@Column(name = "LibelleCourt")
 	private String libelleCourt;
 
-	@Column(name = "DureeEnSemaines")
+	@Column(name = "DureeEnSemaines", columnDefinition = "TINYINT")
 	private Integer dureeEnSemaines;
 
 	@Column(name = "Archiver")

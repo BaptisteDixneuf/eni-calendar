@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
+</h:head>
+
+
+<body>
+	<ui:include src="menu.xhtml"></ui:include>
+	
+	<div class="container">
+		<h1>Liste des utilisateurs de l'application</h1>
+		 <a class="bouton-ajout" href="#{request.contextPath}/views/creation-modificationUtilisateur.xhtml">+ Créer un nouvel utilisateur</a>
+        <h:form>
+            <p:dataTable var="utilisateurs" value="#{gestionUtilisateursController.utilisateurs}" widgetVar="titreTable" emptyMessage="Auncun utilisateur ne correspond">
+                <p:column headerText="Nom" sortBy="#{utilisateurs.nom}" filterBy="#{utilisateurs.nom}">
+                    <h:outputText value="#{utilisateurs.nom}"/>
+                </p:column>
+                <p:column headerText="Prenom" sortBy="#{utilisateurs.prenom}" filterBy="#{utilisateurs.prenom}">
+                    <h:outputText value="#{utilisateurs.prenom}"/>
+                </p:column>
+                <p:column headerText="Email" sortBy="#{utilisateurs.email}" filterBy="#{utilisateurs.email}">
+                    <h:outputText value="#{utilisateurs.email}"/>
+                </p:column>
+                <p:column headerText="Role" sortBy="#{utilisateurs.role.libelle}" filterBy="#{utilisateurs.role.libelle}">
+                    <h:outputText value="#{utilisateurs.role.libelle}"/>
+                </p:column>
+          </p:dataTable>
+   
+    </h:form>
+	</div>
+	
+	<ui:include src="footer.xhtml"></ui:include>
+	
+</body>
+</html>

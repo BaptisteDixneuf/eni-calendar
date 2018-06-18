@@ -26,7 +26,7 @@ public class ModuleParUnite implements Serializable {
 	@Column(name = "IdModule")
 	private Integer idModule;
 
-	@Column(name = "Position")
+	@Column(name = "Position", columnDefinition = "TINYINT")
 	private Integer position;
 
 	/**
