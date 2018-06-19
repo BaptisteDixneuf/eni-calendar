@@ -37,7 +37,7 @@ public class PersistenceJPAConfigurationAPP {
 		HashMap<String, Object> properties = new HashMap<>();
 		properties.put("hibernate.hbm2ddl.auto", env.getProperty("app.datasource.hibernate.ddl.auto"));
 		properties.put("hibernate.dialect", env.getProperty("app.datasource.hibernate.dialect"));
-		properties.put("hibernate.show_sql", env.getProperty("aapp.datasource.hibernate.show_sql"));
+		properties.put("hibernate.show_sql", env.getProperty("app.datasource.hibernate.show_sql"));
 		em.setJpaPropertyMap(properties);
 
 		return em;
