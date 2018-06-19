@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.service.FormationServiceInterface;
+import fr.eni.enicalendar.service.ModuleParUniteServiceInterface;
 
 @ManagedBean(name = "enchainementModulesController")
 @ViewScoped
@@ -28,6 +29,9 @@ public class EnchainementModulesController implements Serializable {
 	@ManagedProperty(value = "#{formationService}")
 	private FormationServiceInterface formationService;
 
+	@ManagedProperty(value = "#{moduleParUniteService}")
+	private ModuleParUniteServiceInterface moduleParUniteService;
+
 	/** Les formations */
 	List<Formation> formations;
 
@@ -37,6 +41,8 @@ public class EnchainementModulesController implements Serializable {
 	public void setup() {
 		LOGGER.info("EnchainementModulesController setup");
 		formations = formationService.findAllFormations();
+		Iterable<Formation> test = formationService.test();
+
 	}
 
 	public void selectionFormation() {
@@ -88,6 +94,21 @@ public class EnchainementModulesController implements Serializable {
 	 */
 	public void setSelectedFormation(String selectedFormation) {
 		this.selectedFormation = selectedFormation;
+	}
+
+	/**
+	 * @return the moduleParUniteService
+	 */
+	public ModuleParUniteServiceInterface getModuleParUniteService() {
+		return moduleParUniteService;
+	}
+
+	/**
+	 * @param moduleParUniteService
+	 *            the moduleParUniteService to set
+	 */
+	public void setModuleParUniteService(ModuleParUniteServiceInterface moduleParUniteService) {
+		this.moduleParUniteService = moduleParUniteService;
 	}
 
 }
