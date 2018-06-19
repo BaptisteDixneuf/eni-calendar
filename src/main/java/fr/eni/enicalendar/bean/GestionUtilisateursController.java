@@ -93,7 +93,7 @@ public class GestionUtilisateursController implements Serializable {
 	 */
 	public void creerNouvelUtilisateur() throws IOException {
 		
-		//FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/login.xhtml");
+		
 	}
 
 }
