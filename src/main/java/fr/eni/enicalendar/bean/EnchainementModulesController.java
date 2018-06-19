@@ -39,6 +39,12 @@ public class EnchainementModulesController implements Serializable {
 		formations = formationService.findAllFormations();
 	}
 
+	public void selectionFormation() {
+		LOGGER.info("La formation sélectionnée est : " + selectedFormation);
+
+		//
+	}
+
 	/**
 	 * @return the formationService
 	 */
