@@ -15,9 +15,11 @@
 		 <h:form>
         	<div class="form-group">
 				<p:outputLabel for="formation" value="Formation" />
-				<p:selectOneMenu id="formation">
-					
-				</p:selectOneMenu>
+				<h:selectOneMenu id="formation" value="#{enchainementModulesController.selectedFormation}" >
+					<f:selectItems value="#{enchainementModulesController.formations}"
+						var="formation" itemLabel="#{formation.libelleCourt}" itemValue="#{formation.codeFormation}" >					
+					</f:selectItems>
+				</h:selectOneMenu>
 				<p:messages for="formation"></p:messages>
 			</div>
 		</h:form>
