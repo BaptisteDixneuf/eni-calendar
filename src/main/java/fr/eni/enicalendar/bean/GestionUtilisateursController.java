@@ -35,11 +35,14 @@ public class GestionUtilisateursController implements Serializable {
 	private List<Utilisateur> utilisateurs;
 	
 	Utilisateur utilisateur;
+	
+	String role;
 
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("GestionUtilisateursController setup");
 		utilisateurs = utilisateurService.findAllUtilisateurs();
+		utilisateur = new Utilisateur();
 	}
 
 	/**
@@ -86,14 +89,28 @@ public class GestionUtilisateursController implements Serializable {
 		this.utilisateurs = utilisateurs;
 	}
 	
+	
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	/**
 	 * Permet de créer un utilisateur
 	 * 
 	 * @throws IOException
 	 */
 	public void creerNouvelUtilisateur() throws IOException {
-		
-		
+	   utilisateur = utilisateurService.saveUtilisateur(utilisateur);
 	}
 
 }

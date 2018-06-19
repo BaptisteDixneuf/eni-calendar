@@ -45,12 +45,12 @@
 			
 			<div class="form-group col-md-6">
 				<p:outputLabel for="role" value="Role" />
-				<p:selectOneMenu id="role" value="" styleClass="form-control">
-					<f:selectItem itemLabel="Select One" itemValue="" />
+				<h:selectOneMenu id="role" value="#{gestionUtilisateursController.role}" styleClass="form-control">
+					<f:selectItem itemLabel="Sélectionnez dans la liste déroulante" itemValue="" />
             		<f:selectItem itemLabel="Admin" itemValue="Admin" />
             		<f:selectItem itemLabel="Utilisateur" itemValue="Utilisateur" />
             		<f:selectItem itemLabel="Utilisateur++" itemValue="Utilisateur++" />
-            	</p:selectOneMenu>
+            	</h:selectOneMenu>
 				<p:messages for="role"></p:messages>
 			</div>
 			
