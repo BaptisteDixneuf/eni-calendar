@@ -20,9 +20,4 @@ public class FormationService implements FormationServiceInterface {
 		return formationRepository.findAll();
 	}
 
-	@Override
-	public Iterable<Formation> test() {
-		return formationRepository.test();
-	}
-
 }

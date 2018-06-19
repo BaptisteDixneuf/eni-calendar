@@ -8,5 +8,4 @@ public interface FormationServiceInterface {
 
 	List<Formation> findAllFormations();
 
-	Iterable<Formation> test();
 }

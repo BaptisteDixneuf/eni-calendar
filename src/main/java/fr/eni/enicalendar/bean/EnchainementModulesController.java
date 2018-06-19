@@ -12,8 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
+import fr.eni.enicalendar.persistence.erp.entities.Module;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.ModuleParUniteServiceInterface;
+import fr.eni.enicalendar.service.ModuleServiceInterface;
 
 @ManagedBean(name = "enchainementModulesController")
 @ViewScoped
@@ -32,23 +34,29 @@ public class EnchainementModulesController implements Serializable {
 	@ManagedProperty(value = "#{moduleParUniteService}")
 	private ModuleParUniteServiceInterface moduleParUniteService;
 
+	@ManagedProperty(value = "#{moduleService}")
+	private ModuleServiceInterface moduleService;
+
 	/** Les formations */
 	List<Formation> formations;
 
+	/** La formation sélectionné */
 	private String selectedFormation;
+
+	/** Les modules de la formation */
+	List<Module> modules;
 
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("EnchainementModulesController setup");
 		formations = formationService.findAllFormations();
-		Iterable<Formation> test = formationService.test();
 
 	}
 
 	public void selectionFormation() {
 		LOGGER.info("La formation sélectionnée est : " + selectedFormation);
-
-		//
+		modules = moduleService.findModuleByFormation(selectedFormation);
+		LOGGER.info("Nbre de modules : " + modules.size());
 	}
 
 	/**
@@ -109,6 +117,36 @@ public class EnchainementModulesController implements Serializable {
 	 */
 	public void setModuleParUniteService(ModuleParUniteServiceInterface moduleParUniteService) {
 		this.moduleParUniteService = moduleParUniteService;
+	}
+
+	/**
+	 * @return the moduleService
+	 */
+	public ModuleServiceInterface getModuleService() {
+		return moduleService;
+	}
+
+	/**
+	 * @param moduleService
+	 *            the moduleService to set
+	 */
+	public void setModuleService(ModuleServiceInterface moduleService) {
+		this.moduleService = moduleService;
+	}
+
+	/**
+	 * @return the modules
+	 */
+	public List<Module> getModules() {
+		return modules;
+	}
+
+	/**
+	 * @param modules
+	 *            the modules to set
+	 */
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
 	}
 
 }

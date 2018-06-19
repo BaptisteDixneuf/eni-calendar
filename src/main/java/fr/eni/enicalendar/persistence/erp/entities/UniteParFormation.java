@@ -27,7 +27,7 @@ public class UniteParFormation implements Serializable {
 	private String position;
 
 	@Column(name = "IdUniteFormation")
-	private Integer IdUniteFormation;
+	private Integer idUniteFormation;
 
 	/**
 	 * @return the id
@@ -78,7 +78,7 @@ public class UniteParFormation implements Serializable {
 	 * @return the idUniteFormation
 	 */
 	public Integer getIdUniteFormation() {
-		return IdUniteFormation;
+		return idUniteFormation;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class UniteParFormation implements Serializable {
 	 *            the idUniteFormation to set
 	 */
 	public void setIdUniteFormation(Integer idUniteFormation) {
-		IdUniteFormation = idUniteFormation;
+		this.idUniteFormation = idUniteFormation;
 	}
 
 }
