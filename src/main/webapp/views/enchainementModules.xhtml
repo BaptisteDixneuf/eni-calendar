@@ -21,19 +21,19 @@
 						var="formation" itemLabel="#{formation.libelleCourt}"
 						itemValue="#{formation.codeFormation}">
 					</f:selectItems>
+					<p:ajax event="change" update="panelModules"
+						listener="#{enchainementModulesController.selectionFormation}"  />
 				</h:selectOneMenu>
 				<p:messages for="formation"></p:messages>
 			</div>
-			<p:commandButton
-				actionListener="#{enchainementModulesController.selectionFormation}"
-				value="Modifier l'enchainement" update="panelModules"></p:commandButton>
-			<h:panelGroup id="panelModules">	
-				<h:panelGroup rendered="#{enchainementModulesController.modules != null}">
+			<h:panelGroup id="panelModules">
+				<h:panelGroup
+					rendered="#{enchainementModulesController.modules != null}">
 					<p:dataTable var="titre"
 						value="#{enchainementModulesController.modules}"
 						widgetVar="moduleTable" emptyMessage="Auncun module ne correspond">
-						<p:column headerText="Module libellé" sortBy="#{module.libelleLong}"
-							filterBy="#{module.libelle}">
+						<p:column headerText="Module libellé"
+							sortBy="#{module.libelleLong}" filterBy="#{module.libelle}">
 							<h:outputText value="#{titre.libelle}" />
 						</p:column>
 					</p:dataTable>
