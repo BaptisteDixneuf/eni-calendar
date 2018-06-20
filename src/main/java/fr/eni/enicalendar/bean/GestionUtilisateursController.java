@@ -12,6 +12,7 @@ import javax.faces.bean.ViewScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.eni.enicalendar.persistence.app.entities.RoleUtilisateur;
 import fr.eni.enicalendar.persistence.app.entities.Utilisateur;
 import fr.eni.enicalendar.service.UtilisateurServiceInterface;
 
@@ -32,7 +33,7 @@ public class GestionUtilisateursController implements Serializable {
 	private List<Utilisateur> utilisateurs;
 
 	Utilisateur utilisateur;
-	
+
 	String role;
 
 	@PostConstruct
@@ -86,8 +87,7 @@ public class GestionUtilisateursController implements Serializable {
 	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
 		this.utilisateurs = utilisateurs;
 	}
-	
-	
+
 	/**
 	 * @return the role
 	 */
@@ -96,7 +96,8 @@ public class GestionUtilisateursController implements Serializable {
 	}
 
 	/**
-	 * @param role the role to set
+	 * @param role
+	 *            the role to set
 	 */
 	public void setRole(String role) {
 		this.role = role;
@@ -108,7 +109,10 @@ public class GestionUtilisateursController implements Serializable {
 	 * @throws IOException
 	 */
 	public void creerNouvelUtilisateur() throws IOException {
-	   utilisateur = utilisateurService.saveUtilisateur(utilisateur);
+		RoleUtilisateur role = new RoleUtilisateur();
+		role.setId(1);
+		utilisateur.setRole(role);
+		utilisateur = utilisateurService.saveUtilisateur(utilisateur);
 	}
 
 }
