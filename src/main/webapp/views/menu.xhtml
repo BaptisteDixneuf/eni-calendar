@@ -11,8 +11,8 @@
 	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/app/style.css" />
 	
 	<!-- JS -->
-	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="#{request.contextPath}/style/app/js/menu.js"></script>
 	
 </h:head>
@@ -55,7 +55,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Modules indépendants</a>
-          <a class="dropdown-item" href="#">Enchainement de modules</a>
+          <a class="dropdown-item" href="#{request.contextPath}/views/enchainementModules.xhtml">Enchainement de modules</a>
           <a class="dropdown-item" href="#">Modules sécables</a>
         </div>
       </li>

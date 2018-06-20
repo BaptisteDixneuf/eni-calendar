@@ -8,15 +8,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.persistence.app.entities.Utilisateur;
 import fr.eni.enicalendar.service.UtilisateurServiceInterface;
-import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "gestionUtilisateursController")
 @ViewScoped
@@ -33,7 +30,7 @@ public class GestionUtilisateursController implements Serializable {
 	private UtilisateurServiceInterface utilisateurService;
 
 	private List<Utilisateur> utilisateurs;
-	
+
 	Utilisateur utilisateur;
 	
 	String role;
@@ -83,7 +80,8 @@ public class GestionUtilisateursController implements Serializable {
 	}
 
 	/**
-	 * @param utilisateurs the utilisateurs to set
+	 * @param utilisateurs
+	 *            the utilisateurs to set
 	 */
 	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
 		this.utilisateurs = utilisateurs;
@@ -114,4 +112,3 @@ public class GestionUtilisateursController implements Serializable {
 	}
 
 }
-

@@ -7,4 +7,5 @@ import fr.eni.enicalendar.persistence.erp.entities.Formation;
 public interface FormationServiceInterface {
 
 	List<Formation> findAllFormations();
+
 }

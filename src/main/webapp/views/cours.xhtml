@@ -15,9 +15,9 @@
 		<h:form>
 			<p:dataTable var="cours" value="#{coursController.cours}"
 				widgetVar="titreTable" emptyMessage="Auncun titre ne correspond">
-				<p:column headerText="Id" sortBy="#{cours.idCours}"
-					filterBy="#{cours.idCours}">
-					<h:outputText value="#{cours.idCours}" />
+				<p:column headerText="Id" sortBy="#{cours.id}"
+					filterBy="#{cours.id}">
+					<h:outputText value="#{cours.id}" />
 				</p:column>
 				<p:column headerText="Date début" sortBy="#{cours.dateDebut}"
 					filterBy="#{cours.dateDebut}">

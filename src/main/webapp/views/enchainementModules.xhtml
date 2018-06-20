@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+
+<body>
+	<ui:include src="menu.xhtml"></ui:include>
+
+	<div class="container">
+		<h1>Enchainement Modules</h1>
+		<h:form>
+			<div class="form-group">
+				<p:outputLabel for="formation" value="Formation" />
+				<h:selectOneMenu id="formation"
+					value="#{enchainementModulesController.selectedFormation}">
+					<f:selectItems value="#{enchainementModulesController.formations}"
+						var="formation" itemLabel="#{formation.libelleCourt}"
+						itemValue="#{formation.codeFormation}">
+					</f:selectItems>
+					<p:ajax event="change" update="panelModules"
+						listener="#{enchainementModulesController.selectionFormation}"  />
+				</h:selectOneMenu>
+				<p:messages for="formation"></p:messages>
+			</div>
+			<h:panelGroup id="panelModules">
+				<h:panelGroup
+					rendered="#{enchainementModulesController.modules != null}">
+					<p:dataTable var="titre"
+						value="#{enchainementModulesController.modules}"
+						widgetVar="moduleTable" emptyMessage="Auncun module ne correspond">
+						<p:column headerText="Module libellé"
+							sortBy="#{module.libelleLong}" filterBy="#{module.libelle}">
+							<h:outputText value="#{titre.libelle}" />
+						</p:column>
+					</p:dataTable>
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+	</div>
+
+	<ui:include src="footer.xhtml"></ui:include>
+</body>
+</html>

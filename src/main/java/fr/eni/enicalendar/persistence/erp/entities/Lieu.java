@@ -18,7 +18,7 @@ public class Lieu implements Serializable {
 
 	@Id
 	@Column(name = "CodeLieu")
-	private Integer id;
+	private Integer codeLieu;
 
 	@Column(name = "Libelle", length = 50, columnDefinition = "NVARCHAR")
 	private String libelle;
@@ -51,18 +51,18 @@ public class Lieu implements Serializable {
 	private String ville;
 
 	/**
-	 * @return the id
+	 * @return the codeLieu
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getCodeLieu() {
+		return codeLieu;
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param codeLieu
+	 *            the codeLieu to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCodeLieu(Integer codeLieu) {
+		this.codeLieu = codeLieu;
 	}
 
 	/**
