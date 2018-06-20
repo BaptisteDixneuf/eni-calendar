@@ -81,7 +81,7 @@
       </li>
       <li class="p-2 nav-item active">
       	<h:panelGroup rendered="#{menuController.utilisateur != null}">
-        	<a class="nav-link" href="#">#{menuController.utilisateur.nom} #{menuController.utilisateur.prenom}<span class="sr-only">(current)</span></a>
+        	<a class="nav-link" href="#{request.contextPath}/views/gestionCompte.xhtml">#{menuController.utilisateur.nom} #{menuController.utilisateur.prenom}<span class="sr-only">(current)</span></a>
         </h:panelGroup>
         <h:panelGroup rendered="#{menuController.utilisateur == null}">
         	<a class="nav-link" href="#">Utilisateur<span class="sr-only">(current)</span></a>

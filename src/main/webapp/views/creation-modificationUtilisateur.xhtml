@@ -16,10 +16,45 @@
 	<ui:include src="menu.xhtml"></ui:include>
 	
 	<div class="container">
-		<h1>Création d'un nouvel utilisateur</h1>
-        <h:form>          
-         
-          
+		<h1>Création/Modif (mettre variable dynamique) d'un nouvel utilisateur</h1>
+    
+    <h:form>          
+       		<div class="form-group col-md-6">
+				<p:outputLabel for="nom" value="Nom" />
+				<p:inputText id="nom" value="#{gestionUtilisateursController.utilisateur.nom}"  styleClass="form-control"></p:inputText>
+				<p:messages for="nom"></p:messages>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<p:outputLabel for="prenom" value="Prenom" />
+				<p:inputText id="prenom" value="#{gestionUtilisateursController.utilisateur.prenom}"  styleClass="form-control"></p:inputText>
+				<p:messages for="prenom"></p:messages>
+			</div>
+       
+       		<div class="form-group col-md-6">
+				<p:outputLabel for="email" value="Email" />
+				<p:inputText id="email" value="#{gestionUtilisateursController.utilisateur.email}"  styleClass="form-control"></p:inputText>
+				<p:messages for="email"></p:messages>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<p:outputLabel for="password" value="Mot de passe" />
+				<p:password id="password" value="#{gestionUtilisateursController.utilisateur.password}"  styleClass="form-control"></p:password>
+				<p:messages for="password"></p:messages>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<p:outputLabel for="role" value="Role" />
+				<h:selectOneMenu id="role" value="#{gestionUtilisateursController.role}" styleClass="form-control">
+					<f:selectItem itemLabel="Sélectionnez dans la liste déroulante" itemValue="" />
+            		<f:selectItem itemLabel="Admin" itemValue="Admin" />
+            		<f:selectItem itemLabel="Utilisateur" itemValue="Utilisateur" />
+            		<f:selectItem itemLabel="Utilisateur++" itemValue="Utilisateur++" />
+            	</h:selectOneMenu>
+				<p:messages for="role"></p:messages>
+			</div>
+			
+			<p:commandButton action="#{gestionUtilisateursController.creerNouvelUtilisateur}" value="Valider" update="@form" styleClass="btn btn-primary"></p:commandButton>  
          	
     </h:form>
 	</div>

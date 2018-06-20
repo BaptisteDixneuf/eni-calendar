@@ -32,11 +32,14 @@ public class GestionUtilisateursController implements Serializable {
 	private List<Utilisateur> utilisateurs;
 
 	Utilisateur utilisateur;
+	
+	String role;
 
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("GestionUtilisateursController setup");
 		utilisateurs = utilisateurService.findAllUtilisateurs();
+		utilisateur = new Utilisateur();
 	}
 
 	/**
@@ -83,6 +86,21 @@ public class GestionUtilisateursController implements Serializable {
 	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
 		this.utilisateurs = utilisateurs;
 	}
+	
+	
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	/**
 	 * Permet de créer un utilisateur
@@ -90,8 +108,7 @@ public class GestionUtilisateursController implements Serializable {
 	 * @throws IOException
 	 */
 	public void creerNouvelUtilisateur() throws IOException {
-
-		// FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/login.xhtml");
+	   utilisateur = utilisateurService.saveUtilisateur(utilisateur);
 	}
 
 }

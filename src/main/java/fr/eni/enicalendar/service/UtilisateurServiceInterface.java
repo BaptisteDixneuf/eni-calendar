@@ -11,5 +11,7 @@ public interface UtilisateurServiceInterface {
 	Boolean valide(String email, String password);
 
 	Utilisateur findByEmail(String email);
+	
+	Utilisateur saveUtilisateur(Utilisateur utilisateur);
 
 }
