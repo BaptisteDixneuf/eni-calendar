@@ -113,6 +113,7 @@ public class GestionUtilisateursController implements Serializable {
 		role.setId(1);
 		utilisateur.setRole(role);
 		utilisateur = utilisateurService.saveUtilisateur(utilisateur);
+		//test idea
 	}
 
 }
