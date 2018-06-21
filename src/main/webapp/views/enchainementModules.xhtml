@@ -13,32 +13,41 @@
 	<div class="container">
 		<h1>Enchainement Modules</h1>
 		<h:form>
-			<div class="form-group">
-				<p:outputLabel for="formation" value="Formation" />
-				<h:selectOneMenu id="formation"
-					value="#{enchainementModulesController.selectedFormation}">
-					<f:selectItems value="#{enchainementModulesController.formations}"
-						var="formation" itemLabel="#{formation.libelleCourt}"
-						itemValue="#{formation.codeFormation}">
-					</f:selectItems>
-					<p:ajax event="change" update="panelModules"
-						listener="#{enchainementModulesController.selectionFormation}"  />
-				</h:selectOneMenu>
-				<p:messages for="formation"></p:messages>
-			</div>
+			<h:panelGroup id="panelFormations">
+				<div class="form-group">
+					<p:outputLabel for="formation" value="Formation" />
+					<h:selectOneMenu id="formation" disabled="#{enchainementModulesController.disableFormation}"
+						value="#{enchainementModulesController.selectedFormation}">
+						<f:selectItem itemValue="" itemLabel=""></f:selectItem>
+						<f:selectItems value="#{enchainementModulesController.formations}"
+							var="formation" itemLabel="#{formation.libelleCourt}"
+							itemValue="#{formation.codeFormation}">
+						</f:selectItems>
+						<p:ajax event="change" update="panelModules panelFormations panelActions"
+							listener="#{enchainementModulesController.selectionFormation}"  />
+					</h:selectOneMenu>
+					<p:messages for="formation"></p:messages>
+				</div>
+			</h:panelGroup>
 			<h:panelGroup id="panelModules">
 				<h:panelGroup
 					rendered="#{enchainementModulesController.modules != null}">
-					<p:dataTable var="titre"
-						value="#{enchainementModulesController.modules}"
-						widgetVar="moduleTable" emptyMessage="Auncun module ne correspond">
-						<p:column headerText="Module libellé"
-							sortBy="#{module.libelleLong}" filterBy="#{module.libelle}">
-							<h:outputText value="#{titre.libelle}" />
-						</p:column>
-					</p:dataTable>
+					<ui:repeat var="module" value="#{enchainementModulesController.modules}" varStatus="status">
+						<p:commandButton value="#{module.libelle}">
+						</p:commandButton>
+					</ui:repeat>
+					
 				</h:panelGroup>
 			</h:panelGroup>
+			<h:panelGroup id="panelActions">
+				<h:panelGroup
+					rendered="#{enchainementModulesController.modules != null}">
+					<div class="form-group">			
+						<p:commandButton value="Enregistrer"></p:commandButton>
+						<p:commandButton value="Annuler"></p:commandButton>
+					</div>
+				</h:panelGroup>
+			</h:panelGroup>			
 		</h:form>
 	</div>
 

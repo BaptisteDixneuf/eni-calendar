@@ -43,6 +43,8 @@ public class EnchainementModulesController implements Serializable {
 	/** La formation sélectionné */
 	private String selectedFormation;
 
+	private Boolean disableFormation = Boolean.FALSE;
+
 	/** Les modules de la formation */
 	List<Module> modules;
 
@@ -56,6 +58,7 @@ public class EnchainementModulesController implements Serializable {
 	public void selectionFormation() {
 		LOGGER.info("La formation sélectionnée est : " + selectedFormation);
 		modules = moduleService.findModuleByFormation(selectedFormation);
+		disableFormation = Boolean.TRUE;
 		LOGGER.info("Nbre de modules : " + modules.size());
 	}
 
@@ -147,6 +150,21 @@ public class EnchainementModulesController implements Serializable {
 	 */
 	public void setModules(List<Module> modules) {
 		this.modules = modules;
+	}
+
+	/**
+	 * @return the disableFormation
+	 */
+	public Boolean getDisableFormation() {
+		return disableFormation;
+	}
+
+	/**
+	 * @param disableFormation
+	 *            the disableFormation to set
+	 */
+	public void setDisableFormation(Boolean disableFormation) {
+		this.disableFormation = disableFormation;
 	}
 
 }
