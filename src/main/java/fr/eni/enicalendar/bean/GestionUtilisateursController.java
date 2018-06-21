@@ -114,6 +114,7 @@ public class GestionUtilisateursController implements Serializable {
 		utilisateur.setRole(role);
 		utilisateur = utilisateurService.saveUtilisateur(utilisateur);
 		//test idea
+		LOGGER.info("truc");
 	}
 
 }
