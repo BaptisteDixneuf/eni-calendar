@@ -8,7 +8,7 @@
 <h:head>
 	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
 	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </h:head>
 
 
@@ -17,7 +17,7 @@
 	
 	<div class="container">
 		<h1>Liste des utilisateurs de l'application</h1>
-		 <a class="bouton-ajout" href="#{request.contextPath}/views/creation-modificationUtilisateur.xhtml">+ Créer un nouvel utilisateur</a>
+        <p:commandButton value="+ Créer un nouvel utilisateur" action="#{gestionUtilisateursController.ajoutUtilisateur('Création')}"/>
         <h:form>
             <p:dataTable var="utilisateurs" value="#{gestionUtilisateursController.utilisateurs}" widgetVar="titreTable" emptyMessage="Auncun utilisateur ne correspond">
                 <p:column headerText="Nom" sortBy="#{utilisateurs.nom}" filterBy="#{utilisateurs.nom}">
@@ -32,6 +32,10 @@
                 <p:column headerText="Role" sortBy="#{utilisateurs.role.libelle}" filterBy="#{utilisateurs.role.libelle}">
                     <h:outputText value="#{utilisateurs.role.libelle}"/>
                 </p:column>
+                <p:column headerText=""  >
+                    <p:commandButton value="Modifier" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', utilisateurs.id)}"/>
+                </p:column>
+
           </p:dataTable>
    
     </h:form>

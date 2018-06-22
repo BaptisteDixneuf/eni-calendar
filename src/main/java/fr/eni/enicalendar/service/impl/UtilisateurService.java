@@ -49,6 +49,11 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 	public Utilisateur findByEmail(String email) {
 		return utilisateurRepository.findByEmail(email);
 	}
+
+	@Override
+	public Utilisateur findById (Integer id) {
+		return utilisateurRepository.findById(id);
+	}
 	
 	
 	public Utilisateur saveUtilisateur(Utilisateur utilisateur) {
