@@ -60,4 +60,8 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 		return utilisateurRepository.save(utilisateur);
 	}
 
+	public void deleteUtilisateur(Utilisateur utilisateur) {
+		utilisateurRepository.delete(utilisateur);
+	}
+
 }

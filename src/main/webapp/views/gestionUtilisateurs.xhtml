@@ -14,8 +14,12 @@
 
 <body>
 	<ui:include src="menu.xhtml"></ui:include>
-	
-	<div class="container">
+
+    <!--<div>
+    <p class="alert alert-success">Bandeau d’alerte - la classe success <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></p>
+    </div>-->
+
+    <div class="container">
 		<h1>Liste des utilisateurs de l'application</h1>
         <p:commandButton value="+ Créer un nouvel utilisateur" action="#{gestionUtilisateursController.ajoutUtilisateur('Création')}"/>
         <h:form>
@@ -34,6 +38,7 @@
                 </p:column>
                 <p:column headerText=""  >
                     <p:commandButton value="Modifier" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', utilisateurs.id)}"/>
+                    <p:commandButton value="Supprimer" action="#{gestionUtilisateursController.supprimerUtilisateur(utilisateurs.id)}"/>
                 </p:column>
 
           </p:dataTable>

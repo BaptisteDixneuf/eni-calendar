@@ -155,5 +155,19 @@ public class GestionUtilisateursController implements Serializable {
 				.redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
 	}
 
+    /**
+     * Page de modification d'un utilisateur
+     *
+     * @throws IOException
+     */
+    public void supprimerUtilisateur(Integer id) throws IOException {
+        HttpSession session = SessionUtils.getSession();
+        session.setAttribute(SessionUtils.SESSION_ID, id);
 
+        utilisateur = utilisateurService.findById(id);
+        utilisateurService.deleteUtilisateur(utilisateur);
+
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
+    }
 }

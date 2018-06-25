@@ -16,4 +16,6 @@ public interface UtilisateurServiceInterface {
 	
 	Utilisateur saveUtilisateur(Utilisateur utilisateur);
 
+	void deleteUtilisateur(Utilisateur utilisateur);
+
 }

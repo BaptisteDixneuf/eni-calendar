@@ -1,6 +1,7 @@
 package fr.eni.enicalendar.bean;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -118,6 +119,10 @@ public class ModificationUtilisateurController implements Serializable {
             utilisateur.setRole(role);
         }
         utilisateurService.saveUtilisateur(utilisateur);
+
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
+
     }
 
 }
