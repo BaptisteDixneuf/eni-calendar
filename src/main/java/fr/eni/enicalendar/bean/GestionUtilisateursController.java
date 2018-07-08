@@ -3,12 +3,16 @@ package fr.eni.enicalendar.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
+import fr.eni.enicalendar.utils.SessionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,15 +36,17 @@ public class GestionUtilisateursController implements Serializable {
 
 	private List<Utilisateur> utilisateurs;
 
-	Utilisateur utilisateur;
+	private Utilisateur utilisateur;
 
-	String role;
+	private String role;
+
+	private String typeAction;
 
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("GestionUtilisateursController setup");
-		utilisateurs = utilisateurService.findAllUtilisateurs();
 		utilisateur = new Utilisateur();
+		utilisateurs = utilisateurService.findAllUtilisateurs();
 	}
 
 	/**
@@ -88,6 +94,14 @@ public class GestionUtilisateursController implements Serializable {
 		this.utilisateurs = utilisateurs;
 	}
 
+	public String getTypeAction() {
+		return typeAction;
+	}
+
+	public void setTypeAction(String typeAction) {
+		this.typeAction = typeAction;
+	}
+
 	/**
 	 * @return the role
 	 */
@@ -113,6 +127,47 @@ public class GestionUtilisateursController implements Serializable {
 		role.setId(1);
 		utilisateur.setRole(role);
 		utilisateur = utilisateurService.saveUtilisateur(utilisateur);
+
 	}
 
+	/**
+	 * Page de modification d'un utilisateur
+	 *
+	 * @throws IOException
+	 */
+	public void modificationUtilisateur(String typeAction, Integer id) throws IOException {
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
+		session.setAttribute(SessionUtils.SESSION_ID, id);
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
+	}
+
+	/**
+	 * Permet de modifier un utilisateur
+	 *
+	 * @throws IOException
+	 */
+	public void ajoutUtilisateur(String typeAction) throws IOException {
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
+	}
+
+    /**
+     * Page de modification d'un utilisateur
+     *
+     * @throws IOException
+     */
+    public void supprimerUtilisateur(Integer id) throws IOException {
+        HttpSession session = SessionUtils.getSession();
+        session.setAttribute(SessionUtils.SESSION_ID, id);
+
+        utilisateur = utilisateurService.findById(id);
+        utilisateurService.deleteUtilisateur(utilisateur);
+
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
+    }
 }
