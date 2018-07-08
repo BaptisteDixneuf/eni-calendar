@@ -128,9 +128,10 @@ public class EnchainementModulesController implements Serializable {
 		List<EnchainementModule> list = new ArrayList<>();
 		for (Module module : modulesEnchainement) {
 			EnchainementModule item = new EnchainementModule();
-			item.setIdFormationERP(Integer.parseInt(idSelectedFormation.trim()));
+			item.setIdFormationERP(idSelectedFormation);
 			item.setIdModuleERP(Integer.parseInt(idSelectedModule.trim()));
 			item.setIdModulePrerequisERP(module.getId());
+			item.setTypeEnchainement(module.getEnchainement());
 			list.add(item);
 		}
 		list = enchainementModuleService.save(list);
