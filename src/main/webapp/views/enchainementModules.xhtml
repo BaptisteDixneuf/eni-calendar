@@ -59,7 +59,7 @@
 							<h:outputText value="#{modulesEnchainement.libelle}" />
 						</p:column>
 						<p:column headerText="Enchainement possible">
-							<h:selectOneMenu id="enchainement"
+							<h:selectOneMenu id="enchainement" 
 								value="#{modulesEnchainement.enchainement}">
 								<f:selectItem itemValue="NON_REQUIS" itemLabel="Non requis"></f:selectItem>
 								<f:selectItem itemValue="OBLIGATAIRE" itemLabel="Obligatoire"></f:selectItem>
@@ -73,7 +73,8 @@
 				<h:panelGroup
 					rendered="#{enchainementModulesController.modules != null}">
 					<div class="form-group">
-						<p:commandButton value="Enregistrer"></p:commandButton>
+						<p:commandButton value="Enregistrer" actionListener="#{enchainementModulesController.enregistrer}"
+							update="panelFormations panelModules panelEnchainement panelActions"></p:commandButton>
 						<p:commandButton value="Annuler"
 							actionListener="#{enchainementModulesController.annuler}"
 							update="panelFormations panelModules panelEnchainement panelActions"></p:commandButton>

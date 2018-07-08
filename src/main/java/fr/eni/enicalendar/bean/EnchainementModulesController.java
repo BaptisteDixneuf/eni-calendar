@@ -14,11 +14,14 @@ import javax.faces.bean.ViewScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.eni.enicalendar.persistence.app.entities.EnchainementModule;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Module;
+import fr.eni.enicalendar.service.EnchainementModuleServiceInterface;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.ModuleParUniteServiceInterface;
 import fr.eni.enicalendar.service.ModuleServiceInterface;
+import fr.eni.enicalendar.utils.EnchainementPossibleEnum;
 
 @ManagedBean(name = "enchainementModulesController")
 @ViewScoped
@@ -40,6 +43,9 @@ public class EnchainementModulesController implements Serializable {
 
 	@ManagedProperty(value = "#{moduleService}")
 	private ModuleServiceInterface moduleService;
+
+	@ManagedProperty(value = "#{enchainementModuleService}")
+	private EnchainementModuleServiceInterface enchainementModuleService;
 
 	/** Les formations */
 	List<Formation> formations;
@@ -87,14 +93,18 @@ public class EnchainementModulesController implements Serializable {
 	 */
 	public void selectionModule() {
 		LOGGER.info("Le module sélectionné est : " + idSelectedModule);
-		modulesEnchainement = new ArrayList<>(modules); // Utilisation de la copy, non du référencement :)
+		modulesEnchainement = new ArrayList<>(modules); // Utilisation de la copy, non du référencement
 
 		Iterator<Module> iter = modulesEnchainement.iterator();
 
 		while (iter.hasNext()) {
-			Module str = iter.next();
+			Module module = iter.next();
 
-			if (idSelectedModule.equals(str.getId().toString())) {
+			if (null == module.getEnchainement()) {
+				module.setEnchainement(EnchainementPossibleEnum.NON_REQUIS.toString());
+			}
+
+			if (idSelectedModule.equals(module.getId().toString())) {
 				iter.remove();
 			}
 		}
@@ -112,6 +122,18 @@ public class EnchainementModulesController implements Serializable {
 		modulesEnchainement = null;
 		disableFormation = Boolean.FALSE;
 		disableModule = Boolean.FALSE;
+	}
+
+	public void enregistrer() {
+		List<EnchainementModule> list = new ArrayList<>();
+		for (Module module : modulesEnchainement) {
+			EnchainementModule item = new EnchainementModule();
+			item.setIdFormationERP(Integer.parseInt(idSelectedFormation.trim()));
+			item.setIdModuleERP(Integer.parseInt(idSelectedModule.trim()));
+			item.setIdModulePrerequisERP(module.getId());
+			list.add(item);
+		}
+		list = enchainementModuleService.save(list);
 	}
 
 	/**
@@ -262,6 +284,21 @@ public class EnchainementModulesController implements Serializable {
 	 */
 	public void setIdSelectedModule(String idSelectedModule) {
 		this.idSelectedModule = idSelectedModule;
+	}
+
+	/**
+	 * @return the enchainementModuleService
+	 */
+	public EnchainementModuleServiceInterface getEnchainementModuleService() {
+		return enchainementModuleService;
+	}
+
+	/**
+	 * @param enchainementModuleService
+	 *            the enchainementModuleService to set
+	 */
+	public void setEnchainementModuleService(EnchainementModuleServiceInterface enchainementModuleService) {
+		this.enchainementModuleService = enchainementModuleService;
 	}
 
 }
