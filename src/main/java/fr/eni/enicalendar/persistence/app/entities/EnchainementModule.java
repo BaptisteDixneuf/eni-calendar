@@ -23,14 +23,17 @@ public class EnchainementModule implements Serializable {
 	@Column(name = "EM_ID")
 	private Integer id;
 
-	@Column(name = "EM_ID_FORMATION_ERP")
-	private Integer idFormationERP;
+	@Column(name = "EM_ID_FORMATION_ERP", columnDefinition = "CHAR(8)")
+	private String idFormationERP;
 
 	@Column(name = "EM_ID_MODULE_ERP")
 	private Integer idModuleERP;
 
 	@Column(name = "EM_ID_MODULE_PREREQUIS_ERP")
 	private Integer idModulePrerequisERP;
+
+	@Column(name = "EM_TYPE_ENCHAINEMENT")
+	private String typeEnchainement;
 
 	/**
 	 * @return the id
@@ -50,7 +53,7 @@ public class EnchainementModule implements Serializable {
 	/**
 	 * @return the idFormationERP
 	 */
-	public Integer getIdFormationERP() {
+	public String getIdFormationERP() {
 		return idFormationERP;
 	}
 
@@ -58,7 +61,7 @@ public class EnchainementModule implements Serializable {
 	 * @param idFormationERP
 	 *            the idFormationERP to set
 	 */
-	public void setIdFormationERP(Integer idFormationERP) {
+	public void setIdFormationERP(String idFormationERP) {
 		this.idFormationERP = idFormationERP;
 	}
 
@@ -90,6 +93,21 @@ public class EnchainementModule implements Serializable {
 	 */
 	public void setIdModulePrerequisERP(Integer idModulePrerequisERP) {
 		this.idModulePrerequisERP = idModulePrerequisERP;
+	}
+
+	/**
+	 * @return the typeEnchainement
+	 */
+	public String getTypeEnchainement() {
+		return typeEnchainement;
+	}
+
+	/**
+	 * @param typeEnchainement
+	 *            the typeEnchainement to set
+	 */
+	public void setTypeEnchainement(String typeEnchainement) {
+		this.typeEnchainement = typeEnchainement;
 	}
 
 }
