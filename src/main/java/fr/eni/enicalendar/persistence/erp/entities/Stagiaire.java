@@ -57,4 +57,107 @@ public class Stagiaire implements Serializable {
 	@Column(name = "DateNaissance")
 	private Date dateNaissance;
 
+	public Integer getCodeStagiaire() {
+		return codeStagiaire;
+	}
+
+	public void setCodeStagiaire(Integer codeStagiaire) {
+		this.codeStagiaire = codeStagiaire;
+	}
+
+	public String getCivilite() {
+		return civilite;
+	}
+
+	public void setCivilite(String civilite) {
+		this.civilite = civilite;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getAdresse1() {
+		return adresse1;
+	}
+
+	public void setAdresse1(String adresse1) {
+		this.adresse1 = adresse1;
+	}
+
+	public String getAdresse2() {
+		return adresse2;
+	}
+
+	public void setAdresse2(String adresse2) {
+		this.adresse2 = adresse2;
+	}
+
+	public String getAdresse3() {
+		return adresse3;
+	}
+
+	public void setAdresse3(String adresse3) {
+		this.adresse3 = adresse3;
+	}
+
+	public String getCodepostal() {
+		return codepostal;
+	}
+
+	public void setCodepostal(String codepostal) {
+		this.codepostal = codepostal;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	public String getTelephoneFixe() {
+		return telephoneFixe;
+	}
+
+	public void setTelephoneFixe(String telephoneFixe) {
+		this.telephoneFixe = telephoneFixe;
+	}
+
+	public String getTelephonePortable() {
+		return telephonePortable;
+	}
+
+	public void setTelephonePortable(String telephonePortable) {
+		this.telephonePortable = telephonePortable;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getDateNaissance() {
+		return dateNaissance;
+	}
+
+	public void setDateNaissance(Date dateNaissance) {
+		this.dateNaissance = dateNaissance;
+	}
 }
