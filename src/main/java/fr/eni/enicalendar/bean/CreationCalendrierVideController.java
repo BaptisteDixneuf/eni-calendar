@@ -53,7 +53,7 @@ public class CreationCalendrierVideController implements Serializable {
 	public void setup() {
 		LOGGER.info("CreationCalendrierVideController setup");
 		stagiaire = new Stagiaire();
-		stagiaire = stagiaireService.findById(1);
+		stagiaire = stagiaireService.findBycodeStagiaire(1);
 		utilisateur = utilisateurService.findByEmail(SessionUtils.getEmail());
 	}
 

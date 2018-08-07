@@ -30,8 +30,8 @@ public class StagiaireService implements StagiaireServiceInterface {
 	}
 
 	@Override
-	public Stagiaire findById (Integer id) {
-		return stagiaireRepository.findById(id);
+	public Stagiaire findBycodeStagiaire (Integer id) {
+		return stagiaireRepository.findBycodeStagiaire(id);
 	}
 
 }

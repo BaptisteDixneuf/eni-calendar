@@ -10,5 +10,5 @@ public interface StagiaireServiceInterface {
 
 	Stagiaire findByEmail(String email);
 
-	Stagiaire findById(Integer id);
+	Stagiaire findBycodeStagiaire(Integer id);
 }

@@ -7,6 +7,6 @@ public interface StagiaireRepository extends JpaRepository<Stagiaire, Integer> {
 
 	Stagiaire findByEmail(String email);
 
-	Stagiaire findById(Integer id);
+	Stagiaire findBycodeStagiaire(Integer codeStagiaire);
 
 }
