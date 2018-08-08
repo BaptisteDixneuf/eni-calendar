@@ -8,4 +8,6 @@ public interface EnchainementModuleServiceInterface {
 
 	List<EnchainementModule> save(List<EnchainementModule> entities);
 
+	List<EnchainementModule> findByIdModuleERP(Integer idModuleERP);
+
 }

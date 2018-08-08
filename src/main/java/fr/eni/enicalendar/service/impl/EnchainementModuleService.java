@@ -21,4 +21,10 @@ public class EnchainementModuleService implements EnchainementModuleServiceInter
 		return entities;
 	}
 
+	@Override
+	public List<EnchainementModule> findByIdModuleERP(Integer idModuleERP) {
+		List<EnchainementModule> entities = enchainementModuleRepository.findByIdModuleERP(idModuleERP);
+		return entities;
+	}
+
 }

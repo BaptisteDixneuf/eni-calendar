@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Module")
@@ -41,9 +40,6 @@ public class Module implements Serializable {
 
 	@Column(name = "TypeModule")
 	private Integer typeModule;
-
-	@Transient
-	private String enchainement;
 
 	/**
 	 * @return the id
@@ -163,21 +159,6 @@ public class Module implements Serializable {
 	 */
 	public void setTypeModule(Integer typeModule) {
 		this.typeModule = typeModule;
-	}
-
-	/**
-	 * @return the enchainement
-	 */
-	public String getEnchainement() {
-		return enchainement;
-	}
-
-	/**
-	 * @param enchainement
-	 *            the enchainement to set
-	 */
-	public void setEnchainement(String enchainement) {
-		this.enchainement = enchainement;
 	}
 
 }
