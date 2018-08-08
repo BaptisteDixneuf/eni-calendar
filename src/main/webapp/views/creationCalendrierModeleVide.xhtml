@@ -11,9 +11,9 @@
 	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/app/style.css" />
 
 	<!-- JS -->
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="#{request.contextPath}/style/app/js/menu.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/style/app/js/fr.js"></script>
 
 </h:head>
 
@@ -23,7 +23,9 @@
 	
 	<div class="container">
 		<h:form>
-		<p:messages for="general"></p:messages>
+			<p:messages for="general">
+				<p:autoUpdate />
+			</p:messages>
 
 		<h1>Création d'un nouveau calendrier</h1>
 
@@ -37,9 +39,9 @@
 				<p:messages for="entreprise"></p:messages>
 			</div>
 
-			<div class="form-group col-md-6">
-				<p:outputLabel for="lieuFormation" value="Lieu de formation:" />
-				<p:selectOneMenu id="lieuFormation" value="#{creationCalendrierVideController.lieuxLibelles}" effect="fold" editable="true">
+			<div class="form-group col-md-12">
+				<p:outputLabel for="lieuFormation" value="Lieu de formation:" /><br/>
+				<p:selectOneMenu id="lieuFormation" value="#{creationCalendrierVideController.lieuxLibelles}" lazy="true">
 					<f:selectItem itemLabel="Selectionner un lieu" itemValue="" />
 					<f:selectItems value="#{creationCalendrierVideController.lieuxLibelles}" />
 				</p:selectOneMenu>
@@ -53,18 +55,25 @@
 			</div>
 
 			<div class="form-group col-md-6">
-				<p:outputLabel for="dateDebut" value="Date de début" />
-				<p:calendar id="dateDebut" value="#{creationCalendrierVideController.date1}" />
+				<p:outputLabel for="dateDebut" value="Date de début" /><br/>
+				<p:calendar id="dateDebut" value="#{creationCalendrierVideController.date1}" locale="fr" navigator="true" pattern="dd/MM/yyyy" />
 				<p:messages for="dateDebut"></p:messages>
 			</div>
 
 			<div class="form-group col-md-6">
-				<p:outputLabel for="dateFin" value="Date de fin (maximale)" />
-				<p:calendar id="dateFin" value="#{creationCalendrierVideController.date2}" />
+				<p:outputLabel for="dateFin" value="Date de fin (maximale)" /><br/>
+				<p:calendar id="dateFin" value="#{creationCalendrierVideController.date2}" locale="fr" navigator="true" pattern="dd/MM/yyyy" />
 				<p:messages for="dateFin"></p:messages>
 			</div>
 
 			<p:commandButton action="#{creationCalendrierVideController.validationEtape}" value="Suivant" update="@form" styleClass="btn btn-primary"></p:commandButton>
+
+			<p:dialog header="Values" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
+				<p:panelGrid columns="2" id="display" columnClasses="label,value">
+					<h:outputText value="Lieu de formation:" />
+					<h:outputText value="#{creationCalendrierVideController.option}" />
+				</p:panelGrid>
+			</p:dialog>
 
 		</h:form>
 	</div>

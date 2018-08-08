@@ -12,6 +12,7 @@ import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -49,8 +50,17 @@ public class CreationCalendrierVideController implements Serializable {
 	private Stagiaire stagiaire;
 	private Date date1;
 	private Date date2;
+	private String option;
 	private List<Lieu> lieux;
 	private List<String> lieuxLibelles;
+
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
+	}
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
@@ -106,10 +116,10 @@ public class CreationCalendrierVideController implements Serializable {
 		stagiaire = new Stagiaire();
 		stagiaire = stagiaireService.findBycodeStagiaire(20);
 		lieux = lieuService.findAllLieux();
+		lieuxLibelles = new ArrayList<>();
 		for (Lieu lieu : lieux) {
 			lieuxLibelles.add(lieu.getLibelle());
 		}
-		utilisateur = utilisateurService.findByEmail(SessionUtils.getEmail());
 	}
 
 	/**
