@@ -30,18 +30,18 @@
 
         <p:submenu label="Modèles de calendriers">
             <p:menuitem value="Gestion modèles" url="#"/>
-            <p:menuitem value="Constitution modèle" url="#{request.contextPath}/views/creationCalendrier.xhtml"/>
+            <p:menuitem value="Constitution modèle" url="/views/creationCalendrier.xhtml"/>
         </p:submenu>
 
         <p:submenu label="Supervision">
             <p:menuitem value="Historique/Stats" url="#"/>
-            <p:menuitem value="Cours planifiés" url="#{request.contextPath}/views/cours.xhtml"/>
-            <p:menuitem value="Gestion utilisateurs" url="#{request.contextPath}/views/gestionUtilisateurs.xhtml"/>
+            <p:menuitem value="Cours planifiés" url="/views/cours.xhtml"/>
+            <p:menuitem value="Gestion utilisateurs" url="/views/gestionUtilisateurs.xhtml"/>
         </p:submenu>
 
         <p:submenu label="Modules">
             <p:menuitem value="Modules indépendants" url="#"/>
-            <p:menuitem value="Enchainement de modules" url="#{request.contextPath}/views/enchainementModules.xhtml"/>
+            <p:menuitem value="Enchainement de modules" url="/views/enchainementModules.xhtml"/>
             <p:menuitem value="Modules sécables" url="#"/>
         </p:submenu>
 
@@ -50,8 +50,8 @@
         </p:submenu>
 
         <p:submenu label="#{menuController.utilisateur.nom} #{menuController.utilisateur.prenom}" style="position: absolute; right: 1%">
-            <p:menuitem value="Mon compte" url="#{request.contextPath}/views/gestionCompte.xhtml"/>
-            <p:menuitem value="Se déconnecter" url="#{request.contextPath}/views/logout.xhtml"/>
+            <p:menuitem value="Mon compte" url="/views/gestionCompte.xhtml"/>
+            <p:menuitem value="Se déconnecter" url="/views/logout.xhtml"/>
         </p:submenu>
 
     </p:menubar>
