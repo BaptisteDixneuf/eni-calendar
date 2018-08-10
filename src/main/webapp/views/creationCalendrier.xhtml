@@ -26,13 +26,13 @@
 			<h1>Création d'un nouveau calendrier</h1>
 
 			<div class="form-group">
-				<p:commandButton action="#{creationCalendrierVideController.creerModele('vide')}" value="A partir d'un modèle vide" update="@form" styleClass="btn btn-primary"></p:commandButton>
+				<p:commandButton action="#{creationCalendrierController.creerModele('vide')}" value="A partir d'un modèle vide" update="@form" styleClass="btn btn-primary"></p:commandButton>
 			</div>
 			<div class="form-group">
-				<p:commandButton action="#{creationCalendrierVideController.creerModele('depuisModele')}" value="A partir d'un modèle de calendrier" update="@form" styleClass="btn btn-primary"></p:commandButton>
+				<p:commandButton action="#{creationCalendrierController.creerModele('depuisModele')}" value="A partir d'un modèle de calendrier" update="@form" styleClass="btn btn-primary"></p:commandButton>
 			</div>
 			<div class="form-group">
-				<p:commandButton action="#{creationCalendrierVideController.creerModele('depuisAutre')}" value="A partir d'un calendrier d'un autre stagiaire" update="@form" styleClass="btn btn-primary"></p:commandButton>
+				<p:commandButton action="#{creationCalendrierController.creerModele('depuisAutre')}" value="A partir d'un calendrier d'un autre stagiaire" update="@form" styleClass="btn btn-primary"></p:commandButton>
 			</div>
 			</h:form>
 		</div>

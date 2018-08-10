@@ -35,11 +35,11 @@
 
 			<div class="form-group col-md-6">
 				<p:outputLabel for="entreprise" value="Entreprise" />
-				<p:inputText id="entreprise" value=""  styleClass="form-control"></p:inputText>
+				<p:inputText id="entreprise"  styleClass="form-control"></p:inputText>
 				<p:messages for="entreprise"></p:messages>
 			</div>
 
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-6">
 				<p:outputLabel for="lieuFormation" value="Lieu de formation:" /><br/>
 				<p:selectOneMenu id="lieuFormation" value="#{creationCalendrierVideController.lieuxLibelles}" lazy="true">
 					<f:selectItem itemLabel="Selectionner un lieu" itemValue="" />
@@ -50,7 +50,7 @@
 
 			<div class="form-group col-md-6">
 				<p:outputLabel for="formation" value="Formation" />
-				<p:inputText id="formation" value=""  styleClass="form-control"></p:inputText>
+				<p:inputText id="formation"  styleClass="form-control"></p:inputText>
 				<p:messages for="formation"></p:messages>
 			</div>
 
@@ -66,7 +66,11 @@
 				<p:messages for="dateFin"></p:messages>
 			</div>
 
-			<p:commandButton action="#{creationCalendrierVideController.validationEtape}" value="Suivant" update="@form" styleClass="btn btn-primary"></p:commandButton>
+			<div class="form-group">
+				<p:commandButton action="#{creationCalendrierVideController.retour}" value="Précédent" update="@form" styleClass="btn btn-primary"></p:commandButton>
+
+				<p:commandButton action="#{creationCalendrierVideController.validationEtape}" value="Suivant" update="@form" style="margin-left: 20%" styleClass="btn btn-primary"></p:commandButton>
+			</div>
 
 			<p:dialog header="Values" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
 				<p:panelGrid columns="2" id="display" columnClasses="label,value">

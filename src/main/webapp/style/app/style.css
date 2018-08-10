@@ -7,6 +7,12 @@
   align-self: center;
 }
 
+/*TODO ne fonctionne pas, je ne sais pas pourquoi*/
+.ui-selectonemenu.ui-widget.ui-state-default {
+  min-width : 100% !important;
+  width: 100% !important;
+}
+
 .ui-menu, .ui-menu .ui-menu-child {
   background: #003380 !important;
   margin-bottom: 2% !important;
