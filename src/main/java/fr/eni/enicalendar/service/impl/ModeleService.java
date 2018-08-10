@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ModeleService implements ModeleServiceInterface {
+public abstract class ModeleService implements ModeleServiceInterface {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ModeleService.class);
 
@@ -26,9 +26,17 @@ public class ModeleService implements ModeleServiceInterface {
 		return modeleRepository.findAll();
 	}
 
+	public ModeleCalendrier findById (Integer id) {
+		return modeleRepository.findOne(id);
+	}
+
+
 	@Override
 	public List<ModeleCalendrier> findByNomCalendrier (String libelle) {
 		return modeleRepository.findByNomCalendrier(libelle);
 	}
 
+	public void deleteModele(ModeleCalendrier modele) {
+		modeleRepository.delete(modele);
+	}
 }
