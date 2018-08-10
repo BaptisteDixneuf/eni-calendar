@@ -1,5 +1,6 @@
 package fr.eni.enicalendar.bean;
 
+import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
 import fr.eni.enicalendar.service.LieuServiceInterface;
@@ -122,6 +123,14 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 		}
 	}
 
+	public ModeleServiceInterface getModeleService() {
+		return modeleService;
+	}
+
+	public void setModeleService(ModeleServiceInterface modeleService) {
+		this.modeleService = modeleService;
+	}
+
 	/**
 	 * @return the stagiaireService
 	 */
@@ -168,8 +177,10 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	 */
 	public List<String> autocompleteText(String query) {
 		List<String> results = new ArrayList<String>();
-		modeleService.findByNomCalendrier(query);
-
+		List<ModeleCalendrier> liste = modeleService.findByNomCalendrier(query);
+		for (ModeleCalendrier modele:liste) {
+			results.add(modele.getNomCalendrier());
+		}
 		return results;
 	}
 

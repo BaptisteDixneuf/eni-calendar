@@ -124,6 +124,7 @@ public class GestionUtilisateursController implements Serializable {
 	 */
 	public void creerNouvelUtilisateur() throws IOException {
 		RoleUtilisateur role = new RoleUtilisateur();
+		//TODO enlever en dur
 		role.setId(1);
 		utilisateur.setRole(role);
 		utilisateur = utilisateurService.saveUtilisateur(utilisateur);

@@ -22,6 +22,7 @@
 	<ui:include src="menuBis.xhtml"></ui:include>
 	
 	<div class="container">
+		<div class="col-md-6">
 		<h:form>
 			<p:messages for="general">
 				<p:autoUpdate />
@@ -67,12 +68,6 @@
 				<p:messages for="dateFin"></p:messages>
 			</div>
 
-			<div class="form-group">
-				<p:commandButton action="#{creationCalendrierVideController.retour}" value="Précédent" update="@form" styleClass="btn btn-primary"></p:commandButton>
-
-				<p:commandButton action="#{creationCalendrierVideController.validationEtape}" value="Suivant" update="@form" style="margin-left: 20%" styleClass="btn btn-primary"></p:commandButton>
-			</div>
-
 			<p:dialog header="Values" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
 				<p:panelGrid columns="2" id="display" columnClasses="label,value">
 					<h:outputText value="Lieu de formation:" />
@@ -80,7 +75,14 @@
 				</p:panelGrid>
 			</p:dialog>
 			</p:fieldset>
+
+			<div class="form-group" style="display: flex; justify-content: center; margin-top: 3%;">
+				<p:commandButton action="#{creationCalendrierVideController.retour}" value="Précédent" update="@form" styleClass="btn btn-primary"></p:commandButton>
+
+				<p:commandButton action="#{creationCalendrierVideController.validationEtape}" value="Suivant" update="@form" style="margin-left: 20%" styleClass="btn btn-primary"></p:commandButton>
+			</div>
 		</h:form>
+		</div>
 	</div>
 	
 	<ui:include src="footer.xhtml"></ui:include>

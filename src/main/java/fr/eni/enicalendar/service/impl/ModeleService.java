@@ -27,7 +27,7 @@ public class ModeleService implements ModeleServiceInterface {
 	}
 
 	@Override
-	public ModeleCalendrier findByNomCalendrier (String libelle) {
+	public List<ModeleCalendrier> findByNomCalendrier (String libelle) {
 		return modeleRepository.findByNomCalendrier(libelle);
 	}
 

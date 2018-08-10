@@ -124,11 +124,16 @@ h3 {
 
 .oubliMdp {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-bottom: 5%;
 }
 
-
+.container {
+  max-width: 70%;
+  min-width: 70%;
+  display: flex;
+  justify-content: center;
+}
 
 /* Classe utilitaire css */
 .m-b-0  {margin-bottom: 0 !important;}

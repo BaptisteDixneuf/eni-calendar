@@ -8,6 +8,6 @@ public interface ModeleServiceInterface {
 
 	List<ModeleCalendrier> findAllModeles();
 
-	ModeleCalendrier findByNomCalendrier(String libelle);
+	List<ModeleCalendrier> findByNomCalendrier(String libelle);
 
 }
