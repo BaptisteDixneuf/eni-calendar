@@ -29,6 +29,7 @@
 
 		<h1>Création d'un nouveau calendrier</h1>
 
+			<p:fieldset style="border-radius: 30px; border-width: medium;">
 			<div class="form-group col-md-6">
 				<h:outputText value="Nom Prénom: #{creationCalendrierVideController.stagiaire.nom} #{creationCalendrierVideController.stagiaire.prenom}"/>
 			</div>
@@ -78,7 +79,7 @@
 					<h:outputText value="#{creationCalendrierVideController.option}" />
 				</p:panelGrid>
 			</p:dialog>
-
+			</p:fieldset>
 		</h:form>
 	</div>
 	

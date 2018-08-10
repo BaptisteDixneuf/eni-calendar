@@ -1,10 +1,8 @@
 package fr.eni.enicalendar.bean;
 
-import fr.eni.enicalendar.persistence.app.entities.Utilisateur;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
 import fr.eni.enicalendar.service.LieuServiceInterface;
-import fr.eni.enicalendar.service.UtilisateurServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
 import org.primefaces.PrimeFaces;
@@ -102,6 +100,7 @@ public class CreationCalendrierVideController implements Serializable {
 	public void setup() {
 		LOGGER.info("CreationCalendrierVideController setup");
 		stagiaire = new Stagiaire();
+		//TODO changer valeur en dur
 		stagiaire = stagiaireService.findBycodeStagiaire(20);
 		lieux = lieuService.findAllLieux();
 		lieuxLibelles = new ArrayList<>();

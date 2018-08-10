@@ -1,11 +1,10 @@
 package fr.eni.enicalendar.bean;
 
-import fr.eni.enicalendar.persistence.app.entities.Utilisateur;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
 import fr.eni.enicalendar.service.LieuServiceInterface;
+import fr.eni.enicalendar.service.ModeleServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
-import fr.eni.enicalendar.service.UtilisateurServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
@@ -37,22 +36,30 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreationCalendrierDepuisModeleController.class);
 
-	@ManagedProperty(value = "#{utilisateurService}")
-	private UtilisateurServiceInterface utilisateurService;
-
 	@ManagedProperty(value = "#{stagiaireService}")
 	private StagiaireServiceInterface stagiaireService;
 
 	@ManagedProperty(value = "#{lieuService}")
 	private LieuServiceInterface lieuService;
 
-	private Utilisateur utilisateur;
+	@ManagedProperty(value = "#{modeleService}")
+	private ModeleServiceInterface modeleService;
+
 	private Stagiaire stagiaire;
 	private Date date1;
 	private Date date2;
 	private String option;
 	private List<Lieu> lieux;
 	private List<String> lieuxLibelles;
+	private String txt2;
+
+	public String getTxt2() {
+		return txt2;
+	}
+
+	public void setTxt2(String txt2) {
+		this.txt2 = txt2;
+	}
 
 	public String getOption() {
 		return option;
@@ -60,10 +67,6 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 
 	public void setOption(String option) {
 		this.option = option;
-	}
-
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
 	}
 
 	public Stagiaire getStagiaire() {
@@ -102,10 +105,6 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 		this.lieuxLibelles = lieuxLibelles;
 	}
 
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
 	public void setStagiaire(Stagiaire stagiaire) {
 		this.stagiaire = stagiaire;
 	}
@@ -114,6 +113,7 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	public void setup() {
 		LOGGER.info("CreationCalendrierDepuisModeleController setup");
 		stagiaire = new Stagiaire();
+		//TODO changer valeur en dur
 		stagiaire = stagiaireService.findBycodeStagiaire(20);
 		lieux = lieuService.findAllLieux();
 		lieuxLibelles = new ArrayList<>();
@@ -127,13 +127,6 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	 */
 	public StagiaireServiceInterface getStagiaireService() {
 		return stagiaireService;
-	}
-
-	/**
-	 * @return the utilisateurService
-	 */
-	public UtilisateurServiceInterface getUtilisateurService() {
-		return utilisateurService;
 	}
 
 	/**
@@ -159,14 +152,6 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 		this.lieuService = lieuService;
 	}
 
-	/**
-	 * @param utilisateurService
-	 *            the utilisateurService to set
-	 */
-	public void setUtilisateurService(UtilisateurServiceInterface utilisateurService) {
-		this.utilisateurService = utilisateurService;
-	}
-
 	public void onDateSelect(SelectEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -179,23 +164,17 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	}
 
 	/**
-	 * Permet de modifier un utilisateur
-	 *
-	 * @throws IOException
+	 * Autocomplete sur le modele
 	 */
-	public void creerModele(String typeAction) throws IOException {
-		HttpSession session = SessionUtils.getSession();
-		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
-		if (typeAction.equals("vide")) {
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("/eni-calendar/views/creationCalendrierModeleVide.xhtml");
-		} else if (typeAction.equals("depuisModele")){
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("/eni-calendar/views/creationCalendrierDepuisModele.xhtml");
-		} else {
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("/eni-calendar/views/creationCalendrierDepuisStagiaire.xhtml");
-		}
+	public List<String> autocompleteText(String query) {
+		List<String> results = new ArrayList<String>();
+		modeleService.findByNomCalendrier(query);
+
+		return results;
+	}
+
+	public void onItemSelect(SelectEvent event) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Item Selected", event.getObject().toString()));
 	}
 
 	/**
