@@ -1,18 +1,18 @@
 package fr.eni.enicalendar.bean;
 
-import fr.eni.enicalendar.utils.SessionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.service.ModeleServiceInterface;
 
@@ -29,6 +29,7 @@ public class GestionModelesController implements Serializable {
 
 	@ManagedProperty(value = "#{modeleService}")
 	private ModeleServiceInterface modeleService;
+
 	private List<ModeleCalendrier> modeles;
 	private ModeleCalendrier modele;
 	private String typeAction;
@@ -79,7 +80,7 @@ public class GestionModelesController implements Serializable {
 	 * @throws IOException
 	 */
 	public void creerNouveauModele() throws IOException {
-		//modele = modeleService.saveUtilisateur(utilisateur);
+		// modele = modeleService.saveUtilisateur(utilisateur);
 
 	}
 
@@ -89,11 +90,13 @@ public class GestionModelesController implements Serializable {
 	 * @throws IOException
 	 */
 	public void modificationModele(String typeAction, Integer id) throws IOException {
-		/*HttpSession session = SessionUtils.getSession();
-		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
-		session.setAttribute(SessionUtils.SESSION_ID, id);
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");*/
+		/*
+		 * HttpSession session = SessionUtils.getSession();
+		 * session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
+		 * session.setAttribute(SessionUtils.SESSION_ID, id);
+		 * FacesContext.getCurrentInstance().getExternalContext()
+		 * .redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
+		 */
 	}
 
 	/**
@@ -102,22 +105,23 @@ public class GestionModelesController implements Serializable {
 	 * @throws IOException
 	 */
 	public void ajoutModele(String typeAction) throws IOException {
-		/*HttpSession session = SessionUtils.getSession();
-		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");*/
+		/*
+		 * HttpSession session = SessionUtils.getSession();
+		 * session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
+		 * FacesContext.getCurrentInstance().getExternalContext()
+		 * .redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
+		 */
 	}
 
-    /**
-     * supprimer un modele
-     *
-     * @throws IOException
-     */
-    public void supprimerModele(Integer id) throws IOException {
-        modele = modeleService.findOne(id);
+	/**
+	 * supprimer un modele
+	 *
+	 * @throws IOException
+	 */
+	public void supprimerModele(Integer id) throws IOException {
+		modele = modeleService.findOne(id);
 		modeleService.delete(modele);
 
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("/eni-calendar/views/gestionModeles.xhtml");
-    }
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
+	}
 }
