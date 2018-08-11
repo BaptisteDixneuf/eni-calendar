@@ -1,28 +1,29 @@
 package fr.eni.enicalendar.bean;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.SelectEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
 import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
-import org.primefaces.PrimeFaces;
-import org.primefaces.event.SelectEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
 
 @ManagedBean(name = "creationCalendrierVideController")
 @ViewScoped
@@ -46,7 +47,7 @@ public class CreationCalendrierVideController implements Serializable {
 	private Date date2;
 	private String option;
 	private List<Lieu> lieux;
-	private List<String> lieuxLibelles;
+	private String codeLieuFormation;
 
 	public String getOption() {
 		return option;
@@ -84,29 +85,25 @@ public class CreationCalendrierVideController implements Serializable {
 		this.lieux = lieux;
 	}
 
-	public List<String> getLieuxLibelles() {
-		return lieuxLibelles;
-	}
-
-	public void setLieuxLibelles(List<String> lieuxLibelles) {
-		this.lieuxLibelles = lieuxLibelles;
-	}
-
 	public void setStagiaire(Stagiaire stagiaire) {
 		this.stagiaire = stagiaire;
+	}
+
+	public String getCodeLieuFormation() {
+		return codeLieuFormation;
+	}
+
+	public void setCodeLieuFormation(String codeLieuFormation) {
+		this.codeLieuFormation = codeLieuFormation;
 	}
 
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("CreationCalendrierVideController setup");
 		stagiaire = new Stagiaire();
-		//TODO changer valeur en dur
+		// TODO changer valeur en dur
 		stagiaire = stagiaireService.findBycodeStagiaire(20);
 		lieux = lieuService.findAllLieux();
-		lieuxLibelles = new ArrayList<>();
-		for (Lieu lieu : lieux) {
-			lieuxLibelles.add(lieu.getLibelle());
-		}
 	}
 
 	/**
@@ -142,7 +139,8 @@ public class CreationCalendrierVideController implements Serializable {
 	public void onDateSelect(SelectEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+		facesContext.addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
 	}
 
 	public void click() {
@@ -156,8 +154,7 @@ public class CreationCalendrierVideController implements Serializable {
 	 * @throws IOException
 	 */
 	public void retour() throws IOException {
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("/eni-calendar/views/creationCalendrier.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/creationCalendrier.xhtml");
 	}
 
 	/**

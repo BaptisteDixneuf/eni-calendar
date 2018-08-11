@@ -43,9 +43,9 @@
 
 			<div class="form-group col-md-6">
 				<p:outputLabel for="lieuFormation" value="Lieu de formation:" /><br/>
-				<p:selectOneMenu id="lieuFormation" value="#{creationCalendrierVideController.lieuxLibelles}" lazy="true">
-					<f:selectItem itemLabel="Selectionner un lieu" itemValue="" />
-					<f:selectItems value="#{creationCalendrierVideController.lieuxLibelles}" />
+				<p:selectOneMenu id="lieuFormation" value="#{creationCalendrierVideController.codeLieuFormation}" >
+					<f:selectItem itemLabel="Selectionner un lieu" itemValue=""  />
+					<f:selectItems value="#{creationCalendrierVideController.lieux}" var="lieu" itemLabel="#{lieu.libelle}" itemValue="#{lieu.codeLieu}" />
 				</p:selectOneMenu>
 				<p:messages for="lieuFormation"></p:messages>
 			</div>
