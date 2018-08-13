@@ -14,6 +14,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.enicalendar.persistence.erp.entities.Formation;
+import fr.eni.enicalendar.service.FormationServiceInterface;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
@@ -42,12 +44,33 @@ public class CreationCalendrierVideController implements Serializable {
 	@ManagedProperty(value = "#{lieuService}")
 	private LieuServiceInterface lieuService;
 
+	@ManagedProperty(value = "#{formationService}")
+	private FormationServiceInterface formationService;
+
 	private Stagiaire stagiaire;
 	private Date date1;
 	private Date date2;
 	private String option;
 	private List<Lieu> lieux;
+	private List<Formation> formations;
 	private String codeLieuFormation;
+	private String codeFormation;
+
+	public List<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(List<Formation> formations) {
+		this.formations = formations;
+	}
+
+	public String getCodeFormation() {
+		return codeFormation;
+	}
+
+	public void setCodeFormation(String codeFormation) {
+		this.codeFormation = codeFormation;
+	}
 
 	public String getOption() {
 		return option;
@@ -85,6 +108,7 @@ public class CreationCalendrierVideController implements Serializable {
 		this.lieux = lieux;
 	}
 
+
 	public void setStagiaire(Stagiaire stagiaire) {
 		this.stagiaire = stagiaire;
 	}
@@ -104,6 +128,7 @@ public class CreationCalendrierVideController implements Serializable {
 		// TODO changer valeur en dur
 		stagiaire = stagiaireService.findBycodeStagiaire(20);
 		lieux = lieuService.findAllLieux();
+		formations = formationService.findAllFormations();
 	}
 
 	/**
@@ -136,6 +161,15 @@ public class CreationCalendrierVideController implements Serializable {
 		this.lieuService = lieuService;
 	}
 
+
+	public FormationServiceInterface getFormationService() {
+		return formationService;
+	}
+
+	public void setFormationService(FormationServiceInterface formationService) {
+		this.formationService = formationService;
+	}
+
 	public void onDateSelect(SelectEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -164,6 +198,7 @@ public class CreationCalendrierVideController implements Serializable {
 	 */
 	public void validationEtape() throws IOException {
 		HttpSession session = SessionUtils.getSession();
+
 
 	}
 

@@ -10,4 +10,6 @@ public interface LieuServiceInterface {
 
 	Lieu findByCodeLieu(Integer id);
 
+	Lieu findByLibelle(String libelle);
+
 }

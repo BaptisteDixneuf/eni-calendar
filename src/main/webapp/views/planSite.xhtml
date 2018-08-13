@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+</h:head>
+
+
+<body>
+<ui:include src="menuBis.xhtml"></ui:include>
+
+<div class="container">
+	<div class="col-md-12">
+		<h1>Plan du site</h1>
+
+		<h2>Calendriers et modèles</h2>
+		<p>- gestion des modèles de calendriers<br/>
+		- constitution des modèles de calendriers<br/>
+		- comparaison de calendriers</p>
+
+		<h2>Utilisateurs</h2>
+		<p>- gestion du compte<br/>
+			- gestion des utilisateurs</p>
+
+		<h2>Administration</h2>
+		<p>- visualisation des statistiques<br/>
+			- visualisation des logs<br/>
+			- gestion des modules </p>
+
+	</div>
+</div>
+
+<ui:include src="footer.xhtml"></ui:include>
+
+</body>
+</html>

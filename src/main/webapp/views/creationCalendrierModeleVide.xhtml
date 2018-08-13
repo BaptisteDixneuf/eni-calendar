@@ -1,91 +1,102 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<!-- CSS -->
-	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/bootstrap/css/bootstrap.css"  />
-	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/app/style.css" />
+    <!-- CSS -->
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/bootstrap/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/app/style.css"/>
 
-	<!-- JS -->
-	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="#{request.contextPath}/style/app/js/menu.js"></script>
-	<script type="text/javascript" src="#{request.contextPath}/style/app/js/fr.js"></script>
+    <!-- JS -->
+    <script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="#{request.contextPath}/style/app/js/menu.js"></script>
+    <script type="text/javascript" src="#{request.contextPath}/style/app/js/fr.js"></script>
 
 </h:head>
 
 
 <body>
-	<ui:include src="menuBis.xhtml"></ui:include>
-	
-	<div class="container">
-		<div class="col-md-6">
-		<h:form>
-			<p:messages for="general">
-				<p:autoUpdate />
-			</p:messages>
+<ui:include src="menuBis.xhtml"></ui:include>
 
-		<h1>Création d'un nouveau calendrier</h1>
+<div class="container">
+    <div class="col-md-6">
+        <h:form>
+            <p:messages for="general">
+                <p:autoUpdate/>
+            </p:messages>
 
-			<p:fieldset style="border-radius: 30px; border-width: medium;">
-			<div class="form-group col-md-6">
-				<h:outputText value="Nom Prénom: #{creationCalendrierVideController.stagiaire.nom} #{creationCalendrierVideController.stagiaire.prenom}"/>
-			</div>
+            <h1>Création d'un nouveau calendrier</h1>
 
-			<div class="form-group col-md-6">
-				<p:outputLabel for="entreprise" value="Entreprise" />
-				<p:inputText id="entreprise"  styleClass="form-control"></p:inputText>
-				<p:messages for="entreprise"></p:messages>
-			</div>
+            <p:fieldset style="border-radius: 30px; border-width: medium;">
+                <div class="form-group col-md-6">
+                    <h:outputText
+                            value="Nom Prénom: #{creationCalendrierVideController.stagiaire.nom} #{creationCalendrierVideController.stagiaire.prenom}"/>
+                </div>
 
-			<div class="form-group col-md-6">
-				<p:outputLabel for="lieuFormation" value="Lieu de formation:" /><br/>
-				<p:selectOneMenu id="lieuFormation" value="#{creationCalendrierVideController.codeLieuFormation}" >
-					<f:selectItem itemLabel="Selectionner un lieu" itemValue=""  />
-					<f:selectItems value="#{creationCalendrierVideController.lieux}" var="lieu" itemLabel="#{lieu.libelle}" itemValue="#{lieu.codeLieu}" />
-				</p:selectOneMenu>
-				<p:messages for="lieuFormation"></p:messages>
-			</div>
+                <div class="form-group col-md-6">
+                    <p:outputLabel for="entreprise" value="Entreprise"/>
+                    <p:inputText id="entreprise" styleClass="form-control"></p:inputText>
+                    <p:messages for="entreprise"></p:messages>
+                </div>
 
-			<div class="form-group col-md-6">
-				<p:outputLabel for="formation" value="Formation" />
-				<p:inputText id="formation"  styleClass="form-control"></p:inputText>
-				<p:messages for="formation"></p:messages>
-			</div>
+                <div class="form-group col-md-6">
+                    <p:outputLabel for="lieuFormation" value="Lieu de formation:"/><br/>
+                    <p:selectOneMenu id="lieuFormation" value="#{creationCalendrierVideController.codeLieuFormation}">
+                        <f:selectItem itemLabel="Selectionner un lieu" itemValue=""/>
+                        <f:selectItems value="#{creationCalendrierVideController.lieux}" var="lieu"
+                                       itemLabel="#{lieu.libelle}" itemValue="#{lieu.codeLieu}"/>
+                    </p:selectOneMenu>
+                    <p:messages for="lieuFormation"></p:messages>
+                </div>
 
-			<div class="form-group col-md-6">
-				<p:outputLabel for="dateDebut" value="Date de début" /><br/>
-				<p:calendar id="dateDebut" value="#{creationCalendrierVideController.date1}" locale="fr" navigator="true" pattern="dd/MM/yyyy" />
-				<p:messages for="dateDebut"></p:messages>
-			</div>
+                <div class="form-group col-md-6">
+                    <p:outputLabel for="formation" value="Formation :"/><br/>
+                    <p:selectOneMenu id="formation" value="#{creationCalendrierVideController.codeFormation}">
+                        <f:selectItem itemLabel="Selectionner un lieu" itemValue=""/>
+                        <f:selectItems value="#{creationCalendrierVideController.formations}" var="formation"
+                                       itemLabel="#{formation.libelleLong}" itemValue="#{formation.codeFormation}"/>
+                    </p:selectOneMenu>
+                    <p:messages for="lieuFormation"></p:messages>
+                </div>
 
-			<div class="form-group col-md-6">
-				<p:outputLabel for="dateFin" value="Date de fin (maximale)" /><br/>
-				<p:calendar id="dateFin" value="#{creationCalendrierVideController.date2}" locale="fr" navigator="true" pattern="dd/MM/yyyy" />
-				<p:messages for="dateFin"></p:messages>
-			</div>
+                <div class="form-group col-md-6">
+                    <p:outputLabel for="dateDebut" value="Date de début"/><br/>
+                    <p:calendar id="dateDebut" value="#{creationCalendrierVideController.date1}" locale="fr"
+                                navigator="true" pattern="dd/MM/yyyy"/>
+                    <p:messages for="dateDebut"></p:messages>
+                </div>
 
-			<p:dialog header="Values" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
-				<p:panelGrid columns="2" id="display" columnClasses="label,value">
-					<h:outputText value="Lieu de formation:" />
-					<h:outputText value="#{creationCalendrierVideController.option}" />
-				</p:panelGrid>
-			</p:dialog>
-			</p:fieldset>
+                <div class="form-group col-md-6">
+                    <p:outputLabel for="dateFin" value="Date de fin (maximale)"/><br/>
+                    <p:calendar id="dateFin" value="#{creationCalendrierVideController.date2}" locale="fr"
+                                navigator="true" pattern="dd/MM/yyyy"/>
+                    <p:messages for="dateFin"></p:messages>
+                </div>
 
-			<div class="form-group" style="display: flex; justify-content: center; margin-top: 3%;">
-				<p:commandButton action="#{creationCalendrierVideController.retour}" value="Précédent" update="@form" styleClass="btn btn-primary"></p:commandButton>
+                <p:dialog header="Values" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
+                    <p:panelGrid columns="2" id="display" columnClasses="label,value">
+                        <h:outputText value="Lieu de formation:"/>
+                        <h:outputText value="#{creationCalendrierVideController.option}"/>
+                    </p:panelGrid>
+                </p:dialog>
+            </p:fieldset>
 
-				<p:commandButton action="#{creationCalendrierVideController.validationEtape}" value="Suivant" update="@form" style="margin-left: 20%" styleClass="btn btn-primary"></p:commandButton>
-			</div>
-		</h:form>
-		</div>
-	</div>
-	
-	<ui:include src="footer.xhtml"></ui:include>
-	
+            <div class="form-group" style="display: flex; justify-content: center; margin-top: 3%;">
+                <p:commandButton action="#{creationCalendrierVideController.retour}" value="Précédent" update="@form"
+                                 styleClass="btn btn-primary"></p:commandButton>
+
+                <p:commandButton action="#{creationCalendrierVideController.validationEtape}" value="Suivant"
+                                 update="@form" style="margin-left: 20%" styleClass="btn btn-primary"></p:commandButton>
+            </div>
+        </h:form>
+    </div>
+</div>
+
+<ui:include src="footer.xhtml"></ui:include>
+
 </body>
 </html>

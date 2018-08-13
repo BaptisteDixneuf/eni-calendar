@@ -9,4 +9,6 @@ public interface LieuRepository extends JpaRepository<Lieu, Integer> {
 
 	Lieu findByCodeLieu(Integer id);
 
+	Lieu findByLibelle(String libelle);
+
 }

@@ -28,4 +28,9 @@ public class LieuService implements LieuServiceInterface {
 		return lieuRepository.findByCodeLieu(id);
 	}
 
+	@Override
+	public Lieu findByLibelle(String libelle)  {
+		return lieuRepository.findByLibelle(libelle);
+	}
+
 }
