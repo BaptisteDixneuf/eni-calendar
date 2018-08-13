@@ -8,6 +8,8 @@ public interface StagiaireServiceInterface {
 
 	List<Stagiaire> findAllStagiaires();
 
+	List<Stagiaire> findByNom(String libelle);
+
 	Stagiaire findByEmail(String email);
 
 	Stagiaire findBycodeStagiaire(Integer id);

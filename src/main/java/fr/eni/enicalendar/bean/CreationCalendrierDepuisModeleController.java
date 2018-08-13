@@ -1,8 +1,10 @@
 package fr.eni.enicalendar.bean;
 
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
+import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
+import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.ModeleServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
@@ -46,13 +48,52 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	@ManagedProperty(value = "#{modeleService}")
 	private ModeleServiceInterface modeleService;
 
+	@ManagedProperty(value = "#{formationService}")
+	private FormationServiceInterface formationService;
+
 	private Stagiaire stagiaire;
 	private Date date1;
 	private Date date2;
 	private String option;
 	private List<Lieu> lieux;
-	private List<String> lieuxLibelles;
 	private String txt2;
+	private String codeLieuFormation;
+	private String codeModele;
+	private String codeFormation;
+	private List<Formation> formations;
+	private ModeleCalendrier modele;
+
+	public String getCodeModele() {
+		return codeModele;
+	}
+
+	public void setCodeModele(String codeModele) {
+		this.codeModele = codeModele;
+	}
+
+	public ModeleCalendrier getModele() {
+		return modele;
+	}
+
+	public void setModele(ModeleCalendrier modele) {
+		this.modele = modele;
+	}
+
+	public FormationServiceInterface getFormationService() {
+		return formationService;
+	}
+
+	public void setFormationService(FormationServiceInterface formationService) {
+		this.formationService = formationService;
+	}
+
+	public List<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(List<Formation> formations) {
+		this.formations = formations;
+	}
 
 	public String getTxt2() {
 		return txt2;
@@ -98,16 +139,24 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 		this.lieux = lieux;
 	}
 
-	public List<String> getLieuxLibelles() {
-		return lieuxLibelles;
-	}
-
-	public void setLieuxLibelles(List<String> lieuxLibelles) {
-		this.lieuxLibelles = lieuxLibelles;
-	}
-
 	public void setStagiaire(Stagiaire stagiaire) {
 		this.stagiaire = stagiaire;
+	}
+
+	public String getCodeLieuFormation() {
+		return codeLieuFormation;
+	}
+
+	public void setCodeLieuFormation(String codeLieuFormation) {
+		this.codeLieuFormation = codeLieuFormation;
+	}
+
+	public String getCodeFormation() {
+		return codeFormation;
+	}
+
+	public void setCodeFormation(String codeFormation) {
+		this.codeFormation = codeFormation;
 	}
 
 	@PostConstruct
@@ -117,10 +166,8 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 		//TODO changer valeur en dur
 		stagiaire = stagiaireService.findBycodeStagiaire(20);
 		lieux = lieuService.findAllLieux();
-		lieuxLibelles = new ArrayList<>();
-		for (Lieu lieu : lieux) {
-			lieuxLibelles.add(lieu.getLibelle());
-		}
+		formations = formationService.findAllFormations();
+
 	}
 
 	public ModeleServiceInterface getModeleService() {
@@ -175,13 +222,9 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	/**
 	 * Autocomplete sur le modele
 	 */
-	public List<String> autocompleteText(String query) {
-		List<String> results = new ArrayList<String>();
+	public List<ModeleCalendrier> autocompleteText(String query) {
 		List<ModeleCalendrier> liste = modeleService.findByNomCalendrier(query);
-		for (ModeleCalendrier modele:liste) {
-			results.add(modele.getNomCalendrier());
-		}
-		return results;
+		return liste;
 	}
 
 	public void onItemSelect(SelectEvent event) {
@@ -205,6 +248,7 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	 */
 	public void validationEtape() throws IOException {
 		HttpSession session = SessionUtils.getSession();
+		modele = modeleService.findOne(Integer.valueOf(codeModele));
 
 	}
 

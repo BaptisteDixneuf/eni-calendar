@@ -25,6 +25,11 @@ public class StagiaireService implements StagiaireServiceInterface {
 	}
 
 	@Override
+	public List<Stagiaire> findByNom(String libelle) {
+		return stagiaireRepository.findByNom(libelle);
+	}
+
+	@Override
 	public Stagiaire findByEmail(String email) {
 		return stagiaireRepository.findByEmail(email);
 	}
