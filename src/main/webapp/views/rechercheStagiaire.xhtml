@@ -8,15 +8,29 @@
 <h:head>
 	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
 	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 </h:head>
 
 
 <body>
-	<ui:include src="menu.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"></ui:include>
 	
 	<div class="container">
+	<div class="col-md-12">
+		<h:form>
+		<p:messages for="general"></p:messages>
 		<h1>Recherche d'un stagiaire</h1>
+
+			<div class="form-group col-md-12">
+				<p:outputLabel value="Saisissez un stagiaire :" for="themePojo" style="display: flex; justify-content: center;"/>
+				<p:autoComplete id="themePojo" minQueryLength="3" value="#{rechercheStagiaireController.codeStagiaire}" completeMethod="#{rechercheStagiaireController.autocompleteText}" style="display: flex; justify-content: center;"
+								var="stagiaire" itemLabel="#{stagiaire.nom}" itemValue="#{stagiaire.codeStagiaire}" forceSelection="true" />
+			</div>
+
+			<div class="form-group" style="display: flex; justify-content: center; margin-top: 5%;">
+				<p:commandButton action="#{rechercheStagiaireController.validationEtape}" value="Valider" update="@form" styleClass="btn btn-primary"></p:commandButton>
+			</div>
+		</h:form>
+	</div>
 	</div>
 	
 	<ui:include src="footer.xhtml"></ui:include>

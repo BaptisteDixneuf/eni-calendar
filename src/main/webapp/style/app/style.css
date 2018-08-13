@@ -3,8 +3,44 @@
   margin-bottom: 2% !important;
 }
 
+.logoUser {
+  align-self: center;
+}
+
+/*TODO ne fonctionne pas, je ne sais pas pourquoi*/
+.ui-selectonemenu.ui-widget.ui-state-default {
+  min-width : 100% !important;
+  width: 100% !important;
+}
+
+.ui-menu, .ui-menu .ui-menu-child {
+  background: #003380 !important;
+  margin-bottom: 2% !important;
+}
+
+/*TODO vois si possible de sortir du span*/
+.ui-icon-triangle-1-s {
+  background-color: white !important;
+  margin-right: -3% !important;
+}
+
+.ui-menu-list.ui-helper-reset {
+  display: flex !important;
+  align-items: center !important;
+}
+
 .mr-auto {
   color: white !important;
+}
+
+.ui-widget.ui-menuitem.ui-corner-all.ui-menu-parent {
+  margin-left: 5%;
+}
+
+
+.ui-menuitem-text {
+  color: white !important;
+  font-weight: bold;
 }
 
 .nav-link.dropdown-toggle {
@@ -74,10 +110,17 @@
 h1 {
   text-align: center;
   margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+h2 {
+  margin-bottom: 2%;
+  margin-top: 2%;
 }
 h3 {
   text-align: center;
-  margin-bottom: 3%;
+  margin-bottom: 2%;
+  margin-top: 2%;
 }
 
 .bouton-ajout {
@@ -88,11 +131,16 @@ h3 {
 
 .oubliMdp {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-bottom: 5%;
 }
 
-
+.container {
+  max-width: 70%;
+  min-width: 70%;
+  display: flex;
+  justify-content: center;
+}
 
 /* Classe utilitaire css */
 .m-b-0  {margin-bottom: 0 !important;}

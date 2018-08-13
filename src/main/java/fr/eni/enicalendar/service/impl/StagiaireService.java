@@ -1,15 +1,15 @@
 package fr.eni.enicalendar.service.impl;
 
-import java.util.List;
-
+import fr.eni.enicalendar.persistence.erp.repositories.StagiaireRepository;
+import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
+import fr.eni.enicalendar.service.StagiaireServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
-import fr.eni.enicalendar.persistence.erp.repositories.StagiaireRepository;
-import fr.eni.enicalendar.service.StagiaireServiceInterface;
+import java.io.Serializable;
+import java.util.List;
 
 @Service
 public class StagiaireService implements StagiaireServiceInterface {
@@ -35,7 +35,7 @@ public class StagiaireService implements StagiaireServiceInterface {
 	}
 
 	@Override
-	public Stagiaire findBycodeStagiaire(Integer id) {
+	public Stagiaire findBycodeStagiaire (Integer id) {
 		return stagiaireRepository.findBycodeStagiaire(id);
 	}
 

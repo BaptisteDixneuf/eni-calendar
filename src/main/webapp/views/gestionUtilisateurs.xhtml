@@ -13,15 +13,16 @@
 
 
 <body>
-	<ui:include src="menu.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"></ui:include>
 
     <!--<div>
     <p class="alert alert-success">Bandeau d’alerte - la classe success <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></p>
     </div>-->
 
     <div class="container">
+        <div>
 		<h1>Liste des utilisateurs de l'application</h1>
-        <p:commandButton value="+ Créer un nouvel utilisateur" action="#{gestionUtilisateursController.ajoutUtilisateur('Création')}"/>
+        <p:commandButton value="+ Créer un nouvel utilisateur" style="background-color: #2E9AFE" action="#{gestionUtilisateursController.ajoutUtilisateur('Création')}"/>
         <h:form>
             <p:dataTable var="utilisateurs" value="#{gestionUtilisateursController.utilisateurs}" widgetVar="titreTable" emptyMessage="Auncun utilisateur ne correspond">
                 <p:column headerText="Nom" sortBy="#{utilisateurs.nom}" filterBy="#{utilisateurs.nom}">
@@ -37,13 +38,14 @@
                     <h:outputText value="#{utilisateurs.role.libelle}"/>
                 </p:column>
                 <p:column headerText=""  >
-                    <p:commandButton value="Modifier" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', utilisateurs.id)}"/>
-                    <p:commandButton value="Supprimer" action="#{gestionUtilisateursController.supprimerUtilisateur(utilisateurs.id)}"/>
+                    <p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', utilisateurs.id)}"/>
+                    <p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{gestionUtilisateursController.supprimerUtilisateur(utilisateurs.id)}"/>
                 </p:column>
 
           </p:dataTable>
    
     </h:form>
+    </div>
 	</div>
 	
 	<ui:include src="footer.xhtml"></ui:include>

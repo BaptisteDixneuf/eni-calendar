@@ -124,5 +124,4 @@ public class GestionModelesController implements Serializable {
 
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
 	}
-
 }
