@@ -21,6 +21,7 @@ import fr.eni.enicalendar.service.EnchainementModuleServiceInterface;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.ModuleParUniteServiceInterface;
 import fr.eni.enicalendar.service.ModuleServiceInterface;
+import fr.eni.enicalendar.utils.EnchainementPossibleEnum;
 
 @ManagedBean(name = "enchainementModulesController")
 @ViewScoped
