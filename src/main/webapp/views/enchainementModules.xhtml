@@ -11,77 +11,86 @@
 	<ui:include src="menu.xhtml"></ui:include>
 
 	<div class="container">
-		<h1>Enchainement Modules</h1>
-		<h:form>
-			<h:panelGroup id="panelFormations">
-				<div class="form-group">
-					<p:outputLabel for="formation" value="Formation" />
-					<h:selectOneMenu id="formation"
-						disabled="#{enchainementModulesController.disableFormation}"
-						value="#{enchainementModulesController.idSelectedFormation}">
-						<f:selectItem itemValue="" itemLabel=""></f:selectItem>
-						<f:selectItems value="#{enchainementModulesController.formations}"
-							var="formation" itemLabel="#{formation.libelleCourt}"
-							itemValue="#{formation.codeFormation}">
-						</f:selectItems>
-						<p:ajax event="change"
-							update="panelFormations panelModules panelActions"
-							listener="#{enchainementModulesController.selectionFormation}" />
-					</h:selectOneMenu>
-					<p:messages for="formation"></p:messages>
-				</div>
-			</h:panelGroup>
-			<h:panelGroup id="panelModules">
-				<h:panelGroup
-					rendered="#{enchainementModulesController.modules != null}">
-					<p:outputLabel for="modules" value="Module" />
-					<h:selectOneMenu id="modules"
-						disabled="#{enchainementModulesController.disableModule}"
-						value="#{enchainementModulesController.idSelectedModule}">
-						<f:selectItem itemValue="" itemLabel=""></f:selectItem>
-						<f:selectItems value="#{enchainementModulesController.modules}"
-							var="module" itemLabel="#{module.libelle}"
-							itemValue="#{module.id}">
-						</f:selectItems>
-						<p:ajax event="change"
-							update="panelModules panelEnchainement panelActions"
-							listener="#{enchainementModulesController.selectionModule}" />
-					</h:selectOneMenu>
-					<p:messages for="modules"></p:messages>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup id="panelEnchainement">
-				<h:panelGroup
-					rendered="#{enchainementModulesController.modulesEnchainement != null}">
-					<p:dataTable var="modulesEnchainement"
-						value="#{enchainementModulesController.modulesEnchainement}">
-						<p:column headerText="Libelle des modules">
-							<h:outputText value="#{modulesEnchainement.libelle}" />
-						</p:column>
-						<p:column headerText="Enchainement possible">
-							<h:selectOneMenu id="enchainement" 
-								value="#{modulesEnchainement.enchainement}">
-								<f:selectItem itemValue="NON_REQUIS" itemLabel="Non requis"></f:selectItem>
-								<f:selectItem itemValue="OBLIGATAIRE" itemLabel="Obligatoire"></f:selectItem>
-								<f:selectItem itemValue="OBLIGATAIRE" itemLabel="Optionnel"></f:selectItem>
-							</h:selectOneMenu>
-						</p:column>
-					</p:dataTable>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup id="panelActions">
-				<h:panelGroup
-					rendered="#{enchainementModulesController.modules != null}">
+		<div class="col-md-12">
+			<h1>Enchainement Modules</h1>
+			<h:form>
+				<h:panelGroup id="panelFormations">
 					<div class="form-group">
-						<p:commandButton value="Enregistrer" actionListener="#{enchainementModulesController.enregistrer}"
-							update="panelFormations panelModules panelEnchainement panelActions"></p:commandButton>
-						<p:commandButton value="Annuler"
-							actionListener="#{enchainementModulesController.annuler}"
-							update="panelFormations panelModules panelEnchainement panelActions"></p:commandButton>
+						<p:outputLabel for="formation" value="Formation" />
+						<h:selectOneMenu id="formation"
+							disabled="#{enchainementModulesController.disableFormation}"
+							value="#{enchainementModulesController.idSelectedFormation}">
+							<f:selectItem itemValue="" itemLabel=""></f:selectItem>
+							<f:selectItems
+								value="#{enchainementModulesController.formations}"
+								var="formation" itemLabel="#{formation.libelleCourt}"
+								itemValue="#{formation.codeFormation}">
+							</f:selectItems>
+							<p:ajax event="change" update="panelFormations panelModules panelActions"
+								listener="#{enchainementModulesController.selectionFormation}" />
+						</h:selectOneMenu>
+						<p:messages for="formation"></p:messages>
 					</div>
 				</h:panelGroup>
-			</h:panelGroup>
-		</h:form>
+
+
+				<h:panelGroup id="panelModules">
+					<h:panelGroup
+						rendered="#{enchainementModulesController.modules != null}">
+						<p:outputLabel for="modules" value="Module" />
+						<h:selectOneMenu id="modules"
+							disabled="#{enchainementModulesController.disableModule}"
+							value="#{enchainementModulesController.idSelectedModule}">
+							<f:selectItem itemValue="" itemLabel=""></f:selectItem>
+							<f:selectItems value="#{enchainementModulesController.modules}"
+								var="module" itemLabel="#{module.libelle}"
+								itemValue="#{module.id}">
+							</f:selectItems>
+							<p:ajax event="change"
+								update="panelModules panelEnchainement panelActions"
+								listener="#{enchainementModulesController.selectionModule}" />
+						</h:selectOneMenu>
+						<p:messages for="modules"></p:messages>
+					</h:panelGroup>
+				</h:panelGroup>
+			
+			
+			<h:panelGroup id="panelEnchainement">
+					<h:panelGroup
+						rendered="#{enchainementModulesController.modulesEnchainement != null}">
+
+						<p:dataTable var="moduleEnchainement"
+							value="#{enchainementModulesController.modulesEnchainement}">
+							<p:column headerText="Libelle des modules">
+								<h:outputText
+									value="#{moduleEnchainement.idModulePrerequisERP}" />
+							</p:column>
+							<p:column headerText="Enchainement possible">
+								<h:selectOneMenu id="enchainement"
+									value="#{moduleEnchainement.typeEnchainement}">
+									<f:selectItem itemValue="NON_REQUIS" itemLabel="Non requis"></f:selectItem>
+									<f:selectItem itemValue="OBLIGATAIRE" itemLabel="Obligatoire"></f:selectItem>
+									<f:selectItem itemValue="OPTIONNEL" itemLabel="Optionnel"></f:selectItem>
+								</h:selectOneMenu>
+							</p:column>
+						</p:dataTable>
+					</h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup id="panelActions">
+					<h:panelGroup
+						rendered="#{enchainementModulesController.modules != null}">
+						<div class="form-group">
+							<p:commandButton value="Enregistrer"
+								actionListener="#{enchainementModulesController.enregistrer}"
+								update="panelFormations panelModules panelEnchainement panelActions"></p:commandButton>
+							<p:commandButton value="Annuler"
+								actionListener="#{enchainementModulesController.annuler}"
+								update="panelFormations panelModules panelEnchainement panelActions"></p:commandButton>
+						</div>
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:form>
+		</div>
 	</div>
 
 	<ui:include src="footer.xhtml"></ui:include>
