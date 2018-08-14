@@ -95,14 +95,9 @@ public class RechercheStagiaireController implements Serializable {
 	 * Autocomplete sur le stagiaire
 	 */
 	public List<Stagiaire> autocompleteText(String query) {
-		List<Stagiaire> liste = stagiaireService.findByNom(query);
+		List<Stagiaire> liste = stagiaireService.findByNom(query.trim());
 		return liste;
 	}
-
-	public void onItemSelect(SelectEvent event) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Item Selected", event.getObject().toString()));
-	}
-
 
 	/**
 	 * Permet de passer à l'etape constitution calendrier
