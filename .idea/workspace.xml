@@ -8,6 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4429b4d1-4d13-4873-af38-70b819ae7b53" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/rechercheStagiaire.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/rechercheStagiaire.xhtml" afterDir="false" />
     </list>
     <ignored path="$APPLICATION_HOME_DIR$/ENI CALENDAR/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -90,52 +91,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="creationCalendrierDepuisModele.xhtml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rechercheStagiaire.xhtml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/rechercheStagiaire.xhtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="75" selection-start-line="25" selection-start-column="75" selection-end-line="25" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="creationCalendrierDepuisModele.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/views/creationCalendrierDepuisModele.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="43" column="66" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="creationCalendrierModeleVide.xhtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/creationCalendrierModeleVide.xhtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="41" column="70" selection-start-line="41" selection-start-column="70" selection-end-line="41" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FicheStagiaireController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
-              <folding>
-                <element signature="e#1561#1562#0" expanded="true" />
-                <element signature="e#1586#1587#0" expanded="true" />
-                <element signature="e#1647#1648#0" expanded="true" />
-                <element signature="e#1684#1685#0" expanded="true" />
-                <element signature="e#3525#3526#0" expanded="true" />
-                <element signature="e#3556#3557#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RechercheStagiaireController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/RechercheStagiaireController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="97" selection-start-line="97" selection-end-line="97" />
-              <folding>
-                <element signature="e#1551#1552#0" expanded="true" />
-                <element signature="e#1578#1579#0" expanded="true" />
-                <element signature="e#1633#1634#0" expanded="true" />
-                <element signature="e#1674#1675#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="408">
+              <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -228,14 +197,14 @@
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/CreationCalendrierDepuisModeleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/utils/SessionUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/RechercheStagiaireController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/rechercheStagiaire.xhtml" />
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/CalendrierServiceInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/CalendrierService.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/app/repositories/CalendrierRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/creationCalendrierModeleVide.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/creationCalendrierDepuisModele.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/creationCalendrierModeleVide.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/rechercheStagiaire.xhtml" />
       </list>
     </option>
   </component>
@@ -887,7 +856,7 @@
       <workItem from="1534066931237" duration="1071000" />
       <workItem from="1534147535839" duration="15665000" />
       <workItem from="1534234597421" duration="3376000" />
-      <workItem from="1534240288555" duration="6691000" />
+      <workItem from="1534240288555" duration="7463000" />
     </task>
     <task id="LOCAL-00001" summary="test idea">
       <created>1529573998274</created>
@@ -1001,11 +970,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534250464154</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="création fiche stagiaire">
+      <created>1534251685798</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1534251685798</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127838000" />
+    <option name="totallyTimeSpent" value="128610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1394,13 +1370,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/rechercheStagiaire.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="82" selection-start-line="24" selection-start-column="82" selection-end-line="24" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/CalendrierService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1477,6 +1446,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/creationCalendrierModeleVide.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="39" column="48" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
@@ -1484,17 +1460,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/creationCalendrierModeleVide.xhtml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/creationCalendrierDepuisModele.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="41" column="70" selection-start-line="41" selection-start-column="70" selection-end-line="41" selection-end-column="70" />
+        <state relative-caret-position="408">
+          <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/creationCalendrierDepuisModele.xhtml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/rechercheStagiaire.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="43" column="66" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
+        <state relative-caret-position="425">
+          <caret line="25" column="75" selection-start-line="25" selection-start-column="75" selection-end-line="25" selection-end-column="75" />
         </state>
       </provider>
     </entry>
