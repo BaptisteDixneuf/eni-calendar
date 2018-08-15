@@ -11,16 +11,26 @@ import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Image;
+import com.lowagie.text.PageSize;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import org.primefaces.component.export.PDFOptions;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
+import javax.servlet.http.HttpSession;
 
 @ManagedBean(name = "ficheStagiaireController")
 @ViewScoped
@@ -45,8 +55,26 @@ public class FicheStagiaireController implements Serializable {
 	private Stagiaire stagiaire;
 	private String codeStagiaire;
 	private String codeFormation;
+	private String codeCalendrier;
+	private Calendrier calendrier;
 	private List<Formation> formations;
 	private List<Calendrier> calendriers;
+
+	public String getCodeCalendrier() {
+		return codeCalendrier;
+	}
+
+	public void setCodeCalendrier(String codeCalendrier) {
+		this.codeCalendrier = codeCalendrier;
+	}
+
+	public Calendrier getCalendrier() {
+		return calendrier;
+	}
+
+	public void setCalendrier(Calendrier calendrier) {
+		this.calendrier = calendrier;
+	}
 
 	public List<Calendrier> getCalendriers() {
 		return calendriers;
@@ -135,13 +163,52 @@ public class FicheStagiaireController implements Serializable {
 
 
 	/**
-	 * Permet de passer à l'etape constitution calendrier
+	 * Consulter calendrier
 	 *
 	 * @throws IOException
 	 */
-	public void validationEtape() throws IOException {
+	public void consulterCalendrier(Integer id) throws IOException {
 		HttpSession session = SessionUtils.getSession();
-
+		session.setAttribute(SessionUtils.SESSION_ID, id);
+		calendrier = calendrierService.findOne(id);
+		//TODO faire affichage du pdf du calendrier
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/eni-calendar/views/consulterCalendrier.xhtml");
 	}
 
+	/**
+	 * Suppression calendrier
+	 *
+	 * @throws IOException
+	 */
+	public void supprimerCalendrier(Integer id) throws IOException {
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute(SessionUtils.SESSION_ID, id);
+		calendrier = calendrierService.findOne(id);
+		calendrierService.deleteCalendrier(calendrier);
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/eni-calendar/views/ficheStagiaire.xhtml");
+	}
+
+	/**
+	 * Export calendrier
+	 *
+	 * @throws IOException
+	 */
+	public void exporterCalendrier(Integer id) throws IOException {
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute(SessionUtils.SESSION_ID, id);
+		calendrier = calendrierService.findOne(id);
+		//TODO faire l'export en PDF
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/eni-calendar/views/ficheStagiaire.xhtml");
+	}
+
+
+
+	public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
+		Document pdf = (Document) document;
+		pdf.open();
+		pdf.setPageSize(PageSize.A4);
+	}
 }

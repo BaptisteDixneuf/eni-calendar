@@ -12,4 +12,6 @@ public interface CalendrierServiceInterface {
 
 	List<Calendrier> findByNomCalendrier(String libelle);
 
+	void deleteCalendrier(Calendrier calendrier);
+
 }

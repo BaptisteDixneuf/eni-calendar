@@ -34,4 +34,9 @@ public class CalendrierService implements CalendrierServiceInterface {
 	public List<Calendrier> findByNomCalendrier(String libelle) {
 		return calendrierRepository.findByNomCalendrier(libelle);
 	}
+
+	public void deleteCalendrier(Calendrier calendrier) {
+		calendrierRepository.delete(calendrier);
+	}
+
 }

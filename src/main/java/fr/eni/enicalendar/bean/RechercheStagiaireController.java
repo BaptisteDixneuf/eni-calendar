@@ -95,7 +95,12 @@ public class RechercheStagiaireController implements Serializable {
 	 * Autocomplete sur le stagiaire
 	 */
 	public List<Stagiaire> autocompleteText(String query) {
-		List<Stagiaire> liste = stagiaireService.findByNom(query.trim());
+		//enlever l'espace devant la chaine
+		query = query.trim();
+		//mettre la première lettre du mot en maj (comme en bdd)
+		query = query.substring(0,1).toUpperCase() + query.substring(1).toLowerCase();
+
+		List<Stagiaire> liste = stagiaireService.findByNom(query);
 		return liste;
 	}
 
