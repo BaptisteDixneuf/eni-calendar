@@ -49,20 +49,15 @@
 				</p:column>
 				<p:column headerText="" style="width: 490px" >
 					<p:commandButton value="Consulter" action="#{ficheStagiaireController.consulterCalendrier}"/>
-					<p:commandButton id="test" value="Exporter" action="#{ficheStagiaireController.exporterCalendrier}">
+					<h:commandLink id="pdf">
+						<p:commandButton value="Exporter" />
 						<p:dataExporter type="pdf" target="tbl" fileName="cars" preProcessor="#{ficheStagiaireController.preProcessPDF}" />
-					</p:commandButton>
+					</h:commandLink>
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', calendriers.id)}"/>
 					<p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{ficheStagiaireController.supprimerCalendrier(calendriers.id)}"/>
 				</p:column>
 
 			</p:dataTable>
-			</div>
-			<div style="display: flex; justify-content: end">
-			<h:commandLink id="pdf">
-				<p:graphicImage url="/images/logo-eni.png" />
-				<p:dataExporter type="pdf" target="tbl" fileName="cars" preProcessor="#{ficheStagiaireController.preProcessPDF}" />
-			</h:commandLink>
 			</div>
 		</h:form>
 	</div>

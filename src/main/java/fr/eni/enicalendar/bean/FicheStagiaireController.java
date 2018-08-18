@@ -190,21 +190,6 @@ public class FicheStagiaireController implements Serializable {
 				.redirect("/eni-calendar/views/ficheStagiaire.xhtml");
 	}
 
-	/**
-	 * Export calendrier
-	 *
-	 * @throws IOException
-	 */
-	public void exporterCalendrier(Integer id) throws IOException {
-		HttpSession session = SessionUtils.getSession();
-		session.setAttribute(SessionUtils.SESSION_ID, id);
-		calendrier = calendrierService.findOne(id);
-		//TODO faire l'export en PDF
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("/eni-calendar/views/ficheStagiaire.xhtml");
-	}
-
-
 
 	public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
 		Document pdf = (Document) document;
