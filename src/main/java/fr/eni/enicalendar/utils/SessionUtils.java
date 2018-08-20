@@ -15,6 +15,8 @@ public class SessionUtils {
 
 	public static final String SESSION_ID = "id";
 
+	public static final String SESSION_ID_STAGIAIRE = "id_stagiaire";
+
 	public static HttpSession getSession() {
 		return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	}

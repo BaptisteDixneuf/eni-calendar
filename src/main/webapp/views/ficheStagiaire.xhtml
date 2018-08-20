@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+</h:head>
+
+
+<body>
+	<ui:include src="menuBis.xhtml"></ui:include>
+	
+	<div class="container">
+		<h:form>
+		<p:messages for="general"></p:messages>
+		<h1>Fiche stagiaire</h1>
+
+			<div class="form-group col-md-12" style="display: flex; justify-content: center">
+				<h:outputText
+						value="Nom Prénom: #{ficheStagiaireController.stagiaire.nom} #{ficheStagiaireController.stagiaire.prenom}"/>
+			</div>
+
+			<div class="form-group col-md-12" style="display: flex; justify-content: center">
+				<h:outputText
+						value="Entreprise: XXX TODO A COMPLETER"/>
+			</div>
+
+			<div style="margin-top: 4%">
+			<p:dataTable id="tbl" var="calendriers" value="#{ficheStagiaireController.calendriers}" widgetVar="titreTable" emptyMessage="Auncun calendrier pour ce stagiaire">
+				<p:column headerText="Nom" sortBy="#{calendriers.nomCalendrier}" filterBy="#{calendriers.nomCalendrier}">
+					<h:outputText value="#{calendriers.nomCalendrier}"/>
+				</p:column>
+				<p:column headerText="Date Creation" sortBy="#{calendriers.dateCreation }" filterBy="#{calendriers.dateCreation}">
+					<h:outputText value="#{calendriers.dateCreation}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Date Modification" sortBy="#{calendriers.dateModification}" filterBy="#{calendriers.dateModification}">
+					<h:outputText value="#{calendriers.dateModification}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Etat" sortBy="#{calendriers.etatCalendrier.libelleEtat}" filterBy="#{calendriers.etatCalendrier.libelleEtat}">
+					<h:outputText value="#{calendriers.etatCalendrier.libelleEtat}"/>
+				</p:column>
+				<p:column headerText="" style="width: 490px" >
+					<p:commandButton value="Consulter" action="#{ficheStagiaireController.consulterCalendrier}"/>
+					<h:commandLink id="pdf">
+						<p:commandButton value="Exporter" />
+						<p:dataExporter type="pdf" target="tbl" fileName="cars" preProcessor="#{ficheStagiaireController.preProcessPDF}" />
+					</h:commandLink>
+					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', calendriers.id)}"/>
+					<p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{ficheStagiaireController.supprimerCalendrier(calendriers.id)}"/>
+				</p:column>
+
+			</p:dataTable>
+			</div>
+		</h:form>
+	</div>
+
+	
+	<ui:include src="footer.xhtml"></ui:include>
+</body>
+</html>
