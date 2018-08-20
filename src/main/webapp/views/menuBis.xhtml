@@ -54,10 +54,10 @@
             <p:menuitem value="Se déconnecter" url="/views/logout.xhtml"/>
         </p:submenu>
 
-        <p:menuitem style="margin-left: 90% !important;" disabled="true">
-            <h:link outcome="#" >
+        <p:menuitem>
+            <a href="#{request.contextPath}/views/gestionCompte.xhtml">
                 <h:graphicImage url="/images/logo-user.png"/>
-            </h:link>
+           </a>
         </p:menuitem>
 
     </p:menubar>

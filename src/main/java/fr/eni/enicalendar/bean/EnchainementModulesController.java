@@ -121,7 +121,7 @@ public class EnchainementModulesController implements Serializable {
 			}
 
 			if (elementTrouve != null) {
-				// elementTrouve.setLibelleModulePrerequisERP(module.getLibelle());
+				elementTrouve.setLibelleModulePrerequisErp(module.getLibelle());
 				listRetour.add(elementTrouve);
 			} else {
 				if (idSelectedModule.equals(module.getId().toString())) {
@@ -133,15 +133,18 @@ public class EnchainementModulesController implements Serializable {
 					e.setIdFormationERP(idSelectedFormation);
 					e.setIdModuleERP(Integer.valueOf(idSelectedModule));
 					e.setIdModulePrerequisERP(module.getId());
-					// e.setLibelleModulePrerequisERP(module.getLibelle());
+					e.setLibelleModulePrerequisErp(module.getLibelle());
 					e.setTypeEnchainement(EnchainementPossibleEnum.NON_REQUIS.toString());
 					listRetour.add(e);
 				}
 			}
 
 		}
-		// Collections.sort(listRetour,(a, b) ->
-		// a.getLibelleModulePrerequisERP().compareToIgnoreCase(b.getLibelleModulePrerequisERP()));
+
+		// FIXME : problème avec JSF => voir si cela ne vient pas de la lambda, à voir
+		// Collections.sort(listRetour,
+		// (a, b) ->
+		// a.getLibelleModulePrerequisErp().compareToIgnoreCase(b.getLibelleModulePrerequisErp()));
 		disableModule = Boolean.TRUE;
 
 		return listRetour;
@@ -154,6 +157,7 @@ public class EnchainementModulesController implements Serializable {
 		idSelectedFormation = "";
 		idSelectedModule = "";
 		modules = null;
+		modulesEnchainement = null;
 		disableFormation = Boolean.FALSE;
 		disableModule = Boolean.FALSE;
 	}
