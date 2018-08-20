@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "ENCHAINEMENT_MODULE")
@@ -29,8 +30,14 @@ public class EnchainementModule implements Serializable {
 	@Column(name = "EM_ID_MODULE_ERP")
 	private Integer idModuleERP;
 
+	@Transient
+	private String libelle;
+
 	@Column(name = "EM_ID_MODULE_PREREQUIS_ERP")
 	private Integer idModulePrerequisERP;
+
+	// @Transient
+	// private String libelleModulePrerequisERP;
 
 	@Column(name = "EM_TYPE_ENCHAINEMENT")
 	private String typeEnchainement;
@@ -109,5 +116,13 @@ public class EnchainementModule implements Serializable {
 	public void setTypeEnchainement(String typeEnchainement) {
 		this.typeEnchainement = typeEnchainement;
 	}
+
+	// public String getLibelleModulePrerequisERP() {
+	// return libelleModulePrerequisERP;
+	// }
+	//
+	// public void setLibelleModulePrerequisERP(String libelleModulePrerequisERP) {
+	// this.libelleModulePrerequisERP = libelleModulePrerequisERP;
+	// }
 
 }
