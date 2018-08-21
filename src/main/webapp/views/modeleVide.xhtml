@@ -11,74 +11,102 @@
 		rel="stylesheet" id="bootstrap-css" />
 	<script type="text/javascript"
 		src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="#{request.contextPath}/style/app/js/calendrier.js"></script>
 </h:head>
 
 
 <body>
 	<ui:include src="menuBis.xhtml"></ui:include>
 
+	<h:form>
+		<!-- Barre plier -->
+		<div id="groupeConteneur">
+			<div class="paveGroupe">
 	
-	<!-- Barre plier -->
-	<div id="groupeConteneur">
-		<div class="paveGroupe">
-
-			<div class="pull-l">
-				<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
-
-					<h:panelGroup styleClass="informationGroupeBoutonGui">
-						<p:commandLink id="plierDeplierPaveGroupeButton"
-							styleClass="icn_open" oncomplete="PF('modalGroupe').show();"
-							update="paveGroupeDeplier">
-							<i class="fa fa-plus-circle boutonPlierGUI" aria-hidden="true"></i>
-						</p:commandLink>
+				<div class="pull-l">
+					<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
+	
+						<h:panelGroup styleClass="informationGroupeBoutonGui">
+							<p:commandLink id="plierDeplierPaveGroupeButton"
+								styleClass="icn_open" oncomplete="PF('modalGroupe').show();">
+								<i class="fa fa-plus-circle boutonPlierGUI" aria-hidden="true"></i>
+							</p:commandLink>
+						</h:panelGroup>
+	
+						<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
+					 		Nom de la formation
+						</h:panelGroup>
 					</h:panelGroup>
-
-					<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
-				 		Nom de la formation
-					</h:panelGroup>
-				</h:panelGroup>
+				</div>
 			</div>
-		</div>
-
-
-
-	<!-- Barre déplier -->
-				<p:dialog id="paveGroupeDeplier" header="Modal Dialog"  appendToBody="true"
-				widgetVar="modalGroupe" modal="true" height="70vh" width="85vw" closable="false" style="z-index:998;"
+	
+	
+	
+			<!-- Barre déplier -->
+			<p:dialog id="paveGroupeDeplier" header="Modal Dialog"
+				appendToBody="true" widgetVar="modalGroupe" 
+				height="70vh" width="85vw" closable="false" style="z-index: 10001 !important;"
 				resizable="false" draggable="false" showEffect="Slide">
-
+	
 				<!-- Header -->
 				<f:facet name="header">
 					<div class="paveGroupe" onclick="PF('modalGroupe').hide();">
-
+	
 						<div class="pull-l">
-							<h:panelGroup  class="informationGroupeGUI m-t-15 m-l-50">
+							<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
 								<h:panelGroup styleClass="informationGroupeBoutonGui">
-									<p:commandLink id="closeTutututu" >
+									<p:commandLink id="closeTutututu">
 										<i class="fa fa-minus-circle boutonPlierGUI" aria-hidden="true"></i>
 									</p:commandLink>
 								</h:panelGroup>
-
+	
 								<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
-									Titre ouvert
-								</h:panelGroup>
+										Titre ouvert
+									</h:panelGroup>
 							</h:panelGroup>
 						</div>
-
+	
 					</div>
-	            </f:facet>
-
-			    <!-- CONTENU -->
+				</f:facet>
+	
+				<!-- CONTENU -->
 				<div id="blocGroupe">
 					<div class="container">
-						<div class="col-md-12">
-						</div>
+						<div class="col-md-12">But I must explain to you how all this
+							mistaken idea of denouncing pleasure and praising pain was born
+							and I will give you a complete account of the system, and expound
+							the actual teachings of the great explorer of the truth, the
+							master-builder of human happiness. No one rejects, dislikes, or
+							avoids pleasure itself, because it is pleasure, but because those
+							who do not know how to pursue pleasure rationally encounter
+							consequences that are extremely painful. Nor again is there anyone
+							who loves or pursues or desires to obtain pain of itself, because
+							it is pain, but because occasionally circumstances occur in which
+							toil and pain can procure him some great pleasure. To take a
+							trivial example, which of us ever undertakes laborious physical
+							exercise, except to obtain some advantage from it? But who has any
+							right to find fault with a man who chooses to enjoy a pleasure
+							that has no annoying consequences, or one who avoids a pain that
+							produces no resultant pleasure?" But I must explain to you how all
+							this mistaken idea of denouncing pleasure and praising pain was
+							born and I will give you a complete account of the system, and
+							expound the actual teachings of the great explorer of the truth,
+							the master-builder of human happiness. No one rejects, dislikes,
+							or avoids pleasure itself, because it is pleasure, but because
+							those who do not know how to pursue pleasure rationally encounter
+							consequences that are extremely painful. Nor again is there anyone
+							who loves or pursues or desires to obtain pain of itself, because
+							it is pain, but because occasionally circumstances occur in which
+							toil and pain can procure him some great pleasure. To take a
+							trivial example, which of us ever undertakes laborious physical
+							exercise, except to obtain some advantage from it? But who has any
+							right to find fault with a man who chooses to enjoy a pleasure
+							that has no annoying consequences, or one who avoids a pain that
+							produces no resultant pleasure?"</div>
 					</div>
 				</div>
 			</p:dialog>
 		</div>
+	</h:form>
 
 </body>
 </html>
