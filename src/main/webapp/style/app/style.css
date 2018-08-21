@@ -202,3 +202,146 @@ h3 {
 .bold {font-weight: bold !important;}
 .whiteSpace {white-space: nowrap;}
 
+
+
+
+#groupeConteneur {
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+	z-index: 1002;
+ }
+
+ #groupeConteneur .ui-dialog .ui-dialog-titlebar {
+    color: white;
+ }
+
+ .paveGroupe {
+	margin: 0 15px !important;
+ }
+
+ .aui #groupeConteneur .ui-dialog .ui-dialog-titlebar {
+	padding: 0;
+ }
+
+.aui #groupeConteneur .ui-shadow {
+	box-shadow: none;
+}
+
+.aui #groupeConteneur [id*=paveGroupeDeplier].ui-dialog {
+	width: auto !important;
+	margin: 0 15px !important;
+	left: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+}
+
+.aui #groupeConteneur [id*=paveGroupeDeplier].ui-dialog .ui-widget-content {
+	border: 1px solid #0870ac;
+	padding: .5em 1em !important;
+}
+
+/** DEBUT -  gérer les popins dans les popins **/
+.aui #groupeConteneur [id*=paveGroupeDeplier].ui-dialog .ui-widget-content .ui-dialog.ui-widget-content {
+	border: 1px solid #a8a8a8;
+	padding: 0px !important;
+}
+
+.aui #groupeConteneur [id*=paveGroupeDeplier].ui-dialog .ui-widget-content .ui-dialog .ui-widget-content {
+	border: 0px solid;
+	padding: 0px !important;
+}
+
+.aui #groupeConteneur [id*=paveGroupeDeplier].ui-dialog .ui-widget-content .ui-dialog .ui-dialog-titlebar {
+	color : black;
+	padding: 15px;
+}
+
+/** FIN -gérer les popins dans les popins **/
+
+.aui .ui-widget-overlay {
+	background: rgba(255, 255, 255, 1);
+    opacity: 0.9;
+}
+
+ .ui-dialog-titlebar .paveGroupe {
+	margin: 0 !important;
+ }
+
+ .paveGroupe i {
+	 color: #fff;
+	 margin: 0 5px;
+ }
+
+.paveIcones {
+  border: 1px dotted #979797;
+  padding: 10px 0 0px 10px; }
+
+.collapseRow {
+  background: none; }
+
+.paveGroupe {
+  background: #0870ac;
+  color: white;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 200;
+  height: 55px;
+  border-radius: 55px 55px 0 0;
+  -moz-border-radius: 55px 55px 0 0;
+  -webkit-border-radius: 55px 55px 0 0;
+  box-shadow: 0px -3px 11px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px -3px 11px 1px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px -3px 11px 1px rgba(0,0,0,0.75);
+}
+
+[id*=paveGroupeDeplier] .paveGroupe {
+	box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+
+}
+
+span[id*="paveGroupeDeplier_title"] {
+	width: 100%;
+	margin-bottom: 0;
+}
+
+[id*="paveGroupeDeplier"].ui-widget-content{
+	border: none;
+}
+
+.paveGroupe div[id*="barreFixePanel"] {
+	background-color: #fff;
+    height: 100%;
+    border-radius: 0 55px 0 0;
+    -moz-border-radius: 0 55px 0 0;
+  	-webkit-border-radius: 0 55px 0 0;
+}
+
+.paveGroupe .boutonPlierGUI{
+	font-size : 1.7em;
+}
+
+.paveGroupe .informationGroupeGUI,
+.paveGroupe .informationGroupeBoutonGui,
+.paveGroupe .informationGroupeTitreGui,
+.paveGroupe .raccourciClavierGUI {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+
+.paveGroupe .raccourciClavierGUI .iconeRaccourciClavierGUI {
+	background: url(../images/mae/keyboardBindsHowTo.png) no-repeat ;
+	background-size: 100%;
+    height: 35px;
+    width: 77px;
+    display: block;
+    padding: 0 5px 0 0;
+}
+
+.boutonPlierGUI{
+	font-size : 1.7em;
+}

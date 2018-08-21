@@ -195,7 +195,7 @@ public class CreationCalendrierVideController implements Serializable {
 	public void validationEtape() throws IOException {
 		// TODO: sauvegarde donnée de la page
 		// Redirection
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/modele.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/modeleVide.xhtml");
 	}
 
 }

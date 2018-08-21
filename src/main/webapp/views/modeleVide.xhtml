@@ -1,26 +1,80 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+	<link
+		href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	<script type="text/javascript"
+		src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="#{request.contextPath}/style/app/js/calendrier.js"></script>
 </h:head>
 
 
 <body>
-<ui:include src="menuBis.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"></ui:include>
 
-<div class="container">
-	<div class="col-md-12">
-		
+	
+	<!-- Barre plier -->
+	<div id="groupeConteneur">
+		<div class="paveGroupe">
+
+			<div class="pull-l">
+				<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
+
+					<h:panelGroup styleClass="informationGroupeBoutonGui">
+						<p:commandLink id="plierDeplierPaveGroupeButton"
+							styleClass="icn_open" oncomplete="PF('modalGroupe').show();"
+							update="paveGroupeDeplier">
+							<i class="fa fa-plus-circle boutonPlierGUI" aria-hidden="true"></i>
+						</p:commandLink>
+					</h:panelGroup>
+
+					<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
+				 		Nom de la formation
+					</h:panelGroup>
+				</h:panelGroup>
+			</div>
+		</div>
 	</div>
-</div>
 
 
+	<!-- Barre déplier -->
+	<p:dialog id="paveGroupeDeplier" header="Modal Dialog"
+		appendToBody="true" widgetVar="modalGroupe" modal="true" height="70vh"
+		width="85vw" closable="false" style="z-index:998;" resizable="false"
+		draggable="false" showEffect="Slide">
+
+		<!-- Header -->
+		<f:facet name="header">
+			<div class="paveGroupe" onclick="PF('modalGroupe').hide();">
+
+				<div class="pull-l">
+					<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
+						<h:panelGroup styleClass="informationGroupeBoutonGui">
+							<p:commandLink id="closeTutututu">
+								<i class="fa fa-minus-circle boutonPlierGUI" aria-hidden="true"></i>
+							</p:commandLink>
+						</h:panelGroup>
+
+						<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
+
+						</h:panelGroup>
+					</h:panelGroup>
+				</div>
+
+			</div>
+		</f:facet>
+
+		<!-- CONTENU -->
+		<div id="blocGroupe"></div>
+
+	</p:dialog>
 
 </body>
 </html>
