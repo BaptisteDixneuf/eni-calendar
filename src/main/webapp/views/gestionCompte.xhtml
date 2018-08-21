@@ -8,16 +8,17 @@
 <h:head>
 	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
 	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 </h:head>
 
 
 <body>
-	<ui:include src="menu.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"></ui:include>
 	
 	<div class="container">
+	<div class="col-md-12">
 		<h1>Mon compte</h1>
 		#{gestionCompteController.utilisateur.nom} #{gestionCompteController.utilisateur.prenom}
+	</div>
 	</div>
 	
 	<ui:include src="footer.xhtml"></ui:include>

@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "ENCHAINEMENT_MODULE")
@@ -17,17 +20,27 @@ public class EnchainementModule implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "EM_ID")
 	private Integer id;
 
-	@Column(name = "EM_ID_FORMATION_ERP")
-	private Integer idFormationERP;
+	@Column(name = "EM_ID_FORMATION_ERP", columnDefinition = "CHAR(8)")
+	private String idFormationERP;
 
 	@Column(name = "EM_ID_MODULE_ERP")
 	private Integer idModuleERP;
 
+	@Transient
+	private String libelle;
+
 	@Column(name = "EM_ID_MODULE_PREREQUIS_ERP")
 	private Integer idModulePrerequisERP;
+
+	@Transient
+	private String libelleModulePrerequisErp;
+
+	@Column(name = "EM_TYPE_ENCHAINEMENT")
+	private String typeEnchainement;
 
 	/**
 	 * @return the id
@@ -47,7 +60,7 @@ public class EnchainementModule implements Serializable {
 	/**
 	 * @return the idFormationERP
 	 */
-	public Integer getIdFormationERP() {
+	public String getIdFormationERP() {
 		return idFormationERP;
 	}
 
@@ -55,7 +68,7 @@ public class EnchainementModule implements Serializable {
 	 * @param idFormationERP
 	 *            the idFormationERP to set
 	 */
-	public void setIdFormationERP(Integer idFormationERP) {
+	public void setIdFormationERP(String idFormationERP) {
 		this.idFormationERP = idFormationERP;
 	}
 
@@ -87,6 +100,29 @@ public class EnchainementModule implements Serializable {
 	 */
 	public void setIdModulePrerequisERP(Integer idModulePrerequisERP) {
 		this.idModulePrerequisERP = idModulePrerequisERP;
+	}
+
+	/**
+	 * @return the typeEnchainement
+	 */
+	public String getTypeEnchainement() {
+		return typeEnchainement;
+	}
+
+	/**
+	 * @param typeEnchainement
+	 *            the typeEnchainement to set
+	 */
+	public void setTypeEnchainement(String typeEnchainement) {
+		this.typeEnchainement = typeEnchainement;
+	}
+
+	public String getLibelleModulePrerequisErp() {
+		return libelleModulePrerequisErp;
+	}
+
+	public void setLibelleModulePrerequisErp(String libelleModulePrerequisErp) {
+		this.libelleModulePrerequisErp = libelleModulePrerequisErp;
 	}
 
 }

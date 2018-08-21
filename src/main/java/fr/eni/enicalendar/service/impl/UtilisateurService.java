@@ -50,4 +50,18 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 		return utilisateurRepository.findByEmail(email);
 	}
 
+	@Override
+	public Utilisateur findById (Integer id) {
+		return utilisateurRepository.findById(id);
+	}
+	
+	
+	public Utilisateur saveUtilisateur(Utilisateur utilisateur) {
+		return utilisateurRepository.save(utilisateur);
+	}
+
+	public void deleteUtilisateur(Utilisateur utilisateur) {
+		utilisateurRepository.delete(utilisateur);
+	}
+
 }

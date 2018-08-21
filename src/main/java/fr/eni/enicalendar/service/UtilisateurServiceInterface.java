@@ -12,4 +12,10 @@ public interface UtilisateurServiceInterface {
 
 	Utilisateur findByEmail(String email);
 
+	Utilisateur findById(Integer id);
+	
+	Utilisateur saveUtilisateur(Utilisateur utilisateur);
+
+	void deleteUtilisateur(Utilisateur utilisateur);
+
 }

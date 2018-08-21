@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<!-- CSS -->
+	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/bootstrap/css/bootstrap.css"  />
+	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/app/style.css" />
+
+	<!-- JS -->
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/style/app/js/menu.js"></script>
+
+</h:head>
+
+
+<body>
+	<ui:include src="menuBis.xhtml"></ui:include>
+
+	<div class="container">
+		<div class="log-in">
+			<h:form>
+			<h1>Création d'un nouveau calendrier</h1>
+
+			<p:fieldset style="border-radius: 30px; border-width: medium; display: flex; justify-content: center">
+				Créer un calendrier :<br/><br/>
+
+			<div class="form-group">
+				<p:commandButton action="#{creationCalendrierController.creerModele('vide')}" value="A partir d'un modèle vide" update="@form" styleClass="btn btn-primary" style="text-align: center; width: 417px;"></p:commandButton>
+			</div>
+			<div class="form-group">
+				<p:commandButton action="#{creationCalendrierController.creerModele('depuisModele')}" value="A partir d'un modèle de calendrier" update="@form" styleClass="btn btn-primary" style="text-align: center; width: 417px;"></p:commandButton>
+			</div>
+			<div class="form-group">
+				<p:commandButton action="#{creationCalendrierController.creerModele('depuisAutre')}" value="A partir d'un calendrier d'un autre stagiaire" update="@form" styleClass="btn btn-primary" style="text-align: center; width: 417px;"></p:commandButton>
+			</div>
+			</p:fieldset>
+			</h:form>
+		</div>
+	</div>
+	
+	<ui:include src="footer.xhtml"></ui:include>
+	
+</body>
+</html>

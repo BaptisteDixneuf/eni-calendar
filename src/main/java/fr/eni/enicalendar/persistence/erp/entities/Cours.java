@@ -26,7 +26,7 @@ public class Cours implements Serializable {
 	@GenericGenerator(name = "generator", strategy = "guid", parameters = {})
 	@GeneratedValue(generator = "generator")
 	@Column(name = "IdCours", columnDefinition = "uniqueidentifier")
-	private String idCours;
+	private String id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "Debut")
@@ -43,18 +43,18 @@ public class Cours implements Serializable {
 	private Short dureePrevueEnHeures;
 
 	/**
-	 * @return the idCours
+	 * @return the id
 	 */
-	public String getIdCours() {
-		return idCours;
+	public String getId() {
+		return id;
 	}
 
 	/**
-	 * @param idCours
-	 *            the idCours to set
+	 * @param id
+	 *            the id to set
 	 */
-	public void setIdCours(String idCours) {
-		this.idCours = idCours;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**

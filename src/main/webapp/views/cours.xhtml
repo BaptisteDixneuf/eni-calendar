@@ -8,16 +8,17 @@
 </h:head>
 
 <body>
-	<ui:include src="menu.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"></ui:include>
 	
 	<div class="container">
+	<div class="col-md-12">
 		<h1>Cours</h1>
 		<h:form>
 			<p:dataTable var="cours" value="#{coursController.cours}"
 				widgetVar="titreTable" emptyMessage="Auncun titre ne correspond">
-				<p:column headerText="Id" sortBy="#{cours.idCours}"
-					filterBy="#{cours.idCours}">
-					<h:outputText value="#{cours.idCours}" />
+				<p:column headerText="Id" sortBy="#{cours.id}"
+					filterBy="#{cours.id}">
+					<h:outputText value="#{cours.id}" />
 				</p:column>
 				<p:column headerText="Date début" sortBy="#{cours.dateDebut}"
 					filterBy="#{cours.dateDebut}">
@@ -38,6 +39,7 @@
 				</p:column>
 			</p:dataTable>
 		</h:form>
+	</div>
 	</div>
 	
 	<ui:include src="footer.xhtml"></ui:include>

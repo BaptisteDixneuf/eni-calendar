@@ -37,6 +37,7 @@ public class PersistenceJPAConfigurationERP {
 		HashMap<String, Object> properties = new HashMap<>();
 		properties.put("hibernate.hbm2ddl.auto", env.getProperty("erp.datasource.hibernate.ddl.auto"));
 		properties.put("hibernate.dialect", env.getProperty("erp.datasource.hibernate.dialect"));
+		properties.put("hibernate.show_sql", env.getProperty("erp.datasource.hibernate.show_sql"));
 		em.setJpaPropertyMap(properties);
 
 		return em;

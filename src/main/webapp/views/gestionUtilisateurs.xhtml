@@ -8,16 +8,21 @@
 <h:head>
 	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
 	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </h:head>
 
 
 <body>
-	<ui:include src="menu.xhtml"></ui:include>
-	
-	<div class="container">
+	<ui:include src="menuBis.xhtml"></ui:include>
+
+    <!--<div>
+    <p class="alert alert-success">Bandeau d’alerte - la classe success <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></p>
+    </div>-->
+
+    <div class="container">
+        <div>
 		<h1>Liste des utilisateurs de l'application</h1>
-		 <a class="bouton-ajout" href="#{request.contextPath}/views/creation-modificationUtilisateur.xhtml">+ Créer un nouvel utilisateur</a>
+        <p:commandButton value="+ Créer un nouvel utilisateur" style="background-color: #2E9AFE" action="#{gestionUtilisateursController.ajoutUtilisateur('Création')}"/>
         <h:form>
             <p:dataTable var="utilisateurs" value="#{gestionUtilisateursController.utilisateurs}" widgetVar="titreTable" emptyMessage="Auncun utilisateur ne correspond">
                 <p:column headerText="Nom" sortBy="#{utilisateurs.nom}" filterBy="#{utilisateurs.nom}">
@@ -32,9 +37,15 @@
                 <p:column headerText="Role" sortBy="#{utilisateurs.role.libelle}" filterBy="#{utilisateurs.role.libelle}">
                     <h:outputText value="#{utilisateurs.role.libelle}"/>
                 </p:column>
+                <p:column headerText=""  >
+                    <p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', utilisateurs.id)}"/>
+                    <p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{gestionUtilisateursController.supprimerUtilisateur(utilisateurs.id)}"/>
+                </p:column>
+
           </p:dataTable>
    
     </h:form>
+    </div>
 	</div>
 	
 	<ui:include src="footer.xhtml"></ui:include>
