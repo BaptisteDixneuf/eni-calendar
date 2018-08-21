@@ -45,36 +45,37 @@
 
 
 	<!-- Barre déplier -->
-	<p:dialog id="paveGroupeDeplier" header="Modal Dialog"
-		appendToBody="true" widgetVar="modalGroupe" modal="true" height="70vh"
-		width="85vw" closable="false" style="z-index:998;" resizable="false"
-		draggable="false" showEffect="Slide">
+				<p:dialog id="paveGroupeDeplier" header="Modal Dialog"  appendToBody="true"
+				widgetVar="modalGroupe" modal="true" height="70vh" width="85vw" closable="false" style="z-index:998;"
+				resizable="false" draggable="false" showEffect="Slide">
 
-		<!-- Header -->
-		<f:facet name="header">
-			<div class="paveGroupe" onclick="PF('modalGroupe').hide();">
+				<!-- Header -->
+				<f:facet name="header">
+					<div class="paveGroupe" onclick="PF('modalGroupe').hide();">
 
-				<div class="pull-l">
-					<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
-						<h:panelGroup styleClass="informationGroupeBoutonGui">
-							<p:commandLink id="closeTutututu">
-								<i class="fa fa-minus-circle boutonPlierGUI" aria-hidden="true"></i>
-							</p:commandLink>
-						</h:panelGroup>
+						<div class="pull-l">
+							<h:panelGroup  class="informationGroupeGUI m-t-15 m-l-50">
+								<h:panelGroup styleClass="informationGroupeBoutonGui">
+									<p:commandLink id="closeTutututu" >
+										<i class="fa fa-minus-circle boutonPlierGUI" aria-hidden="true"></i>
+									</p:commandLink>
+								</h:panelGroup>
 
-						<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
+								<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
+									Titre ouvert
+								</h:panelGroup>
+							</h:panelGroup>
+						</div>
 
-						</h:panelGroup>
-					</h:panelGroup>
+					</div>
+	            </f:facet>
+
+			    <!-- CONTENU -->
+				<div id="blocGroupe">
+					Contenu
 				</div>
-
-			</div>
-		</f:facet>
-
-		<!-- CONTENU -->
-		<div id="blocGroupe"></div>
-
-	</p:dialog>
+			</p:dialog>
+		
 
 </body>
 </html>
