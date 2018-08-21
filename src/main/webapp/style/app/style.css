@@ -216,9 +216,7 @@ h3 {
     color: white;
  }
 
- .paveGroupe {
-	margin: 0 15px !important;
- }
+
 
 #groupeConteneur .ui-dialog .ui-dialog-titlebar {
 	padding: 0;
@@ -237,13 +235,11 @@ h3 {
 }
 
 #groupeConteneur [id*=paveGroupeDeplier].ui-dialog .ui-widget-content {
-	border: 1px solid #0870ac;
 	padding: .5em 1em !important;
 }
 
-/** DEBUT -  gérer les popins dans les popins **/
+
 #groupeConteneur [id*=paveGroupeDeplier].ui-dialog .ui-widget-content .ui-dialog.ui-widget-content {
-	border: 1px solid #a8a8a8;
 	padding: 0px !important;
 }
 
@@ -287,9 +283,6 @@ h3 {
   font-size: 14px;
   font-weight: 200;
   height: 55px;
-  border-radius: 55px 55px 0 0;
-  -moz-border-radius: 55px 55px 0 0;
-  -webkit-border-radius: 55px 55px 0 0;
   box-shadow: 0px -3px 11px 1px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px -3px 11px 1px rgba(0,0,0,0.75);
   -webkit-box-shadow: 0px -3px 11px 1px rgba(0,0,0,0.75);
@@ -313,10 +306,7 @@ span[id*="paveGroupeDeplier_title"] {
 
 .paveGroupe div[id*="barreFixePanel"] {
 	background-color: #fff;
-    height: 100%;
-    border-radius: 0 55px 0 0;
-    -moz-border-radius: 0 55px 0 0;
-  	-webkit-border-radius: 0 55px 0 0;
+    height: 100%;    
 }
 
 .paveGroupe .boutonPlierGUI{
@@ -338,5 +328,10 @@ span[id*="paveGroupeDeplier_title"] {
 
 .ui-dialog .ui-dialog-titlebar.ui-widget-header {
 	background: none;
+	padding: 0px;
 }
 
+.ui-dialog .ui-dialog-title {
+    
+    margin: 0px;
+}
