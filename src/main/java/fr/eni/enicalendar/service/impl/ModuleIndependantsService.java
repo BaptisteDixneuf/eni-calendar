@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ModuleIndependantService implements ModuleIndependantsServiceInterface {
+public class ModuleIndependantsService implements ModuleIndependantsServiceInterface {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ModuleIndependantService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ModuleIndependantsService.class);
 
 	@Autowired
 	private ModuleIndependantRepository moduleRepository;
