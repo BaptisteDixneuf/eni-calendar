@@ -12,20 +12,18 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
-import fr.eni.enicalendar.persistence.erp.entities.Formation;
-import fr.eni.enicalendar.service.FormationServiceInterface;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
+import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
-import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "creationCalendrierVideController")
 @ViewScoped
@@ -108,7 +106,6 @@ public class CreationCalendrierVideController implements Serializable {
 		this.lieux = lieux;
 	}
 
-
 	public void setStagiaire(Stagiaire stagiaire) {
 		this.stagiaire = stagiaire;
 	}
@@ -161,7 +158,6 @@ public class CreationCalendrierVideController implements Serializable {
 		this.lieuService = lieuService;
 	}
 
-
 	public FormationServiceInterface getFormationService() {
 		return formationService;
 	}
@@ -197,9 +193,9 @@ public class CreationCalendrierVideController implements Serializable {
 	 * @throws IOException
 	 */
 	public void validationEtape() throws IOException {
-		HttpSession session = SessionUtils.getSession();
-
-
+		// TODO: sauvegarde donnée de la page
+		// Redirection
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/modeleVide.xhtml");
 	}
 
 }
