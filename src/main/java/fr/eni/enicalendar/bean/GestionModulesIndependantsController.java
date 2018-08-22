@@ -1,7 +1,8 @@
 package fr.eni.enicalendar.bean;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -9,9 +10,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
 import fr.eni.enicalendar.service.ModuleIndependantsServiceInterface;
 
@@ -26,19 +27,26 @@ public class GestionModulesIndependantsController implements Serializable {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GestionModulesIndependantsController.class);
 
-	@ManagedProperty(value = "#{moduleIndeService}")
-	private ModuleIndependantsServiceInterface moduleIndeService;
+	@ManagedProperty(value = "#{moduleIndependantsService}")
+	private ModuleIndependantsServiceInterface moduleIndependantsService;
 
 	private List<ModuleIndependant> modules;
 	private ModuleIndependant module;
 	private String typeAction;
 
-	public ModuleIndependantsServiceInterface getModuleIndeService() {
-		return moduleIndeService;
+	/**
+	 * @return the moduleIndependantsService
+	 */
+	public ModuleIndependantsServiceInterface getModuleIndependantsService() {
+		return moduleIndependantsService;
 	}
 
-	public void setModuleIndeService(ModuleIndependantsServiceInterface moduleIndeService) {
-		this.moduleIndeService = moduleIndeService;
+	/**
+	 * @param moduleIndependantsService
+	 *            the moduleIndependantsService to set
+	 */
+	public void setModuleIndependantsService(ModuleIndependantsServiceInterface moduleIndependantsService) {
+		this.moduleIndependantsService = moduleIndependantsService;
 	}
 
 	public List<ModuleIndependant> getModules() {
@@ -69,10 +77,9 @@ public class GestionModulesIndependantsController implements Serializable {
 	public void setup() {
 		LOGGER.info("GestionModulesIndependantsController setup");
 		module = new ModuleIndependant();
-		modules = moduleIndeService.findAll();
+		modules = moduleIndependantsService.findAll();
 
 	}
-
 
 	/**
 	 * Permet de créer un module
@@ -119,8 +126,8 @@ public class GestionModulesIndependantsController implements Serializable {
 	 * @throws IOException
 	 */
 	public void supprimerModule(Integer id) throws IOException {
-		//module = moduleService.findOne(id);
-		//modeleService.delete(modele);
+		// module = moduleService.findOne(id);
+		// modeleService.delete(modele);
 
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
 	}
