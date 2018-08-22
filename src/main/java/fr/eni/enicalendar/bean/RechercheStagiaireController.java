@@ -70,7 +70,7 @@ public class RechercheStagiaireController implements Serializable {
 
 	@PostConstruct
 	public void setup() {
-		LOGGER.info("CreationCalendrierDepuisModeleController setup");
+		LOGGER.info("RechercheStagiaireController setup");
 		stagiaire = new Stagiaire();
 		//TODO changer valeur en dur
 		stagiaire = stagiaireService.findBycodeStagiaire(20);

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+</h:head>
+
+
+<body>
+<ui:include src="menuBis.xhtml"></ui:include>
+
+<div class="container">
+    <div class="col-md-12">
+        <h:form>
+            <p:messages for="general">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <h1>Comparaison</h1>
+
+            <div style="columns: 2">
+                <div style="border-right: solid; padding-right: 5%;">
+                    <p:fieldset style="border-radius: 30px; border-width: medium; height: 400px">
+                        <div class="form-group">
+                            <h:panelGrid columns="1" style="margin-bottom:3em" cellpadding="5">
+                                <p:outputLabel for="type1" value="Type :"/>
+                                <p:selectOneRadio id="type1" value="#{comparerCalendriersController.txt}">
+                                    <f:selectItem itemLabel="Calendrier de stagiaire" itemValue="1"/>
+                                    <f:selectItem itemLabel="Modèle de calendrier" itemValue="2"/>
+                                    <p:ajax event="change" update="panel1"></p:ajax>
+                                </p:selectOneRadio>
+                            </h:panelGrid>
+                        </div>
+                        <h:panelGroup id="panel1">
+                            <h:panelGroup rendered="#{comparerCalendriersController.txt eq 1}">
+                                <div class="form-group col-md-12">
+                                    <p:outputLabel value="Saisissez un stagiaire :" for="stagiaire1"
+                                                   style="display: flex; justify-content: center;"/>
+                                    <p:autoComplete id="stagiaire1" minQueryLength="3"
+                                                    value="#{comparerCalendriersController.codeStagiaire}"
+                                                    completeMethod="#{comparerCalendriersController.autocompleteText}"
+                                                    style="display: flex; justify-content: center;"
+                                                    var="stagiaire" itemLabel="#{stagiaire.nom} #{stagiaire.prenom}"
+
+                                                    itemValue="#{stagiaire.codeStagiaire}" forceSelection="true">
+                                        <p:ajax event="itemSelect" listener="#{comparerCalendriersController.recupereCalendriersUn}" update="panelCalendrier1"></p:ajax>
+                                    </p:autoComplete>
+                                </div>
+
+                                <h:panelGroup id="panelCalendrier1">
+                                    <div class="form-group col-md-12">
+                                        <p:outputLabel for="calendrier1" value="Calendrier :"/><br/>
+                                        <p:selectOneMenu id="calendrier1"
+                                                         value="#{comparerCalendriersController.calendriers}">
+                                            <f:selectItem itemLabel="Selectionner un calendrier" itemValue=""/>
+                                            <f:selectItems value="#{comparerCalendriersController.calendriers}"
+                                                           var="calendrier"
+                                                           itemLabel="#{calendrier.nomCalendrier}"
+                                                           itemValue="#{calendrier.id}"/>
+                                        </p:selectOneMenu>
+                                        <p:messages for="calendrier1"></p:messages>
+                                    </div>
+                                </h:panelGroup>
+
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{comparerCalendriersController.txt eq 2}">
+                                <div class="form-group col-md-12">
+                                    <p:outputLabel value="Choisissez un modèle de calendrier :" for="modele1"/>
+                                    <p:autoComplete id="modele1" minQueryLength="3"
+                                                    value="#{comparerCalendriersController.codeModele}"
+                                                    completeMethod="#{comparerCalendriersController.autocompleteModele}"
+                                                    style="display: flex; justify-content: center;"
+                                                    var="modele" itemLabel="#{modele.nomCalendrier}"
+                                                    itemValue="#{modele.id}" forceSelection="true"/>
+                                </div>
+
+                            </h:panelGroup>
+                        </h:panelGroup>
+
+                    </p:fieldset>
+                </div>
+
+                <div style="border-left: solid; padding-left: 5%;">
+                    <p:fieldset style="border-radius: 30px; border-width: medium; height: 400px;">
+                        <div class="form-group">
+                            <h:panelGrid columns="1" style="margin-bottom:3em" cellpadding="5">
+                                <p:outputLabel for="type2" value="Type :"/>
+                                <p:selectOneRadio id="type2" value="#{comparerCalendriersController.txt2}">
+                                    <f:selectItem itemLabel="Calendrier de stagiaire" itemValue="1"/>
+                                    <f:selectItem itemLabel="Modèle de calendrier" itemValue="2"/>
+                                    <p:ajax event="change" update="panel2"></p:ajax>
+                                </p:selectOneRadio>
+                            </h:panelGrid>
+                        </div>
+
+                        <h:panelGroup id="panel2">
+                            <h:panelGroup rendered="#{comparerCalendriersController.txt2 eq 1}">
+                                <div class="form-group col-md-12">
+                                    <p:outputLabel value="Saisissez un stagiaire :" for="stagiaire2"
+                                                   style="display: flex; justify-content: center;"/>
+                                    <p:autoComplete id="stagiaire2" minQueryLength="3"
+                                                    value="#{comparerCalendriersController.codeStagiaire}"
+                                                    completeMethod="#{comparerCalendriersController.autocompleteText}"
+                                                    style="display: flex; justify-content: center;"
+                                                    var="stagiaire2" itemLabel="#{stagiaire2.nom} #{stagiaire2.prenom}"
+                                                    itemValue="#{stagiaire2.codeStagiaire}" forceSelection="true">
+                                        <p:ajax event="itemSelect" listener="#{comparerCalendriersController.recupereCalendriersDeux}" update="panelCalendrier2"></p:ajax>
+                                    </p:autoComplete>
+                                </div>
+
+                                <h:panelGroup id="panelCalendrier2">
+                                <div class="form-group col-md-12">
+                                    <p:outputLabel for="calendrier2" value="Calendrier :"/><br/>
+                                    <p:selectOneMenu id="calendrier2"
+                                                     value="#{comparerCalendriersController.calendriers}">
+                                        <f:selectItem itemLabel="Selectionner un calendrier" itemValue=""/>
+                                        <f:selectItems value="#{comparerCalendriersController.calendriers}"
+                                                       var="calendrier2"
+                                                       itemLabel="#{calendrier2.nomCalendrier}"
+                                                       itemValue="#{calendrier2.id}"/>
+                                    </p:selectOneMenu>
+                                    <p:messages for="calendrier2"></p:messages>
+                                </div>
+                                </h:panelGroup>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{comparerCalendriersController.txt2 eq 2}">
+                                <div class="form-group col-md-12">
+                                    <p:outputLabel value="Choisissez un modèle de calendrier :" for="modele2"/>
+                                    <p:autoComplete id="modele2" minQueryLength="3"
+                                                    value="#{comparerCalendriersController.codeModele}"
+                                                    completeMethod="#{comparerCalendriersController.autocompleteModele}"
+                                                    style="display: flex; justify-content: center;"
+                                                    var="modele2" itemLabel="#{modele2.nomCalendrier}"
+                                                    itemValue="#{modele2.id}" forceSelection="true"/>
+                                </div>
+                            </h:panelGroup>
+
+                        </h:panelGroup>
+
+                    </p:fieldset>
+                </div>
+            </div>
+
+            <div class="form-group" style="display: flex; justify-content: center; margin-top: 5%;">
+                <p:commandButton action="#{comparerCalendriersController.validationEtape}" value="Valider" update="@form" styleClass="btn btn-primary"></p:commandButton>
+            </div>
+
+        </h:form>
+    </div>
+</div>
+</body>
+</html>
