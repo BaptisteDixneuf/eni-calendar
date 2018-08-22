@@ -16,8 +16,52 @@
 
 <body>
 	<ui:include src="menuBis.xhtml"></ui:include>
-
-	<form>
+	
+	<script type="text/javascript">
+	    function handleDrop(event, ui) {
+	        var droppedCours = ui.draggable;
+	 
+	        droppedCours.fadeOut('fast');
+	    }
+	</script>
+	
+	<form id="coursForm">
+	
+		
+		<div class="ui-g">
+			<!--  Liste des cours disponibles -->
+			<div class="ui-g-6">
+				<p:dataTable id="coursDisponible" var="cours" value="#{modeleVideController.coursDisponible}">
+            
+		            <p:column>
+		            	<p:panel id="gpnl">		                
+		               		<h:outputText value="#{cours.libelleCours}"></h:outputText>
+		               	</p:panel>
+		                <p:draggable for="gpnl" revert="true" helper="clone"/>
+		            </p:column>        
+		            
+		        </p:dataTable>
+			</div>
+			
+			<!-- Listes des cours sélectionnées -->
+			<div class="ui-g-6" >
+				<p:fieldset id="selectedCars">
+					<p:outputPanel id="dropArea">
+			            <h:outputText value="Aucun cours" rendered="#{empty modeleVideController.droppedCours}" style="font-size:24px;" />
+			            <p:dataTable id="selectedCoursTable" var="cours" value="#{modeleVideController.droppedCours}" rendered="#{not empty modeleVideController.droppedCours}">
+			                <p:column>
+			                    <h:outputText value="#{cours.libelleCours}" />
+			                </p:column>
+			            </p:dataTable>
+			        </p:outputPanel>
+			     </p:fieldset>
+			</div>
+			
+			<p:droppable for="selectedCars" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="coursDisponible" onDrop="handleDrop">
+        		<p:ajax listener="#{modeleVideController.onCoursDrop}" update="dropArea coursDisponible" />
+    		</p:droppable>
+			
+		</div>
 
 		<div id="groupeConteneur">
 			<!-- Barre plier -->
