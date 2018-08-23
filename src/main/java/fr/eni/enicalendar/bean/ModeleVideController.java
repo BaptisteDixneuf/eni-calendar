@@ -2,6 +2,9 @@ package fr.eni.enicalendar.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,8 +18,10 @@ import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.dto.ElementCalendrier;
 import fr.eni.enicalendar.dto.ElementCalendrierType;
+import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.service.CoursServiceInterface;
+import fr.eni.enicalendar.service.ModeleCalendrierServiceInterface;
 
 @ManagedBean(name = "modeleVideController")
 @ViewScoped
@@ -32,6 +37,9 @@ public class ModeleVideController implements Serializable {
 	@ManagedProperty(value = "#{coursService}")
 	private CoursServiceInterface coursService;
 
+	@ManagedProperty(value = "#{modeleCalendrierService}")
+	private ModeleCalendrierServiceInterface modeleCalendrierService;
+
 	private List<ElementCalendrier> availableElementCalendrier;
 
 	private List<ElementCalendrier> droppedElementCalendrier;
@@ -43,7 +51,7 @@ public class ModeleVideController implements Serializable {
 		LOGGER.info("CoursController setup");
 
 		// On récupère les cours disponible (TODO : filtrer sur la formation)
-		List<Cours> coursDisponible = coursService.findAllCours();
+		List<Cours> coursDisponible = coursService.findCoursByFormation("17ASR");
 
 		// On transforme les élements calendriers en object ElementCalendrier ( Dans la
 		// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
@@ -53,6 +61,13 @@ public class ModeleVideController implements Serializable {
 			ElementCalendrier element = convertCoursToElementCalendrier(cours);
 			availableElementCalendrier.add(element);
 		}
+
+		Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
+
 		droppedElementCalendrier = new ArrayList<ElementCalendrier>();
 	}
 
@@ -70,6 +85,17 @@ public class ModeleVideController implements Serializable {
 		element.setDateFin(cours.getDateFin());
 		element.setType(ElementCalendrierType.CALENDRIER);
 		return element;
+	}
+
+	public void save() {
+
+		// Création du modèle de calendrier
+		ModeleCalendrier modeleCalendrier = new ModeleCalendrier();
+		modeleCalendrier.setNomCalendrier("TODO Nom");
+		modeleCalendrier.setDateCreation(new Date());
+		modeleCalendrier.setDateModification(new Date());
+		modeleCalendrierService.save(modeleCalendrier);
+
 	}
 
 	/**
@@ -109,6 +135,14 @@ public class ModeleVideController implements Serializable {
 
 	public void setSelectedElementCalendrier(ElementCalendrier selectedElementCalendrier) {
 		this.selectedElementCalendrier = selectedElementCalendrier;
+	}
+
+	public ModeleCalendrierServiceInterface getModeleCalendrierService() {
+		return modeleCalendrierService;
+	}
+
+	public void setModeleCalendrierService(ModeleCalendrierServiceInterface modeleCalendrierService) {
+		this.modeleCalendrierService = modeleCalendrierService;
 	}
 
 }

@@ -42,6 +42,9 @@ public class Cours implements Serializable {
 	@Column(name = "dureePrevueEnHeures")
 	private Short dureePrevueEnHeures;
 
+	@Column(name = "IdModule")
+	private Integer idModule;
+
 	/**
 	 * @return the id
 	 */
@@ -115,6 +118,14 @@ public class Cours implements Serializable {
 	 */
 	public void setDureePrevueEnHeures(Short dureePrevueEnHeures) {
 		this.dureePrevueEnHeures = dureePrevueEnHeures;
+	}
+
+	public Integer getIdModule() {
+		return idModule;
+	}
+
+	public void setIdModule(Integer idModule) {
+		this.idModule = idModule;
 	}
 
 }

@@ -16,7 +16,7 @@
 
 <body>
 	<ui:include src="menuBis.xhtml"></ui:include>
-	
+
 	<script type="text/javascript">
 	    function handleDrop(event, ui) {
 	        var droppedElementCalendrier = ui.draggable;
@@ -24,44 +24,57 @@
 	        droppedElementCalendrier.fadeOut('fast');
 	    }
 	</script>
-	
+
 	<form id="coursForm">
-	
-		
-		<div class="ui-g">
-			<!--  Liste des cours disponibles -->
-			<div class="ui-g-6">
-				<p:dataTable id="availableElementCalendrier" var="element" value="#{modeleVideController.availableElementCalendrier}">
-            
-		            <p:column>
-		            	<p:panel id="gpnl">		                
-		               		<h:outputText value="#{element.libelle}"></h:outputText>
-		               	</p:panel>
-		                <p:draggable for="gpnl" revert="true" helper="clone"/>
-		            </p:column>        
-		            
-		        </p:dataTable>
+
+		<h:panelGroup id="panelCalendrier">
+			<div class="ui-g">
+				<!--  Liste des cours disponibles -->
+				<div class="ui-g-6">
+					<p:dataTable id="availableElementCalendrier" var="element"
+						value="#{modeleVideController.availableElementCalendrier}">
+
+						<p:column>
+							<p:panel id="gpnl">
+								<h:outputText value="#{element.libelle}"></h:outputText> - 
+			               		<h:outputText value="#{element.dateDebut}"></h:outputText> -
+			               		<h:outputText value="#{element.dateFin}"></h:outputText>
+							</p:panel>
+							<p:draggable for="gpnl" revert="true" helper="clone" />
+						</p:column>
+
+					</p:dataTable>
+				</div>
+
+				<!-- Listes des cours sélectionnées -->
+				<div class="ui-g-6">
+					<p:fieldset id="selectedElementCalendrier">
+						<p:outputPanel id="dropArea">
+							<h:outputText value="Aucun éléments"
+								rendered="#{empty modeleVideController.droppedElementCalendrier}"
+								style="font-size:24px;" />
+							<p:dataTable id="selectedCoursTable" var="element"
+								value="#{modeleVideController.droppedElementCalendrier}"
+								rendered="#{not empty modeleVideController.droppedElementCalendrier}">
+								<p:column>
+									<h:outputText value="#{element.libelle}"></h:outputText> - 
+			               			<h:outputText value="#{element.dateDebut}"></h:outputText> -
+			               			<h:outputText value="#{element.dateFin}"></h:outputText>
+								</p:column>
+							</p:dataTable>
+						</p:outputPanel>
+					</p:fieldset>
+				</div>
+
+				<p:droppable for="selectedElementCalendrier" tolerance="touch"
+					activeStyleClass="ui-state-highlight"
+					datasource="availableElementCalendrier" onDrop="handleDrop">
+					<p:ajax listener="#{modeleVideController.onElementCalendrierDrop}"
+						update="dropArea availableElementCalendrier" />
+				</p:droppable>
+
 			</div>
-			
-			<!-- Listes des cours sélectionnées -->
-			<div class="ui-g-6" >
-				<p:fieldset id="selectedElementCalendrier">
-					<p:outputPanel id="dropArea">
-			            <h:outputText value="Aucun éléments" rendered="#{empty modeleVideController.droppedElementCalendrier}" style="font-size:24px;" />
-			            <p:dataTable id="selectedCoursTable" var="element" value="#{modeleVideController.droppedElementCalendrier}" rendered="#{not empty modeleVideController.droppedElementCalendrier}">
-			                <p:column>
-			                    <h:outputText value="#{element.libelle}" />
-			                </p:column>
-			            </p:dataTable>
-			        </p:outputPanel>
-			     </p:fieldset>
-			</div>
-			
-			<p:droppable for="selectedElementCalendrier" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableElementCalendrier" onDrop="handleDrop">
-        		<p:ajax listener="#{modeleVideController.onElementCalendrierDrop}" update="dropArea availableElementCalendrier" />
-    		</p:droppable>
-			
-		</div>
+		</h:panelGroup>
 
 		<div id="groupeConteneur">
 			<!-- Barre plier -->
@@ -79,13 +92,17 @@
 						</h:panelGroup>
 
 						<!-- Libelle de la barre fixe-->
-						<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
-					 		Nom de la formation 7
-						</h:panelGroup>
+						<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">							
+						 		Nom de la formation 7						 		
+							</h:panelGroup>
+
 					</h:panelGroup>
+					<p:commandButton value="Enregistrer"
+						action="#{modeleVideController.save}" update=":panelCalendrier"></p:commandButton>
 				</div>
 			</div>
 		</div>
+
 
 
 		<!-- Barre déplier -->
