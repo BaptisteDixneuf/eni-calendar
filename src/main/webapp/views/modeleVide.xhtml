@@ -19,9 +19,9 @@
 	
 	<script type="text/javascript">
 	    function handleDrop(event, ui) {
-	        var droppedCours = ui.draggable;
+	        var droppedElementCalendrier = ui.draggable;
 	 
-	        droppedCours.fadeOut('fast');
+	        droppedElementCalendrier.fadeOut('fast');
 	    }
 	</script>
 	
@@ -31,11 +31,11 @@
 		<div class="ui-g">
 			<!--  Liste des cours disponibles -->
 			<div class="ui-g-6">
-				<p:dataTable id="coursDisponible" var="cours" value="#{modeleVideController.coursDisponible}">
+				<p:dataTable id="availableElementCalendrier" var="element" value="#{modeleVideController.availableElementCalendrier}">
             
 		            <p:column>
 		            	<p:panel id="gpnl">		                
-		               		<h:outputText value="#{cours.libelleCours}"></h:outputText>
+		               		<h:outputText value="#{element.libelle}"></h:outputText>
 		               	</p:panel>
 		                <p:draggable for="gpnl" revert="true" helper="clone"/>
 		            </p:column>        
@@ -45,20 +45,20 @@
 			
 			<!-- Listes des cours sélectionnées -->
 			<div class="ui-g-6" >
-				<p:fieldset id="selectedCars">
+				<p:fieldset id="selectedElementCalendrier">
 					<p:outputPanel id="dropArea">
-			            <h:outputText value="Aucun cours" rendered="#{empty modeleVideController.droppedCours}" style="font-size:24px;" />
-			            <p:dataTable id="selectedCoursTable" var="cours" value="#{modeleVideController.droppedCours}" rendered="#{not empty modeleVideController.droppedCours}">
+			            <h:outputText value="Aucun éléments" rendered="#{empty modeleVideController.droppedElementCalendrier}" style="font-size:24px;" />
+			            <p:dataTable id="selectedCoursTable" var="element" value="#{modeleVideController.droppedElementCalendrier}" rendered="#{not empty modeleVideController.droppedElementCalendrier}">
 			                <p:column>
-			                    <h:outputText value="#{cours.libelleCours}" />
+			                    <h:outputText value="#{element.libelle}" />
 			                </p:column>
 			            </p:dataTable>
 			        </p:outputPanel>
 			     </p:fieldset>
 			</div>
 			
-			<p:droppable for="selectedCars" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="coursDisponible" onDrop="handleDrop">
-        		<p:ajax listener="#{modeleVideController.onCoursDrop}" update="dropArea coursDisponible" />
+			<p:droppable for="selectedElementCalendrier" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableElementCalendrier" onDrop="handleDrop">
+        		<p:ajax listener="#{modeleVideController.onElementCalendrierDrop}" update="dropArea availableElementCalendrier" />
     		</p:droppable>
 			
 		</div>

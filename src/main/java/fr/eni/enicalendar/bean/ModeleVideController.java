@@ -13,6 +13,8 @@ import org.primefaces.event.DragDropEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.eni.enicalendar.dto.ElementCalendrier;
+import fr.eni.enicalendar.dto.ElementCalendrierType;
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.service.CoursServiceInterface;
 
@@ -30,38 +32,44 @@ public class ModeleVideController implements Serializable {
 	@ManagedProperty(value = "#{coursService}")
 	private CoursServiceInterface coursService;
 
-	private List<Cours> coursDisponible;
+	private List<ElementCalendrier> availableElementCalendrier;
 
-	private List<Cours> droppedCours;
+	private List<ElementCalendrier> droppedElementCalendrier;
 
-	private Cours selectedCours;
+	private ElementCalendrier selectedElementCalendrier;
 
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("CoursController setup");
-		coursDisponible = coursService.findAllCours();
-		droppedCours = new ArrayList<Cours>();
+
+		// On récupère les cours disponible (TODO : filtrer sur la formation)
+		List<Cours> coursDisponible = coursService.findAllCours();
+
+		// On transforme les élements calendriers en object ElementCalendrier ( Dans la
+		// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
+		// d'ElementCalendrier ( Cours, Modèles, ....)
+		availableElementCalendrier = new ArrayList<>();
+		for (Cours cours : coursDisponible) {
+			ElementCalendrier element = convertCoursToElementCalendrier(cours);
+			availableElementCalendrier.add(element);
+		}
+		droppedElementCalendrier = new ArrayList<ElementCalendrier>();
 	}
 
-	public void onCoursDrop(DragDropEvent ddEvent) {
-		Cours car = ((Cours) ddEvent.getData());
-		droppedCours.add(car);
-		coursDisponible.remove(car);
+	public void onElementCalendrierDrop(DragDropEvent ddEvent) {
+		ElementCalendrier element = ((ElementCalendrier) ddEvent.getData());
+		droppedElementCalendrier.add(element);
+		availableElementCalendrier.remove(element);
 	}
 
-	/**
-	 * @return the coursDisponible
-	 */
-	public List<Cours> getCoursDisponible() {
-		return coursDisponible;
-	}
-
-	/**
-	 * @param coursDisponible
-	 *            the coursDisponible to set
-	 */
-	public void setCoursDisponible(List<Cours> coursDisponible) {
-		this.coursDisponible = coursDisponible;
+	private ElementCalendrier convertCoursToElementCalendrier(Cours cours) {
+		ElementCalendrier element = new ElementCalendrier();
+		element.setId(cours.getId());
+		element.setLibelle(cours.getLibelleCours());
+		element.setDateDebut(cours.getDateDebut());
+		element.setDateFin(cours.getDateFin());
+		element.setType(ElementCalendrierType.CALENDRIER);
+		return element;
 	}
 
 	/**
@@ -79,34 +87,28 @@ public class ModeleVideController implements Serializable {
 		this.coursService = coursService;
 	}
 
-	/**
-	 * @return the droppedCours
-	 */
-	public List<Cours> getDroppedCours() {
-		return droppedCours;
+	public List<ElementCalendrier> getAvailableElementCalendrier() {
+		return availableElementCalendrier;
 	}
 
-	/**
-	 * @param droppedCours
-	 *            the droppedCours to set
-	 */
-	public void setDroppedCours(List<Cours> droppedCours) {
-		this.droppedCours = droppedCours;
+	public void setAvailableElementCalendrier(List<ElementCalendrier> availableElementCalendrier) {
+		this.availableElementCalendrier = availableElementCalendrier;
 	}
 
-	/**
-	 * @return the selectedCours
-	 */
-	public Cours getSelectedCours() {
-		return selectedCours;
+	public List<ElementCalendrier> getDroppedElementCalendrier() {
+		return droppedElementCalendrier;
 	}
 
-	/**
-	 * @param selectedCours
-	 *            the selectedCours to set
-	 */
-	public void setSelectedCours(Cours selectedCours) {
-		this.selectedCours = selectedCours;
+	public void setDroppedElementCalendrier(List<ElementCalendrier> droppedElementCalendrier) {
+		this.droppedElementCalendrier = droppedElementCalendrier;
+	}
+
+	public ElementCalendrier getSelectedElementCalendrier() {
+		return selectedElementCalendrier;
+	}
+
+	public void setSelectedElementCalendrier(ElementCalendrier selectedElementCalendrier) {
+		this.selectedElementCalendrier = selectedElementCalendrier;
 	}
 
 }
