@@ -105,12 +105,7 @@ public class GestionModelesController implements Serializable {
 	 * @throws IOException
 	 */
 	public void ajoutModele(String typeAction) throws IOException {
-		/*
-		 * HttpSession session = SessionUtils.getSession();
-		 * session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
-		 * FacesContext.getCurrentInstance().getExternalContext()
-		 * .redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
-		 */
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/modeleVide.xhtml");
 	}
 
 	/**

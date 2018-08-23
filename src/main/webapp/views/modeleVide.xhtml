@@ -17,7 +17,65 @@
 <body>
 	<ui:include src="menuBis.xhtml"></ui:include>
 
-	<form>
+	<script type="text/javascript">
+	    function handleDrop(event, ui) {
+	        var droppedElementCalendrier = ui.draggable;
+	 
+	        droppedElementCalendrier.fadeOut('fast');
+	    }
+	</script>
+
+	<h:form id="coursForm">
+		
+		<h:panelGroup id="panelCalendrier">
+			<p:messages />
+			<div class="ui-g">
+				<!--  Liste des cours disponibles -->
+				<div class="ui-g-6">
+					<p:dataTable id="availableElementCalendrier" var="element"
+						value="#{modeleVideController.availableElementCalendrier}">
+
+						<p:column>
+							<p:panel id="gpnl">
+								<h:outputText value="#{element.libelle}"></h:outputText> - 
+			               		<h:outputText value="#{element.dateDebut}"></h:outputText> -
+			               		<h:outputText value="#{element.dateFin}"></h:outputText>
+							</p:panel>
+							<p:draggable for="gpnl" revert="true" helper="clone" />
+						</p:column>
+
+					</p:dataTable>
+				</div>
+
+				<!-- Listes des cours sélectionnées -->
+				<div class="ui-g-6">
+					<p:fieldset id="selectedElementCalendrier">
+						<p:outputPanel id="dropArea">
+							<h:outputText value="Aucun éléments"
+								rendered="#{empty modeleVideController.droppedElementCalendrier}"
+								style="font-size:24px;" />
+							<p:dataTable id="selectedCoursTable" var="element"
+								value="#{modeleVideController.droppedElementCalendrier}"
+								rendered="#{not empty modeleVideController.droppedElementCalendrier}">
+								<p:column>
+									<h:outputText value="#{element.libelle}"></h:outputText> - 
+			               			<h:outputText value="#{element.dateDebut}"></h:outputText> -
+			               			<h:outputText value="#{element.dateFin}"></h:outputText>
+								</p:column>
+							</p:dataTable>
+						</p:outputPanel>
+					</p:fieldset>
+				</div>
+
+				<p:droppable for="selectedElementCalendrier" tolerance="touch"
+					activeStyleClass="ui-state-highlight"
+					datasource="availableElementCalendrier" onDrop="handleDrop">
+					<p:ajax listener="#{modeleVideController.onElementCalendrierDrop}"
+						update="dropArea availableElementCalendrier" />
+				</p:droppable>
+
+			</div>
+		</h:panelGroup>
 
 		<div id="groupeConteneur">
 			<!-- Barre plier -->
@@ -35,13 +93,16 @@
 						</h:panelGroup>
 
 						<!-- Libelle de la barre fixe-->
-						<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
-					 		Nom de la formation 7
-						</h:panelGroup>
+						<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">							
+						 		Nom de la formation 7						 		
+							</h:panelGroup>
+
 					</h:panelGroup>
+					<p:commandButton id="enregistrer" value="Enregistrer" action="#{modeleVideController.save}" update=":coursForm:panelCalendrier"></p:commandButton>
 				</div>
 			</div>
 		</div>
+
 
 
 		<!-- Barre déplier -->
@@ -107,7 +168,7 @@
 
 
 		</p:dialog>
-	</form>
+	</h:form>
 
 
 </body>
