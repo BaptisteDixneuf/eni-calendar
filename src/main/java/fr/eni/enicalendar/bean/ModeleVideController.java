@@ -94,7 +94,7 @@ public class ModeleVideController implements Serializable {
 		modeleCalendrier.setNomCalendrier("TODO Nom");
 		modeleCalendrier.setDateCreation(new Date());
 		modeleCalendrier.setDateModification(new Date());
-		modeleCalendrierService.save(modeleCalendrier);
+		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 
 	}
 

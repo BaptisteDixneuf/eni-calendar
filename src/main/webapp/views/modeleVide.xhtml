@@ -25,9 +25,10 @@
 	    }
 	</script>
 
-	<form id="coursForm">
-
+	<h:form id="coursForm">
+		
 		<h:panelGroup id="panelCalendrier">
+			<p:messages />
 			<div class="ui-g">
 				<!--  Liste des cours disponibles -->
 				<div class="ui-g-6">
@@ -97,8 +98,7 @@
 							</h:panelGroup>
 
 					</h:panelGroup>
-					<p:commandButton value="Enregistrer"
-						action="#{modeleVideController.save}" update=":panelCalendrier"></p:commandButton>
+					<p:commandButton id="enregistrer" value="Enregistrer" action="#{modeleVideController.save}" update=":coursForm:panelCalendrier"></p:commandButton>
 				</div>
 			</div>
 		</div>
@@ -168,7 +168,7 @@
 
 
 		</p:dialog>
-	</form>
+	</h:form>
 
 
 </body>
