@@ -101,7 +101,7 @@ public class ModeleVideController implements Serializable {
 		modeleCalendrier.setDateModification(new Date());
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 
-		// On engrsitre la programmation du modèle de calendrier
+		// On enrgistre la programmation du modèle de calendrier
 		for (ElementCalendrier elementCalendrier : droppedElementCalendrier) {
 			Programmation programmation = new Programmation();
 			programmation.setIdModeleCalendrier(modeleCalendrier.getId());

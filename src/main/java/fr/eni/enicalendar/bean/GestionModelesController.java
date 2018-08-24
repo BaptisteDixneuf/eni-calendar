@@ -90,13 +90,8 @@ public class GestionModelesController implements Serializable {
 	 * @throws IOException
 	 */
 	public void modificationModele(String typeAction, Integer id) throws IOException {
-		/*
-		 * HttpSession session = SessionUtils.getSession();
-		 * session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
-		 * session.setAttribute(SessionUtils.SESSION_ID, id);
-		 * FacesContext.getCurrentInstance().getExternalContext()
-		 * .redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
-		 */
+		LOGGER.info("Type action" + typeAction + ", idModele : " + id);
+
 	}
 
 	/**
@@ -114,6 +109,11 @@ public class GestionModelesController implements Serializable {
 	 * @throws IOException
 	 */
 	public void supprimerModele(Integer id) throws IOException {
+
+		// Supprimer les Modules Indépendants
+
+		// Supprimer les programmations liées
+
 		modele = modeleService.findOne(id);
 		modeleService.delete(modele);
 
