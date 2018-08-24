@@ -1,0 +1,2 @@
+/** Changement du type de la colonne EM_ID_FORMATION_ERP en varchar(255) */
+ALTER TABLE PROGRAMMATION ALTER COLUMN PR_ID_COURS_PLANIFIE_ERP varchar(255);

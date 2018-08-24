@@ -19,9 +19,11 @@ import org.slf4j.LoggerFactory;
 import fr.eni.enicalendar.dto.ElementCalendrier;
 import fr.eni.enicalendar.dto.ElementCalendrierType;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
+import fr.eni.enicalendar.persistence.app.entities.Programmation;
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.service.CoursServiceInterface;
 import fr.eni.enicalendar.service.ModeleCalendrierServiceInterface;
+import fr.eni.enicalendar.service.ProgrammationServiceInterface;
 
 @ManagedBean(name = "modeleVideController")
 @ViewScoped
@@ -39,6 +41,9 @@ public class ModeleVideController implements Serializable {
 
 	@ManagedProperty(value = "#{modeleCalendrierService}")
 	private ModeleCalendrierServiceInterface modeleCalendrierService;
+
+	@ManagedProperty(value = "#{programmationService}")
+	private ProgrammationServiceInterface programmationService;
 
 	private List<ElementCalendrier> availableElementCalendrier;
 
@@ -95,7 +100,12 @@ public class ModeleVideController implements Serializable {
 		modeleCalendrier.setDateCreation(new Date());
 		modeleCalendrier.setDateModification(new Date());
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
-
+		for (ElementCalendrier elementCalendrier : droppedElementCalendrier) {
+			Programmation programmation = new Programmation();
+			programmation.setIdModeleCalendrier(modeleCalendrier.getId());
+			// TODO: changer le type de la colonne
+			// programmation.setIdCoursPlanifieERP(elementCalendrier.getId());
+		}
 	}
 
 	/**
@@ -143,6 +153,14 @@ public class ModeleVideController implements Serializable {
 
 	public void setModeleCalendrierService(ModeleCalendrierServiceInterface modeleCalendrierService) {
 		this.modeleCalendrierService = modeleCalendrierService;
+	}
+
+	public ProgrammationServiceInterface getProgrammationService() {
+		return programmationService;
+	}
+
+	public void setProgrammationService(ProgrammationServiceInterface programmationService) {
+		this.programmationService = programmationService;
 	}
 
 }

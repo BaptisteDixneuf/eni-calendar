@@ -1,0 +1,9 @@
+DELETE FROM ModuleParUnite;
+DELETE FROM Module;
+DELETE FROM UniteFormation;
+DELETE FROM Promotion;
+DELETE FROM Salle;
+DELETE FROM Formation;
+DELETE FROM TITRE;
+DELETE FROM Lieu;
+
