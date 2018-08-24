@@ -9,7 +9,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
+import fr.eni.enicalendar.utils.SessionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,13 +99,11 @@ public class GestionModulesIndependantsController implements Serializable {
 	 * @throws IOException
 	 */
 	public void modificationModule(String typeAction, Integer id) throws IOException {
-		/*
-		 * HttpSession session = SessionUtils.getSession();
-		 * session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
-		 * session.setAttribute(SessionUtils.SESSION_ID, id);
-		 * FacesContext.getCurrentInstance().getExternalContext()
-		 * .redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
-		 */
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
+		session.setAttribute(SessionUtils.SESSION_ID, id);
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/eni-calendar/views/creation-modificationModulesIndependant.xhtml");
 	}
 
 	/**
@@ -112,12 +112,11 @@ public class GestionModulesIndependantsController implements Serializable {
 	 * @throws IOException
 	 */
 	public void ajoutModule(String typeAction) throws IOException {
-		/*
-		 * HttpSession session = SessionUtils.getSession();
-		 * session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
-		 * FacesContext.getCurrentInstance().getExternalContext()
-		 * .redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
-		 */
+		 HttpSession session = SessionUtils.getSession();
+		 session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
+		 FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/creation-modificationModulesIndependant.xhtml");
+
+
 	}
 
 	/**
@@ -126,9 +125,9 @@ public class GestionModulesIndependantsController implements Serializable {
 	 * @throws IOException
 	 */
 	public void supprimerModule(Integer id) throws IOException {
-		// module = moduleService.findOne(id);
-		// modeleService.delete(modele);
+		 module = moduleIndependantsService.findById(id);
+		 moduleIndependantsService.delete(module);
 
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionModulesIndependants.xhtml");
 	}
 }

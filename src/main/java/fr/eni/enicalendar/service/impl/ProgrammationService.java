@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
-import fr.eni.enicalendar.persistence.erp.repositories.ProgrammationRepository;
+import fr.eni.enicalendar.persistence.app.repositories.ProgrammationRepository;
 import fr.eni.enicalendar.service.ProgrammationServiceInterface;
 
 public class ProgrammationService implements ProgrammationServiceInterface {

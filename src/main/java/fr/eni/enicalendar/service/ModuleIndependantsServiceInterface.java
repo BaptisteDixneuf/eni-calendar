@@ -8,4 +8,10 @@ public interface ModuleIndependantsServiceInterface {
 
 	List<ModuleIndependant> findAll();
 
+	ModuleIndependant findById(Integer id);
+
+	void delete(ModuleIndependant moduleIndependant);
+
+	ModuleIndependant saveModule(ModuleIndependant moduleIndependant);
+
 }

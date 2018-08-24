@@ -22,4 +22,17 @@ public class ModuleIndependantsService implements ModuleIndependantsServiceInter
 	public List<ModuleIndependant> findAll() {
 		return moduleRepository.findAll();
 	}
+
+	@Override
+	public ModuleIndependant findById(Integer id) {
+		return moduleRepository.findById(id);
+	}
+
+	public void delete(ModuleIndependant module) {
+		moduleRepository.delete(module);
+	}
+
+	public ModuleIndependant saveModule(ModuleIndependant moduleIndependant) {
+		return moduleRepository.save(moduleIndependant);
+	}
 }

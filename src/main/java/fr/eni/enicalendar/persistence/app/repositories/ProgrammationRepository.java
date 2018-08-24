@@ -1,4 +1,4 @@
-package fr.eni.enicalendar.persistence.erp.repositories;
+package fr.eni.enicalendar.persistence.app.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

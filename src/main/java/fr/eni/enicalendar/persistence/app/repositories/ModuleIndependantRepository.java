@@ -9,4 +9,6 @@ import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
 public interface ModuleIndependantRepository extends JpaRepository<ModuleIndependant, Integer> {
 
 	List<ModuleIndependant> findAll();
+
+	ModuleIndependant findById(Integer id);
 }
