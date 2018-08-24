@@ -10,6 +10,7 @@
     <!-- CSS -->
     <link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/bootstrap/css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/app/style.css"/>
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/app/css/font-awesome.min.css"/>
 
     <!-- JS -->
     <script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
@@ -30,7 +31,7 @@
 
         <p:submenu label="Modèles de calendriers">
             <p:menuitem value="Gestion modèles" url="/views/gestionModeles.xhtml"/>
-            <p:menuitem value="Constitution modèle" url="/views/creationCalendrier.xhtml"/>
+            <p:menuitem value="Constitution modèle" url="/views/gestionModeles.xhtml"/>
         </p:submenu>
 
         <p:submenu label="Supervision">
@@ -40,13 +41,13 @@
         </p:submenu>
 
         <p:submenu label="Modules">
-            <p:menuitem value="Modules indépendants" url="#"/>
+            <p:menuitem value="Modules indépendants" url="/views/gestionModulesIndependants.xhtml"/>
             <p:menuitem value="Enchainement de modules" url="/views/enchainementModules.xhtml"/>
             <p:menuitem value="Modules sécables" url="#"/>
         </p:submenu>
 
         <p:submenu label="Comparaison">
-            <p:menuitem value="Comparer 2 calendriers" url="#"/>
+            <p:menuitem value="Comparer 2 calendriers" url="/views/comparerCalendriers.xhtml"/>
         </p:submenu>
 
         <p:submenu label="#{menuController.utilisateur.nom} #{menuController.utilisateur.prenom}" style="position: absolute; right: 2%">

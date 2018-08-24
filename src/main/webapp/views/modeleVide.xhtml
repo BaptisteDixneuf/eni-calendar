@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link
+		href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	<script type="text/javascript"
+		src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+</h:head>
+
+
+<body>
+	<ui:include src="menuBis.xhtml"></ui:include>
+
+	<script type="text/javascript">
+	    function handleDrop(event, ui) {
+	        var droppedElementCalendrier = ui.draggable;
+	 
+	        droppedElementCalendrier.fadeOut('fast');
+	    }
+	</script>
+
+	<h:form id="coursForm">
+		
+		<h:panelGroup id="panelCalendrier">
+			<p:messages />
+			<div class="ui-g">
+				<!--  Liste des cours disponibles -->
+				<div class="ui-g-6">
+					<p:dataTable id="availableElementCalendrier" var="element"
+						value="#{modeleVideController.availableElementCalendrier}">
+
+						<p:column>
+							<p:panel id="gpnl">
+								<h:outputText value="#{element.libelle}"></h:outputText> - 
+			               		<h:outputText value="#{element.dateDebut}"></h:outputText> -
+			               		<h:outputText value="#{element.dateFin}"></h:outputText>
+							</p:panel>
+							<p:draggable for="gpnl" revert="true" helper="clone" />
+						</p:column>
+
+					</p:dataTable>
+				</div>
+
+				<!-- Listes des cours sélectionnées -->
+				<div class="ui-g-6">
+					<p:fieldset id="selectedElementCalendrier">
+						<p:outputPanel id="dropArea">
+							<h:outputText value="Aucun éléments"
+								rendered="#{empty modeleVideController.droppedElementCalendrier}"
+								style="font-size:24px;" />
+							<p:dataTable id="selectedCoursTable" var="element"
+								value="#{modeleVideController.droppedElementCalendrier}"
+								rendered="#{not empty modeleVideController.droppedElementCalendrier}">
+								<p:column>
+									<h:outputText value="#{element.libelle}"></h:outputText> - 
+			               			<h:outputText value="#{element.dateDebut}"></h:outputText> -
+			               			<h:outputText value="#{element.dateFin}"></h:outputText>
+								</p:column>
+							</p:dataTable>
+						</p:outputPanel>
+					</p:fieldset>
+				</div>
+
+				<p:droppable for="selectedElementCalendrier" tolerance="touch"
+					activeStyleClass="ui-state-highlight"
+					datasource="availableElementCalendrier" onDrop="handleDrop">
+					<p:ajax listener="#{modeleVideController.onElementCalendrierDrop}"
+						update="dropArea availableElementCalendrier" />
+				</p:droppable>
+
+			</div>
+		</h:panelGroup>
+
+		<div id="groupeConteneur">
+			<!-- Barre plier -->
+			<div class="paveGroupe">
+				<div class="pull-l">
+					<!-- Mettre à gauche -->
+					<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
+
+						<!-- Bouton + -->
+						<h:panelGroup styleClass="informationGroupeBoutonGui">
+							<p:commandLink id="plierDeplierPaveGroupeButton"
+								styleClass="icn_open" oncomplete="PF('modalGroupe').show();">
+								<i class="fa fa-plus-circle boutonPlierGUI"></i>
+							</p:commandLink>
+						</h:panelGroup>
+
+						<!-- Libelle de la barre fixe-->
+						<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">							
+						 		Nom de la formation 7						 		
+							</h:panelGroup>
+
+					</h:panelGroup>
+					<p:commandButton id="enregistrer" value="Enregistrer" action="#{modeleVideController.save}" update=":coursForm:panelCalendrier"></p:commandButton>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Barre déplier -->
+		<p:dialog id="paveGroupeDeplier" header="Modal Dialog"
+			widgetVar="modalGroupe" modal="true" appendToBody="true"
+			position="bottom" closable="false" height="500" resizable="false"
+			draggable="false">
+
+
+			<!-- Header -->
+			<f:facet name="header">
+				<div class="paveGroupe" onclick="PF('modalGroupe').hide();">
+
+					<div class="pull-l">
+						<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
+							<h:panelGroup styleClass="informationGroupeBoutonGui">
+								<p:commandLink id="closeTutututu">
+									<i class="fa fa-minus-circle boutonPlierGUI" aria-hidden="true"></i>
+								</p:commandLink>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
+											Titre ouvert 3
+										</h:panelGroup>
+						</h:panelGroup>
+					</div>
+
+				</div>
+			</f:facet>
+
+			<!-- CONTENU -->
+			<div id="blocGroupe">
+
+				<p:tabView>
+					<p:tab title="Contraintes">
+						<h2>Les contraintes</h2>
+						<h:outputText
+							value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
+				                    His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+				                    Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, 
+				                    but given to ruthless violence whenever anything stands against the good of the family." />
+
+					</p:tab>
+					<p:tab title="Dispenses">
+						<h:outputText
+							value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. 
+				                In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy, 
+				                killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows." />
+					</p:tab>
+					<p:tab title="Modules indépendants">
+						<h:outputText
+							value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. 
+				                    Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+					</p:tab>
+					<p:tab title="Autre cours">
+						<h:outputText
+							value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. 
+				                    Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+					</p:tab>
+				</p:tabView>
+
+			</div>
+
+
+		</p:dialog>
+	</h:form>
+
+
+</body>
+</html>
