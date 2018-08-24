@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</h:head>
+
+
+<body>
+	<ui:include src="menuBis.xhtml"></ui:include>
+	
+	<div class="container">
+		<h1>#{modificationModuleIndependantController.typeAction} d'un module indépendant</h1>
+    
+    <h:form>          
+       		<div class="form-group col-md-6">
+				<p:outputLabel for="libelle" value="Libelle :" />
+				<p:inputText id="libelle" value="#{modificationModuleIndependantController.module.libelle}"  styleClass="form-control"></p:inputText>
+				<p:messages for="libelle"></p:messages>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<p:outputLabel for="duree" value="Duree :" />
+				<p:inputText id="duree" value="#{modificationModuleIndependantController.module.duree}"  styleClass="form-control"></p:inputText>
+				<p:messages for="duree"></p:messages>
+			</div>
+       
+       		<div class="form-group col-md-6">
+				<p:outputLabel for="libelleCourt" value="Libelle court :" />
+				<p:inputText id="libelleCourt" value="#{modificationModuleIndependantController.module.libelleCourt}"  styleClass="form-control"></p:inputText>
+				<p:messages for="libelleCourt"></p:messages>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<p:outputLabel for="lieu" value="Lieu :" />
+				<p:password id="lieu" value="#{modificationModuleIndependantController.module.l}"  styleClass="form-control"></p:password>
+				<p:messages for="lieu"></p:messages>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<p:outputLabel for="role" value="Role" />
+				<h:selectOneMenu id="role" value="#{modificationUtilisateurController.role}" styleClass="form-control">
+					<f:selectItem itemLabel="Sélectionnez dans la liste déroulante" itemValue="" />
+            		<f:selectItem itemLabel="Admin" itemValue="Admin" />
+            		<f:selectItem itemLabel="Utilisateur" itemValue="Utilisateur" />
+            		<f:selectItem itemLabel="Utilisateur++" itemValue="Utilisateur++" />
+            	</h:selectOneMenu>
+				<p:messages for="role"></p:messages>
+			</div>
+			
+			<p:commandButton action="#{modificationUtilisateurController.modifierUtilisateur}" value="Valider" update="@form" styleClass="btn btn-primary"></p:commandButton>
+         	
+    </h:form>
+	</div>
+	
+	<ui:include src="footer.xhtml"></ui:include>
+	
+</body>
+</html>

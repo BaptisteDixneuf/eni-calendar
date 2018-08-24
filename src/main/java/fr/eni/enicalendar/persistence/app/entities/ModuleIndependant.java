@@ -39,8 +39,8 @@ public class ModuleIndependant implements Serializable {
 	@Column(name = "MI_LIBELLE_COURT")
 	private String libelleCourt;
 
-	@Column(name = "MI_ID_LIEU_FORMATION_ERP")
-	private Integer idLieuFormationERP;
+	@Column(name = "MI_LIEU_FORMATION")
+	private String lieuFormation;
 
 	@Column(name = "MI_DATE_DEBUT")
 	private Date dateDebut;
@@ -138,19 +138,12 @@ public class ModuleIndependant implements Serializable {
 		this.libelleCourt = libelleCourt;
 	}
 
-	/**
-	 * @return the idLieuFormationERP
-	 */
-	public Integer getIdLieuFormationERP() {
-		return idLieuFormationERP;
+	public String getLieuFormation() {
+		return lieuFormation;
 	}
 
-	/**
-	 * @param idLieuFormationERP
-	 *            the idLieuFormationERP to set
-	 */
-	public void setIdLieuFormationERP(Integer idLieuFormationERP) {
-		this.idLieuFormationERP = idLieuFormationERP;
+	public void setLieuFormation(String lieuFormation) {
+		this.lieuFormation = lieuFormation;
 	}
 
 	/**

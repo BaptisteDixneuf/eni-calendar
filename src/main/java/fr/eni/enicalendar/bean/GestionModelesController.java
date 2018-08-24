@@ -36,7 +36,7 @@ public class GestionModelesController implements Serializable {
 
 	@PostConstruct
 	public void setup() {
-		LOGGER.info("GestionUtilisateursController setup");
+		LOGGER.info("GestionModelesController setup");
 		modele = new ModeleCalendrier();
 		modeles = modeleService.findAllModeles();
 

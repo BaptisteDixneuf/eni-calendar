@@ -41,25 +41,19 @@
         </p:submenu>
 
         <p:submenu label="Modules">
-            <p:menuitem value="Modules indépendants" url="#"/>
+            <p:menuitem value="Modules indépendants" url="/views/gestionModulesIndependants.xhtml"/>
             <p:menuitem value="Enchainement de modules" url="/views/enchainementModules.xhtml"/>
             <p:menuitem value="Modules sécables" url="#"/>
         </p:submenu>
 
         <p:submenu label="Comparaison">
-            <p:menuitem value="Comparer 2 calendriers" url="#"/>
+            <p:menuitem value="Comparer 2 calendriers" url="/views/comparerCalendriers.xhtml"/>
         </p:submenu>
 
         <p:submenu label="#{menuController.utilisateur.nom} #{menuController.utilisateur.prenom}" style="position: absolute; right: 2%">
             <p:menuitem value="Mon compte" url="/views/gestionCompte.xhtml"/>
             <p:menuitem value="Se déconnecter" url="/views/logout.xhtml"/>
         </p:submenu>
-
-        <p:menuitem style="margin-left: 90% !important;" disabled="true">
-            <h:link outcome="#" >
-                <h:graphicImage url="/images/logo-user.png"/>
-            </h:link>
-        </p:menuitem>
 
     </p:menubar>
 </h:form>

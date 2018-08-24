@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+</h:head>
+
+
+<body>
+<ui:include src="menuBis.xhtml"></ui:include>
+
+<div class="container">
+    <div class="col-md-12">
+        <h:form>
+            <p:messages for="general">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <h1>Comparaison</h1>
+
+            <div style="columns: 2">
+                <div style="border-right: solid; padding-right: 5%;">
+                    <p:fieldset style="border-radius: 30px; border-width: medium; height: 400px">
+
+
+                    </p:fieldset>
+                </div>
+
+                <div style="border-left: solid; padding-left: 5%;">
+                    <p:fieldset style="border-radius: 30px; border-width: medium; height: 400px;">
+
+
+                    </p:fieldset>
+                </div>
+            </div>
+
+            <div class="form-group" style="display: flex; justify-content: center; margin-top: 5%;">
+                <p:commandButton action="#{comparerCalendriersController.validationEtape}" value="Valider" update="@form" styleClass="btn btn-primary"></p:commandButton>
+            </div>
+
+        </h:form>
+    </div>
+</div>
+</body>
+</html>
