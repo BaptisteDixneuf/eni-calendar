@@ -3,11 +3,13 @@ package fr.eni.enicalendar.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
 import fr.eni.enicalendar.persistence.app.repositories.ProgrammationRepository;
 import fr.eni.enicalendar.service.ProgrammationServiceInterface;
 
+@Service
 public class ProgrammationService implements ProgrammationServiceInterface {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProgrammationService.class);
