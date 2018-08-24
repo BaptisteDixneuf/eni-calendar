@@ -26,14 +26,18 @@
 		<p:commandButton value="+ Créer un nouvel modèle" style="background-color: #2E9AFE" action="#{gestionModelesController.ajoutModele('Création')}"/>
 		<h:form>
 			<p:dataTable var="modeles" value="#{gestionModelesController.modeles}" widgetVar="titreTable" emptyMessage="Auncun modele ne correspond">
-				<p:column headerText="Nom" sortBy="#{modeles.nomCalendrier}" filterBy="#{modeles.nomCalendrier}">
+				<p:column headerText="Libelle" sortBy="#{modeles.nomCalendrier}" filterBy="#{modeles.nomCalendrier}">
 					<h:outputText value="#{modeles.nomCalendrier}"/>
 				</p:column>
-				<p:column headerText="Prenom" sortBy="#{modeles.dateCreation}" filterBy="#{modeles.dateCreation}">
-					<h:outputText value="#{modeles.dateCreation}"/>
+				<p:column headerText="Creation" sortBy="#{modeles.dateCreation}" filterBy="#{modeles.dateCreation}">
+					<h:outputText value="#{modeles.dateCreation}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
+				</h:outputText>
 				</p:column>
-				<p:column headerText="Email" sortBy="#{modeles.dateModification}" filterBy="#{modeles.dateModification}">
-					<h:outputText value="#{modeles.dateModification}"/>
+				<p:column headerText="Modification" sortBy="#{modeles.dateModification}" filterBy="#{modeles.dateModification}">
+					<h:outputText value="#{modeles.dateModification}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
+					</h:outputText>
 				</p:column>
 				<p:column headerText="">
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionModelesController.modificationModele('Modification', modeles.id)}"/>

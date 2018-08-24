@@ -39,22 +39,25 @@
 			
 			<div class="form-group col-md-6">
 				<p:outputLabel for="lieu" value="Lieu :" />
-				<p:password id="lieu" value="#{modificationModuleIndependantController.module.l}"  styleClass="form-control"></p:password>
+				<p:password id="lieu" value="#{modificationModuleIndependantController.module.lieuFormation}"  styleClass="form-control"></p:password>
 				<p:messages for="lieu"></p:messages>
 			</div>
+
+		<div class="form-group col-md-6">
+			<p:outputLabel for="dateDebut" value="Date de début"/><br/>
+			<p:calendar id="dateDebut" value="#{creationCalendrierVideController.date1}" locale="fr"
+						navigator="true" pattern="dd/MM/yyyy"/>
+			<p:messages for="dateDebut"></p:messages>
+		</div>
+
+		<div class="form-group col-md-6">
+			<p:outputLabel for="dateFin" value="Date de fin (maximale)"/><br/>
+			<p:calendar id="dateFin" value="#{creationCalendrierVideController.date2}" locale="fr"
+						navigator="true" pattern="dd/MM/yyyy"/>
+			<p:messages for="dateFin"></p:messages>
+		</div>
 			
-			<div class="form-group col-md-6">
-				<p:outputLabel for="role" value="Role" />
-				<h:selectOneMenu id="role" value="#{modificationUtilisateurController.role}" styleClass="form-control">
-					<f:selectItem itemLabel="Sélectionnez dans la liste déroulante" itemValue="" />
-            		<f:selectItem itemLabel="Admin" itemValue="Admin" />
-            		<f:selectItem itemLabel="Utilisateur" itemValue="Utilisateur" />
-            		<f:selectItem itemLabel="Utilisateur++" itemValue="Utilisateur++" />
-            	</h:selectOneMenu>
-				<p:messages for="role"></p:messages>
-			</div>
-			
-			<p:commandButton action="#{modificationUtilisateurController.modifierUtilisateur}" value="Valider" update="@form" styleClass="btn btn-primary"></p:commandButton>
+			<p:commandButton action="#{modificationModuleIndependantController.modifierModule}" value="Valider" update="@form" styleClass="btn btn-primary"></p:commandButton>
          	
     </h:form>
 	</div>

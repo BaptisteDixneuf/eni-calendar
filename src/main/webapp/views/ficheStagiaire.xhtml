@@ -36,12 +36,12 @@
 				</p:column>
 				<p:column headerText="Date Creation" sortBy="#{calendriers.dateCreation }" filterBy="#{calendriers.dateCreation}">
 					<h:outputText value="#{calendriers.dateCreation}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+						<f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
 					</h:outputText>
 				</p:column>
 				<p:column headerText="Date Modification" sortBy="#{calendriers.dateModification}" filterBy="#{calendriers.dateModification}">
 					<h:outputText value="#{calendriers.dateModification}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+						<f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
 					</h:outputText>
 				</p:column>
 				<p:column headerText="Etat" sortBy="#{calendriers.etatCalendrier.libelleEtat}" filterBy="#{calendriers.etatCalendrier.libelleEtat}">

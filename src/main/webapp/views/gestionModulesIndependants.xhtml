@@ -27,13 +27,19 @@
 		<h:form>
 			<p:dataTable var="modules" value="#{gestionModulesIndependantsController.modules}" widgetVar="titreTable" emptyMessage="Auncun module ne correspond">
 				<p:column headerText="Libelle" sortBy="#{modules.libelle}" filterBy="#{modules.libelle}">
-					<h:outputText value="#{modules.libelle}"/>
+                    <h:outputText value="#{modules.libelle}">
+                    <f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
+                    </h:outputText>
 				</p:column>
 				<p:column headerText="Debut" sortBy="#{modules.dateDebut}" filterBy="#{modules.dateDebut}">
-					<h:outputText value="#{modules.dateDebut}"/>
+					<h:outputText value="#{modules.dateDebut}">
+                    <f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
+                    </h:outputText>
 				</p:column>
 				<p:column headerText="Fin" sortBy="#{modules.dateFin}" filterBy="#{modules.dateFin}">
-					<h:outputText value="#{modules.dateFin}"/>
+					<h:outputText value="#{modules.dateFin}">
+                    <f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
+                    </h:outputText>
 				</p:column>
 				<p:column headerText="">
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionModulesIndependantsController.modificationModule('Modification', modules.id)}"/>

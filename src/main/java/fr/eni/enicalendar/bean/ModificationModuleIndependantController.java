@@ -73,7 +73,7 @@ public class ModificationModuleIndependantController implements Serializable {
      *
      * @throws IOException
      */
-    public void modifierUtilisateur() throws IOException {
+    public void modifierModule() throws IOException {
         moduleIndependantsService.saveModule(module);
 
         FacesContext.getCurrentInstance().getExternalContext()
