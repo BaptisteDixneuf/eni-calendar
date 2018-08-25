@@ -30,6 +30,7 @@
 			</div>
 
 			<div style="margin-top: 4%">
+				<p:commandButton value="+ Créer un nouveau calendrier" style="background-color: #2E9AFE" action="#{ficheStagiaireController.creerCalendrier}"/>
 			<p:dataTable id="tbl" var="calendriers" value="#{ficheStagiaireController.calendriers}" widgetVar="titreTable" emptyMessage="Auncun calendrier pour ce stagiaire">
 				<p:column headerText="Nom" sortBy="#{calendriers.nomCalendrier}" filterBy="#{calendriers.nomCalendrier}">
 					<h:outputText value="#{calendriers.nomCalendrier}"/>

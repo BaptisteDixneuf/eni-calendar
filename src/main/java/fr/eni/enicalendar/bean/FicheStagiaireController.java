@@ -161,6 +161,15 @@ public class FicheStagiaireController implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Item Selected", event.getObject().toString()));
 	}
 
+	/**
+	 * créer calendrier
+	 *
+	 * @throws IOException
+	 */
+	public void creerCalendrier() throws IOException {
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/eni-calendar/views/creationCalendrier.xhtml");
+	}
 
 	/**
 	 * Consulter calendrier
