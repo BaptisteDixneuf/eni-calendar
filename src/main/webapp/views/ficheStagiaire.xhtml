@@ -34,12 +34,12 @@
 				<p:column headerText="Nom" sortBy="#{calendriers.nomCalendrier}" filterBy="#{calendriers.nomCalendrier}">
 					<h:outputText value="#{calendriers.nomCalendrier}"/>
 				</p:column>
-				<p:column headerText="Date Creation" sortBy="#{calendriers.dateCreation }" filterBy="#{calendriers.dateCreation}">
+				<p:column headerText="Creation" sortBy="#{calendriers.dateCreation }" filterBy="#{calendriers.dateCreation}">
 					<h:outputText value="#{calendriers.dateCreation}">
 						<f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
 					</h:outputText>
 				</p:column>
-				<p:column headerText="Date Modification" sortBy="#{calendriers.dateModification}" filterBy="#{calendriers.dateModification}">
+				<p:column headerText="Modification" sortBy="#{calendriers.dateModification}" filterBy="#{calendriers.dateModification}">
 					<h:outputText value="#{calendriers.dateModification}">
 						<f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
 					</h:outputText>

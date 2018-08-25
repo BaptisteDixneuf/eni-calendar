@@ -13,56 +13,58 @@
 
 
 <body>
-	<ui:include src="menuBis.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"/>
 	
 	<div class="container">
+	<div class="col-md-6">
 		<h1>#{modificationModuleIndependantController.typeAction} d'un module indépendant</h1>
     
     <h:form>          
        		<div class="form-group col-md-6">
 				<p:outputLabel for="libelle" value="Libelle :" />
-				<p:inputText id="libelle" value="#{modificationModuleIndependantController.module.libelle}"  styleClass="form-control"></p:inputText>
-				<p:messages for="libelle"></p:messages>
+				<p:inputText id="libelle" value="#{modificationModuleIndependantController.module.libelle}"  styleClass="form-control"/>
+				<p:messages for="libelle"/>
 			</div>
 			
 			<div class="form-group col-md-6">
 				<p:outputLabel for="duree" value="Duree :" />
-				<p:inputText id="duree" value="#{modificationModuleIndependantController.module.duree}"  styleClass="form-control"></p:inputText>
-				<p:messages for="duree"></p:messages>
+				<p:inputText id="duree" value="#{modificationModuleIndependantController.module.duree}"  styleClass="form-control"/>
+				<p:messages for="duree"/>
 			</div>
        
        		<div class="form-group col-md-6">
 				<p:outputLabel for="libelleCourt" value="Libelle court :" />
-				<p:inputText id="libelleCourt" value="#{modificationModuleIndependantController.module.libelleCourt}"  styleClass="form-control"></p:inputText>
-				<p:messages for="libelleCourt"></p:messages>
+				<p:inputText id="libelleCourt" value="#{modificationModuleIndependantController.module.libelleCourt}"  styleClass="form-control"/>
+				<p:messages for="libelleCourt"/>
 			</div>
 			
 			<div class="form-group col-md-6">
 				<p:outputLabel for="lieu" value="Lieu :" />
-				<p:password id="lieu" value="#{modificationModuleIndependantController.module.lieuFormation}"  styleClass="form-control"></p:password>
-				<p:messages for="lieu"></p:messages>
+				<p:password id="lieu" value="#{modificationModuleIndependantController.module.lieuFormation}"  styleClass="form-control"/>
+				<p:messages for="lieu"/>
 			</div>
 
 		<div class="form-group col-md-6">
 			<p:outputLabel for="dateDebut" value="Date de début"/><br/>
 			<p:calendar id="dateDebut" value="#{creationCalendrierVideController.date1}" locale="fr"
 						navigator="true" pattern="dd/MM/yyyy"/>
-			<p:messages for="dateDebut"></p:messages>
+			<p:messages for="dateDebut"/>
 		</div>
 
 		<div class="form-group col-md-6">
 			<p:outputLabel for="dateFin" value="Date de fin (maximale)"/><br/>
 			<p:calendar id="dateFin" value="#{creationCalendrierVideController.date2}" locale="fr"
 						navigator="true" pattern="dd/MM/yyyy"/>
-			<p:messages for="dateFin"></p:messages>
+			<p:messages for="dateFin"/>
 		</div>
 			
-			<p:commandButton action="#{modificationModuleIndependantController.modifierModule}" value="Valider" update="@form" styleClass="btn btn-primary"></p:commandButton>
+			<p:commandButton action="#{modificationModuleIndependantController.modifierModule}" value="Valider" update="@form" styleClass="btn btn-primary"/>
          	
     </h:form>
 	</div>
-	
-	<ui:include src="footer.xhtml"></ui:include>
+	</div>
+
+	<ui:include src="footer.xhtml"/>
 	
 </body>
 </html>

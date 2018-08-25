@@ -23,7 +23,7 @@
 	<div class="container">
 		<div class="col-md-12">
 		<h1>Liste des modules indépendants</h1>
-		<p:commandButton value="+ Créer un nouvel module indépendant" style="background-color: #2E9AFE" action="#{gestionModulesIndependantsController.ajoutModule('Création')}"/>
+		<p:commandButton value="+ Créer un nouveau module indépendant" style="background-color: #2E9AFE" action="#{gestionModulesIndependantsController.ajoutModule('Création')}"/>
 		<h:form>
 			<p:dataTable var="modules" value="#{gestionModulesIndependantsController.modules}" widgetVar="titreTable" emptyMessage="Auncun module ne correspond">
 				<p:column headerText="Libelle" sortBy="#{modules.libelle}" filterBy="#{modules.libelle}">
