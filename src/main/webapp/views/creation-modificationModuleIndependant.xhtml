@@ -40,20 +40,20 @@
 			
 			<div class="form-group col-md-6">
 				<p:outputLabel for="lieu" value="Lieu :" />
-				<p:password id="lieu" value="#{modificationModuleIndependantController.module.lieuFormation}"  styleClass="form-control"/>
+				<p:inputText id="lieu" value="#{modificationModuleIndependantController.module.lieuFormation}"  styleClass="form-control"/>
 				<p:messages for="lieu"/>
 			</div>
 
 		<div class="form-group col-md-6">
 			<p:outputLabel for="dateDebut" value="Date de début"/><br/>
-			<p:calendar id="dateDebut" value="#{creationCalendrierVideController.date1}" locale="fr"
+			<p:calendar id="dateDebut" value="#{modificationModuleIndependantController.module.dateDebut}" locale="fr"
 						navigator="true" pattern="dd/MM/yyyy"/>
 			<p:messages for="dateDebut"/>
 		</div>
 
 		<div class="form-group col-md-6">
 			<p:outputLabel for="dateFin" value="Date de fin (maximale)"/><br/>
-			<p:calendar id="dateFin" value="#{creationCalendrierVideController.date2}" locale="fr"
+			<p:calendar id="dateFin" value="#{modificationModuleIndependantController.module.dateFin}" locale="fr"
 						navigator="true" pattern="dd/MM/yyyy"/>
 			<p:messages for="dateFin"/>
 		</div>
