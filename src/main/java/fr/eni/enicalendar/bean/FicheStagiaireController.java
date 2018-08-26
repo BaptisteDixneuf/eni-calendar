@@ -164,7 +164,7 @@ public class FicheStagiaireController implements Serializable {
 	 */
 	public void creerCalendrier() throws IOException {
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("/eni-calendar/views/creationCalendrier.xhtml");
+				.redirect("/eni-calendar/views/modeleVide.xhtml");
 	}
 
 	/**

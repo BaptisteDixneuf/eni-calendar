@@ -36,12 +36,12 @@
 				</p:column>
 				<p:column headerText="Debut" sortBy="#{modules.dateDebut}" filterBy="#{modules.dateDebut}">
 					<h:outputText value="#{modules.dateDebut}">
-                    <f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
                     </h:outputText>
 				</p:column>
 				<p:column headerText="Fin" sortBy="#{modules.dateFin}" filterBy="#{modules.dateFin}">
 					<h:outputText value="#{modules.dateFin}">
-                    <f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
                     </h:outputText>
 				</p:column>
 				<p:column headerText="">

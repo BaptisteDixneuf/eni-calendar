@@ -13,7 +13,7 @@
 
 
 <body>
-	<ui:include src="menuBis.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"/>
 	
 	<div class="container">
 	<div class="col-md-6">
@@ -22,26 +22,26 @@
     <h:form>          
        		<div class="form-group col-md-6">
 				<p:outputLabel for="nom" value="Nom" />
-				<p:inputText id="nom" value="#{modificationUtilisateurController.utilisateur.nom}"  styleClass="form-control"></p:inputText>
-				<p:messages for="nom"></p:messages>
+				<p:inputText id="nom" value="#{modificationUtilisateurController.utilisateur.nom}"  styleClass="form-control"/>
+				<p:messages for="nom"/>
 			</div>
 			
 			<div class="form-group col-md-6">
 				<p:outputLabel for="prenom" value="Prenom" />
-				<p:inputText id="prenom" value="#{modificationUtilisateurController.utilisateur.prenom}"  styleClass="form-control"></p:inputText>
-				<p:messages for="prenom"></p:messages>
+				<p:inputText id="prenom" value="#{modificationUtilisateurController.utilisateur.prenom}"  styleClass="form-control"/>
+				<p:messages for="prenom"/>
 			</div>
        
        		<div class="form-group col-md-6">
 				<p:outputLabel for="email" value="Email" />
-				<p:inputText id="email" value="#{modificationUtilisateurController.utilisateur.email}"  styleClass="form-control"></p:inputText>
-				<p:messages for="email"></p:messages>
+				<p:inputText id="email" value="#{modificationUtilisateurController.utilisateur.email}"  styleClass="form-control"/>
+				<p:messages for="email"/>
 			</div>
 			
 			<div class="form-group col-md-6">
 				<p:outputLabel for="password" value="Mot de passe" />
-				<p:password id="password" value="#{modificationUtilisateurController.utilisateur.password}"  styleClass="form-control"></p:password>
-				<p:messages for="password"></p:messages>
+				<p:password id="password" value="#{modificationUtilisateurController.utilisateur.password}"  styleClass="form-control"/>
+				<p:messages for="password"/>
 			</div>
 			
 			<div class="form-group col-md-6">
@@ -52,16 +52,16 @@
             		<f:selectItem itemLabel="Utilisateur" itemValue="Utilisateur" />
             		<f:selectItem itemLabel="Utilisateur++" itemValue="Utilisateur++" />
             	</h:selectOneMenu>
-				<p:messages for="role"></p:messages>
+				<p:messages for="role"/>
 			</div>
 			
-			<p:commandButton action="#{modificationUtilisateurController.modifierUtilisateur}" value="Valider" update="@form" styleClass="btn btn-primary"></p:commandButton>
+			<p:commandButton action="#{modificationUtilisateurController.modifierUtilisateur}" value="Valider" update="@form" styleClass="btn btn-primary"/>
          	
     </h:form>
 	</div>
 	</div>
 
-	<ui:include src="footer.xhtml"></ui:include>
+	<ui:include src="footer.xhtml"/>
 	
 </body>
 </html>
