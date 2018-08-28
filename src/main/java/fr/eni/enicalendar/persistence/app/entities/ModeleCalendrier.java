@@ -1,13 +1,17 @@
 package fr.eni.enicalendar.persistence.app.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -44,6 +48,10 @@ public class ModeleCalendrier implements Serializable {
 
 	@Column(name = "MC_DATE_FIN_MAX")
 	private Date dateFinMax;
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "MC_ID")
+	private Collection<Programmation> programmations;
 
 	/**
 	 * @return the id
@@ -163,6 +171,14 @@ public class ModeleCalendrier implements Serializable {
 	 */
 	public void setDateFinMax(Date dateFinMax) {
 		this.dateFinMax = dateFinMax;
+	}
+
+	public Collection<Programmation> getProgrammations() {
+		return programmations;
+	}
+
+	public void setProgrammations(Collection<Programmation> programmations) {
+		this.programmations = programmations;
 	}
 
 }

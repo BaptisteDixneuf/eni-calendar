@@ -25,4 +25,9 @@ public class CoursService implements CoursServiceInterface {
 		return coursRepository.findCoursByFormation(codeFormation);
 	}
 
+	@Override
+	public List<Cours> findCoursByFormationAndLieu(String codeFormation, Integer codeLieu) {
+		return coursRepository.findCoursByFormationAndLieu(codeFormation, codeLieu);
+	}
+
 }

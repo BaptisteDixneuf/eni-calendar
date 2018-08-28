@@ -9,12 +9,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.service.ModeleServiceInterface;
+import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "gestionModelesController")
 @ViewScoped
@@ -90,13 +92,12 @@ public class GestionModelesController implements Serializable {
 	 * @throws IOException
 	 */
 	public void modificationModele(String typeAction, Integer id) throws IOException {
-		/*
-		 * HttpSession session = SessionUtils.getSession();
-		 * session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
-		 * session.setAttribute(SessionUtils.SESSION_ID, id);
-		 * FacesContext.getCurrentInstance().getExternalContext()
-		 * .redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
-		 */
+		LOGGER.info("Type action" + typeAction + ", idModele : " + id);
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
+		session.setAttribute(SessionUtils.SESSION_ID, id);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/modeleVide.xhtml");
+
 	}
 
 	/**
@@ -114,6 +115,11 @@ public class GestionModelesController implements Serializable {
 	 * @throws IOException
 	 */
 	public void supprimerModele(Integer id) throws IOException {
+
+		// Supprimer les Modules Indépendants
+
+		// Supprimer les programmations liées
+
 		modele = modeleService.findOne(id);
 		modeleService.delete(modele);
 
