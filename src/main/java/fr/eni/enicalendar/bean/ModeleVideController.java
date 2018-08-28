@@ -63,7 +63,7 @@ public class ModeleVideController implements Serializable {
 
 		try {
 			// On récupère les cours disponible (TODO : filtrer sur la formation)
-			List<Cours> coursDisponible = coursService.findCoursByFormation("17ASR");
+			coursDisponible = coursService.findCoursByFormation("17ASR");
 
 			// On transforme les élements calendriers en object ElementCalendrier ( Dans la
 			// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
@@ -107,9 +107,11 @@ public class ModeleVideController implements Serializable {
 			});
 
 		} catch (NumberFormatException e) {
-			LOGGER.error(e.getMessage());
+			LOGGER.error(e.getMessage(), e);
+			// TODO: afficher 1 message d'erreur
 		} catch (FonctionnelException e) {
-			LOGGER.error(e.getMessage());
+			LOGGER.error(e.getMessage(), e);
+			// TODO: afficher 1 message d'erreur
 		}
 
 	}
