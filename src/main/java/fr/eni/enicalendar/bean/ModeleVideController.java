@@ -54,6 +54,9 @@ public class ModeleVideController implements Serializable {
 
 	private ElementCalendrier selectedElementCalendrier;
 
+	/** Entité de sauvegarde du modèle du calendrier */
+	private ModeleCalendrier modeleCalendrier;
+
 	/** Liste des cours disponibles pour cette formation */
 	private List<Cours> coursDisponible = new ArrayList<>();
 
@@ -128,15 +131,6 @@ public class ModeleVideController implements Serializable {
 		elementDeplaceDansProgrammation(elementDeplace);
 	}
 
-	private void elementDeplaceDansProgrammation(ElementCalendrier elementDeplace) {
-		for (Iterator<ElementCalendrier> iter = availableElementCalendrier.listIterator(); iter.hasNext();) {
-			ElementCalendrier elementCalendrier = iter.next();
-			if (elementCalendrier.getIdModule().equals(elementDeplace.getIdModule())) {
-				elementCalendrier.setModuleProgramme(Boolean.TRUE);
-			}
-		}
-	}
-
 	/**
 	 * Convertion d'objet Cours vers ElementCalendrier
 	 * 
@@ -193,15 +187,13 @@ public class ModeleVideController implements Serializable {
 	 */
 	public void save() {
 		LOGGER.info("Début de l'enregistrement");
-		// Création du modèle de calendrier
-		ModeleCalendrier modeleCalendrier = new ModeleCalendrier();
+		if (modeleCalendrier == null) {
+			modeleCalendrier = new ModeleCalendrier();
+		}
 		modeleCalendrier.setNomCalendrier("TODO Nom");
 		modeleCalendrier.setDateCreation(new Date());
 		modeleCalendrier.setDateModification(new Date());
-		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 
-		// TODO: supprimer les élements déprogrammées
-		// On enrgistre la programmation du modèle de calendrier
 		List<Programmation> listesProgramation = new ArrayList<>();
 		for (ElementCalendrier elementCalendrier : droppedElementCalendrier) {
 			Programmation programmation = new Programmation();
@@ -209,8 +201,34 @@ public class ModeleVideController implements Serializable {
 			programmation.setIdCoursPlanifieERP(elementCalendrier.getId());
 			listesProgramation.add(programmation);
 		}
-		listesProgramation = programmationService.saveAll(listesProgramation);
+		modeleCalendrier.setProgrammations(listesProgramation);
+		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
+
 		LOGGER.info("Fin de l'enregistrement");
+	}
+
+	public void deprogrammer(ElementCalendrier elementCalendrier) {
+		LOGGER.info("Déprogrammation de l'élément" + elementCalendrier.getId());
+		droppedElementCalendrier.remove(elementCalendrier);
+		elementDeprogramme(elementCalendrier);
+	}
+
+	private void elementDeplaceDansProgrammation(ElementCalendrier elementDeplace) {
+		for (Iterator<ElementCalendrier> iter = availableElementCalendrier.listIterator(); iter.hasNext();) {
+			ElementCalendrier elementCalendrier = iter.next();
+			if (elementCalendrier.getIdModule().equals(elementDeplace.getIdModule())) {
+				elementCalendrier.setModuleProgramme(Boolean.TRUE);
+			}
+		}
+	}
+
+	private void elementDeprogramme(ElementCalendrier elementDeplace) {
+		for (Iterator<ElementCalendrier> iter = availableElementCalendrier.listIterator(); iter.hasNext();) {
+			ElementCalendrier elementCalendrier = iter.next();
+			if (elementCalendrier.getIdModule().equals(elementDeplace.getIdModule())) {
+				elementCalendrier.setModuleProgramme(Boolean.FALSE);
+			}
+		}
 	}
 
 	/**

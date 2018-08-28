@@ -13,28 +13,7 @@
 <body>
 	<ui:include src="menuBis.xhtml"></ui:include>
 
-	<h:form>
-		<p:dataTable var="titre" value="#{titreController.titres}"
-			widgetVar="titreTable" emptyMessage="Auncun titre ne correspond">
-			<p:column headerText="Id" sortBy="#{titre.codeTitre}"
-				filterBy="#{titre.codeTitre}">
-				<h:outputText value="#{titre.codeTitre}" />
-			</p:column>
-			<p:column headerText="Titre Court" sortBy="#{titre.libelleCourt}"
-				filterBy="#{titre.libelleCourt}">
-				<h:outputText value="#{titre.libelleCourt}" />
-			</p:column>
-			<p:column headerText="Titre long" sortBy="#{titre.libelleLong}"
-				filterBy="#{titre.libelleLong}">
-				<h:outputText value="#{titre.libelleLong}" />
-			</p:column>
-		</p:dataTable>
-	</h:form>
-	
-	
-	<ui:include src="formations.xhtml"></ui:include>
-
-	<ui:include src="promotion.xhtml"></ui:include>
+		Application ENI CALENDAR
 	
 	<ui:include src="footer.xhtml"></ui:include>
 </body>

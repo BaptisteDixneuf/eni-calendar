@@ -42,7 +42,7 @@
 			               		<h:outputText value="#{element.dateFin}"></h:outputText>
 			               		Module programmé: <h:outputText value="#{element.moduleProgramme}"></h:outputText>
 							</p:panel>
-							<p:draggable for="gpnl" revert="true" helper="clone" />
+							<p:draggable for="gpnl" revert="true" helper="clone" disabled="#{element.moduleProgramme}"/>
 						</p:column>
 
 					</p:dataTable>
@@ -62,6 +62,7 @@
 									<h:outputText value="#{element.libelle}"></h:outputText> - 
 			               			<h:outputText value="#{element.dateDebut}"></h:outputText> -
 			               			<h:outputText value="#{element.dateFin}"></h:outputText>
+			               			<p:commandButton id="enregistrer" value="Déprogrammer" action="#{modeleVideController.deprogrammer(element)}" update=":coursForm:panelCalendrier"></p:commandButton>
 								</p:column>
 							</p:dataTable>
 						</p:outputPanel>
