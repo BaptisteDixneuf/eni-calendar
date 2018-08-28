@@ -45,6 +45,9 @@ public class Cours implements Serializable {
 	@Column(name = "IdModule")
 	private Integer idModule;
 
+	@Column(name = "CodeLieu")
+	private Integer codeLieu;
+
 	/**
 	 * @return the id
 	 */
@@ -126,6 +129,14 @@ public class Cours implements Serializable {
 
 	public void setIdModule(Integer idModule) {
 		this.idModule = idModule;
+	}
+
+	public Integer getCodeLieu() {
+		return codeLieu;
+	}
+
+	public void setCodeLieu(Integer codeLieu) {
+		this.codeLieu = codeLieu;
 	}
 
 }

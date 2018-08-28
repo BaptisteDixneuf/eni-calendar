@@ -23,7 +23,11 @@ import fr.eni.enicalendar.exceptions.FonctionnelException;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
+import fr.eni.enicalendar.persistence.erp.entities.Formation;
+import fr.eni.enicalendar.persistence.erp.entities.Lieu;
 import fr.eni.enicalendar.service.CoursServiceInterface;
+import fr.eni.enicalendar.service.FormationServiceInterface;
+import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.ModeleCalendrierServiceInterface;
 import fr.eni.enicalendar.service.ProgrammationServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
@@ -48,6 +52,12 @@ public class ModeleVideController implements Serializable {
 	@ManagedProperty(value = "#{programmationService}")
 	private ProgrammationServiceInterface programmationService;
 
+	@ManagedProperty(value = "#{lieuService}")
+	private LieuServiceInterface lieuService;
+
+	@ManagedProperty(value = "#{formationService}")
+	private FormationServiceInterface formationService;
+
 	private List<ElementCalendrier> availableElementCalendrier;
 
 	private List<ElementCalendrier> droppedElementCalendrier;
@@ -60,62 +70,22 @@ public class ModeleVideController implements Serializable {
 	/** Liste des cours disponibles pour cette formation */
 	private List<Cours> coursDisponible = new ArrayList<>();
 
+	/**
+	 * Pré-formulaire
+	 */
+	private String codeFormation;
+	private List<Formation> formations;
+	private List<Lieu> lieux;
+	private String codeLieuFormation;
+	private Date dateDebut;
+
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("CoursController setup");
 
-		try {
-			// On récupère les cours disponible (TODO : filtrer sur la formation)
-			coursDisponible = coursService.findCoursByFormation("17ASR");
-
-			// On transforme les élements calendriers en object ElementCalendrier ( Dans la
-			// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
-			// d'ElementCalendrier ( Cours, Modèles, ....)
-			availableElementCalendrier = new ArrayList<>();
-			for (Cours cours : coursDisponible) {
-				ElementCalendrier element = convertCoursToElementCalendrier(cours);
-				availableElementCalendrier.add(element);
-			}
-			Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
-				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
-					return m1.getDateDebut().compareTo(m2.getDateFin());
-				}
-			});
-
-			// On préremplie la colonne "Programmation" de la vue avec les données
-			// précédentes
-			droppedElementCalendrier = new ArrayList<ElementCalendrier>();
-
-			if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
-					&& SessionUtils.getId() != null) {
-
-				Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
-				List<Programmation> listProgrammationExistant = programmationService
-						.findProgrammationByModeleCalendrier(idModeleCalendrier);
-
-				List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
-				for (Programmation programmation : listProgrammationExistant) {
-					ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
-					droppedElementCalendrierExistant.add(element);
-					droppedElementCalendrier.add(element);
-					elementDeplaceDansProgrammation(element);
-				}
-
-			}
-
-			Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
-				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
-					return m1.getDateDebut().compareTo(m2.getDateFin());
-				}
-			});
-
-		} catch (NumberFormatException e) {
-			LOGGER.error(e.getMessage(), e);
-			// TODO: afficher 1 message d'erreur
-		} catch (FonctionnelException e) {
-			LOGGER.error(e.getMessage(), e);
-			// TODO: afficher 1 message d'erreur
-		}
+		// On récupère les lieux et formations
+		lieux = lieuService.findAllLieux();
+		formations = formationService.findAllFormations();
 
 	}
 
@@ -231,6 +201,66 @@ public class ModeleVideController implements Serializable {
 		}
 	}
 
+	public void creer() {
+		LOGGER.info("Bouton créer");
+
+		try {
+
+			// TODO : faire les controles de surface
+			// On récupère les cours disponible
+			coursDisponible = coursService.findCoursByFormationAndLieu(codeFormation,
+					Integer.valueOf(codeLieuFormation));
+
+			// On transforme les élements calendriers en object ElementCalendrier ( Dans la
+			// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
+			// d'ElementCalendrier ( Cours, Modèles, ....)
+			availableElementCalendrier = new ArrayList<>();
+			for (Cours cours : coursDisponible) {
+				ElementCalendrier element = convertCoursToElementCalendrier(cours);
+				availableElementCalendrier.add(element);
+			}
+			Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
+				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+					return m1.getDateDebut().compareTo(m2.getDateFin());
+				}
+			});
+
+			// On préremplie la colonne "Programmation" de la vue avec les données
+			// précédentes
+			droppedElementCalendrier = new ArrayList<ElementCalendrier>();
+
+			if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
+					&& SessionUtils.getId() != null) {
+
+				Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
+				List<Programmation> listProgrammationExistant = programmationService
+						.findProgrammationByModeleCalendrier(idModeleCalendrier);
+
+				List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
+				for (Programmation programmation : listProgrammationExistant) {
+					ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
+					droppedElementCalendrierExistant.add(element);
+					droppedElementCalendrier.add(element);
+					elementDeplaceDansProgrammation(element);
+				}
+
+			}
+
+			Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
+				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+					return m1.getDateDebut().compareTo(m2.getDateFin());
+				}
+			});
+
+		} catch (NumberFormatException e) {
+			LOGGER.error(e.getMessage(), e);
+			// TODO: afficher 1 message d'erreur
+		} catch (FonctionnelException e) {
+			LOGGER.error(e.getMessage(), e);
+			// TODO: afficher 1 message d'erreur
+		}
+	}
+
 	/**
 	 * @return the coursService
 	 */
@@ -284,6 +314,78 @@ public class ModeleVideController implements Serializable {
 
 	public void setProgrammationService(ProgrammationServiceInterface programmationService) {
 		this.programmationService = programmationService;
+	}
+
+	public LieuServiceInterface getLieuService() {
+		return lieuService;
+	}
+
+	public void setLieuService(LieuServiceInterface lieuService) {
+		this.lieuService = lieuService;
+	}
+
+	public FormationServiceInterface getFormationService() {
+		return formationService;
+	}
+
+	public void setFormationService(FormationServiceInterface formationService) {
+		this.formationService = formationService;
+	}
+
+	public ModeleCalendrier getModeleCalendrier() {
+		return modeleCalendrier;
+	}
+
+	public void setModeleCalendrier(ModeleCalendrier modeleCalendrier) {
+		this.modeleCalendrier = modeleCalendrier;
+	}
+
+	public List<Cours> getCoursDisponible() {
+		return coursDisponible;
+	}
+
+	public void setCoursDisponible(List<Cours> coursDisponible) {
+		this.coursDisponible = coursDisponible;
+	}
+
+	public String getCodeFormation() {
+		return codeFormation;
+	}
+
+	public void setCodeFormation(String codeFormation) {
+		this.codeFormation = codeFormation;
+	}
+
+	public List<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(List<Formation> formations) {
+		this.formations = formations;
+	}
+
+	public List<Lieu> getLieux() {
+		return lieux;
+	}
+
+	public void setLieux(List<Lieu> lieux) {
+		this.lieux = lieux;
+	}
+
+	public String getCodeLieuFormation() {
+		return codeLieuFormation;
+	}
+
+	public void setCodeLieuFormation(String codeLieuFormation) {
+		this.codeLieuFormation = codeLieuFormation;
+	}
+
+	public Date getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
 	}
 
 }

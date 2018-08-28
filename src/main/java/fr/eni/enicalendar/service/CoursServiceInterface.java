@@ -10,4 +10,6 @@ public interface CoursServiceInterface {
 
 	List<Cours> findCoursByFormation(String codeFormation);
 
+	List<Cours> findCoursByFormationAndLieu(String codeFormation, Integer codeLieu);
+
 }

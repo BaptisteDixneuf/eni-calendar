@@ -29,54 +29,96 @@
 		
 		<h:panelGroup id="panelCalendrier">
 			<p:messages />
+
 			<div class="ui-g">
-				<!--  Liste des cours disponibles -->
+				<div class="ui-g-3"></div>
 				<div class="ui-g-6">
-					<p:dataTable id="availableElementCalendrier" var="element"
-						value="#{modeleVideController.availableElementCalendrier}">
+					<p:outputLabel for="formation" value="Formation :" />
+					<p:selectOneMenu id="formation"
+						value="#{modeleVideController.codeFormation}">
+						<f:selectItem itemLabel="Selectionner une formation" itemValue="" />
+						<f:selectItems value="#{modeleVideController.formations}"
+							var="formation" itemLabel="#{formation.libelleLong}"
+							itemValue="#{formation.codeFormation}" />
+					</p:selectOneMenu>
+					<p:messages for="formation"></p:messages>
 
-						<p:column>
-							<p:panel id="gpnl">
-								<h:outputText value="#{element.libelle}"></h:outputText> - 
-			               		<h:outputText value="#{element.dateDebut}"></h:outputText> -
-			               		<h:outputText value="#{element.dateFin}"></h:outputText>
-			               		Module programmé: <h:outputText value="#{element.moduleProgramme}"></h:outputText>
-							</p:panel>
-							<p:draggable for="gpnl" revert="true" helper="clone" disabled="#{element.moduleProgramme}"/>
-						</p:column>
+					<p:outputLabel for="lieuFormation" value="Lieu de formation:" />
+					<p:selectOneMenu id="lieuFormation"
+						value="#{modeleVideController.codeLieuFormation}">
+						<f:selectItem itemLabel="Selectionner un lieu" itemValue="" />
+						<f:selectItems value="#{modeleVideController.lieux}" var="lieu"
+							itemLabel="#{lieu.libelle}" itemValue="#{lieu.codeLieu}" />
+					</p:selectOneMenu>
+					<p:messages for="lieuFormation"></p:messages>
 
-					</p:dataTable>
+					<p:outputLabel for="dateDebut" value="Date de début" />
+					<p:calendar id="dateDebut"
+						value="#{modeleVideController.dateDebut}" locale="fr"
+						navigator="true" pattern="dd/MM/yyyy" />
+					<p:messages for="dateDebut"></p:messages>
+					
+					<p:commandButton id="creer" value="creer"	action="#{modeleVideController.creer}" update=":coursForm"></p:commandButton>
+
+
 				</div>
+				<div class="ui-g-3"></div>
+			</div>
 
-				<!-- Listes des cours sélectionnées -->
-				<div class="ui-g-6">
-					<p:fieldset id="selectedElementCalendrier">
-						<p:outputPanel id="dropArea">
-							<h:outputText value="Aucun éléments"
-								rendered="#{empty modeleVideController.droppedElementCalendrier}"
-								style="font-size:24px;" />
-							<p:dataTable id="selectedCoursTable" var="element"
-								value="#{modeleVideController.droppedElementCalendrier}"
-								rendered="#{not empty modeleVideController.droppedElementCalendrier}">
-								<p:column>
-									<h:outputText value="#{element.libelle}"></h:outputText> - 
+			<div class="ui-g">
+						<!--  Liste des cours disponibles -->
+						<div class="ui-g-6">
+							<p:dataTable id="availableElementCalendrier" var="element"
+								value="#{modeleVideController.availableElementCalendrier}">
+
+
+								<p:column rendered="#{!element.moduleProgramme}">
+									<p:panel id="gpnl">
+										<h:outputText value="#{element.libelle}"></h:outputText> - 
+					               		<h:outputText value="#{element.dateDebut}"></h:outputText> -
+					               		<h:outputText value="#{element.dateFin}"></h:outputText>
+
+									</p:panel>
+									<p:draggable for="gpnl" revert="true" helper="clone"
+										disabled="#{element.moduleProgramme}" />
+								</p:column>
+
+
+							</p:dataTable>
+						</div>
+
+						<!-- Listes des cours sélectionnées -->
+						<div class="ui-g-6">
+							<p:fieldset id="selectedElementCalendrier">
+								<p:outputPanel id="dropArea">
+									<h:outputText value="Aucun éléments"
+										rendered="#{empty modeleVideController.droppedElementCalendrier}"
+										style="font-size:24px;" />
+									<p:dataTable id="selectedCoursTable" var="element"
+										value="#{modeleVideController.droppedElementCalendrier}"
+										rendered="#{not empty modeleVideController.droppedElementCalendrier}">
+										<p:column>
+											<h:outputText value="#{element.libelle}"></h:outputText> - 
 			               			<h:outputText value="#{element.dateDebut}"></h:outputText> -
 			               			<h:outputText value="#{element.dateFin}"></h:outputText>
-			               			<p:commandButton id="enregistrer" value="Déprogrammer" action="#{modeleVideController.deprogrammer(element)}" update=":coursForm:panelCalendrier"></p:commandButton>
-								</p:column>
-							</p:dataTable>
-						</p:outputPanel>
-					</p:fieldset>
-				</div>
+											<p:commandButton id="deprogrammer" value="Déprogrammer"
+												action="#{modeleVideController.deprogrammer(element)}"
+												update=":coursForm:panelCalendrier"></p:commandButton>
+										</p:column>
+									</p:dataTable>
+								</p:outputPanel>
+							</p:fieldset>
+						</div>
 
-				<p:droppable for="selectedElementCalendrier" tolerance="touch"
-					activeStyleClass="ui-state-highlight"
-					datasource="availableElementCalendrier" onDrop="handleDrop">
-					<p:ajax listener="#{modeleVideController.onElementCalendrierDrop}"
-						update="dropArea availableElementCalendrier" />
-				</p:droppable>
+						<p:droppable for="selectedElementCalendrier" tolerance="touch"
+							activeStyleClass="ui-state-highlight"
+							datasource="availableElementCalendrier" onDrop="handleDrop">
+							<p:ajax
+								listener="#{modeleVideController.onElementCalendrierDrop}"
+								update="dropArea availableElementCalendrier" />
+						</p:droppable>
 
-			</div>
+					</div>
 		</h:panelGroup>
 
 		<div id="groupeConteneur">
