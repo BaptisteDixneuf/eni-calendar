@@ -200,6 +200,7 @@ public class ModeleVideController implements Serializable {
 		modeleCalendrier.setDateModification(new Date());
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 
+		// TODO: supprimer les élements déprogrammées
 		// On enrgistre la programmation du modèle de calendrier
 		List<Programmation> listesProgramation = new ArrayList<>();
 		for (ElementCalendrier elementCalendrier : droppedElementCalendrier) {
