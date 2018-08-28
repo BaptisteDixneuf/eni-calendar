@@ -13,6 +13,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.Duration;
 
 @ManagedBean(name = "modificationModuleIndependantController")
 @ViewScoped
@@ -73,12 +74,23 @@ public class ModificationModuleIndependantController implements Serializable {
      *
      * @throws IOException
      */
-    public void modifierUtilisateur() throws IOException {
+    public void modifierModule() throws IOException {
         moduleIndependantsService.saveModule(module);
 
         FacesContext.getCurrentInstance().getExternalContext()
                 .redirect("/eni-calendar/views/gestionModulesIndependants.xhtml");
 
+    }
+
+    /**
+     * Permet de créer/modifier un moduleindependant
+     *
+     * @throws IOException
+     */
+    public void calculDuree() throws IOException {
+        Long diff = module.getDateFin().getTime() - module.getDateDebut().getTime();
+        Integer duree = (diff.intValue()/ (1000 * 60 * 60 * 24)+1);
+        module.setDuree(duree);
     }
 
 }

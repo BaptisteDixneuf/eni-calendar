@@ -30,18 +30,19 @@
 			</div>
 
 			<div style="margin-top: 4%">
+				<p:commandButton value="+ Créer un nouveau calendrier" style="background-color: #2E9AFE" action="#{ficheStagiaireController.creerCalendrier}"/>
 			<p:dataTable id="tbl" var="calendriers" value="#{ficheStagiaireController.calendriers}" widgetVar="titreTable" emptyMessage="Auncun calendrier pour ce stagiaire">
 				<p:column headerText="Nom" sortBy="#{calendriers.nomCalendrier}" filterBy="#{calendriers.nomCalendrier}">
 					<h:outputText value="#{calendriers.nomCalendrier}"/>
 				</p:column>
-				<p:column headerText="Date Creation" sortBy="#{calendriers.dateCreation }" filterBy="#{calendriers.dateCreation}">
+				<p:column headerText="Creation" sortBy="#{calendriers.dateCreation }" filterBy="#{calendriers.dateCreation}">
 					<h:outputText value="#{calendriers.dateCreation}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
-				<p:column headerText="Date Modification" sortBy="#{calendriers.dateModification}" filterBy="#{calendriers.dateModification}">
+				<p:column headerText="Modification" sortBy="#{calendriers.dateModification}" filterBy="#{calendriers.dateModification}">
 					<h:outputText value="#{calendriers.dateModification}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
 				<p:column headerText="Etat" sortBy="#{calendriers.etatCalendrier.libelleEtat}" filterBy="#{calendriers.etatCalendrier.libelleEtat}">

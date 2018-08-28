@@ -103,7 +103,7 @@ public class GestionModulesIndependantsController implements Serializable {
 		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
 		session.setAttribute(SessionUtils.SESSION_ID, id);
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("/eni-calendar/views/creation-modificationModulesIndependant.xhtml");
+				.redirect("/eni-calendar/views/creation-modificationModuleIndependant.xhtml");
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class GestionModulesIndependantsController implements Serializable {
 	public void ajoutModule(String typeAction) throws IOException {
 		 HttpSession session = SessionUtils.getSession();
 		 session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
-		 FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/creation-modificationModulesIndependant.xhtml");
+		 FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/creation-modificationModuleIndependant.xhtml");
 
 
 	}
