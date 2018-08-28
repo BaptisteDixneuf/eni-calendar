@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -18,12 +19,14 @@ import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.dto.ElementCalendrier;
 import fr.eni.enicalendar.dto.ElementCalendrierType;
+import fr.eni.enicalendar.exceptions.FonctionnelException;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.service.CoursServiceInterface;
 import fr.eni.enicalendar.service.ModeleCalendrierServiceInterface;
 import fr.eni.enicalendar.service.ProgrammationServiceInterface;
+import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "modeleVideController")
 @ViewScoped
@@ -51,37 +54,93 @@ public class ModeleVideController implements Serializable {
 
 	private ElementCalendrier selectedElementCalendrier;
 
+	/** Liste des cours disponibles pour cette formation */
+	private List<Cours> coursDisponible = new ArrayList<>();
+
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("CoursController setup");
 
-		// On récupère les cours disponible (TODO : filtrer sur la formation)
-		List<Cours> coursDisponible = coursService.findCoursByFormation("17ASR");
+		try {
+			// On récupère les cours disponible (TODO : filtrer sur la formation)
+			List<Cours> coursDisponible = coursService.findCoursByFormation("17ASR");
 
-		// On transforme les élements calendriers en object ElementCalendrier ( Dans la
-		// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
-		// d'ElementCalendrier ( Cours, Modèles, ....)
-		availableElementCalendrier = new ArrayList<>();
-		for (Cours cours : coursDisponible) {
-			ElementCalendrier element = convertCoursToElementCalendrier(cours);
-			availableElementCalendrier.add(element);
+			// On transforme les élements calendriers en object ElementCalendrier ( Dans la
+			// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
+			// d'ElementCalendrier ( Cours, Modèles, ....)
+			availableElementCalendrier = new ArrayList<>();
+			for (Cours cours : coursDisponible) {
+				ElementCalendrier element = convertCoursToElementCalendrier(cours);
+				availableElementCalendrier.add(element);
+			}
+			Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
+				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+					return m1.getDateDebut().compareTo(m2.getDateFin());
+				}
+			});
+
+			// On préremplie la colonne "Programmation" de la vue avec les données
+			// précédentes
+			droppedElementCalendrier = new ArrayList<ElementCalendrier>();
+
+			if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
+					&& SessionUtils.getId() != null) {
+
+				Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
+				List<Programmation> listProgrammationExistant = programmationService
+						.findProgrammationByModeleCalendrier(idModeleCalendrier);
+
+				List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
+				for (Programmation programmation : listProgrammationExistant) {
+					ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
+					droppedElementCalendrierExistant.add(element);
+					droppedElementCalendrier.add(element);
+					elementDeplaceDansProgrammation(element);
+				}
+
+			}
+
+			Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
+				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+					return m1.getDateDebut().compareTo(m2.getDateFin());
+				}
+			});
+
+		} catch (NumberFormatException e) {
+			LOGGER.error(e.getMessage());
+		} catch (FonctionnelException e) {
+			LOGGER.error(e.getMessage());
 		}
 
-		Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
-			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
-				return m1.getDateDebut().compareTo(m2.getDateFin());
-			}
-		});
-
-		droppedElementCalendrier = new ArrayList<ElementCalendrier>();
 	}
 
+	/**
+	 * Méthode appelé lorsqu'on déplace un élement de calendrier d'une colonne à une
+	 * autre
+	 * 
+	 * @param ddEvent
+	 */
 	public void onElementCalendrierDrop(DragDropEvent ddEvent) {
-		ElementCalendrier element = ((ElementCalendrier) ddEvent.getData());
-		droppedElementCalendrier.add(element);
-		availableElementCalendrier.remove(element);
+		ElementCalendrier elementDeplace = ((ElementCalendrier) ddEvent.getData());
+		droppedElementCalendrier.add(elementDeplace);
+		elementDeplaceDansProgrammation(elementDeplace);
 	}
 
+	private void elementDeplaceDansProgrammation(ElementCalendrier elementDeplace) {
+		for (Iterator<ElementCalendrier> iter = availableElementCalendrier.listIterator(); iter.hasNext();) {
+			ElementCalendrier elementCalendrier = iter.next();
+			if (elementCalendrier.getIdModule().equals(elementDeplace.getIdModule())) {
+				elementCalendrier.setModuleProgramme(Boolean.TRUE);
+			}
+		}
+	}
+
+	/**
+	 * Convertion d'objet Cours vers ElementCalendrier
+	 * 
+	 * @param cours
+	 * @return
+	 */
 	private ElementCalendrier convertCoursToElementCalendrier(Cours cours) {
 		ElementCalendrier element = new ElementCalendrier();
 		element.setId(cours.getId());
@@ -89,11 +148,49 @@ public class ModeleVideController implements Serializable {
 		element.setDateDebut(cours.getDateDebut());
 		element.setDateFin(cours.getDateFin());
 		element.setType(ElementCalendrierType.CALENDRIER);
+		element.setIdModule(cours.getIdModule());
+		element.setModuleProgramme(Boolean.FALSE);
 		return element;
 	}
 
-	public void save() {
+	/**
+	 * Convertion d'un objet Programmation vers ElementCalendrier
+	 * 
+	 * @throws FonctionnelException
+	 */
+	private ElementCalendrier convertProgrammationToElementCalendrier(Programmation programmation)
+			throws FonctionnelException {
+		ElementCalendrier element = new ElementCalendrier();
+		if (programmation.getIdCoursPlanifieERP() != null) {
 
+			Cours coursTrouve = null;
+			for (Cours coursElement : coursDisponible) {
+				if (programmation.getIdCoursPlanifieERP().equals(coursElement.getId())) {
+					coursTrouve = coursElement;
+				}
+			}
+			if (coursTrouve == null) {
+				throw new FonctionnelException("Errreur lors de la récupération du modèle");
+			} else {
+				element.setId(coursTrouve.getId());
+				element.setLibelle(coursTrouve.getLibelleCours());
+				element.setDateDebut(coursTrouve.getDateDebut());
+				element.setDateFin(coursTrouve.getDateFin());
+				element.setType(ElementCalendrierType.CALENDRIER);
+				element.setIdModule(coursTrouve.getIdModule());
+				element.setModuleProgramme(Boolean.TRUE);
+			}
+		} else {
+			LOGGER.error("TODO: a implémenter");
+		}
+		return element;
+	}
+
+	/**
+	 * Méthode d'enregistrement
+	 */
+	public void save() {
+		LOGGER.info("Début de l'enregistrement");
 		// Création du modèle de calendrier
 		ModeleCalendrier modeleCalendrier = new ModeleCalendrier();
 		modeleCalendrier.setNomCalendrier("TODO Nom");
@@ -102,12 +199,15 @@ public class ModeleVideController implements Serializable {
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 
 		// On enrgistre la programmation du modèle de calendrier
+		List<Programmation> listesProgramation = new ArrayList<>();
 		for (ElementCalendrier elementCalendrier : droppedElementCalendrier) {
 			Programmation programmation = new Programmation();
 			programmation.setIdModeleCalendrier(modeleCalendrier.getId());
 			programmation.setIdCoursPlanifieERP(elementCalendrier.getId());
-			programmation = programmationService.save(programmation);
+			listesProgramation.add(programmation);
 		}
+		listesProgramation = programmationService.saveAll(listesProgramation);
+		LOGGER.info("Fin de l'enregistrement");
 	}
 
 	/**

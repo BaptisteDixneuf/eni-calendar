@@ -48,7 +48,9 @@ public class SessionUtils {
 
 		return retour;
 
-	}    public static String getId() {
+	}
+
+	public static String getId() {
 
 		String retour = null;
 
