@@ -1,4 +1,4 @@
-package fr.eni.enicalendar.dto;
+package fr.eni.enicalendar.viewElement;
 
 public enum ElementCalendrierType {
 	CALENDRIER("CALENDRIER");

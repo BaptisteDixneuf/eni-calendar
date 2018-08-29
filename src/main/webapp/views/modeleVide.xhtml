@@ -183,29 +183,29 @@
 						<h2>Les contraintes</h2>
 						<h:outputText value="Les contraintes:" />
 							
-						<p:selectBooleanCheckbox id="semaineAffileeEntreprise" value="#{modeleVideController.contraintes.semaineAffileeEntreprise}" />
+						<p:selectBooleanCheckbox id="semaineAffileeEntreprise" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" />
 						<p:outputLabel for="semaineAffileeEntreprise" value="Nombre de semaine d'affilée en entreprise :  " />						
-						<p:spinner id="semaineAffileeEntrepriseNumber" value="#{modeleVideController.contraintes.semaineAffileeEntreprise}" min="0"/>
+						<p:spinner id="semaineAffileeEntrepriseNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" min="0"/>
 						
-						<p:selectBooleanCheckbox id="semaineAffileeFormation" value="#{modeleVideController.contraintes.semaineAffileeFormation}" />
+						<p:selectBooleanCheckbox id="semaineAffileeFormation" value="#{modeleVideController.contraintesViewElement.semaineAffileeFormation}" />
 						<p:outputLabel for="semaineAffileeFormation" value="Nombre de semaine d'affilée en formation : " />						
-						<p:spinner id="semaineAffileeFormationNumber" value="#{modeleVideController.contraintes.semaineAffileeFormationNombre}" min="0"/>
+						<p:spinner id="semaineAffileeFormationNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeFormationNombre}" min="0"/>
 						
-						<p:selectBooleanCheckbox id="periodeForteActiviteEntreprise" value="#{modeleVideController.contraintes.periodeForteActiviteEntreprise}" />
+						<p:selectBooleanCheckbox id="periodeForteActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntreprise}" />
 						<p:outputLabel for="periodeForteActiviteEntreprise" value="Périodes de forte activité en entreprise :  " />
-						<p:calendar id="periodeForteActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintes.periodeForteActiviteEntrepriseDateDebut}" />
-						<p:calendar id="periodeForteActiviteEntrepriseDateFin" value="#{modeleVideController.contraintes.periodeForteActiviteEntrepriseDateFin}" />
+						<p:calendar id="periodeForteActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateDebut}" />
+						<p:calendar id="periodeForteActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateFin}" />
 						
-						<p:selectBooleanCheckbox id="periodeFaibleActiviteEntreprise" value="#{modeleVideController.contraintes.periodeFaibleActiviteEntreprise}" />
+						<p:selectBooleanCheckbox id="periodeFaibleActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntreprise}" />
 						<p:outputLabel for="periodeFaibleActiviteEntreprise" value="Périodes de faible activité en entreprise :  " />
-						<p:calendar id="periodeFaibleActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintes.periodeFaibleActiviteEntrepriseDateDebut}" />
-						<p:calendar id="periodeFaibleActiviteEntrepriseDateFin" value="#{modeleVideController.contraintes.periodeFaibleActiviteEntrepriseDateFin}" />
+						<p:calendar id="periodeFaibleActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateDebut}" />
+						<p:calendar id="periodeFaibleActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateFin}" />
 						
-						<p:selectBooleanCheckbox id="periodeNonDisponibiliteStagiaire" value="#{modeleVideController.contraintes.periodeNonDisponibiliteStagiaire}" />
+						<p:selectBooleanCheckbox id="periodeNonDisponibiliteStagiaire" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaire}" />
 						<p:outputLabel for="periodeNonDisponibiliteStagiaire" value="Périodes de non disponibilité du stagiaire ( Absences ) :" />
-						<p:inputText id="periodeNonDisponibiliteStagiaireMotif" value="#{modeleVideController.contraintes.periodeNonDisponibiliteStagiaireMotif}"></p:inputText>
-						<p:calendar id="periodeNonDisponibiliteStagiaireDateDebut" value="#{modeleVideController.contraintes.periodeNonDisponibiliteStagiaireDateDebut}" />
-						<p:calendar id="periodeNonDisponibiliteStagiaireDateFin" value="#{modeleVideController.contraintes.periodeNonDisponibiliteStagiaireDateFin}" />
+						<p:inputText id="periodeNonDisponibiliteStagiaireMotif" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireMotif}"></p:inputText>
+						<p:calendar id="periodeNonDisponibiliteStagiaireDateDebut" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateDebut}" />
+						<p:calendar id="periodeNonDisponibiliteStagiaireDateFin" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateFin}" />
 						
 					</p:tab>
 					<p:tab title="Dispenses">

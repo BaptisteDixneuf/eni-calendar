@@ -1,10 +1,10 @@
-package fr.eni.enicalendar.dto;
+package fr.eni.enicalendar.viewElement;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Contrainte implements Serializable {
+public class Contraintes implements Serializable {
 
 	/**
 	 * Serial UID
@@ -32,7 +32,7 @@ public class Contrainte implements Serializable {
 	private Date periodeNonDisponibiliteStagiaireDateFin;
 	private String periodeNonDisponibiliteStagiaireMotif;
 
-	public Contrainte() {
+	public Contraintes() {
 		super();
 	}
 

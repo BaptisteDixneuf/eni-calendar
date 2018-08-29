@@ -21,9 +21,6 @@ import org.primefaces.event.DragDropEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.eni.enicalendar.dto.Contrainte;
-import fr.eni.enicalendar.dto.ElementCalendrier;
-import fr.eni.enicalendar.dto.ElementCalendrierType;
 import fr.eni.enicalendar.exceptions.FonctionnelException;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
@@ -36,6 +33,12 @@ import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.ModeleCalendrierServiceInterface;
 import fr.eni.enicalendar.service.ProgrammationServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
+import fr.eni.enicalendar.viewElement.AutreCours;
+import fr.eni.enicalendar.viewElement.Contraintes;
+import fr.eni.enicalendar.viewElement.Dispenses;
+import fr.eni.enicalendar.viewElement.ElementCalendrier;
+import fr.eni.enicalendar.viewElement.ElementCalendrierType;
+import fr.eni.enicalendar.viewElement.ModuleIndependants;
 
 @ManagedBean(name = "modeleVideController")
 @ViewScoped
@@ -86,7 +89,10 @@ public class ModeleVideController implements Serializable {
 	private boolean preFormulaireValide = false;
 
 	/* Contraintes */
-	private Contrainte contraintes;
+	private Contraintes contraintesViewElement;
+	private Dispenses dispensesViewElement;
+	private ModuleIndependants moduleIndependantsViewElement;
+	private AutreCours autreCoursViewElement;
 
 	@PostConstruct
 	public void setup() {
@@ -95,6 +101,11 @@ public class ModeleVideController implements Serializable {
 		// On récupère les lieux et formations
 		lieux = lieuService.findAllLieux();
 		formations = formationService.findAllFormations();
+
+		contraintesViewElement = new Contraintes();
+		dispensesViewElement = new Dispenses();
+		moduleIndependantsViewElement = new ModuleIndependants();
+		autreCoursViewElement = new AutreCours();
 	}
 
 	/**
@@ -436,12 +447,35 @@ public class ModeleVideController implements Serializable {
 		this.preFormulaireValide = preFormulaireValide;
 	}
 
-	public Contrainte getContraintes() {
-		return contraintes;
+	public Contraintes getContraintesViewElement() {
+		return contraintesViewElement;
 	}
 
-	public void setContraintes(Contrainte contraintes) {
-		this.contraintes = contraintes;
+	public void setContraintesViewElement(Contraintes contraintesViewElement) {
+		this.contraintesViewElement = contraintesViewElement;
 	}
 
+	public Dispenses getDispensesViewElement() {
+		return dispensesViewElement;
+	}
+
+	public void setDispensesViewElement(Dispenses dispensesViewElement) {
+		this.dispensesViewElement = dispensesViewElement;
+	}
+
+	public ModuleIndependants getModuleIndependantsViewElement() {
+		return moduleIndependantsViewElement;
+	}
+
+	public void setModuleIndependantsViewElement(ModuleIndependants moduleIndependantsViewElement) {
+		this.moduleIndependantsViewElement = moduleIndependantsViewElement;
+	}
+
+	public AutreCours getAutreCoursViewElement() {
+		return autreCoursViewElement;
+	}
+
+	public void setAutreCoursViewElement(AutreCours autreCoursViewElement) {
+		this.autreCoursViewElement = autreCoursViewElement;
+	}
 }

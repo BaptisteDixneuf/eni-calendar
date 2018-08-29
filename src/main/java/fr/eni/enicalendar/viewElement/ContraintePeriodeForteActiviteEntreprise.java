@@ -1,19 +1,19 @@
-package fr.eni.enicalendar.dto;
+package fr.eni.enicalendar.viewElement;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class ContraintePeriodeFaibleActiviteEntreprise implements Serializable {
+public class ContraintePeriodeForteActiviteEntreprise implements Serializable {
 
 	/**
 	 * Serial UID
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	private Date dateDebut;
 	private Date dateFin;
 
-	public ContraintePeriodeFaibleActiviteEntreprise() {
+	public ContraintePeriodeForteActiviteEntreprise() {
 		super();
 	}
 

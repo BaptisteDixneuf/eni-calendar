@@ -1,9 +1,9 @@
-package fr.eni.enicalendar.dto;
+package fr.eni.enicalendar.viewElement;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class ContraintePeriodeNonDisponibiliteStagiaire implements Serializable {
+public class ContraintePeriodeFaibleActiviteEntreprise implements Serializable {
 
 	/**
 	 * Serial UID
@@ -12,9 +12,8 @@ public class ContraintePeriodeNonDisponibiliteStagiaire implements Serializable 
 
 	private Date dateDebut;
 	private Date dateFin;
-	private String motif;
 
-	public ContraintePeriodeNonDisponibiliteStagiaire() {
+	public ContraintePeriodeFaibleActiviteEntreprise() {
 		super();
 	}
 
@@ -32,14 +31,6 @@ public class ContraintePeriodeNonDisponibiliteStagiaire implements Serializable 
 
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
-	}
-
-	public String getMotif() {
-		return motif;
-	}
-
-	public void setMotif(String motif) {
-		this.motif = motif;
 	}
 
 }
