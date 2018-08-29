@@ -43,6 +43,15 @@ public class RechercheStagiaireController implements Serializable {
 	private Stagiaire stagiaire;
 	private String txt2;
 	private String codeStagiaire;
+	private Object presence;
+
+	public Object getPresence() {
+		return presence;
+	}
+
+	public void setPresence(Object presence) {
+		this.presence = presence;
+	}
 
 	public String getCodeStagiaire() {
 		return codeStagiaire;
@@ -72,8 +81,10 @@ public class RechercheStagiaireController implements Serializable {
 	public void setup() {
 		LOGGER.info("RechercheStagiaireController setup");
 		stagiaire = new Stagiaire();
-		//TODO changer valeur en dur
-		stagiaire = stagiaireService.findBycodeStagiaire(20);
+		HttpSession session = SessionUtils.getSession();
+		presence = session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE);
+		presence = presence != null ? false : true;
+
 	}
 
 	/**
@@ -105,6 +116,25 @@ public class RechercheStagiaireController implements Serializable {
 	}
 
 	/**
+	 * Permet de verifier qu'un stagiaire est en session
+	 *
+	 * @throws IOException
+	 */
+	public void verifStagiaire() throws IOException {
+		HttpSession session = SessionUtils.getSession();
+		presence = session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE);
+
+		if (presence != null) {
+			presence = false;
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/ficheStagiaire.xhtml");
+		} else {
+			presence = true;
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/rechercheStagiaire.xhtml");
+		}
+
+	}
+
+	/**
 	 * Permet de passer à l'etape constitution calendrier
 	 *
 	 * @throws IOException
@@ -113,7 +143,6 @@ public class RechercheStagiaireController implements Serializable {
 		HttpSession session = SessionUtils.getSession();
 		session.setAttribute(SessionUtils.SESSION_ID_STAGIAIRE, codeStagiaire);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/ficheStagiaire.xhtml");
-
 	}
 
 }

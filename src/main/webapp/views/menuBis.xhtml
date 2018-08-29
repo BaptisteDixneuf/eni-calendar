@@ -29,10 +29,8 @@
             </a>
         </p:menuitem>
 
-        <p:menuitem>
-            <a href="#{request.contextPath}/views/ficheStagiaire.xhtml">
+        <p:menuitem action="#{rechercheStagiaireController.verifStagiaire}" disabled="#{rechercheStagiaireController.presence}">
                 <h:graphicImage url="/images/user.PNG"/>
-            </a>
         </p:menuitem>
 
         <p:submenu label="Modèles de calendriers">
