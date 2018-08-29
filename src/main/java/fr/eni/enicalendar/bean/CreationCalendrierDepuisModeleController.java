@@ -248,6 +248,12 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	 */
 	public void validationEtape() throws IOException {
 		HttpSession session = SessionUtils.getSession();
+
+		session.setAttribute(SessionUtils.SESSION_MODELE, codeModele);
+		session.setAttribute(SessionUtils.SESSION_LIEU, codeLieuFormation);
+		session.setAttribute(SessionUtils.SESSION_FORMATION, codeFormation);
+		session.setAttribute(SessionUtils.SESSION_DATEDEBUT, date1);
+		session.setAttribute(SessionUtils.SESSION_DATEFIN, date2);
 		modele = modeleService.findOne(Integer.valueOf(codeModele));
 
 	}
