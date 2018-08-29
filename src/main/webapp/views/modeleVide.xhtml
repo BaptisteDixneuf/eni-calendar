@@ -181,12 +181,32 @@
 				<p:tabView>
 					<p:tab title="Contraintes">
 						<h2>Les contraintes</h2>
-						<h:outputText
-							value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
-				                    His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-				                    Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, 
-				                    but given to ruthless violence whenever anything stands against the good of the family." />
-
+						<h:outputText value="Les contraintes:" />
+							
+						<p:selectBooleanCheckbox id="semaineAffileeEntreprise" value="#{modeleVideController.contraintes.semaineAffileeEntreprise}" />
+						<p:outputLabel for="semaineAffileeEntreprise" value="Nombre de semaine d'affilée en entreprise :  " />						
+						<p:spinner id="semaineAffileeEntrepriseNumber" value="#{modeleVideController.contraintes.semaineAffileeEntreprise}" min="0"/>
+						
+						<p:selectBooleanCheckbox id="semaineAffileeFormation" value="#{modeleVideController.contraintes.semaineAffileeFormation}" />
+						<p:outputLabel for="semaineAffileeFormation" value="Nombre de semaine d'affilée en formation : " />						
+						<p:spinner id="semaineAffileeFormationNumber" value="#{modeleVideController.contraintes.semaineAffileeFormationNombre}" min="0"/>
+						
+						<p:selectBooleanCheckbox id="periodeForteActiviteEntreprise" value="#{modeleVideController.contraintes.periodeForteActiviteEntreprise}" />
+						<p:outputLabel for="periodeForteActiviteEntreprise" value="Périodes de forte activité en entreprise :  " />
+						<p:calendar id="periodeForteActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintes.periodeForteActiviteEntrepriseDateDebut}" />
+						<p:calendar id="periodeForteActiviteEntrepriseDateFin" value="#{modeleVideController.contraintes.periodeForteActiviteEntrepriseDateFin}" />
+						
+						<p:selectBooleanCheckbox id="periodeFaibleActiviteEntreprise" value="#{modeleVideController.contraintes.periodeFaibleActiviteEntreprise}" />
+						<p:outputLabel for="periodeFaibleActiviteEntreprise" value="Périodes de faible activité en entreprise :  " />
+						<p:calendar id="periodeFaibleActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintes.periodeFaibleActiviteEntrepriseDateDebut}" />
+						<p:calendar id="periodeFaibleActiviteEntrepriseDateFin" value="#{modeleVideController.contraintes.periodeFaibleActiviteEntrepriseDateFin}" />
+						
+						<p:selectBooleanCheckbox id="periodeNonDisponibiliteStagiaire" value="#{modeleVideController.contraintes.periodeNonDisponibiliteStagiaire}" />
+						<p:outputLabel for="periodeNonDisponibiliteStagiaire" value="Périodes de non disponibilité du stagiaire ( Absences ) :" />
+						<p:inputText id="periodeNonDisponibiliteStagiaireMotif" value="#{modeleVideController.contraintes.periodeNonDisponibiliteStagiaireMotif}"></p:inputText>
+						<p:calendar id="periodeNonDisponibiliteStagiaireDateDebut" value="#{modeleVideController.contraintes.periodeNonDisponibiliteStagiaireDateDebut}" />
+						<p:calendar id="periodeNonDisponibiliteStagiaireDateFin" value="#{modeleVideController.contraintes.periodeNonDisponibiliteStagiaireDateFin}" />
+						
 					</p:tab>
 					<p:tab title="Dispenses">
 						<h:outputText

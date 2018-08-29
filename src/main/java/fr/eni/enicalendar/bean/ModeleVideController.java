@@ -21,6 +21,7 @@ import org.primefaces.event.DragDropEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.eni.enicalendar.dto.Contrainte;
 import fr.eni.enicalendar.dto.ElementCalendrier;
 import fr.eni.enicalendar.dto.ElementCalendrierType;
 import fr.eni.enicalendar.exceptions.FonctionnelException;
@@ -83,6 +84,9 @@ public class ModeleVideController implements Serializable {
 	private String codeLieuFormation;
 	private Date dateDebut;
 	private boolean preFormulaireValide = false;
+
+	/* Contraintes */
+	private Contrainte contraintes;
 
 	@PostConstruct
 	public void setup() {
@@ -430,6 +434,14 @@ public class ModeleVideController implements Serializable {
 
 	public void setPreFormulaireValide(boolean preFormulaireValide) {
 		this.preFormulaireValide = preFormulaireValide;
+	}
+
+	public Contrainte getContraintes() {
+		return contraintes;
+	}
+
+	public void setContraintes(Contrainte contraintes) {
+		this.contraintes = contraintes;
 	}
 
 }
