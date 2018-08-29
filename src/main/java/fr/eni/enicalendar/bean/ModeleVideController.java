@@ -9,10 +9,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.DragDropEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,7 +82,7 @@ public class ModeleVideController implements Serializable {
 	private List<Lieu> lieux;
 	private String codeLieuFormation;
 	private Date dateDebut;
-	private boolean preFormulaireValide;
+	private boolean preFormulaireValide = false;
 
 	@PostConstruct
 	public void setup() {
@@ -206,53 +210,25 @@ public class ModeleVideController implements Serializable {
 
 		try {
 
-			// TODO : faire les controles de surface
-
-			// On récupère les cours disponible pour cette formation, ce lieu et cette date
-			// de début
-			coursDisponible = coursService.findCoursByFormationAndLieu(codeFormation,
-					Integer.valueOf(codeLieuFormation));
-
-			// On transforme les élements calendriers en object ElementCalendrier ( Dans la
-			// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
-			// d'ElementCalendrier ( Cours, Modèles, ....)
-			availableElementCalendrier = new ArrayList<>();
-			for (Cours cours : coursDisponible) {
-				ElementCalendrier element = convertCoursToElementCalendrier(cours);
-				availableElementCalendrier.add(element);
-			}
-			Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
-				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
-					return m1.getDateDebut().compareTo(m2.getDateFin());
-				}
-			});
-
-			// On préremplie la colonne "Programmation" de la vue avec les données
-			// précédements enregistrés
-			droppedElementCalendrier = new ArrayList<ElementCalendrier>();
-
-			if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
-					&& SessionUtils.getId() != null) {
-
-				Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
-				List<Programmation> listProgrammationExistant = programmationService
-						.findProgrammationByModeleCalendrier(idModeleCalendrier);
-
-				List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
-				for (Programmation programmation : listProgrammationExistant) {
-					ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
-					droppedElementCalendrierExistant.add(element);
-					droppedElementCalendrier.add(element);
-					elementDeplaceDansProgrammation(element);
-				}
-
+			if (codeFormation == null || StringUtils.isBlank(codeFormation)) {
+				FacesContext.getCurrentInstance().addMessage("formation",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "La formation est obligatoire", ""));
 			}
 
-			Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
-				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
-					return m1.getDateDebut().compareTo(m2.getDateFin());
-				}
-			});
+			if (codeLieuFormation == null | StringUtils.isBlank(codeLieuFormation)) {
+				FacesContext.getCurrentInstance().addMessage("lieuFormation",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Le lieu de formation est obligatoire", ""));
+			}
+
+			if (dateDebut == null) {
+				FacesContext.getCurrentInstance().addMessage("dateDebut", new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"La date de début de formation est obligatoire", ""));
+			}
+
+			if (!hasError()) {
+				preFormulaireValide = true;
+				chargermentDonnees();
+			}
 
 		} catch (NumberFormatException e) {
 			LOGGER.error(e.getMessage(), e);
@@ -261,6 +237,64 @@ public class ModeleVideController implements Serializable {
 			LOGGER.error(e.getMessage(), e);
 			// TODO: afficher 1 message d'erreur
 		}
+	}
+
+	private void chargermentDonnees() throws FonctionnelException {
+		// On récupère les cours disponible pour cette formation, ce lieu et cette date
+		// de début
+		coursDisponible = coursService.findCoursByFormationAndLieu(codeFormation, Integer.valueOf(codeLieuFormation));
+
+		// On transforme les élements calendriers en object ElementCalendrier ( Dans la
+		// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
+		// d'ElementCalendrier ( Cours, Modèles, ....)
+		availableElementCalendrier = new ArrayList<>();
+		for (Cours cours : coursDisponible) {
+			ElementCalendrier element = convertCoursToElementCalendrier(cours);
+			availableElementCalendrier.add(element);
+		}
+		Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
+
+		// On préremplie la colonne "Programmation" de la vue avec les données
+		// précédements enregistrés
+		droppedElementCalendrier = new ArrayList<ElementCalendrier>();
+
+		if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
+				&& SessionUtils.getId() != null) {
+
+			Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
+			List<Programmation> listProgrammationExistant = programmationService
+					.findProgrammationByModeleCalendrier(idModeleCalendrier);
+
+			List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
+			for (Programmation programmation : listProgrammationExistant) {
+				ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
+				droppedElementCalendrierExistant.add(element);
+				droppedElementCalendrier.add(element);
+				elementDeplaceDansProgrammation(element);
+			}
+
+		}
+
+		Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
+	}
+
+	/**
+	 * Controle si existe erreur.
+	 *
+	 * @return true, if successful
+	 */
+	protected boolean hasError() {
+		LOGGER.info("Controle si existe erreur : "
+				+ CollectionUtils.isNotEmpty(FacesContext.getCurrentInstance().getMessageList()));
+		return CollectionUtils.isNotEmpty(FacesContext.getCurrentInstance().getMessageList());
 	}
 
 	/**
