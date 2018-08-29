@@ -1,8 +1,12 @@
 package fr.eni.enicalendar.utils;
 
+import fr.eni.enicalendar.persistence.erp.entities.Formation;
+import fr.eni.enicalendar.persistence.erp.entities.Lieu;
+
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 public class SessionUtils {
 
@@ -16,6 +20,15 @@ public class SessionUtils {
 	public static final String SESSION_ID = "id";
 
 	public static final String SESSION_ID_STAGIAIRE = "id_stagiaire";
+
+	public static final String SESSION_FORMATION = "";
+
+	public static final String SESSION_LIEU = "";
+
+	public static final String SESSION_MODELE = "";
+
+	public static final String SESSION_DATEDEBUT = "";
+	public static final String SESSION_DATEFIN = "";
 
 	public static HttpSession getSession() {
 		return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);

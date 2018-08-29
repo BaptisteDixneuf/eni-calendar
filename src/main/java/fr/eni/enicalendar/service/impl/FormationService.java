@@ -20,4 +20,9 @@ public class FormationService implements FormationServiceInterface {
 		return formationRepository.findAll();
 	}
 
+	@Override
+	public Formation findByCode(String code) {
+		return formationRepository.findOne(code);
+	}
+
 }

@@ -78,6 +78,7 @@ public class ModeleVideController implements Serializable {
 	private List<Lieu> lieux;
 	private String codeLieuFormation;
 	private Date dateDebut;
+	private boolean preFormulaireValide;
 
 	@PostConstruct
 	public void setup() {
@@ -86,7 +87,6 @@ public class ModeleVideController implements Serializable {
 		// On récupère les lieux et formations
 		lieux = lieuService.findAllLieux();
 		formations = formationService.findAllFormations();
-
 	}
 
 	/**
@@ -207,7 +207,9 @@ public class ModeleVideController implements Serializable {
 		try {
 
 			// TODO : faire les controles de surface
-			// On récupère les cours disponible
+
+			// On récupère les cours disponible pour cette formation, ce lieu et cette date
+			// de début
 			coursDisponible = coursService.findCoursByFormationAndLieu(codeFormation,
 					Integer.valueOf(codeLieuFormation));
 
@@ -226,7 +228,7 @@ public class ModeleVideController implements Serializable {
 			});
 
 			// On préremplie la colonne "Programmation" de la vue avec les données
-			// précédentes
+			// précédements enregistrés
 			droppedElementCalendrier = new ArrayList<ElementCalendrier>();
 
 			if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
@@ -386,6 +388,14 @@ public class ModeleVideController implements Serializable {
 
 	public void setDateDebut(Date dateDebut) {
 		this.dateDebut = dateDebut;
+	}
+
+	public boolean isPreFormulaireValide() {
+		return preFormulaireValide;
+	}
+
+	public void setPreFormulaireValide(boolean preFormulaireValide) {
+		this.preFormulaireValide = preFormulaireValide;
 	}
 
 }
