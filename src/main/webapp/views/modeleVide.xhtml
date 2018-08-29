@@ -43,7 +43,7 @@
 					</p:selectOneMenu>
 					<p:messages for="formation"></p:messages>
 
-					<p:outputLabel for="lieuFormation" value="Lieu de formation:" />
+					<p:outputLabel for="lieuFormation" value="Lieu de formation :" />
 					<p:selectOneMenu id="lieuFormation"
 						value="#{modeleVideController.codeLieuFormation}">
 						<f:selectItem itemLabel="Selectionner un lieu" itemValue="" />
@@ -52,15 +52,13 @@
 					</p:selectOneMenu>
 					<p:messages for="lieuFormation"></p:messages>
 
-					<p:outputLabel for="dateDebut" value="Date de début" />
+					<p:outputLabel for="dateDebut" value="Date de début :" />
 					<p:calendar id="dateDebut"
 						value="#{modeleVideController.dateDebut}" locale="fr"
 						navigator="true" pattern="dd/MM/yyyy" />
 					<p:messages for="dateDebut"></p:messages>
 					
-					<p:commandButton id="creer" value="creer"	action="#{modeleVideController.creer}" update=":coursForm"></p:commandButton>
-
-
+					<p:commandButton id="creer" value="Créer" action="#{modeleVideController.creer}" update=":coursForm"></p:commandButton>
 				</div>
 				<div class="ui-g-3"></div>
 			</div>
