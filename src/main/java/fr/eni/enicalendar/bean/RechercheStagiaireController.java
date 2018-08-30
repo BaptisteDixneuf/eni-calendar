@@ -142,7 +142,11 @@ public class RechercheStagiaireController implements Serializable {
 	public void validationEtape() throws IOException {
 		HttpSession session = SessionUtils.getSession();
 		session.setAttribute(SessionUtils.SESSION_ID_STAGIAIRE, codeStagiaire);
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/ficheStagiaire.xhtml");
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage("general",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Stagiaire trouvé!", ""));
+		context.getExternalContext().redirect("/eni-calendar/views/ficheStagiaire.xhtml");
 	}
 
 }

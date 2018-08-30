@@ -167,9 +167,10 @@ public class GestionUtilisateursController implements Serializable {
 
         utilisateur = utilisateurService.findById(id);
         utilisateurService.deleteUtilisateur(utilisateur);
-		FacesContext.getCurrentInstance().addMessage("general",
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage("general",
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Utilisateur supprimé!", ""));
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
+		context.getExternalContext().redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
     }
 }

@@ -121,11 +121,11 @@ public class ModificationUtilisateurController implements Serializable {
         }
         utilisateurService.saveUtilisateur(utilisateur);
 
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
-        FacesContext.getCurrentInstance().addMessage("general",
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        context.addMessage("general",
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Les informations ont bien été enregistrées!", ""));
-
+        context.getExternalContext().redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
     }
 
 }
