@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -166,7 +167,8 @@ public class GestionUtilisateursController implements Serializable {
 
         utilisateur = utilisateurService.findById(id);
         utilisateurService.deleteUtilisateur(utilisateur);
-
+		FacesContext.getCurrentInstance().addMessage("general",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Utilisateur supprimé!", ""));
         FacesContext.getCurrentInstance().getExternalContext()
                 .redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
     }

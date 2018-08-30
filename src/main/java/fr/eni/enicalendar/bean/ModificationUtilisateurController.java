@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -122,6 +123,8 @@ public class ModificationUtilisateurController implements Serializable {
 
         FacesContext.getCurrentInstance().getExternalContext()
                 .redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
+        FacesContext.getCurrentInstance().addMessage("general",
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Les informations ont bien été enregistrées!", ""));
 
     }
 

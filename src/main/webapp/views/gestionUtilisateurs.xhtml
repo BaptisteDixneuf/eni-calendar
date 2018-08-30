@@ -24,6 +24,9 @@
 		<h1>Liste des utilisateurs de l'application</h1>
         <p:commandButton value="+ Créer un nouvel utilisateur" style="background-color: #2E9AFE" action="#{gestionUtilisateursController.ajoutUtilisateur('Création')}"/>
         <h:form>
+            <p:messages for="general" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
             <p:dataTable var="utilisateurs" value="#{gestionUtilisateursController.utilisateurs}" widgetVar="titreTable" emptyMessage="Auncun utilisateur ne correspond">
                 <p:column headerText="Nom" sortBy="#{utilisateurs.nom}" filterBy="#{utilisateurs.nom}">
                     <h:outputText value="#{utilisateurs.nom}"/>

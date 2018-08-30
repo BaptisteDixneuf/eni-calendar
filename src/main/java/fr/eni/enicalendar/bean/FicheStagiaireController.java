@@ -193,6 +193,8 @@ public class FicheStagiaireController implements Serializable {
 		session.setAttribute(SessionUtils.SESSION_ID, id);
 		calendrier = calendrierService.findOne(id);
 		calendrierService.deleteCalendrier(calendrier);
+		FacesContext.getCurrentInstance().addMessage("general",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Calendrier supprimé!", ""));
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/ficheStagiaire.xhtml");
 	}
 
