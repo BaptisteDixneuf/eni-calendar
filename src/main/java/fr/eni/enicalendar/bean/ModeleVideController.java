@@ -139,7 +139,7 @@ public class ModeleVideController implements Serializable {
 	private ElementCalendrier convertCoursToElementCalendrier(Cours cours) {
 		ElementCalendrier element = new ElementCalendrier();
 		element.setId(cours.getId());
-		element.setLibelle(cours.getLibelleCours());
+		element.setLibelle(cours.getModule().getLibelle());
 		element.setDateDebut(cours.getDateDebut());
 		element.setDateFin(cours.getDateFin());
 		element.setType(ElementCalendrierType.CALENDRIER);
@@ -168,7 +168,7 @@ public class ModeleVideController implements Serializable {
 				throw new FonctionnelException("Errreur lors de la récupération du modèle");
 			} else {
 				element.setId(coursTrouve.getId());
-				element.setLibelle(coursTrouve.getLibelleCours());
+				element.setLibelle(coursTrouve.getModule().getLibelle());
 				element.setDateDebut(coursTrouve.getDateDebut());
 				element.setDateFin(coursTrouve.getDateFin());
 				element.setType(ElementCalendrierType.CALENDRIER);

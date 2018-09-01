@@ -3,10 +3,13 @@ package fr.eni.enicalendar.persistence.erp.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,7 +45,11 @@ public class Cours implements Serializable {
 	@Column(name = "dureePrevueEnHeures")
 	private Short dureePrevueEnHeures;
 
-	@Column(name = "IdModule")
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "IdModule")
+	private Module module;
+
+	@Column(name = "idModule")
 	private Integer idModule;
 
 	@Column(name = "CodeLieu")
@@ -123,12 +130,12 @@ public class Cours implements Serializable {
 		this.dureePrevueEnHeures = dureePrevueEnHeures;
 	}
 
-	public Integer getIdModule() {
-		return idModule;
+	public Module getModule() {
+		return module;
 	}
 
-	public void setIdModule(Integer idModule) {
-		this.idModule = idModule;
+	public void setModule(Module module) {
+		this.module = module;
 	}
 
 	public Integer getCodeLieu() {
@@ -137,6 +144,14 @@ public class Cours implements Serializable {
 
 	public void setCodeLieu(Integer codeLieu) {
 		this.codeLieu = codeLieu;
+	}
+
+	public Integer getIdModule() {
+		return idModule;
+	}
+
+	public void setIdModule(Integer idModule) {
+		this.idModule = idModule;
 	}
 
 }
