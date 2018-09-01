@@ -8,4 +8,6 @@ public interface ModuleServiceInterface {
 
 	List<Module> findModuleByFormation(String codeFormation);
 
+	List<Module> findModuleByFormationAndLibelle(String codeFormation, String libelle);
+
 }

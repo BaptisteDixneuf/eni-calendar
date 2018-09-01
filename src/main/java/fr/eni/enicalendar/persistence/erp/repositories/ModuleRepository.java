@@ -15,4 +15,11 @@ public interface ModuleRepository extends JpaRepository<Module, Integer> {
 			+ "JOIN ModuleParUnite mpu ON mpu.idUnite = upf.id " + "JOIN Module m ON m.id = mpu.idModule"
 			+ " WHERE f.codeFormation = :codeFormation" + " AND upf.position = 0")
 	List<Module> findModuleByFormation(@Param("codeFormation") String codeFormation);
+
+	@Query("select m from Formation f " + "JOIN UniteParFormation upf ON f.codeFormation = upf.codeFormation "
+			+ "JOIN UniteFormation uf ON upf.idUniteFormation = uf.id "
+			+ "JOIN ModuleParUnite mpu ON mpu.idUnite = upf.id " + "JOIN Module m ON m.id = mpu.idModule"
+			+ " WHERE f.codeFormation = :codeFormation" + " AND upf.position = 0" + " AND m.libelle = :libelle")
+	List<Module> findModuleByFormationAndLibelle(@Param("codeFormation") String codeFormation,
+			@Param("libelle") String libelle);
 }

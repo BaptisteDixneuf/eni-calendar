@@ -24,4 +24,9 @@ public class ModuleService implements ModuleServiceInterface {
 		return moduleRepository.findModuleByFormation(codeFormation);
 	}
 
+	@Override
+	public List<Module> findModuleByFormationAndLibelle(String codeFormation, String libelle) {
+		return moduleRepository.findModuleByFormationAndLibelle(codeFormation, libelle);
+	}
+
 }

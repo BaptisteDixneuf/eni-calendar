@@ -179,6 +179,7 @@
 			<div id="blocGroupe">
 
 				<p:tabView>
+					<!-- Les contraintes -->
 					<p:tab title="Contraintes">
 						<h2>Les contraintes</h2>
 						<h:outputText value="Les contraintes:" />
@@ -208,23 +209,31 @@
 						<p:calendar id="periodeNonDisponibiliteStagiaireDateFin" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateFin}" />
 						
 					</p:tab>
+					<!-- Les dispenses -->
 					<p:tab title="Dispenses">
-						<h:outputText value="Les dispenses" />
-						<p:dataTable var="moduleIndependant" value="#{modeleVideController.dispensesViewElement.listDispenses}">
+						<h:outputText value="Les dispenses : " />
+						<p:dataTable var="dispense" value="#{modeleVideController.dispensesViewElement.listDispenses}">
+							<p:column>
+								<h:outputText value="#{dispense.libelle}"></h:outputText>
+							</p:column>
+						</p:dataTable>
+						<p:autoComplete id="moduleAutocomplete" minQueryLength="3" value="#{modeleVideController.dispensesViewElement.selectedModule}" completeMethod="#{modeleVideController.autocompleteModule}" style="display: flex; justify-content: center;"
+								var="moduleIndependant" itemLabel="TODO" itemValue="#{stagiaire.codeStagiaire}" forceSelection="true"/>
+					</p:tab>
+					<!-- Les modules indépendants -->
+					<p:tab title="Modules indépendants">
+						<h:outputText value="Les modules indépendants : " />
+						<p:dataTable var="moduleIndependant" value="#{modeleVideController.moduleIndependantsViewElement.listModuleIndependants}">
 							<p:column>
 								<h:outputText value="#{moduleIndependant.libelle}"></h:outputText>
 							</p:column>
 						</p:dataTable>
-						<p:autoComplete id="moduleAutocomplete" minQueryLength="3" value="#{modeleVideController.dispensesViewElement.selectedModule}" completeMethod="#{modeleVideController.autocompleteModuleIndependant}" style="display: flex; justify-content: center;"
-								var="moduleIndependant" itemLabel="TODO" itemValue="#{stagiaire.codeStagiaire}" forceSelection="true"/>
-					</p:tab>
-					<p:tab title="Modules indépendants">
-						<h:outputText value="Les modules indépendants" />
 						<p:autoComplete id="moduleIndependantAutocomplete" minQueryLength="3" value="#{modeleVideController.moduleIndependantsViewElement.selectedModuleIndependant}" completeMethod="#{modeleVideController.autocompleteModuleIndependant}" style="display: flex; justify-content: center;"
 								var="moduleIndependant" itemLabel="TODO" itemValue="#{stagiaire.codeStagiaire}" forceSelection="true"/>
 					</p:tab>
+					<!-- Les autres cours -->
 					<p:tab title="Autre cours">
-						<h:outputText value="Les autres cours" />
+						<h:outputText value="Les autres cours :" />
 					</p:tab>
 				</p:tabView>
 

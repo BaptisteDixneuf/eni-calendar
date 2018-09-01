@@ -28,11 +28,13 @@ import fr.eni.enicalendar.persistence.app.entities.Programmation;
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
+import fr.eni.enicalendar.persistence.erp.entities.Module;
 import fr.eni.enicalendar.service.CoursServiceInterface;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.ModeleCalendrierServiceInterface;
 import fr.eni.enicalendar.service.ModuleIndependantsServiceInterface;
+import fr.eni.enicalendar.service.ModuleServiceInterface;
 import fr.eni.enicalendar.service.ProgrammationServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
 import fr.eni.enicalendar.viewElement.AutreCours;
@@ -70,6 +72,9 @@ public class ModeleVideController implements Serializable {
 
 	@ManagedProperty(value = "#{moduleIndependantsService}")
 	private ModuleIndependantsServiceInterface moduleIndependantsService;
+
+	@ManagedProperty(value = "#{moduleServiceInterface}")
+	private ModuleServiceInterface moduleService;
 
 	private List<ElementCalendrier> availableElementCalendrier;
 
@@ -324,6 +329,13 @@ public class ModeleVideController implements Serializable {
 		return liste;
 	}
 
+	public List<Module> autocompleteModule(String query) {
+		// enlever l'espace devant la chaine
+		query = query.trim();
+		List<Module> liste = moduleService.findModuleByFormationAndLibelle(codeFormation, query);
+		return liste;
+	}
+
 	/**
 	 * @return the coursService
 	 */
@@ -497,6 +509,14 @@ public class ModeleVideController implements Serializable {
 
 	public void setModuleIndependantsService(ModuleIndependantsServiceInterface moduleIndependantsService) {
 		this.moduleIndependantsService = moduleIndependantsService;
+	}
+
+	public ModuleServiceInterface getModuleService() {
+		return moduleService;
+	}
+
+	public void setModuleService(ModuleServiceInterface moduleService) {
+		this.moduleService = moduleService;
 	}
 
 }
