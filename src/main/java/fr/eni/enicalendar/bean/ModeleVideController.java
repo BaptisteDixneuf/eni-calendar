@@ -73,7 +73,7 @@ public class ModeleVideController implements Serializable {
 	@ManagedProperty(value = "#{moduleIndependantsService}")
 	private ModuleIndependantsServiceInterface moduleIndependantsService;
 
-	@ManagedProperty(value = "#{moduleServiceInterface}")
+	@ManagedProperty(value = "#{moduleService}")
 	private ModuleServiceInterface moduleService;
 
 	private List<ElementCalendrier> availableElementCalendrier;

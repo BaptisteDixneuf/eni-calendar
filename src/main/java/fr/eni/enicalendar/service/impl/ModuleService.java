@@ -29,4 +29,9 @@ public class ModuleService implements ModuleServiceInterface {
 		return moduleRepository.findModuleByFormationAndLibelle(codeFormation, libelle);
 	}
 
+	@Override
+	public Module findModuleById(Integer id) {
+		return moduleRepository.findOne(id);
+	}
+
 }

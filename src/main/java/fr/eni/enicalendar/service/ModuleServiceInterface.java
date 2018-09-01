@@ -10,4 +10,6 @@ public interface ModuleServiceInterface {
 
 	List<Module> findModuleByFormationAndLibelle(String codeFormation, String libelle);
 
+	Module findModuleById(Integer id);
+
 }

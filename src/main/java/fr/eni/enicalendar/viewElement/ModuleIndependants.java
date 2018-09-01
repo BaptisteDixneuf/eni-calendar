@@ -3,6 +3,8 @@ package fr.eni.enicalendar.viewElement;
 import java.io.Serializable;
 import java.util.List;
 
+import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
+
 public class ModuleIndependants implements Serializable {
 
 	/**
@@ -12,7 +14,7 @@ public class ModuleIndependants implements Serializable {
 
 	private List<ModuleIndependantElement> listModuleIndependants;
 
-	private String selectedModuleIndependant;
+	private ModuleIndependant selectedModuleIndependant;
 
 	public ModuleIndependants() {
 		super();
@@ -26,11 +28,11 @@ public class ModuleIndependants implements Serializable {
 		this.listModuleIndependants = listModuleIndependants;
 	}
 
-	public String getSelectedModuleIndependant() {
+	public ModuleIndependant getSelectedModuleIndependant() {
 		return selectedModuleIndependant;
 	}
 
-	public void setSelectedModuleIndependant(String selectedModuleIndependant) {
+	public void setSelectedModuleIndependant(ModuleIndependant selectedModuleIndependant) {
 		this.selectedModuleIndependant = selectedModuleIndependant;
 	}
 
