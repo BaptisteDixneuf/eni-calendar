@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.exceptions.FonctionnelException;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
+import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
@@ -31,6 +32,7 @@ import fr.eni.enicalendar.service.CoursServiceInterface;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.ModeleCalendrierServiceInterface;
+import fr.eni.enicalendar.service.ModuleIndependantsServiceInterface;
 import fr.eni.enicalendar.service.ProgrammationServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
 import fr.eni.enicalendar.viewElement.AutreCours;
@@ -65,6 +67,9 @@ public class ModeleVideController implements Serializable {
 
 	@ManagedProperty(value = "#{formationService}")
 	private FormationServiceInterface formationService;
+
+	@ManagedProperty(value = "#{moduleIndependantsService}")
+	private ModuleIndependantsServiceInterface moduleIndependantsService;
 
 	private List<ElementCalendrier> availableElementCalendrier;
 
@@ -312,6 +317,13 @@ public class ModeleVideController implements Serializable {
 		return CollectionUtils.isNotEmpty(FacesContext.getCurrentInstance().getMessageList());
 	}
 
+	public List<ModuleIndependant> autocompleteModuleIndependant(String query) {
+		// enlever l'espace devant la chaine
+		query = query.trim();
+		List<ModuleIndependant> liste = moduleIndependantsService.findByLibelle(query);
+		return liste;
+	}
+
 	/**
 	 * @return the coursService
 	 */
@@ -478,4 +490,13 @@ public class ModeleVideController implements Serializable {
 	public void setAutreCoursViewElement(AutreCours autreCoursViewElement) {
 		this.autreCoursViewElement = autreCoursViewElement;
 	}
+
+	public ModuleIndependantsServiceInterface getModuleIndependantsService() {
+		return moduleIndependantsService;
+	}
+
+	public void setModuleIndependantsService(ModuleIndependantsServiceInterface moduleIndependantsService) {
+		this.moduleIndependantsService = moduleIndependantsService;
+	}
+
 }

@@ -12,6 +12,8 @@ public class ModuleIndependants implements Serializable {
 
 	private List<ModuleIndependantElement> listModuleIndependants;
 
+	private String selectedModuleIndependant;
+
 	public ModuleIndependants() {
 		super();
 	}
@@ -22,6 +24,14 @@ public class ModuleIndependants implements Serializable {
 
 	public void setListModuleIndependants(List<ModuleIndependantElement> listModuleIndependants) {
 		this.listModuleIndependants = listModuleIndependants;
+	}
+
+	public String getSelectedModuleIndependant() {
+		return selectedModuleIndependant;
+	}
+
+	public void setSelectedModuleIndependant(String selectedModuleIndependant) {
+		this.selectedModuleIndependant = selectedModuleIndependant;
 	}
 
 }

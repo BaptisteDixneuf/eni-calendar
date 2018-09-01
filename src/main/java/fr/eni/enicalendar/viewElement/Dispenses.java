@@ -12,6 +12,8 @@ public class Dispenses implements Serializable {
 
 	private List<DispenseElement> listDispenses;
 
+	private String selectedModule;
+
 	public Dispenses() {
 		super();
 	}
@@ -22,6 +24,14 @@ public class Dispenses implements Serializable {
 
 	public void setListDispenses(List<DispenseElement> listDispenses) {
 		this.listDispenses = listDispenses;
+	}
+
+	public String getSelectedModule() {
+		return selectedModule;
+	}
+
+	public void setSelectedModule(String selectedModule) {
+		this.selectedModule = selectedModule;
 	}
 
 }

@@ -209,20 +209,22 @@
 						
 					</p:tab>
 					<p:tab title="Dispenses">
-						<h:outputText
-							value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. 
-				                In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy, 
-				                killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows." />
+						<h:outputText value="Les dispenses" />
+						<p:dataTable var="moduleIndependant" value="#{modeleVideController.dispensesViewElement.listDispenses}">
+							<p:column>
+								<h:outputText value="#{moduleIndependant.libelle}"></h:outputText>
+							</p:column>
+						</p:dataTable>
+						<p:autoComplete id="moduleAutocomplete" minQueryLength="3" value="#{modeleVideController.dispensesViewElement.selectedModule}" completeMethod="#{modeleVideController.autocompleteModuleIndependant}" style="display: flex; justify-content: center;"
+								var="moduleIndependant" itemLabel="TODO" itemValue="#{stagiaire.codeStagiaire}" forceSelection="true"/>
 					</p:tab>
 					<p:tab title="Modules indépendants">
-						<h:outputText
-							value="After a break of more than 15 years, direcRgestor Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. 
-				                    Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+						<h:outputText value="Les modules indépendants" />
+						<p:autoComplete id="moduleIndependantAutocomplete" minQueryLength="3" value="#{modeleVideController.moduleIndependantsViewElement.selectedModuleIndependant}" completeMethod="#{modeleVideController.autocompleteModuleIndependant}" style="display: flex; justify-content: center;"
+								var="moduleIndependant" itemLabel="TODO" itemValue="#{stagiaire.codeStagiaire}" forceSelection="true"/>
 					</p:tab>
 					<p:tab title="Autre cours">
-						<h:outputText
-							value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. 
-				                    Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+						<h:outputText value="Les autres cours" />
 					</p:tab>
 				</p:tabView>
 
