@@ -1,4 +1,4 @@
-package fr.eni.enicalendar.dto;
+package fr.eni.enicalendar.viewElement;
 
 import java.util.Date;
 
