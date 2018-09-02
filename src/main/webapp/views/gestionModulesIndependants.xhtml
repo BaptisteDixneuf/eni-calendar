@@ -49,10 +49,19 @@
 				</p:column>
 				<p:column headerText="">
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionModulesIndependantsController.modificationModule('Modification', modules.id)}"/>
-					<p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{gestionModulesIndependantsController.supprimerModule(modules.id)}"/>
+					<p:commandButton value="Supprimer" action="#{gestionModulesIndependantsController.setId(modules.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
 				</p:column>
 
 			</p:dataTable>
+
+			<p:dialog id="dlg2" header="Confirmation" widgetVar="dlg2" modal="true" height="100" style="text-align: center">
+				<h:form>
+					<h:outputText value="Etes vous sur de vouloir supprimer ce module? Cette action est définitive." /><br/><br/>
+					<p:commandButton action="#{gestionModulesIndependantsController.supprimerModule}"
+									 value="Supprimer" style="background-color: #FE2E2E">
+					</p:commandButton>
+				</h:form>
+			</p:dialog>
 
 		</h:form>
 		</div>

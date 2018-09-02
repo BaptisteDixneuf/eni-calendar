@@ -38,9 +38,19 @@ public class GestionUtilisateursController implements Serializable {
 
 	private Utilisateur utilisateur;
 
+
 	private String role;
 
 	private String typeAction;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	@PostConstruct
 	public void setup() {
@@ -160,10 +170,9 @@ public class GestionUtilisateursController implements Serializable {
      *
      * @throws IOException
      */
-    public void supprimerUtilisateur(Integer id) throws IOException {
+    public void supprimerUtilisateur() throws IOException {
         HttpSession session = SessionUtils.getSession();
         session.setAttribute(SessionUtils.SESSION_ID, id);
-
         utilisateur = utilisateurService.findById(id);
         utilisateurService.deleteUtilisateur(utilisateur);
 		FacesContext context = FacesContext.getCurrentInstance();

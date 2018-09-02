@@ -36,6 +36,15 @@ public class GestionModelesController implements Serializable {
 	private List<ModeleCalendrier> modeles;
 	private ModeleCalendrier modele;
 	private String typeAction;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	@PostConstruct
 	public void setup() {
@@ -115,7 +124,7 @@ public class GestionModelesController implements Serializable {
 	 *
 	 * @throws IOException
 	 */
-	public void supprimerModele(Integer id) throws IOException {
+	public void supprimerModele() throws IOException {
 
 		// Supprimer les Modules Indépendants
 
