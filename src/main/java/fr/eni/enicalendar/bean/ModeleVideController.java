@@ -1,6 +1,7 @@
 package fr.eni.enicalendar.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -95,9 +96,11 @@ public class ModeleVideController implements Serializable {
 	 * Pré-formulaire
 	 */
 	private String codeFormation;
+	private Formation selectedFormation;
 	private List<Formation> formations;
 	private List<Lieu> lieux;
 	private String codeLieuFormation;
+	private Lieu selectedLieu;
 	private Date dateDebut;
 	private boolean preFormulaireValide = false;
 
@@ -107,14 +110,22 @@ public class ModeleVideController implements Serializable {
 	private ModuleIndependants moduleIndependantsViewElement;
 	private AutreCours autreCoursViewElement;
 
+	/**
+	 * Format de date en fonction de la locale
+	 */
+	private SimpleDateFormat sdfDate;
+
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("CoursController setup");
 
+		sdfDate = new SimpleDateFormat("dd-MM-yyyy");
+
 		// On récupère les lieux et formations
 		lieux = lieuService.findAllLieux();
 		formations = formationService.findAllFormations();
-		ensembleCours = coursService.findAllCours();
+		// TODO: remettrre
+		// ensembleCours = coursService.findAllCours();
 
 		contraintesViewElement = new Contraintes();
 		dispensesViewElement = new Dispenses();
@@ -234,9 +245,12 @@ public class ModeleVideController implements Serializable {
 		}
 	}
 
+	/**
+	 * A la fin du pré-formulaire - Lorsque l'utilisateur clique sur valider
+	 * Vaidation des données + Chargement des données annexes si contrôle ok
+	 */
 	public void creer() {
 		LOGGER.info("Bouton créer");
-
 		try {
 
 			if (codeFormation == null || StringUtils.isBlank(codeFormation)) {
@@ -255,16 +269,20 @@ public class ModeleVideController implements Serializable {
 			}
 
 			if (!hasError()) {
+				selectedFormation = formationService.findByCode(codeFormation);
+				selectedLieu = lieuService.findByCodeLieu(Integer.valueOf(codeLieuFormation));
 				preFormulaireValide = true;
 				chargermentDonnees();
 			}
 
 		} catch (NumberFormatException e) {
 			LOGGER.error(e.getMessage(), e);
-			// TODO: afficher 1 message d'erreur
+			FacesContext.getCurrentInstance().addMessage("general",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		} catch (FonctionnelException e) {
 			LOGGER.error(e.getMessage(), e);
-			// TODO: afficher 1 message d'erreur
+			FacesContext.getCurrentInstance().addMessage("general",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
 	}
 
@@ -338,6 +356,21 @@ public class ModeleVideController implements Serializable {
 		query = query.trim();
 		List<Module> liste = moduleService.findModuleByFormationAndLibelle(codeFormation, query);
 		return liste;
+	}
+
+	/**
+	 * Convertie une date au format anglais ou français en fonction de la locale
+	 * 
+	 * @param actionDate
+	 * @return
+	 */
+	public String formatDate(Date actionDate) {
+		String dateString = "";
+		if (actionDate != null) {
+			dateString = sdfDate.format(actionDate);
+		}
+
+		return dateString;
 	}
 
 	/**
@@ -529,6 +562,22 @@ public class ModeleVideController implements Serializable {
 
 	public void setEnsembleCours(List<Cours> ensembleCours) {
 		this.ensembleCours = ensembleCours;
+	}
+
+	public Formation getSelectedFormation() {
+		return selectedFormation;
+	}
+
+	public void setSelectedFormation(Formation selectedFormation) {
+		this.selectedFormation = selectedFormation;
+	}
+
+	public Lieu getSelectedLieu() {
+		return selectedLieu;
+	}
+
+	public void setSelectedLieu(Lieu selectedLieu) {
+		this.selectedLieu = selectedLieu;
 	}
 
 }

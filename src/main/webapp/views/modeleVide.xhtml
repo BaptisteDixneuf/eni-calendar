@@ -27,7 +27,7 @@
 
 	<h:form id="coursForm">
 		
-		<h:panelGroup id="panelCalendrier">
+		<h:panelGroup id="preFormulaire">
 			<p:messages for="general"/>
 
 			<!-- Début du préformulaire -->
@@ -40,18 +40,18 @@
 					<div class="ui-g">
 						<div class="ui-g-6">
 							<p:outputLabel for="formation" value="Formation :" />
-							<p:selectOneMenu id="formation"
+							<p:selectOneMenu id="formation" disabled="#{modeleVideController.preFormulaireValide}"
 								value="#{modeleVideController.codeFormation}">
 								<f:selectItem itemLabel="Selectionner une formation" itemValue="" />
 								<f:selectItems value="#{modeleVideController.formations}"
-									var="formation" itemLabel="#{formation.libelleLong}"
+									var="formation" itemLabel="#{formation.libelleCourt}"
 									itemValue="#{formation.codeFormation}" />
 							</p:selectOneMenu>
 							<p:messages for="formation"></p:messages>
 						</div>
 						<div class="ui-g-6">
 							<p:outputLabel for="lieuFormation" value="Lieu de formation :" />
-							<p:selectOneMenu id="lieuFormation"
+							<p:selectOneMenu id="lieuFormation" disabled="#{modeleVideController.preFormulaireValide}"
 								value="#{modeleVideController.codeLieuFormation}">
 								<f:selectItem itemLabel="Selectionner un lieu" itemValue="" />
 								<f:selectItems value="#{modeleVideController.lieux}" var="lieu"
@@ -63,13 +63,13 @@
 					<div class="ui-g">
 						<div class="ui-g-6">
 							<p:outputLabel for="dateDebut" value="Date de début :" />
-							<p:calendar id="dateDebut"
+							<p:calendar id="dateDebut" disabled="#{modeleVideController.preFormulaireValide}"
 								value="#{modeleVideController.dateDebut}" locale="fr"
 								navigator="true" pattern="dd/MM/yyyy" />
 							<p:messages for="dateDebut"></p:messages>
 						</div>
 						<div class="ui-g-6">
-							<p:commandButton id="creer" value="Créer" action="#{modeleVideController.creer}" update=":coursForm"></p:commandButton>
+							<p:commandButton styleClass="m-l-25" id="creer" value="Créer" action="#{modeleVideController.creer}" update=":coursForm" disabled="#{modeleVideController.preFormulaireValide}"></p:commandButton>
 						</div>
 					</div>
 				</div>
@@ -77,202 +77,210 @@
 				<div class="ui-g-3"></div>
 			</div>
 			<!-- Fin du préformualire -->
-			
-			<!-- Tableau de programmation -->
-			<div class="ui-g">
-				<!--  Liste des cours disponibles -->
-				<div class="ui-g-6">
-					<p:dataTable id="availableElementCalendrier" var="element"
-						value="#{modeleVideController.availableElementCalendrier}">	
-
-						<p:column rendered="#{!element.moduleProgramme}">
-							<p:panel id="gpnl">
-								<h:outputText value="#{element.libelle}"></h:outputText> - 
-			               		<h:outputText value="#{element.dateDebut}"></h:outputText> -
-			               		<h:outputText value="#{element.dateFin}"></h:outputText>
-
-							</p:panel>
-							<p:draggable for="gpnl" revert="true" helper="clone"
-								disabled="#{element.moduleProgramme}" />
-						</p:column>
-
-
-					</p:dataTable>
-				</div>
-
-				<!-- Listes des cours sélectionnées -->
-				<div class="ui-g-6">
-					<p:fieldset id="selectedElementCalendrier">
-						<p:outputPanel id="dropArea">
-							<h:outputText value="Aucun éléments"
-								rendered="#{empty modeleVideController.droppedElementCalendrier}"
-								style="font-size:24px;" />
-							<p:dataTable id="selectedCoursTable" var="element"
-								value="#{modeleVideController.droppedElementCalendrier}"
-								rendered="#{not empty modeleVideController.droppedElementCalendrier}">
-								<p:column>
-									<h:outputText value="#{element.libelle}"></h:outputText> - 
-	               			<h:outputText value="#{element.dateDebut}"></h:outputText> -
-	               			<h:outputText value="#{element.dateFin}"></h:outputText>
-									<p:commandButton id="deprogrammer" value="Déprogrammer"
-										action="#{modeleVideController.deprogrammer(element)}"
-										update=":coursForm:panelCalendrier"></p:commandButton>
-								</p:column>
-							</p:dataTable>
-						</p:outputPanel>
-					</p:fieldset>
-				</div>
-
-				<p:droppable for="selectedElementCalendrier" tolerance="touch"
-					activeStyleClass="ui-state-highlight"
-					datasource="availableElementCalendrier" onDrop="handleDrop">
-					<p:ajax
-						listener="#{modeleVideController.onElementCalendrierDrop}"
-						update="dropArea availableElementCalendrier" />
-				</p:droppable>
-
-			</div>
 		</h:panelGroup>
 		
-		<!-- Barre plier -->
-		<div id="groupeConteneur">			
-			<div class="paveGroupe">
-				<div class="pull-l">
-					<!-- Mettre à gauche -->
-					<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
-
-						<!-- Bouton + -->
-						<h:panelGroup styleClass="informationGroupeBoutonGui">
-							<p:commandLink id="plierDeplierPaveGroupeButton"
-								styleClass="icn_open" oncomplete="PF('modalGroupe').show();">
-								<i class="fa fa-plus-circle boutonPlierGUI"></i>
-							</p:commandLink>
-						</h:panelGroup>
-
-						<!-- Libelle de la barre fixe-->
-						<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">							
-						 		Nom de la formation 7						 		
-							</h:panelGroup>
-
-					</h:panelGroup>
-					<p:commandButton id="enregistrer" value="Enregistrer" action="#{modeleVideController.save}" update=":coursForm:panelCalendrier"></p:commandButton>
+		<h:panelGroup id="panelCalendrier">	
+			<h:panelGroup rendered="#{modeleVideController.preFormulaireValide}">
+				<!-- Tableau de programmation -->
+				<div class="ui-g">
+					<!--  Liste des cours disponibles -->
+					<div class="ui-g-6">
+						<p:dataTable id="availableElementCalendrier" var="element"
+							value="#{modeleVideController.availableElementCalendrier}">	
+	
+							<p:column rendered="#{!element.moduleProgramme}">
+								<p:panel id="gpnl">
+									<h:outputText value="#{element.libelle}"></h:outputText> - 
+				               		<h:outputText value="#{element.dateDebut}"></h:outputText> -
+				               		<h:outputText value="#{element.dateFin}"></h:outputText>
+	
+								</p:panel>
+								<p:draggable for="gpnl" revert="true" helper="clone"
+									disabled="#{element.moduleProgramme}" />
+							</p:column>
+	
+	
+						</p:dataTable>
+					</div>
+	
+					<!-- Listes des cours sélectionnées -->
+					<div class="ui-g-6">
+						<p:fieldset id="selectedElementCalendrier">
+							<p:outputPanel id="dropArea">
+								<h:outputText value="Aucun éléments"
+									rendered="#{empty modeleVideController.droppedElementCalendrier}"
+									style="font-size:24px;" />
+								<p:dataTable id="selectedCoursTable" var="element"
+									value="#{modeleVideController.droppedElementCalendrier}"
+									rendered="#{not empty modeleVideController.droppedElementCalendrier}">
+									<p:column>
+										<h:outputText value="#{element.libelle}"></h:outputText> - 
+		               			<h:outputText value="#{element.dateDebut}"></h:outputText> -
+		               			<h:outputText value="#{element.dateFin}"></h:outputText>
+										<p:commandButton id="deprogrammer" value="Déprogrammer"
+											action="#{modeleVideController.deprogrammer(element)}"
+											update=":coursForm:panelCalendrier"></p:commandButton>
+									</p:column>
+								</p:dataTable>
+							</p:outputPanel>
+						</p:fieldset>
+					</div>
+	
+					<p:droppable for="selectedElementCalendrier" tolerance="touch"
+						activeStyleClass="ui-state-highlight"
+						datasource="availableElementCalendrier" onDrop="handleDrop">
+						<p:ajax
+							listener="#{modeleVideController.onElementCalendrierDrop}"
+							update="dropArea availableElementCalendrier" />
+					</p:droppable>
+	
 				</div>
-			</div>
-		</div>
+			</h:panelGroup>
+		</h:panelGroup>
 		
-		<!-- Barre déplier -->
-		<p:dialog id="paveGroupeDeplier" header="Modal Dialog"
-			widgetVar="modalGroupe" modal="true" appendToBody="true"
-			position="bottom" closable="false" height="500" resizable="false"
-			draggable="false">
-
-
-			<!-- Header -->
-			<f:facet name="header">
-				<div class="paveGroupe" onclick="PF('modalGroupe').hide();">
-
+		<!-- Barre -->
+		<h:panelGroup rendered="#{modeleVideController.preFormulaireValide}">
+		
+			<!-- Barre plier -->
+			<div id="groupeConteneur">			
+				<div class="paveGroupe">
 					<div class="pull-l">
+						<!-- Mettre à gauche -->
 						<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
+	
+							<!-- Bouton + -->
 							<h:panelGroup styleClass="informationGroupeBoutonGui">
-								<p:commandLink id="closeTutututu">
-									<i class="fa fa-minus-circle boutonPlierGUI" aria-hidden="true"></i>
+								<p:commandLink id="plierDeplierPaveGroupeButton"
+									styleClass="icn_open" oncomplete="PF('modalGroupe').show();">
+									<i class="fa fa-plus-circle boutonPlierGUI"></i>
 								</p:commandLink>
 							</h:panelGroup>
-
-							<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
-											Titre ouvert 3
-										</h:panelGroup>
+	
+							<!-- Libelle de la barre fixe-->
+							<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">							
+							 		#{modeleVideController.selectedFormation.libelleCourt} - #{modeleVideController.selectedLieu.libelle} - #{modeleVideController.formatDate(modeleVideController.dateDebut)}	 		
+								</h:panelGroup>
 						</h:panelGroup>
+						
+						<p:commandButton styleClass="m-l-25" id="enregistrer" value="Enregistrer" action="#{modeleVideController.save}" update=":coursForm:panelCalendrier"></p:commandButton>
 					</div>
-
 				</div>
-			</f:facet>
-
-			<!-- Barre déplier - cONTENU -->
-			<div id="blocGroupe">
-
-				<p:tabView>
-				
-					<!-- Les contraintes -->
-					<p:tab title="Contraintes">
-						<h2>Les contraintes</h2>
-						<h:outputText value="Les contraintes:" />
-							
-						<p:selectBooleanCheckbox id="semaineAffileeEntreprise" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" />
-						<p:outputLabel for="semaineAffileeEntreprise" value="Nombre de semaine d'affilée en entreprise :  " />						
-						<p:spinner id="semaineAffileeEntrepriseNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" min="0"/>
-						
-						<p:selectBooleanCheckbox id="semaineAffileeFormation" value="#{modeleVideController.contraintesViewElement.semaineAffileeFormation}" />
-						<p:outputLabel for="semaineAffileeFormation" value="Nombre de semaine d'affilée en formation : " />						
-						<p:spinner id="semaineAffileeFormationNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeFormationNombre}" min="0"/>
-						
-						<p:selectBooleanCheckbox id="periodeForteActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntreprise}" />
-						<p:outputLabel for="periodeForteActiviteEntreprise" value="Périodes de forte activité en entreprise :  " />
-						<p:calendar id="periodeForteActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateDebut}" />
-						<p:calendar id="periodeForteActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateFin}" />
-						
-						<p:selectBooleanCheckbox id="periodeFaibleActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntreprise}" />
-						<p:outputLabel for="periodeFaibleActiviteEntreprise" value="Périodes de faible activité en entreprise :  " />
-						<p:calendar id="periodeFaibleActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateDebut}" />
-						<p:calendar id="periodeFaibleActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateFin}" />
-						
-						<p:selectBooleanCheckbox id="periodeNonDisponibiliteStagiaire" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaire}" />
-						<p:outputLabel for="periodeNonDisponibiliteStagiaire" value="Périodes de non disponibilité du stagiaire ( Absences ) :" />
-						<p:inputText id="periodeNonDisponibiliteStagiaireMotif" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireMotif}"></p:inputText>
-						<p:calendar id="periodeNonDisponibiliteStagiaireDateDebut" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateDebut}" />
-						<p:calendar id="periodeNonDisponibiliteStagiaireDateFin" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateFin}" />
-						
-					</p:tab>
-					
-					<!-- Les dispenses -->
-					<p:tab title="Dispenses">
-						<h:outputText value="Les dispenses : " />
-						<p:dataTable var="dispense" value="#{modeleVideController.dispensesViewElement.listDispenses}">
-							<p:column>
-								<h:outputText value="#{dispense.libelle}"></h:outputText>
-							</p:column>
-						</p:dataTable>
-						<p:autoComplete id="moduleAutocomplete" minQueryLength="3" value="#{modeleVideController.dispensesViewElement.selectedModule}" 
-							completeMethod="#{modeleVideController.autocompleteModule}" style="display: flex; justify-content: center;" converter="moduleConverter"
-								var="moduleDispense" itemLabel="#{moduleDispense.libelle}" itemValue="#{moduleDispense}" forceSelection="true"/>
-					</p:tab>
-					
-					<!-- Les modules indépendants -->
-					<p:tab title="Modules indépendants">
-						<h:outputText value="Les modules indépendants : " />
-						<p:dataTable var="moduleIndependant" value="#{modeleVideController.moduleIndependantsViewElement.listModuleIndependants}">
-							<p:column>
-								<h:outputText value="#{moduleIndependant.libelle}"></h:outputText>
-							</p:column>
-						</p:dataTable>
-						<p:autoComplete id="moduleIndependantAutocomplete" minQueryLength="3" value="#{modeleVideController.moduleIndependantsViewElement.selectedModuleIndependant}" 
-						completeMethod="#{modeleVideController.autocompleteModuleIndependant}" style="display: flex; justify-content: center;" converter="moduleIndependantConverter"
-								var="moduleIndependant" itemLabel="#{moduleIndependant.libelle}" itemValue="#{moduleIndependant}" forceSelection="true"/>
-					</p:tab>
-					
-					<!-- Les autres cours -->
-					<p:tab title="Autre cours">
-						<h:outputText value="Les autres cours :" />
-						<p:dataTable var="cours" value="#{modeleVideController.ensembleCours}"
-							widgetVar="titreTable" emptyMessage="Auncun cours trouvé">
-							<p:column headerText="Cours :" sortBy="#{cours.libelleCours}"
-								filterBy="#{cours.libelleCours}">
-								<h:outputText value="#{cours.module.libelle}" />
-							</p:column>								
-							<p:column headerText="Date début :" sortBy="#{cours.dateDebut}"
-								filterBy="#{cours.dateDebut}">
-								<h:outputText value="#{cours.dateDebut}" />
-							</p:column>
-							<p:column headerText="Date fin :" sortBy="#{cours.dateFin}"
-								filterBy="#{cours.dateFin}">
-								<h:outputText value="#{cours.dateFin}" />
-							</p:column>													
-						</p:dataTable>
-					</p:tab>
-				</p:tabView>
-
 			</div>
-		</p:dialog>
+			
+			<!-- Barre déplier -->
+			<p:dialog id="paveGroupeDeplier" header="Modal Dialog"
+				widgetVar="modalGroupe" modal="true" appendToBody="true"
+				position="bottom" closable="false" height="500" resizable="false"
+				draggable="false">
+	
+	
+				<!-- Header -->
+				<f:facet name="header">
+					<div class="paveGroupe" onclick="PF('modalGroupe').hide();">
+	
+						<div class="pull-l">
+							<h:panelGroup class="informationGroupeGUI m-t-15 m-l-50">
+								<h:panelGroup styleClass="informationGroupeBoutonGui">
+									<p:commandLink id="closeTutututu">
+										<i class="fa fa-minus-circle boutonPlierGUI" aria-hidden="true"></i>
+									</p:commandLink>
+								</h:panelGroup>
+	
+								<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
+												Titre ouvert 
+											</h:panelGroup>
+							</h:panelGroup>
+						</div>
+	
+					</div>
+				</f:facet>
+	
+				<!-- Barre déplier - cONTENU -->
+				<div id="blocGroupe">
+	
+					<p:tabView>
+					
+						<!-- Les contraintes -->
+						<p:tab title="Contraintes">
+							<h2>Les contraintes</h2>
+							<h:outputText value="Les contraintes:" />
+								
+							<p:selectBooleanCheckbox id="semaineAffileeEntreprise" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" />
+							<p:outputLabel for="semaineAffileeEntreprise" value="Nombre de semaine d'affilée en entreprise :  " />						
+							<p:spinner id="semaineAffileeEntrepriseNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" min="0"/>
+							
+							<p:selectBooleanCheckbox id="semaineAffileeFormation" value="#{modeleVideController.contraintesViewElement.semaineAffileeFormation}" />
+							<p:outputLabel for="semaineAffileeFormation" value="Nombre de semaine d'affilée en formation : " />						
+							<p:spinner id="semaineAffileeFormationNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeFormationNombre}" min="0"/>
+							
+							<p:selectBooleanCheckbox id="periodeForteActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntreprise}" />
+							<p:outputLabel for="periodeForteActiviteEntreprise" value="Périodes de forte activité en entreprise :  " />
+							<p:calendar id="periodeForteActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateDebut}" />
+							<p:calendar id="periodeForteActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateFin}" />
+							
+							<p:selectBooleanCheckbox id="periodeFaibleActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntreprise}" />
+							<p:outputLabel for="periodeFaibleActiviteEntreprise" value="Périodes de faible activité en entreprise :  " />
+							<p:calendar id="periodeFaibleActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateDebut}" />
+							<p:calendar id="periodeFaibleActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateFin}" />
+							
+							<p:selectBooleanCheckbox id="periodeNonDisponibiliteStagiaire" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaire}" />
+							<p:outputLabel for="periodeNonDisponibiliteStagiaire" value="Périodes de non disponibilité du stagiaire ( Absences ) :" />
+							<p:inputText id="periodeNonDisponibiliteStagiaireMotif" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireMotif}"></p:inputText>
+							<p:calendar id="periodeNonDisponibiliteStagiaireDateDebut" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateDebut}" />
+							<p:calendar id="periodeNonDisponibiliteStagiaireDateFin" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateFin}" />
+							
+						</p:tab>
+						
+						<!-- Les dispenses -->
+						<p:tab title="Dispenses">
+							<h:outputText value="Les dispenses : " />
+							<p:dataTable var="dispense" value="#{modeleVideController.dispensesViewElement.listDispenses}">
+								<p:column>
+									<h:outputText value="#{dispense.libelle}"></h:outputText>
+								</p:column>
+							</p:dataTable>
+							<p:autoComplete id="moduleAutocomplete" minQueryLength="3" value="#{modeleVideController.dispensesViewElement.selectedModule}" 
+								completeMethod="#{modeleVideController.autocompleteModule}" style="display: flex; justify-content: center;" converter="moduleConverter"
+									var="moduleDispense" itemLabel="#{moduleDispense.libelle}" itemValue="#{moduleDispense}" forceSelection="true"/>
+						</p:tab>
+						
+						<!-- Les modules indépendants -->
+						<p:tab title="Modules indépendants">
+							<h:outputText value="Les modules indépendants : " />
+							<p:dataTable var="moduleIndependant" value="#{modeleVideController.moduleIndependantsViewElement.listModuleIndependants}">
+								<p:column>
+									<h:outputText value="#{moduleIndependant.libelle}"></h:outputText>
+								</p:column>
+							</p:dataTable>
+							<p:autoComplete id="moduleIndependantAutocomplete" minQueryLength="3" value="#{modeleVideController.moduleIndependantsViewElement.selectedModuleIndependant}" 
+							completeMethod="#{modeleVideController.autocompleteModuleIndependant}" style="display: flex; justify-content: center;" converter="moduleIndependantConverter"
+									var="moduleIndependant" itemLabel="#{moduleIndependant.libelle}" itemValue="#{moduleIndependant}" forceSelection="true"/>
+						</p:tab>
+						
+						<!-- Les autres cours -->
+						<p:tab title="Autre cours">
+							<h:outputText value="Les autres cours :" />
+							<p:dataTable var="cours" value="#{modeleVideController.ensembleCours}"
+								widgetVar="titreTable" emptyMessage="Auncun cours trouvé">
+								<p:column headerText="Cours :" sortBy="#{cours.libelleCours}"
+									filterBy="#{cours.libelleCours}">
+									<h:outputText value="#{cours.module.libelle}" />
+								</p:column>								
+								<p:column headerText="Date début :" sortBy="#{cours.dateDebut}"
+									filterBy="#{cours.dateDebut}">
+									<h:outputText value="#{cours.dateDebut}" />
+								</p:column>
+								<p:column headerText="Date fin :" sortBy="#{cours.dateFin}"
+									filterBy="#{cours.dateFin}">
+									<h:outputText value="#{cours.dateFin}" />
+								</p:column>													
+							</p:dataTable>
+						</p:tab>
+					</p:tabView>
+	
+				</div>
+			</p:dialog>
+		</h:panelGroup>
 	</h:form>
 </body>
 </html>
