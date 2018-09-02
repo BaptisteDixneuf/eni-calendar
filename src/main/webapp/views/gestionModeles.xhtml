@@ -22,9 +22,13 @@
 
 	<div class="container">
 		<div class="col-md-12">
+			<h:form>
 		<h1>Liste des modèles de calendrier</h1>
+			<p:messages for="general" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
 		<p:commandButton value="+ Créer un nouveau modèle" style="background-color: #2E9AFE" action="#{gestionModelesController.ajoutModele('Création')}"/>
-		<h:form>
+
 			<p:dataTable var="modeles" value="#{gestionModelesController.modeles}" widgetVar="titreTable" emptyMessage="Auncun modele ne correspond">
 				<p:column headerText="Libelle" sortBy="#{modeles.nomCalendrier}" filterBy="#{modeles.nomCalendrier}">
 					<h:outputText value="#{modeles.nomCalendrier}"/>

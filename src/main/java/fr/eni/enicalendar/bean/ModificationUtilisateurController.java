@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -20,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import fr.eni.enicalendar.persistence.app.entities.RoleUtilisateur;
 import fr.eni.enicalendar.persistence.app.entities.Utilisateur;
 import fr.eni.enicalendar.service.UtilisateurServiceInterface;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @ManagedBean(name = "modificationUtilisateurController")
 @ViewScoped
@@ -113,16 +115,20 @@ public class ModificationUtilisateurController implements Serializable {
      * @throws IOException
      */
     public void modifierUtilisateur() throws IOException {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         if (SessionUtils.getAction().equals("Création")) {
             RoleUtilisateur role = new RoleUtilisateur();
             role.setId(1);
             utilisateur.setRole(role);
         }
-        utilisateurService.saveUtilisateur(utilisateur);
+        utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+        utilisateurService.sauverUtilisateur(utilisateur);
 
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
-
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        context.addMessage("general",
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Les informations ont bien été enregistrées!", ""));
+        context.getExternalContext().redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
     }
 
 }

@@ -18,7 +18,10 @@
 	<div class="col-md-6">
 		<h1>#{modificationModuleIndependantController.typeAction} d'un module indépendant</h1>
     
-    <h:form>          
+    <h:form>
+		<p:messages for="general" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
        		<div class="form-group col-md-6">
 				<p:outputLabel for="libelle" value="Libelle :" />
 				<p:inputText id="libelle" value="#{modificationModuleIndependantController.module.libelle}"  styleClass="form-control"/>

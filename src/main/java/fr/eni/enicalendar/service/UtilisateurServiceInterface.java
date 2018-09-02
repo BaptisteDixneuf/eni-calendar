@@ -14,7 +14,7 @@ public interface UtilisateurServiceInterface {
 
 	Utilisateur findById(Integer id);
 	
-	Utilisateur saveUtilisateur(Utilisateur utilisateur);
+	Utilisateur sauverUtilisateur(Utilisateur utilisateur);
 
 	void deleteUtilisateur(Utilisateur utilisateur);
 

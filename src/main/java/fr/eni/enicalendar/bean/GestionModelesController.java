@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -122,7 +123,10 @@ public class GestionModelesController implements Serializable {
 
 		modele = modeleService.findOne(id);
 		modeleService.delete(modele);
-
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage("general",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modèle supprimé!", ""));
+		context.getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
 	}
 }

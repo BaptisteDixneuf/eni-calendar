@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -123,10 +124,9 @@ public class GestionUtilisateursController implements Serializable {
 	 */
 	public void creerNouvelUtilisateur() throws IOException {
 		RoleUtilisateur role = new RoleUtilisateur();
-		//TODO enlever en dur
 		role.setId(1);
 		utilisateur.setRole(role);
-		utilisateur = utilisateurService.saveUtilisateur(utilisateur);
+		utilisateur = utilisateurService.sauverUtilisateur(utilisateur);
 
 	}
 
@@ -166,8 +166,10 @@ public class GestionUtilisateursController implements Serializable {
 
         utilisateur = utilisateurService.findById(id);
         utilisateurService.deleteUtilisateur(utilisateur);
-
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage("general",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Utilisateur supprimé!", ""));
+		context.getExternalContext().redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
     }
 }
