@@ -27,6 +27,7 @@ import fr.eni.enicalendar.persistence.app.entities.Contrainte;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
+import fr.eni.enicalendar.persistence.app.entities.TypeContrainte;
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
@@ -38,7 +39,9 @@ import fr.eni.enicalendar.service.ModeleCalendrierServiceInterface;
 import fr.eni.enicalendar.service.ModuleIndependantsServiceInterface;
 import fr.eni.enicalendar.service.ModuleServiceInterface;
 import fr.eni.enicalendar.service.ProgrammationServiceInterface;
+import fr.eni.enicalendar.service.TypeContrainteServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
+import fr.eni.enicalendar.utils.TypeContrainteEnum;
 import fr.eni.enicalendar.viewElement.AutreCours;
 import fr.eni.enicalendar.viewElement.Contraintes;
 import fr.eni.enicalendar.viewElement.Dispenses;
@@ -77,6 +80,9 @@ public class ModeleVideController implements Serializable {
 
 	@ManagedProperty(value = "#{moduleService}")
 	private ModuleServiceInterface moduleService;
+
+	@ManagedProperty(value = "#{typeContrainteService}")
+	private TypeContrainteServiceInterface typeContrainteService;
 
 	private List<ElementCalendrier> availableElementCalendrier;
 
@@ -386,6 +392,9 @@ public class ModeleVideController implements Serializable {
 			Contrainte a = new Contrainte();
 			a.setNombreDeSemaines(contraintesViewElement.getSemaineAffileeEntrepriseNombre());
 			a.setIdModeleCalendrier(modeleCalendrier.getId());
+			TypeContrainte semaineAffileeEntreprise = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.SEMAINE_AFFILEE_ENTREPRISE.toString());
+			a.setTypeContrainte(semaineAffileeEntreprise);
 			contrainteEntityList.add(a);
 		}
 
@@ -394,6 +403,9 @@ public class ModeleVideController implements Serializable {
 			Contrainte a = new Contrainte();
 			a.setNombreDeSemaines(contraintesViewElement.getSemaineAffileeFormationNombre());
 			a.setIdModeleCalendrier(modeleCalendrier.getId());
+			TypeContrainte semaineAffileeFormation = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.SEMAINE_AFFILEE_FORMATION.toString());
+			a.setTypeContrainte(semaineAffileeFormation);
 			contrainteEntityList.add(a);
 		}
 
@@ -606,6 +618,14 @@ public class ModeleVideController implements Serializable {
 
 	public void setSelectedLieu(Lieu selectedLieu) {
 		this.selectedLieu = selectedLieu;
+	}
+
+	public TypeContrainteServiceInterface getTypeContrainteService() {
+		return typeContrainteService;
+	}
+
+	public void setTypeContrainteService(TypeContrainteServiceInterface typeContrainteService) {
+		this.typeContrainteService = typeContrainteService;
 	}
 
 }

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -41,6 +43,10 @@ public class Contrainte implements Serializable {
 
 	@Column(name = "CO_DATE_FIN")
 	private Date dateFin;
+
+	@OneToOne
+	@JoinColumn(name = "TC_ID")
+	private TypeContrainte typeContrainte;
 
 	/**
 	 * @return the id
@@ -138,6 +144,14 @@ public class Contrainte implements Serializable {
 
 	public void setIdModeleCalendrier(Integer idModeleCalendrier) {
 		this.idModeleCalendrier = idModeleCalendrier;
+	}
+
+	public TypeContrainte getTypeContrainte() {
+		return typeContrainte;
+	}
+
+	public void setTypeContrainte(TypeContrainte typeContrainte) {
+		this.typeContrainte = typeContrainte;
 	}
 
 }
