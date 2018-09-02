@@ -1,8 +1,8 @@
 package fr.eni.enicalendar.service;
 
-import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
-
 import java.util.List;
+
+import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
 
 public interface ModuleIndependantsServiceInterface {
 
@@ -13,5 +13,7 @@ public interface ModuleIndependantsServiceInterface {
 	void delete(ModuleIndependant moduleIndependant);
 
 	ModuleIndependant saveModule(ModuleIndependant moduleIndependant);
+
+	List<ModuleIndependant> findByLibelle(String query);
 
 }

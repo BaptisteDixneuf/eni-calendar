@@ -1,6 +1,7 @@
 package fr.eni.enicalendar.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,28 +10,40 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.DragDropEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.eni.enicalendar.dto.ElementCalendrier;
-import fr.eni.enicalendar.dto.ElementCalendrierType;
 import fr.eni.enicalendar.exceptions.FonctionnelException;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
+import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
+import fr.eni.enicalendar.persistence.erp.entities.Module;
 import fr.eni.enicalendar.service.CoursServiceInterface;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.ModeleCalendrierServiceInterface;
+import fr.eni.enicalendar.service.ModuleIndependantsServiceInterface;
+import fr.eni.enicalendar.service.ModuleServiceInterface;
 import fr.eni.enicalendar.service.ProgrammationServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
+import fr.eni.enicalendar.viewElement.AutreCours;
+import fr.eni.enicalendar.viewElement.Contraintes;
+import fr.eni.enicalendar.viewElement.Dispenses;
+import fr.eni.enicalendar.viewElement.ElementCalendrier;
+import fr.eni.enicalendar.viewElement.ElementCalendrierType;
+import fr.eni.enicalendar.viewElement.ModuleIndependants;
 
 @ManagedBean(name = "modeleVideController")
 @ViewScoped
@@ -58,6 +71,12 @@ public class ModeleVideController implements Serializable {
 	@ManagedProperty(value = "#{formationService}")
 	private FormationServiceInterface formationService;
 
+	@ManagedProperty(value = "#{moduleIndependantsService}")
+	private ModuleIndependantsServiceInterface moduleIndependantsService;
+
+	@ManagedProperty(value = "#{moduleService}")
+	private ModuleServiceInterface moduleService;
+
 	private List<ElementCalendrier> availableElementCalendrier;
 
 	private List<ElementCalendrier> droppedElementCalendrier;
@@ -70,23 +89,48 @@ public class ModeleVideController implements Serializable {
 	/** Liste des cours disponibles pour cette formation */
 	private List<Cours> coursDisponible = new ArrayList<>();
 
+	/** Liste des cours disponibles pour l'onglet "Autres cours" */
+	private List<Cours> ensembleCours = new ArrayList<>();
+
 	/**
 	 * Pré-formulaire
 	 */
 	private String codeFormation;
+	private Formation selectedFormation;
 	private List<Formation> formations;
 	private List<Lieu> lieux;
 	private String codeLieuFormation;
+	private Lieu selectedLieu;
 	private Date dateDebut;
-	private boolean preFormulaireValide;
+	private boolean preFormulaireValide = false;
+
+	/* Contraintes */
+	private Contraintes contraintesViewElement;
+	private Dispenses dispensesViewElement;
+	private ModuleIndependants moduleIndependantsViewElement;
+	private AutreCours autreCoursViewElement;
+
+	/**
+	 * Format de date en fonction de la locale
+	 */
+	private SimpleDateFormat sdfDate;
 
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("CoursController setup");
 
+		sdfDate = new SimpleDateFormat("dd-MM-yyyy");
+
 		// On récupère les lieux et formations
 		lieux = lieuService.findAllLieux();
 		formations = formationService.findAllFormations();
+		// TODO: remettrre
+		// ensembleCours = coursService.findAllCours();
+
+		contraintesViewElement = new Contraintes();
+		dispensesViewElement = new Dispenses();
+		moduleIndependantsViewElement = new ModuleIndependants();
+		autreCoursViewElement = new AutreCours();
 	}
 
 	/**
@@ -110,7 +154,7 @@ public class ModeleVideController implements Serializable {
 	private ElementCalendrier convertCoursToElementCalendrier(Cours cours) {
 		ElementCalendrier element = new ElementCalendrier();
 		element.setId(cours.getId());
-		element.setLibelle(cours.getLibelleCours());
+		element.setLibelle(cours.getModule().getLibelle());
 		element.setDateDebut(cours.getDateDebut());
 		element.setDateFin(cours.getDateFin());
 		element.setType(ElementCalendrierType.CALENDRIER);
@@ -139,7 +183,7 @@ public class ModeleVideController implements Serializable {
 				throw new FonctionnelException("Errreur lors de la récupération du modèle");
 			} else {
 				element.setId(coursTrouve.getId());
-				element.setLibelle(coursTrouve.getLibelleCours());
+				element.setLibelle(coursTrouve.getModule().getLibelle());
 				element.setDateDebut(coursTrouve.getDateDebut());
 				element.setDateFin(coursTrouve.getDateFin());
 				element.setType(ElementCalendrierType.CALENDRIER);
@@ -201,66 +245,132 @@ public class ModeleVideController implements Serializable {
 		}
 	}
 
+	/**
+	 * A la fin du pré-formulaire - Lorsque l'utilisateur clique sur valider
+	 * Vaidation des données + Chargement des données annexes si contrôle ok
+	 */
 	public void creer() {
 		LOGGER.info("Bouton créer");
-
 		try {
 
-			// TODO : faire les controles de surface
-
-			// On récupère les cours disponible pour cette formation, ce lieu et cette date
-			// de début
-			coursDisponible = coursService.findCoursByFormationAndLieu(codeFormation,
-					Integer.valueOf(codeLieuFormation));
-
-			// On transforme les élements calendriers en object ElementCalendrier ( Dans la
-			// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
-			// d'ElementCalendrier ( Cours, Modèles, ....)
-			availableElementCalendrier = new ArrayList<>();
-			for (Cours cours : coursDisponible) {
-				ElementCalendrier element = convertCoursToElementCalendrier(cours);
-				availableElementCalendrier.add(element);
-			}
-			Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
-				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
-					return m1.getDateDebut().compareTo(m2.getDateFin());
-				}
-			});
-
-			// On préremplie la colonne "Programmation" de la vue avec les données
-			// précédements enregistrés
-			droppedElementCalendrier = new ArrayList<ElementCalendrier>();
-
-			if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
-					&& SessionUtils.getId() != null) {
-
-				Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
-				List<Programmation> listProgrammationExistant = programmationService
-						.findProgrammationByModeleCalendrier(idModeleCalendrier);
-
-				List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
-				for (Programmation programmation : listProgrammationExistant) {
-					ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
-					droppedElementCalendrierExistant.add(element);
-					droppedElementCalendrier.add(element);
-					elementDeplaceDansProgrammation(element);
-				}
-
+			if (codeFormation == null || StringUtils.isBlank(codeFormation)) {
+				FacesContext.getCurrentInstance().addMessage("formation",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "La formation est obligatoire", ""));
 			}
 
-			Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
-				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
-					return m1.getDateDebut().compareTo(m2.getDateFin());
-				}
-			});
+			if (codeLieuFormation == null | StringUtils.isBlank(codeLieuFormation)) {
+				FacesContext.getCurrentInstance().addMessage("lieuFormation",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Le lieu de formation est obligatoire", ""));
+			}
+
+			if (dateDebut == null) {
+				FacesContext.getCurrentInstance().addMessage("dateDebut", new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"La date de début de formation est obligatoire", ""));
+			}
+
+			if (!hasError()) {
+				selectedFormation = formationService.findByCode(codeFormation);
+				selectedLieu = lieuService.findByCodeLieu(Integer.valueOf(codeLieuFormation));
+				preFormulaireValide = true;
+				chargermentDonnees();
+			}
 
 		} catch (NumberFormatException e) {
 			LOGGER.error(e.getMessage(), e);
-			// TODO: afficher 1 message d'erreur
+			FacesContext.getCurrentInstance().addMessage("general",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		} catch (FonctionnelException e) {
 			LOGGER.error(e.getMessage(), e);
-			// TODO: afficher 1 message d'erreur
+			FacesContext.getCurrentInstance().addMessage("general",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
+	}
+
+	private void chargermentDonnees() throws FonctionnelException {
+		// On récupère les cours disponible pour cette formation, ce lieu et cette date
+		// de début
+		coursDisponible = coursService.findCoursByFormationAndLieu(codeFormation, Integer.valueOf(codeLieuFormation));
+
+		// On transforme les élements calendriers en object ElementCalendrier ( Dans la
+		// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type
+		// d'ElementCalendrier ( Cours, Modèles, ....)
+		availableElementCalendrier = new ArrayList<>();
+		for (Cours cours : coursDisponible) {
+			ElementCalendrier element = convertCoursToElementCalendrier(cours);
+			availableElementCalendrier.add(element);
+		}
+		Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
+
+		// On préremplie la colonne "Programmation" de la vue avec les données
+		// précédements enregistrés
+		droppedElementCalendrier = new ArrayList<ElementCalendrier>();
+
+		if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
+				&& SessionUtils.getId() != null) {
+
+			Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
+			List<Programmation> listProgrammationExistant = programmationService
+					.findProgrammationByModeleCalendrier(idModeleCalendrier);
+
+			List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
+			for (Programmation programmation : listProgrammationExistant) {
+				ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
+				droppedElementCalendrierExistant.add(element);
+				droppedElementCalendrier.add(element);
+				elementDeplaceDansProgrammation(element);
+			}
+
+		}
+
+		Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
+	}
+
+	/**
+	 * Controle si existe erreur.
+	 *
+	 * @return true, if successful
+	 */
+	protected boolean hasError() {
+		LOGGER.info("Controle si existe erreur : "
+				+ CollectionUtils.isNotEmpty(FacesContext.getCurrentInstance().getMessageList()));
+		return CollectionUtils.isNotEmpty(FacesContext.getCurrentInstance().getMessageList());
+	}
+
+	public List<ModuleIndependant> autocompleteModuleIndependant(String query) {
+		// enlever l'espace devant la chaine
+		query = query.trim();
+		List<ModuleIndependant> liste = moduleIndependantsService.findByLibelle(query);
+		return liste;
+	}
+
+	public List<Module> autocompleteModule(String query) {
+		// enlever l'espace devant la chaine
+		query = query.trim();
+		List<Module> liste = moduleService.findModuleByFormationAndLibelle(codeFormation, query);
+		return liste;
+	}
+
+	/**
+	 * Convertie une date au format anglais ou français en fonction de la locale
+	 * 
+	 * @param actionDate
+	 * @return
+	 */
+	public String formatDate(Date actionDate) {
+		String dateString = "";
+		if (actionDate != null) {
+			dateString = sdfDate.format(actionDate);
+		}
+
+		return dateString;
 	}
 
 	/**
@@ -396,6 +506,78 @@ public class ModeleVideController implements Serializable {
 
 	public void setPreFormulaireValide(boolean preFormulaireValide) {
 		this.preFormulaireValide = preFormulaireValide;
+	}
+
+	public Contraintes getContraintesViewElement() {
+		return contraintesViewElement;
+	}
+
+	public void setContraintesViewElement(Contraintes contraintesViewElement) {
+		this.contraintesViewElement = contraintesViewElement;
+	}
+
+	public Dispenses getDispensesViewElement() {
+		return dispensesViewElement;
+	}
+
+	public void setDispensesViewElement(Dispenses dispensesViewElement) {
+		this.dispensesViewElement = dispensesViewElement;
+	}
+
+	public ModuleIndependants getModuleIndependantsViewElement() {
+		return moduleIndependantsViewElement;
+	}
+
+	public void setModuleIndependantsViewElement(ModuleIndependants moduleIndependantsViewElement) {
+		this.moduleIndependantsViewElement = moduleIndependantsViewElement;
+	}
+
+	public AutreCours getAutreCoursViewElement() {
+		return autreCoursViewElement;
+	}
+
+	public void setAutreCoursViewElement(AutreCours autreCoursViewElement) {
+		this.autreCoursViewElement = autreCoursViewElement;
+	}
+
+	public ModuleIndependantsServiceInterface getModuleIndependantsService() {
+		return moduleIndependantsService;
+	}
+
+	public void setModuleIndependantsService(ModuleIndependantsServiceInterface moduleIndependantsService) {
+		this.moduleIndependantsService = moduleIndependantsService;
+	}
+
+	public ModuleServiceInterface getModuleService() {
+		return moduleService;
+	}
+
+	public void setModuleService(ModuleServiceInterface moduleService) {
+		this.moduleService = moduleService;
+	}
+
+	public List<Cours> getEnsembleCours() {
+		return ensembleCours;
+	}
+
+	public void setEnsembleCours(List<Cours> ensembleCours) {
+		this.ensembleCours = ensembleCours;
+	}
+
+	public Formation getSelectedFormation() {
+		return selectedFormation;
+	}
+
+	public void setSelectedFormation(Formation selectedFormation) {
+		this.selectedFormation = selectedFormation;
+	}
+
+	public Lieu getSelectedLieu() {
+		return selectedLieu;
+	}
+
+	public void setSelectedLieu(Lieu selectedLieu) {
+		this.selectedLieu = selectedLieu;
 	}
 
 }
