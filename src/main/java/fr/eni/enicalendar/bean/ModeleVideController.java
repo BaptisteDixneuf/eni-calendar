@@ -88,6 +88,9 @@ public class ModeleVideController implements Serializable {
 	/** Liste des cours disponibles pour cette formation */
 	private List<Cours> coursDisponible = new ArrayList<>();
 
+	/** Liste des cours disponibles pour l'onglet "Autres cours" */
+	private List<Cours> ensembleCours = new ArrayList<>();
+
 	/**
 	 * Pré-formulaire
 	 */
@@ -111,6 +114,7 @@ public class ModeleVideController implements Serializable {
 		// On récupère les lieux et formations
 		lieux = lieuService.findAllLieux();
 		formations = formationService.findAllFormations();
+		ensembleCours = coursService.findAllCours();
 
 		contraintesViewElement = new Contraintes();
 		dispensesViewElement = new Dispenses();
@@ -517,6 +521,14 @@ public class ModeleVideController implements Serializable {
 
 	public void setModuleService(ModuleServiceInterface moduleService) {
 		this.moduleService = moduleService;
+	}
+
+	public List<Cours> getEnsembleCours() {
+		return ensembleCours;
+	}
+
+	public void setEnsembleCours(List<Cours> ensembleCours) {
+		this.ensembleCours = ensembleCours;
 	}
 
 }

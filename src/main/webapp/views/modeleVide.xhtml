@@ -239,6 +239,21 @@
 					<!-- Les autres cours -->
 					<p:tab title="Autre cours">
 						<h:outputText value="Les autres cours :" />
+						<p:dataTable var="cours" value="#{modeleVideController.ensembleCours}"
+							widgetVar="titreTable" emptyMessage="Auncun cours trouvé">
+							<p:column headerText="Cours :" sortBy="#{cours.libelleCours}"
+								filterBy="#{cours.libelleCours}">
+								<h:outputText value="#{cours.module.libelle}" />
+							</p:column>								
+							<p:column headerText="Date début :" sortBy="#{cours.dateDebut}"
+								filterBy="#{cours.dateDebut}">
+								<h:outputText value="#{cours.dateDebut}" />
+							</p:column>
+							<p:column headerText="Date fin :" sortBy="#{cours.dateFin}"
+								filterBy="#{cours.dateFin}">
+								<h:outputText value="#{cours.dateFin}" />
+							</p:column>													
+						</p:dataTable>
 					</p:tab>
 				</p:tabView>
 

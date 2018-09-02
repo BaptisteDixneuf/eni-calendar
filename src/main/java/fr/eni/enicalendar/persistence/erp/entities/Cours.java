@@ -52,6 +52,10 @@ public class Cours implements Serializable {
 	@Column(name = "idModule")
 	private Integer idModule;
 
+	@OneToOne
+	@JoinColumn(name = "CodeLieu", referencedColumnName = "CodeLieu", insertable = false, updatable = false)
+	private Lieu lieu;
+
 	@Column(name = "CodeLieu")
 	private Integer codeLieu;
 
@@ -152,6 +156,14 @@ public class Cours implements Serializable {
 
 	public void setIdModule(Integer idModule) {
 		this.idModule = idModule;
+	}
+
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
 	}
 
 }
