@@ -30,97 +30,112 @@
 		<h:panelGroup id="panelCalendrier">
 			<p:messages for="general"/>
 
-			<div class="ui-g">
+			<!-- Début du préformulaire -->
+			<div class="ui-g">				
+				<!-- Marge à gauche -->
 				<div class="ui-g-3"></div>
+				
+				<!-- Contenu centré -->
 				<div class="ui-g-6">
-					<p:outputLabel for="formation" value="Formation :" />
-					<p:selectOneMenu id="formation"
-						value="#{modeleVideController.codeFormation}">
-						<f:selectItem itemLabel="Selectionner une formation" itemValue="" />
-						<f:selectItems value="#{modeleVideController.formations}"
-							var="formation" itemLabel="#{formation.libelleLong}"
-							itemValue="#{formation.codeFormation}" />
-					</p:selectOneMenu>
-					<p:messages for="formation"></p:messages>
-
-					<p:outputLabel for="lieuFormation" value="Lieu de formation :" />
-					<p:selectOneMenu id="lieuFormation"
-						value="#{modeleVideController.codeLieuFormation}">
-						<f:selectItem itemLabel="Selectionner un lieu" itemValue="" />
-						<f:selectItems value="#{modeleVideController.lieux}" var="lieu"
-							itemLabel="#{lieu.libelle}" itemValue="#{lieu.codeLieu}" />
-					</p:selectOneMenu>
-					<p:messages for="lieuFormation"></p:messages>
-
-					<p:outputLabel for="dateDebut" value="Date de début :" />
-					<p:calendar id="dateDebut"
-						value="#{modeleVideController.dateDebut}" locale="fr"
-						navigator="true" pattern="dd/MM/yyyy" />
-					<p:messages for="dateDebut"></p:messages>
-					
-					<p:commandButton id="creer" value="Créer" action="#{modeleVideController.creer}" update=":coursForm"></p:commandButton>
+					<div class="ui-g">
+						<div class="ui-g-6">
+							<p:outputLabel for="formation" value="Formation :" />
+							<p:selectOneMenu id="formation"
+								value="#{modeleVideController.codeFormation}">
+								<f:selectItem itemLabel="Selectionner une formation" itemValue="" />
+								<f:selectItems value="#{modeleVideController.formations}"
+									var="formation" itemLabel="#{formation.libelleLong}"
+									itemValue="#{formation.codeFormation}" />
+							</p:selectOneMenu>
+							<p:messages for="formation"></p:messages>
+						</div>
+						<div class="ui-g-6">
+							<p:outputLabel for="lieuFormation" value="Lieu de formation :" />
+							<p:selectOneMenu id="lieuFormation"
+								value="#{modeleVideController.codeLieuFormation}">
+								<f:selectItem itemLabel="Selectionner un lieu" itemValue="" />
+								<f:selectItems value="#{modeleVideController.lieux}" var="lieu"
+									itemLabel="#{lieu.libelle}" itemValue="#{lieu.codeLieu}" />
+							</p:selectOneMenu>
+							<p:messages for="lieuFormation"></p:messages>	
+						</div>
+					</div>
+					<div class="ui-g">
+						<div class="ui-g-6">
+							<p:outputLabel for="dateDebut" value="Date de début :" />
+							<p:calendar id="dateDebut"
+								value="#{modeleVideController.dateDebut}" locale="fr"
+								navigator="true" pattern="dd/MM/yyyy" />
+							<p:messages for="dateDebut"></p:messages>
+						</div>
+						<div class="ui-g-6">
+							<p:commandButton id="creer" value="Créer" action="#{modeleVideController.creer}" update=":coursForm"></p:commandButton>
+						</div>
+					</div>
 				</div>
+				<!-- Marge à droite -->
 				<div class="ui-g-3"></div>
 			</div>
-
+			<!-- Fin du préformualire -->
+			
+			<!-- Tableau de programmation -->
 			<div class="ui-g">
-						<!--  Liste des cours disponibles -->
-						<div class="ui-g-6">
-							<p:dataTable id="availableElementCalendrier" var="element"
-								value="#{modeleVideController.availableElementCalendrier}">
+				<!--  Liste des cours disponibles -->
+				<div class="ui-g-6">
+					<p:dataTable id="availableElementCalendrier" var="element"
+						value="#{modeleVideController.availableElementCalendrier}">	
+
+						<p:column rendered="#{!element.moduleProgramme}">
+							<p:panel id="gpnl">
+								<h:outputText value="#{element.libelle}"></h:outputText> - 
+			               		<h:outputText value="#{element.dateDebut}"></h:outputText> -
+			               		<h:outputText value="#{element.dateFin}"></h:outputText>
+
+							</p:panel>
+							<p:draggable for="gpnl" revert="true" helper="clone"
+								disabled="#{element.moduleProgramme}" />
+						</p:column>
 
 
-								<p:column rendered="#{!element.moduleProgramme}">
-									<p:panel id="gpnl">
-										<h:outputText value="#{element.libelle}"></h:outputText> - 
-					               		<h:outputText value="#{element.dateDebut}"></h:outputText> -
-					               		<h:outputText value="#{element.dateFin}"></h:outputText>
+					</p:dataTable>
+				</div>
 
-									</p:panel>
-									<p:draggable for="gpnl" revert="true" helper="clone"
-										disabled="#{element.moduleProgramme}" />
+				<!-- Listes des cours sélectionnées -->
+				<div class="ui-g-6">
+					<p:fieldset id="selectedElementCalendrier">
+						<p:outputPanel id="dropArea">
+							<h:outputText value="Aucun éléments"
+								rendered="#{empty modeleVideController.droppedElementCalendrier}"
+								style="font-size:24px;" />
+							<p:dataTable id="selectedCoursTable" var="element"
+								value="#{modeleVideController.droppedElementCalendrier}"
+								rendered="#{not empty modeleVideController.droppedElementCalendrier}">
+								<p:column>
+									<h:outputText value="#{element.libelle}"></h:outputText> - 
+	               			<h:outputText value="#{element.dateDebut}"></h:outputText> -
+	               			<h:outputText value="#{element.dateFin}"></h:outputText>
+									<p:commandButton id="deprogrammer" value="Déprogrammer"
+										action="#{modeleVideController.deprogrammer(element)}"
+										update=":coursForm:panelCalendrier"></p:commandButton>
 								</p:column>
-
-
 							</p:dataTable>
-						</div>
+						</p:outputPanel>
+					</p:fieldset>
+				</div>
 
-						<!-- Listes des cours sélectionnées -->
-						<div class="ui-g-6">
-							<p:fieldset id="selectedElementCalendrier">
-								<p:outputPanel id="dropArea">
-									<h:outputText value="Aucun éléments"
-										rendered="#{empty modeleVideController.droppedElementCalendrier}"
-										style="font-size:24px;" />
-									<p:dataTable id="selectedCoursTable" var="element"
-										value="#{modeleVideController.droppedElementCalendrier}"
-										rendered="#{not empty modeleVideController.droppedElementCalendrier}">
-										<p:column>
-											<h:outputText value="#{element.libelle}"></h:outputText> - 
-			               			<h:outputText value="#{element.dateDebut}"></h:outputText> -
-			               			<h:outputText value="#{element.dateFin}"></h:outputText>
-											<p:commandButton id="deprogrammer" value="Déprogrammer"
-												action="#{modeleVideController.deprogrammer(element)}"
-												update=":coursForm:panelCalendrier"></p:commandButton>
-										</p:column>
-									</p:dataTable>
-								</p:outputPanel>
-							</p:fieldset>
-						</div>
+				<p:droppable for="selectedElementCalendrier" tolerance="touch"
+					activeStyleClass="ui-state-highlight"
+					datasource="availableElementCalendrier" onDrop="handleDrop">
+					<p:ajax
+						listener="#{modeleVideController.onElementCalendrierDrop}"
+						update="dropArea availableElementCalendrier" />
+				</p:droppable>
 
-						<p:droppable for="selectedElementCalendrier" tolerance="touch"
-							activeStyleClass="ui-state-highlight"
-							datasource="availableElementCalendrier" onDrop="handleDrop">
-							<p:ajax
-								listener="#{modeleVideController.onElementCalendrierDrop}"
-								update="dropArea availableElementCalendrier" />
-						</p:droppable>
-
-					</div>
+			</div>
 		</h:panelGroup>
-
-		<div id="groupeConteneur">
-			<!-- Barre plier -->
+		
+		<!-- Barre plier -->
+		<div id="groupeConteneur">			
 			<div class="paveGroupe">
 				<div class="pull-l">
 					<!-- Mettre à gauche -->
@@ -144,9 +159,7 @@
 				</div>
 			</div>
 		</div>
-
-
-
+		
 		<!-- Barre déplier -->
 		<p:dialog id="paveGroupeDeplier" header="Modal Dialog"
 			widgetVar="modalGroupe" modal="true" appendToBody="true"
@@ -175,10 +188,11 @@
 				</div>
 			</f:facet>
 
-			<!-- CONTENU -->
+			<!-- Barre déplier - cONTENU -->
 			<div id="blocGroupe">
 
 				<p:tabView>
+				
 					<!-- Les contraintes -->
 					<p:tab title="Contraintes">
 						<h2>Les contraintes</h2>
@@ -258,11 +272,7 @@
 				</p:tabView>
 
 			</div>
-
-
 		</p:dialog>
 	</h:form>
-
-
 </body>
 </html>
