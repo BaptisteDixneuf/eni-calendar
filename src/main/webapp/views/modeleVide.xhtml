@@ -219,7 +219,9 @@
 							<div class="m-t-20">	
 								<p:selectBooleanCheckbox id="periodeForteActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntreprise}" />
 								<p:outputLabel styleClass="m-l-20" for="periodeForteActiviteEntreprise" value="Périodes de forte activité en entreprise :  " />
-								<p:dataTable var="forte" value="#{modeleVideController.contraintesViewElement.listPeriodeForteActiviteEntreprise}"  emptyMessage="Aucun enregistrement">
+								<p:dataTable var="forte" value="#{modeleVideController.contraintesViewElement.listPeriodeForteActiviteEntreprise}" 
+									rendered="#{not empty modeleVideController.contraintesViewElement.listPeriodeForteActiviteEntreprise}"
+								 	emptyMessage="Aucun enregistrement">
 									<p:column>
 										#{modeleVideController.formatDate(forte.dateDebut)}
 										#{modeleVideController.formatDate(forte.dateFin)}
@@ -234,7 +236,9 @@
 							<div class="m-t-20">	
 								<p:selectBooleanCheckbox id="periodeFaibleActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntreprise}" />
 								<p:outputLabel styleClass="m-l-20" for="periodeFaibleActiviteEntreprise" value="Périodes de faible activité en entreprise :  " />
-								<p:dataTable var="faible" value="#{modeleVideController.contraintesViewElement.listPeriodeFaibleActiviteEntreprise}"  emptyMessage="Aucun enregistrement">
+								<p:dataTable var="faible" value="#{modeleVideController.contraintesViewElement.listPeriodeFaibleActiviteEntreprise}"  
+									rendered="#{not empty modeleVideController.contraintesViewElement.listPeriodeFaibleActiviteEntreprise}"
+									emptyMessage="Aucun enregistrement">
 									<p:column>
 										#{modeleVideController.formatDate(faible.dateDebut)}
 										#{modeleVideController.formatDate(faible.dateFin)}
@@ -249,7 +253,9 @@
 							<div class="m-t-20">	
 								<p:selectBooleanCheckbox id="periodeNonDisponibiliteStagiaire" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaire}" />
 								<p:outputLabel styleClass="m-l-20" for="periodeNonDisponibiliteStagiaire" value="Périodes de non disponibilité du stagiaire ( Absences ) :" />
-								<p:dataTable var="absence" value="#{modeleVideController.contraintesViewElement.listPeriodeNonDisponibiliteStagiaire}" emptyMessage="Aucun enregistrement" >
+								<p:dataTable var="absence" value="#{modeleVideController.contraintesViewElement.listPeriodeNonDisponibiliteStagiaire}"
+									rendered="#{not empty modeleVideController.contraintesViewElement.listPeriodeNonDisponibiliteStagiaire}" 
+									emptyMessage="Aucun enregistrement" >
 									<p:column>
 										#{modeleVideController.formatDate(absence.dateDebut)}
 										#{modeleVideController.formatDate(absence.dateFin)}
@@ -266,6 +272,7 @@
 								</div>
 							</div>
 							
+							<p:commandButton styleClass="m-l-25" id="enregistrer" value="Enregistrer" action="#{modeleVideController.enregistrerContraintes}" update=":coursForm"></p:commandButton>
 							
 						</p:tab>
 						

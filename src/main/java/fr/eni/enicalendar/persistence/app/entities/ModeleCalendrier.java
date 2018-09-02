@@ -53,6 +53,10 @@ public class ModeleCalendrier implements Serializable {
 	@JoinColumn(name = "MC_ID")
 	private Collection<Programmation> programmations;
 
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "MC_ID")
+	private Collection<Contrainte> contraintes;
+
 	/**
 	 * @return the id
 	 */
@@ -179,6 +183,14 @@ public class ModeleCalendrier implements Serializable {
 
 	public void setProgrammations(Collection<Programmation> programmations) {
 		this.programmations = programmations;
+	}
+
+	public Collection<Contrainte> getContraintes() {
+		return contraintes;
+	}
+
+	public void setContraintes(Collection<Contrainte> contraintes) {
+		this.contraintes = contraintes;
 	}
 
 }

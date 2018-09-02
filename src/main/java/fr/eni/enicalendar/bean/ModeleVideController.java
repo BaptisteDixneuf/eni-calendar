@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.exceptions.FonctionnelException;
+import fr.eni.enicalendar.persistence.app.entities.Contrainte;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
@@ -371,6 +372,33 @@ public class ModeleVideController implements Serializable {
 		}
 
 		return dateString;
+	}
+
+	public void enregistrerContraintes() {
+
+		if (modeleCalendrier == null || modeleCalendrier.getId() == null) {
+			save();
+		}
+		List<Contrainte> contrainteEntityList = new ArrayList<>();
+
+		// Nombre de semaine d'affilée en entreprise
+		if (contraintesViewElement.isSemaineAffileeEntreprise()) {
+			Contrainte a = new Contrainte();
+			a.setNombreDeSemaines(contraintesViewElement.getSemaineAffileeEntrepriseNombre());
+			a.setIdModeleCalendrier(modeleCalendrier.getId());
+			contrainteEntityList.add(a);
+		}
+
+		// Nombre de semaine d'affilée en formation
+		if (contraintesViewElement.isSemaineAffileeFormation()) {
+			Contrainte a = new Contrainte();
+			a.setNombreDeSemaines(contraintesViewElement.getSemaineAffileeFormationNombre());
+			a.setIdModeleCalendrier(modeleCalendrier.getId());
+			contrainteEntityList.add(a);
+		}
+
+		modeleCalendrier.setContraintes(contrainteEntityList);
+		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 	}
 
 	/**

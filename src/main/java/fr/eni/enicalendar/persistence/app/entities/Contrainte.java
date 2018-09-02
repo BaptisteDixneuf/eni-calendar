@@ -24,6 +24,9 @@ public class Contrainte implements Serializable {
 	@Column(name = "CO_ID")
 	private Integer id;
 
+	@Column(name = "MC_ID")
+	private Integer idModeleCalendrier;
+
 	@Column(name = "CO_LIBELLE")
 	private String libelle;
 
@@ -127,6 +130,14 @@ public class Contrainte implements Serializable {
 	 */
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
+	}
+
+	public Integer getIdModeleCalendrier() {
+		return idModeleCalendrier;
+	}
+
+	public void setIdModeleCalendrier(Integer idModeleCalendrier) {
+		this.idModeleCalendrier = idModeleCalendrier;
 	}
 
 }
