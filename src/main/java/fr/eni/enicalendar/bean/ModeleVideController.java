@@ -389,24 +389,68 @@ public class ModeleVideController implements Serializable {
 
 		// Nombre de semaine d'affilée en entreprise
 		if (contraintesViewElement.isSemaineAffileeEntreprise()) {
-			Contrainte a = new Contrainte();
-			a.setNombreDeSemaines(contraintesViewElement.getSemaineAffileeEntrepriseNombre());
-			a.setIdModeleCalendrier(modeleCalendrier.getId());
+			Contrainte contrainteSemaineAffileeEntreprise = new Contrainte();
+			contrainteSemaineAffileeEntreprise
+					.setNombreDeSemaines(contraintesViewElement.getSemaineAffileeEntrepriseNombre());
+			contrainteSemaineAffileeEntreprise.setIdModeleCalendrier(modeleCalendrier.getId());
 			TypeContrainte semaineAffileeEntreprise = typeContrainteService
 					.findByLibelle(TypeContrainteEnum.SEMAINE_AFFILEE_ENTREPRISE.toString());
-			a.setTypeContrainte(semaineAffileeEntreprise);
-			contrainteEntityList.add(a);
+			contrainteSemaineAffileeEntreprise.setTypeContrainte(semaineAffileeEntreprise);
+			contrainteEntityList.add(contrainteSemaineAffileeEntreprise);
 		}
 
 		// Nombre de semaine d'affilée en formation
 		if (contraintesViewElement.isSemaineAffileeFormation()) {
-			Contrainte a = new Contrainte();
-			a.setNombreDeSemaines(contraintesViewElement.getSemaineAffileeFormationNombre());
-			a.setIdModeleCalendrier(modeleCalendrier.getId());
+			Contrainte contrainteSemaineAffileeFormation = new Contrainte();
+			contrainteSemaineAffileeFormation
+					.setNombreDeSemaines(contraintesViewElement.getSemaineAffileeFormationNombre());
+			contrainteSemaineAffileeFormation.setIdModeleCalendrier(modeleCalendrier.getId());
 			TypeContrainte semaineAffileeFormation = typeContrainteService
 					.findByLibelle(TypeContrainteEnum.SEMAINE_AFFILEE_FORMATION.toString());
-			a.setTypeContrainte(semaineAffileeFormation);
-			contrainteEntityList.add(a);
+			contrainteSemaineAffileeFormation.setTypeContrainte(semaineAffileeFormation);
+			contrainteEntityList.add(contrainteSemaineAffileeFormation);
+		}
+
+		// Période de forte activité en entreprise
+		if (contraintesViewElement.isPeriodeForteActiviteEntreprise()) {
+			Contrainte contrainteForteActiviteEntreprise = new Contrainte();
+			contrainteForteActiviteEntreprise
+					.setDateDebut(contraintesViewElement.getPeriodeForteActiviteEntrepriseDateDebut());
+			contrainteForteActiviteEntreprise
+					.setDateFin(contraintesViewElement.getPeriodeForteActiviteEntrepriseDateFin());
+			contrainteForteActiviteEntreprise.setIdModeleCalendrier(modeleCalendrier.getId());
+			TypeContrainte forteActviteEntreprise = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.FORTE_ACTIVITE_ENTREPRISE.toString());
+			contrainteForteActiviteEntreprise.setTypeContrainte(forteActviteEntreprise);
+			contrainteEntityList.add(contrainteForteActiviteEntreprise);
+		}
+
+		// Période de faible activité en entreprise
+		if (contraintesViewElement.isPeriodeFaibleActiviteEntreprise()) {
+			Contrainte contrainteFaibleActiviteEntreprise = new Contrainte();
+			contrainteFaibleActiviteEntreprise
+					.setDateDebut(contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateDebut());
+			contrainteFaibleActiviteEntreprise
+					.setDateFin(contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateFin());
+			contrainteFaibleActiviteEntreprise.setIdModeleCalendrier(modeleCalendrier.getId());
+			TypeContrainte faibleActviteEntreprise = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.FAIBLE_ACTIVITE_ENTREPRISE.toString());
+			contrainteFaibleActiviteEntreprise.setTypeContrainte(faibleActviteEntreprise);
+			contrainteEntityList.add(contrainteFaibleActiviteEntreprise);
+		}
+
+		// Période de non disponibilité
+		if (contraintesViewElement.isPeriodeNonDisponibiliteStagiaire()) {
+			Contrainte contrainteNonDisponibilite = new Contrainte();
+			contrainteNonDisponibilite
+					.setDateDebut(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateDebut());
+			contrainteNonDisponibilite.setDateFin(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateFin());
+			contrainteNonDisponibilite.setMotif(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireMotif());
+			contrainteNonDisponibilite.setIdModeleCalendrier(modeleCalendrier.getId());
+			TypeContrainte nonDisponibilite = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.NON_DISPONIBILITE.toString());
+			contrainteNonDisponibilite.setTypeContrainte(nonDisponibilite);
+			contrainteEntityList.add(contrainteNonDisponibilite);
 		}
 
 		modeleCalendrier.setContraintes(contrainteEntityList);
