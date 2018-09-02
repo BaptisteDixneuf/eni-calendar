@@ -169,7 +169,7 @@
 			
 			<!-- Barre déplier -->
 			<p:dialog id="paveGroupeDeplier" header="Modal Dialog"
-				widgetVar="modalGroupe" modal="true" appendToBody="true"
+				widgetVar="modalGroupe" modal="true" appendToBody="true" width="100%"
 				position="bottom" closable="false" height="500" resizable="false"
 				draggable="false">
 	
@@ -187,8 +187,8 @@
 								</h:panelGroup>
 	
 								<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">
-												Titre ouvert 
-											</h:panelGroup>
+									#{modeleVideController.selectedFormation.libelleCourt} - #{modeleVideController.selectedLieu.libelle} - #{modeleVideController.formatDate(modeleVideController.dateDebut)}
+								</h:panelGroup>
 							</h:panelGroup>
 						</div>
 	
@@ -204,31 +204,40 @@
 						<p:tab title="Contraintes">
 							<h2>Les contraintes</h2>
 							<h:outputText value="Les contraintes:" />
-								
-							<p:selectBooleanCheckbox id="semaineAffileeEntreprise" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" />
-							<p:outputLabel for="semaineAffileeEntreprise" value="Nombre de semaine d'affilée en entreprise :  " />						
-							<p:spinner id="semaineAffileeEntrepriseNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" min="0"/>
 							
-							<p:selectBooleanCheckbox id="semaineAffileeFormation" value="#{modeleVideController.contraintesViewElement.semaineAffileeFormation}" />
-							<p:outputLabel for="semaineAffileeFormation" value="Nombre de semaine d'affilée en formation : " />						
-							<p:spinner id="semaineAffileeFormationNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeFormationNombre}" min="0"/>
+							<div>								
+								<p:selectBooleanCheckbox id="semaineAffileeEntreprise" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" />
+								<p:outputLabel for="semaineAffileeEntreprise" value="Nombre de semaine d'affilée en entreprise :  " />						
+								<p:spinner id="semaineAffileeEntrepriseNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" min="0"/>
+							</div>
 							
-							<p:selectBooleanCheckbox id="periodeForteActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntreprise}" />
-							<p:outputLabel for="periodeForteActiviteEntreprise" value="Périodes de forte activité en entreprise :  " />
-							<p:calendar id="periodeForteActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateDebut}" />
-							<p:calendar id="periodeForteActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateFin}" />
+							<div>	
+								<p:selectBooleanCheckbox id="semaineAffileeFormation" value="#{modeleVideController.contraintesViewElement.semaineAffileeFormation}" />
+								<p:outputLabel for="semaineAffileeFormation" value="Nombre de semaine d'affilée en formation : " />						
+								<p:spinner id="semaineAffileeFormationNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeFormationNombre}" min="0"/>
+							</div>
 							
-							<p:selectBooleanCheckbox id="periodeFaibleActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntreprise}" />
-							<p:outputLabel for="periodeFaibleActiviteEntreprise" value="Périodes de faible activité en entreprise :  " />
-							<p:calendar id="periodeFaibleActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateDebut}" />
-							<p:calendar id="periodeFaibleActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateFin}" />
+							<div>	
+								<p:selectBooleanCheckbox id="periodeForteActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntreprise}" />
+								<p:outputLabel for="periodeForteActiviteEntreprise" value="Périodes de forte activité en entreprise :  " />
+								<p:calendar id="periodeForteActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateDebut}" />
+								<p:calendar id="periodeForteActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateFin}" />
+							</div>
 							
-							<p:selectBooleanCheckbox id="periodeNonDisponibiliteStagiaire" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaire}" />
-							<p:outputLabel for="periodeNonDisponibiliteStagiaire" value="Périodes de non disponibilité du stagiaire ( Absences ) :" />
-							<p:inputText id="periodeNonDisponibiliteStagiaireMotif" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireMotif}"></p:inputText>
-							<p:calendar id="periodeNonDisponibiliteStagiaireDateDebut" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateDebut}" />
-							<p:calendar id="periodeNonDisponibiliteStagiaireDateFin" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateFin}" />
+							<div>	
+								<p:selectBooleanCheckbox id="periodeFaibleActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntreprise}" />
+								<p:outputLabel for="periodeFaibleActiviteEntreprise" value="Périodes de faible activité en entreprise :  " />
+								<p:calendar id="periodeFaibleActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateDebut}" />
+								<p:calendar id="periodeFaibleActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateFin}" />
+							</div>
 							
+							<div>	
+								<p:selectBooleanCheckbox id="periodeNonDisponibiliteStagiaire" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaire}" />
+								<p:outputLabel for="periodeNonDisponibiliteStagiaire" value="Périodes de non disponibilité du stagiaire ( Absences ) :" />
+								<p:inputText id="periodeNonDisponibiliteStagiaireMotif" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireMotif}"></p:inputText>
+								<p:calendar id="periodeNonDisponibiliteStagiaireDateDebut" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateDebut}" />
+								<p:calendar id="periodeNonDisponibiliteStagiaireDateFin" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateFin}" />
+							</div>
 						</p:tab>
 						
 						<!-- Les dispenses -->
