@@ -23,9 +23,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.exceptions.FonctionnelException;
+import fr.eni.enicalendar.persistence.app.entities.Contrainte;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
+import fr.eni.enicalendar.persistence.app.entities.TypeContrainte;
 import fr.eni.enicalendar.persistence.erp.entities.Cours;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
@@ -37,7 +39,9 @@ import fr.eni.enicalendar.service.ModeleCalendrierServiceInterface;
 import fr.eni.enicalendar.service.ModuleIndependantsServiceInterface;
 import fr.eni.enicalendar.service.ModuleServiceInterface;
 import fr.eni.enicalendar.service.ProgrammationServiceInterface;
+import fr.eni.enicalendar.service.TypeContrainteServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
+import fr.eni.enicalendar.utils.TypeContrainteEnum;
 import fr.eni.enicalendar.viewElement.AutreCours;
 import fr.eni.enicalendar.viewElement.Contraintes;
 import fr.eni.enicalendar.viewElement.Dispenses;
@@ -76,6 +80,9 @@ public class ModeleVideController implements Serializable {
 
 	@ManagedProperty(value = "#{moduleService}")
 	private ModuleServiceInterface moduleService;
+
+	@ManagedProperty(value = "#{typeContrainteService}")
+	private TypeContrainteServiceInterface typeContrainteService;
 
 	private List<ElementCalendrier> availableElementCalendrier;
 
@@ -374,6 +381,88 @@ public class ModeleVideController implements Serializable {
 	}
 
 	/**
+	 * Méthode qui permet d'enregistrer les contraintes
+	 */
+	public void enregistrerContraintes() {
+
+		// TODO: faire de la validation de données
+
+		if (modeleCalendrier == null || modeleCalendrier.getId() == null) {
+			save();
+		}
+		List<Contrainte> contrainteEntityList = new ArrayList<>();
+
+		// Nombre de semaine d'affilée en entreprise
+		if (contraintesViewElement.isSemaineAffileeEntreprise()) {
+			Contrainte contrainteSemaineAffileeEntreprise = new Contrainte();
+			contrainteSemaineAffileeEntreprise
+					.setNombreDeSemaines(contraintesViewElement.getSemaineAffileeEntrepriseNombre());
+			contrainteSemaineAffileeEntreprise.setIdModeleCalendrier(modeleCalendrier.getId());
+			TypeContrainte semaineAffileeEntreprise = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.SEMAINE_AFFILEE_ENTREPRISE.toString());
+			contrainteSemaineAffileeEntreprise.setTypeContrainte(semaineAffileeEntreprise);
+			contrainteEntityList.add(contrainteSemaineAffileeEntreprise);
+		}
+
+		// Nombre de semaine d'affilée en formation
+		if (contraintesViewElement.isSemaineAffileeFormation()) {
+			Contrainte contrainteSemaineAffileeFormation = new Contrainte();
+			contrainteSemaineAffileeFormation
+					.setNombreDeSemaines(contraintesViewElement.getSemaineAffileeFormationNombre());
+			contrainteSemaineAffileeFormation.setIdModeleCalendrier(modeleCalendrier.getId());
+			TypeContrainte semaineAffileeFormation = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.SEMAINE_AFFILEE_FORMATION.toString());
+			contrainteSemaineAffileeFormation.setTypeContrainte(semaineAffileeFormation);
+			contrainteEntityList.add(contrainteSemaineAffileeFormation);
+		}
+
+		// Période de forte activité en entreprise
+		if (contraintesViewElement.isPeriodeForteActiviteEntreprise()) {
+			Contrainte contrainteForteActiviteEntreprise = new Contrainte();
+			contrainteForteActiviteEntreprise
+					.setDateDebut(contraintesViewElement.getPeriodeForteActiviteEntrepriseDateDebut());
+			contrainteForteActiviteEntreprise
+					.setDateFin(contraintesViewElement.getPeriodeForteActiviteEntrepriseDateFin());
+			contrainteForteActiviteEntreprise.setIdModeleCalendrier(modeleCalendrier.getId());
+			TypeContrainte forteActviteEntreprise = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.FORTE_ACTIVITE_ENTREPRISE.toString());
+			contrainteForteActiviteEntreprise.setTypeContrainte(forteActviteEntreprise);
+			contrainteEntityList.add(contrainteForteActiviteEntreprise);
+		}
+
+		// Période de faible activité en entreprise
+		if (contraintesViewElement.isPeriodeFaibleActiviteEntreprise()) {
+			Contrainte contrainteFaibleActiviteEntreprise = new Contrainte();
+			contrainteFaibleActiviteEntreprise
+					.setDateDebut(contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateDebut());
+			contrainteFaibleActiviteEntreprise
+					.setDateFin(contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateFin());
+			contrainteFaibleActiviteEntreprise.setIdModeleCalendrier(modeleCalendrier.getId());
+			TypeContrainte faibleActviteEntreprise = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.FAIBLE_ACTIVITE_ENTREPRISE.toString());
+			contrainteFaibleActiviteEntreprise.setTypeContrainte(faibleActviteEntreprise);
+			contrainteEntityList.add(contrainteFaibleActiviteEntreprise);
+		}
+
+		// Période de non disponibilité
+		if (contraintesViewElement.isPeriodeNonDisponibiliteStagiaire()) {
+			Contrainte contrainteNonDisponibilite = new Contrainte();
+			contrainteNonDisponibilite
+					.setDateDebut(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateDebut());
+			contrainteNonDisponibilite.setDateFin(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateFin());
+			contrainteNonDisponibilite.setMotif(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireMotif());
+			contrainteNonDisponibilite.setIdModeleCalendrier(modeleCalendrier.getId());
+			TypeContrainte nonDisponibilite = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.NON_DISPONIBILITE.toString());
+			contrainteNonDisponibilite.setTypeContrainte(nonDisponibilite);
+			contrainteEntityList.add(contrainteNonDisponibilite);
+		}
+
+		modeleCalendrier.setContraintes(contrainteEntityList);
+		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
+	}
+
+	/**
 	 * @return the coursService
 	 */
 	public CoursServiceInterface getCoursService() {
@@ -578,6 +667,14 @@ public class ModeleVideController implements Serializable {
 
 	public void setSelectedLieu(Lieu selectedLieu) {
 		this.selectedLieu = selectedLieu;
+	}
+
+	public TypeContrainteServiceInterface getTypeContrainteService() {
+		return typeContrainteService;
+	}
+
+	public void setTypeContrainteService(TypeContrainteServiceInterface typeContrainteService) {
+		this.typeContrainteService = typeContrainteService;
 	}
 
 }
