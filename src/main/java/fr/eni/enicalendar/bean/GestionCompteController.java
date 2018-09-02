@@ -93,7 +93,7 @@ public class GestionCompteController implements Serializable {
 		//on vérifie avant que l'ancien mot de passe est le bon
 		if (passwordEncoder.matches(oldPassword, utilisateur.getPassword())) {
 			utilisateur.setPassword(passwordEncoder.encode(newPassword));
-			utilisateurService.saveUtilisateur(utilisateur);
+			utilisateurService.sauverUtilisateur(utilisateur);
 
 			FacesContext.getCurrentInstance().addMessage("general",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Informations enregistrées!", ""));

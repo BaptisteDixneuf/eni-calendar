@@ -56,7 +56,7 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 	}
 	
 	
-	public Utilisateur saveUtilisateur(Utilisateur utilisateur) {
+	public Utilisateur sauverUtilisateur(Utilisateur utilisateur) {
 		return utilisateurRepository.save(utilisateur);
 	}
 
