@@ -207,7 +207,7 @@
 							<div class="m-t-20">								
 								<p:selectBooleanCheckbox id="semaineAffileeEntreprise" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" />
 								<p:outputLabel styleClass="m-l-20" for="semaineAffileeEntreprise" value="Nombre de semaine d'affilée en entreprise :  " />						
-								<p:spinner styleClass="m-l-20" id="semaineAffileeEntrepriseNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntreprise}" min="0"/>
+								<p:spinner styleClass="m-l-20" id="semaineAffileeEntrepriseNumber" value="#{modeleVideController.contraintesViewElement.semaineAffileeEntrepriseNombre}" min="0"/>
 							</div>
 							
 							<div class="m-t-20">	
@@ -264,7 +264,8 @@
 								</p:dataTable>								
 								<div>
 									<p:outputLabel for="periodeNonDisponibiliteStagiaireMotif" value="Motif : " />
-									<p:inputText styleClass="m-l-20" id="periodeNonDisponibiliteStagiaireMotif" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireMotif}"></p:inputText>
+									<p:inputText styleClass="m-l-20" id="periodeNonDisponibiliteStagiaireMotif" maxlength="255"
+									value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireMotif}"></p:inputText>
 								</div>
 								<div>
 									<p:calendar id="periodeNonDisponibiliteStagiaireDateDebut" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateDebut}" showOn="button" />

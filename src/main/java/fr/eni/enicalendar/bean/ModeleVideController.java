@@ -380,7 +380,12 @@ public class ModeleVideController implements Serializable {
 		return dateString;
 	}
 
+	/**
+	 * Méthode qui permet d'enregistrer les contraintes
+	 */
 	public void enregistrerContraintes() {
+
+		// TODO: faire de la validation de données
 
 		if (modeleCalendrier == null || modeleCalendrier.getId() == null) {
 			save();
