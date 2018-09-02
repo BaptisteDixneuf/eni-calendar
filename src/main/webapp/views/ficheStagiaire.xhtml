@@ -58,10 +58,19 @@
 						<p:dataExporter type="pdf" target="tbl" fileName="cars" preProcessor="#{ficheStagiaireController.preProcessPDF}" />
 					</h:commandLink>
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', calendriers.id)}"/>
-					<p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{ficheStagiaireController.supprimerCalendrier(calendriers.id)}"/>
+					<p:commandButton value="Supprimer" action="#{ficheStagiaireController.setId(calendriers.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
 				</p:column>
 
 			</p:dataTable>
+
+				<p:dialog id="dlg2" header="Confirmation" widgetVar="dlg2" modal="true" height="100" style="text-align: center">
+					<h:form>
+						<h:outputText value="Etes vous sur de vouloir supprimer cet utilisateur? Cette action est définitive." /><br/><br/>
+						<p:commandButton action="#{ficheStagiaireController.supprimerCalendrier}"
+										 value="Supprimer" style="background-color: #FE2E2E">
+						</p:commandButton>
+					</h:form>
+				</p:dialog>
 			</div>
 		</h:form>
 	</div>

@@ -7,8 +7,7 @@
 
 <h:head>
 	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"/>
 </h:head>
 
 
@@ -45,12 +44,23 @@
                 </p:column>
                 <p:column headerText=""  >
                     <p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', utilisateurs.id)}"/>
-                    <p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{gestionUtilisateursController.supprimerUtilisateur(utilisateurs.id)}"/>
+                    <p:commandButton value="Supprimer" action="#{gestionUtilisateursController.setId(utilisateurs.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
                 </p:column>
 
+
           </p:dataTable>
-   
-    </h:form>
+
+                <p:dialog id="dlg2" header="Confirmation" widgetVar="dlg2" modal="true" height="100" style="text-align: center">
+                    <h:form>
+                        <h:outputText value="Etes vous sur de vouloir supprimer cet utilisateur? Cette action est définitive." /><br/><br/>
+                        <p:commandButton action="#{gestionUtilisateursController.supprimerUtilisateur}"
+                                         value="Supprimer" style="background-color: #FE2E2E">
+                        </p:commandButton>
+                    </h:form>
+                </p:dialog>
+
+
+            </h:form>
     </div>
 	</div>
 	

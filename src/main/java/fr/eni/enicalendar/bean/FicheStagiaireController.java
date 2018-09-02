@@ -56,6 +56,15 @@ public class FicheStagiaireController implements Serializable {
 	private Calendrier calendrier;
 	private List<Formation> formations;
 	private List<Calendrier> calendriers;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getCodeCalendrier() {
 		return codeCalendrier;
@@ -112,6 +121,7 @@ public class FicheStagiaireController implements Serializable {
 	public void setStagiaire(Stagiaire stagiaire) {
 		this.stagiaire = stagiaire;
 	}
+
 
 	@PostConstruct
 	public void setup() {
@@ -188,7 +198,7 @@ public class FicheStagiaireController implements Serializable {
 	 *
 	 * @throws IOException
 	 */
-	public void supprimerCalendrier(Integer id) throws IOException {
+	public void supprimerCalendrier() throws IOException {
 		HttpSession session = SessionUtils.getSession();
 		session.setAttribute(SessionUtils.SESSION_ID, id);
 		calendrier = calendrierService.findOne(id);

@@ -36,6 +36,15 @@ public class GestionModulesIndependantsController implements Serializable {
 	private List<ModuleIndependant> modules;
 	private ModuleIndependant module;
 	private String typeAction;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the moduleIndependantsService
@@ -125,7 +134,7 @@ public class GestionModulesIndependantsController implements Serializable {
 	 *
 	 * @throws IOException
 	 */
-	public void supprimerModule(Integer id) throws IOException {
+	public void supprimerModule() throws IOException {
 		 module = moduleIndependantsService.findById(id);
 		 moduleIndependantsService.delete(module);
 		FacesContext context = FacesContext.getCurrentInstance();
