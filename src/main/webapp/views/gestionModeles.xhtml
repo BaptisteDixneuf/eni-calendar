@@ -29,7 +29,11 @@
 			</p:messages>
 		<p:commandButton value="+ Créer un nouveau modèle" style="background-color: #2E9AFE" action="#{gestionModelesController.ajoutModele('Création')}"/>
 
-			<p:dataTable var="modeles" value="#{gestionModelesController.modeles}" widgetVar="titreTable" emptyMessage="Auncun modele ne correspond">
+			<p:dataTable var="modeles" value="#{gestionModelesController.modeles}" widgetVar="titreTable" emptyMessage="Auncun modele ne correspond"
+						 rows="15"
+						 paginator="true"
+						 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						 rowsPerPageTemplate="15,20,50">
 				<p:column headerText="Libelle" sortBy="#{modeles.nomCalendrier}" filterBy="#{modeles.nomCalendrier}">
 					<h:outputText value="#{modeles.nomCalendrier}"/>
 				</p:column>

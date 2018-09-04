@@ -8,7 +8,7 @@
 </h:head>
 
 <body>
-	<ui:include src="menuBis.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"/>
 	
 	<div class="container">
 	<div class="col-md-12">
@@ -18,10 +18,14 @@
 				<p:autoUpdate />
 			</p:messages>
 			<p:dataTable var="cours" value="#{coursController.cours}"
-				widgetVar="titreTable" emptyMessage="Auncun titre ne correspond">
-				<p:column headerText="Id" sortBy="#{cours.id}"
-					filterBy="#{cours.id}">
-					<h:outputText value="#{cours.id}" />
+				widgetVar="titreTable" emptyMessage="Auncun titre ne correspond"
+						 rows="15"
+						 paginator="true"
+						 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						 rowsPerPageTemplate="15,20,50">
+				<p:column headerText="Libelle" sortBy="#{cours.libelleCours}"
+					filterBy="#{cours.libelleCours}">
+					<h:outputText value="#{cours.libelleCours}" />
 				</p:column>
 				<p:column headerText="Date début" sortBy="#{cours.dateDebut}"
 					filterBy="#{cours.dateDebut}">
@@ -31,11 +35,7 @@
 					filterBy="#{cours.dateFin}">
 					<h:outputText value="#{cours.dateFin}" />
 				</p:column>
-				<p:column headerText="libelle Cours" sortBy="#{cours.libelleCours}"
-					filterBy="#{cours.libelleCours}">
-					<h:outputText value="#{cours.libelleCours}" />
-				</p:column>
-				<p:column headerText="dureePrevueEnHeures"
+				<p:column headerText="Durée prévue (h)"
 					sortBy="#{cours.dureePrevueEnHeures}"
 					filterBy="#{cours.dureePrevueEnHeures}">
 					<h:outputText value="#{cours.dureePrevueEnHeures}" />
@@ -45,6 +45,6 @@
 	</div>
 	</div>
 	
-	<ui:include src="footer.xhtml"></ui:include>
+	<ui:include src="footer.xhtml"/>
 </body>
 </html>

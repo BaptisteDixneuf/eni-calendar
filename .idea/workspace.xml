@@ -6,16 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4429b4d1-4d13-4873-af38-70b819ae7b53" name="Default" comment="">
+    <list default="true" id="4429b4d1-4d13-4873-af38-70b819ae7b53" name="Default" comment="mise en place modal suppression sur toutes les pages">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModelesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModelesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModulesIndependantsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModulesIndependantsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionUtilisateursController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionUtilisateursController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/cours.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/cours.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/gestionModeles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/gestionModeles.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/gestionModulesIndependants.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/gestionModulesIndependants.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/gestionUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/gestionUtilisateurs.xhtml" afterDir="false" />
     </list>
     <ignored path="$APPLICATION_HOME_DIR$/ENI CALENDAR/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -63,6 +59,24 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="EniEcole" type="feb32156:DbDataSourceImpl" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="EniEcole" type="feb32156:DbDataSourceImpl" />
+        <item name="EniEcole: database" type="bdf80c8a:MssqlImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="EniEcole" type="feb32156:DbDataSourceImpl" />
+        <item name="EniEcole: database" type="bdf80c8a:MssqlImplModel$Database" />
+        <item name="dbo: schema" type="3adcb6a6:MssqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="EniEcole" type="feb32156:DbDataSourceImpl" />
+        <item name="EniEcole: database" type="bdf80c8a:MssqlImplModel$Database" />
+        <item name="dbo: schema" type="3adcb6a6:MssqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
     </expand>
     <select />
   </component>
@@ -71,35 +85,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="gestionCompte.xhtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionCompte.xhtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GestionUtilisateursController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionUtilisateursController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
-              <folding>
-                <element signature="e#1281#1282#0" expanded="true" />
-                <element signature="e#1297#1298#0" expanded="true" />
-                <element signature="e#1327#1328#0" expanded="true" />
-                <element signature="e#1346#1347#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="gestionUtilisateurs.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionUtilisateurs.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="54" column="50" lean-forward="true" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
+            <state>
+              <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -107,7 +97,7 @@
       <file leaf-file-name="gestionModulesIndependants.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionModulesIndependants.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
+            <state relative-caret-position="867">
               <caret line="51" column="101" selection-start-line="51" selection-start-column="101" selection-end-line="51" selection-end-column="101" />
             </state>
           </provider>
@@ -116,8 +106,8 @@
       <file leaf-file-name="gestionModeles.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionModeles.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="47" column="89" selection-start-line="47" selection-start-column="89" selection-end-line="47" selection-end-column="89" />
+            <state relative-caret-position="595">
+              <caret line="35" column="55" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -125,7 +115,7 @@
       <file leaf-file-name="GestionModelesController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModelesController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
+            <state relative-caret-position="641">
               <caret line="132" selection-start-line="132" selection-end-line="132" />
               <folding>
                 <element signature="e#1158#1159#0" expanded="true" />
@@ -137,18 +127,146 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="cours.xhtml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/cours.xhtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="55" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="24" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cours.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/entities/Cours.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="918">
+              <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+              <folding>
+                <element signature="e#1600#1601#0" expanded="true" />
+                <element signature="e#1616#1617#0" expanded="true" />
+                <element signature="e#1788#1789#0" expanded="true" />
+                <element signature="e#1811#1812#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GestionModulesIndependantsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModulesIndependantsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1734">
+              <caret line="137" selection-start-line="137" selection-end-line="137" />
+              <folding>
+                <element signature="e#1245#1246#0" expanded="true" />
+                <element signature="e#1261#1262#0" expanded="true" />
+                <element signature="e#1291#1292#0" expanded="true" />
+                <element signature="e#1310#1311#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="FicheStagiaireController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="200" column="36" selection-start-line="200" selection-start-column="36" selection-end-line="200" selection-end-column="36" />
+            <state relative-caret-position="2312">
+              <caret line="201" selection-start-line="201" selection-end-line="201" />
               <folding>
                 <element signature="e#1947#1948#0" expanded="true" />
                 <element signature="e#1963#1964#0" expanded="true" />
                 <element signature="e#1993#1994#0" expanded="true" />
                 <element signature="e#2012#2013#0" expanded="true" />
-                <element signature="e#2907#2908#0" expanded="true" />
-                <element signature="e#2930#2931#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModeleVideController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModeleVideController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="349" column="33" selection-start-line="349" selection-start-column="33" selection-end-line="349" selection-end-column="33" />
+              <folding>
+                <element signature="e#18020#18021#0" expanded="true" />
+                <element signature="e#18046#18047#0" expanded="true" />
+                <element signature="e#18187#18188#0" expanded="true" />
+                <element signature="e#18226#18227#0" expanded="true" />
+                <element signature="e#18293#18294#0" expanded="true" />
+                <element signature="e#18333#18334#0" expanded="true" />
+                <element signature="e#18563#18564#0" expanded="true" />
+                <element signature="e#18601#18602#0" expanded="true" />
+                <element signature="e#18818#18819#0" expanded="true" />
+                <element signature="e#18857#18858#0" expanded="true" />
+                <element signature="e#19085#19086#0" expanded="true" />
+                <element signature="e#19122#19123#0" expanded="true" />
+                <element signature="e#19351#19352#0" expanded="true" />
+                <element signature="e#19385#19386#0" expanded="true" />
+                <element signature="e#19581#19582#0" expanded="true" />
+                <element signature="e#19606#19607#0" expanded="true" />
+                <element signature="e#19671#19672#0" expanded="true" />
+                <element signature="e#19708#19709#0" expanded="true" />
+                <element signature="e#19767#19768#0" expanded="true" />
+                <element signature="e#19797#19798#0" expanded="true" />
+                <element signature="e#19974#19975#0" expanded="true" />
+                <element signature="e#20004#20005#0" expanded="true" />
+                <element signature="e#20075#20076#0" expanded="true" />
+                <element signature="e#20122#20123#0" expanded="true" />
+                <element signature="e#20166#20167#0" expanded="true" />
+                <element signature="e#20195#20196#0" expanded="true" />
+                <element signature="e#20259#20260#0" expanded="true" />
+                <element signature="e#20304#20305#0" expanded="true" />
+                <element signature="e#20341#20342#0" expanded="true" />
+                <element signature="e#20368#20369#0" expanded="true" />
+                <element signature="e#20423#20424#0" expanded="true" />
+                <element signature="e#20464#20465#0" expanded="true" />
+                <element signature="e#20507#20508#0" expanded="true" />
+                <element signature="e#20531#20532#0" expanded="true" />
+                <element signature="e#20589#20590#0" expanded="true" />
+                <element signature="e#20624#20625#0" expanded="true" />
+                <element signature="e#20657#20658#0" expanded="true" />
+                <element signature="e#20676#20677#0" expanded="true" />
+                <element signature="e#20719#20720#0" expanded="true" />
+                <element signature="e#20744#20745#0" expanded="true" />
+                <element signature="e#20785#20786#0" expanded="true" />
+                <element signature="e#20816#20817#0" expanded="true" />
+                <element signature="e#20879#20880#0" expanded="true" />
+                <element signature="e#20928#20929#0" expanded="true" />
+                <element signature="e#20959#20960#0" expanded="true" />
+                <element signature="e#20982#20983#0" expanded="true" />
+                <element signature="e#21027#21028#0" expanded="true" />
+                <element signature="e#21060#21061#0" expanded="true" />
+                <element signature="e#21103#21104#0" expanded="true" />
+                <element signature="e#21136#21137#0" expanded="true" />
+                <element signature="e#21204#21205#0" expanded="true" />
+                <element signature="e#21257#21258#0" expanded="true" />
+                <element signature="e#21308#21309#0" expanded="true" />
+                <element signature="e#21344#21345#0" expanded="true" />
+                <element signature="e#21528#21529#0" expanded="true" />
+                <element signature="e#21562#21563#0" expanded="true" />
+                <element signature="e#21754#21755#0" expanded="true" />
+                <element signature="e#21797#21798#0" expanded="true" />
+                <element signature="e#22018#22019#0" expanded="true" />
+                <element signature="e#22053#22054#0" expanded="true" />
+                <element signature="e#22262#22263#0" expanded="true" />
+                <element signature="e#22301#22302#0" expanded="true" />
+                <element signature="e#22526#22527#0" expanded="true" />
+                <element signature="e#22553#22554#0" expanded="true" />
+                <element signature="e#22624#22625#0" expanded="true" />
+                <element signature="e#22665#22666#0" expanded="true" />
+                <element signature="e#22707#22708#0" expanded="true" />
+                <element signature="e#22734#22735#0" expanded="true" />
+                <element signature="e#22794#22795#0" expanded="true" />
+                <element signature="e#22835#22836#0" expanded="true" />
+                <element signature="e#22879#22880#0" expanded="true" />
+                <element signature="e#22910#22911#0" expanded="true" />
+                <element signature="e#22976#22977#0" expanded="true" />
+                <element signature="e#23025#23026#0" expanded="true" />
+                <element signature="e#23059#23060#0" expanded="true" />
+                <element signature="e#23085#23086#0" expanded="true" />
+                <element signature="e#23136#23137#0" expanded="true" />
+                <element signature="e#23175#23176#0" expanded="true" />
+                <element signature="e#23244#23245#0" expanded="true" />
+                <element signature="e#23279#23280#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -157,8 +275,8 @@
       <file leaf-file-name="ficheStagiaire.xhtml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="58" column="36" lean-forward="true" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
+            <state relative-caret-position="556">
+              <caret line="40" column="55" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -240,11 +358,9 @@
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/CreationCalendrierDepuisModeleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/CreationCalendrierVideController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/style/app/style.css" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModeleVideController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/menuBis.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/comparaisonCalendriers.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/comparerCalendriers.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/cours.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/creation-modificationModuleIndependant.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/creationCalendrierDepuisStagiaire.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/enchainementModules.xhtml" />
@@ -269,6 +385,8 @@
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModelesController.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/gestionModulesIndependants.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModeleVideController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/cours.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/gestionModeles.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml" />
       </list>
@@ -298,6 +416,11 @@
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="fr.eni.calendar" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="fr.eni.calendar" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Run Configurations" type="21c1f71a:MavenProjectsStructure$RunConfigurationsNode" />
         </path>
       </expand>
       <select />
@@ -443,6 +566,17 @@
               <item name="enicalendar" type="462c0819:PsiDirectoryNode" />
               <item name="persistence" type="462c0819:PsiDirectoryNode" />
               <item name="erp" type="462c0819:PsiDirectoryNode" />
+              <item name="entities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eni-calendar" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="enicalendar" type="462c0819:PsiDirectoryNode" />
+              <item name="persistence" type="462c0819:PsiDirectoryNode" />
+              <item name="erp" type="462c0819:PsiDirectoryNode" />
               <item name="repositories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -478,13 +612,6 @@
               <item name="eni-calendar" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eni-calendar" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -494,33 +621,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eni-calendar" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eni-calendar" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eni-calendar" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
@@ -541,128 +641,6 @@
             <path>
               <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.sun.faces:jsf-api:2.2.8" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.sun.faces:jsf-api:2.2.8" type="70bed36:NamedLibraryElementNode" />
-              <item name="jsf-api-2.2.8.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.sun.faces:jsf-api:2.2.8" type="70bed36:NamedLibraryElementNode" />
-              <item name="jsf-api-2.2.8.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="faces" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.sun.faces:jsf-api:2.2.8" type="70bed36:NamedLibraryElementNode" />
-              <item name="jsf-api-2.2.8.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="faces" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.primefaces:primefaces:6.2" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.primefaces:primefaces:6.2" type="70bed36:NamedLibraryElementNode" />
-              <item name="primefaces-6.2.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.primefaces:primefaces:6.2" type="70bed36:NamedLibraryElementNode" />
-              <item name="primefaces-6.2.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="primefaces" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.primefaces:primefaces:6.2" type="70bed36:NamedLibraryElementNode" />
-              <item name="primefaces-6.2.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="primefaces" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.primefaces:primefaces:6.2" type="70bed36:NamedLibraryElementNode" />
-              <item name="primefaces-6.2.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="primefaces" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-              <item name="autocomplete" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework.data:spring-data-commons:1.12.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework.data:spring-data-commons:1.12.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-data-commons-1.12.2.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework.data:spring-data-commons:1.12.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-data-commons-1.12.2.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework.data:spring-data-commons:1.12.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-data-commons-1.12.2.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-aop:4.3.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-aop:4.3.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-aop-4.3.2.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-aop:4.3.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-aop-4.3.2.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-aop:4.3.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-aop-4.3.2.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="aop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-aop:4.3.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-aop-4.3.2.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="aop" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
@@ -967,7 +945,11 @@
       <workItem from="1535649544856" duration="3249000" />
       <workItem from="1535658356227" duration="7107000" />
       <workItem from="1535734126087" duration="68000" />
-      <workItem from="1535888462364" duration="11304000" />
+      <workItem from="1535888462364" duration="11627000" />
+      <workItem from="1535908748757" duration="1113000" />
+      <workItem from="1535997393224" duration="419000" />
+      <workItem from="1536080638286" duration="78000" />
+      <workItem from="1536089821069" duration="1892000" />
     </task>
     <task id="LOCAL-00001" summary="test idea">
       <created>1529573998274</created>
@@ -1235,11 +1217,18 @@
       <option name="project" value="LOCAL" />
       <updated>1535893970996</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="mise en place modal suppression sur toutes les pages">
+      <created>1535908474684</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1535908474684</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222758000" />
+    <option name="totallyTimeSpent" value="226583000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1262,11 +1251,11 @@
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="2" />
       <window_info anchor="right" id="Database" order="8" sideWeight="0.49704143" visible="true" weight="0.13177083" />
-      <window_info anchor="right" id="JSF" order="10" />
       <window_info id="Structure" order="1" sideWeight="0.49356914" side_tool="true" weight="0.24962178" />
+      <window_info anchor="right" id="JSF" order="10" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.28616685" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.28616685" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32946146" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32946146" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
@@ -1277,11 +1266,11 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.43294615" />
       <window_info anchor="bottom" id="Spring" order="14" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32946146" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.74868006" visible="true" weight="0.15520833" />
       <window_info anchor="bottom" id="Problems" order="15" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.75147927" visible="true" weight="0.15520833" />
       <window_info id="Web" order="6" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info id="Favorites" order="5" sideWeight="0.24852072" side_tool="true" visible="true" weight="0.15520833" />
+      <window_info id="Favorites" order="5" sideWeight="0.25131994" side_tool="true" visible="true" weight="0.15520833" />
       <window_info anchor="right" id="Coverage" order="0" sideWeight="0.5029586" side_tool="true" visible="true" weight="0.13333334" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1326,7 +1315,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="mise en forme site et ajout gestion des modeles" />
     <MESSAGE value="correction ecran login" />
     <MESSAGE value="correction ecran utilisateurs" />
     <MESSAGE value="ajout liste formations et pages du footer" />
@@ -1351,7 +1339,8 @@
     <MESSAGE value="perfectionnement messages flash" />
     <MESSAGE value="correction creation utilisateur (encode password)" />
     <MESSAGE value="correction mise en page" />
-    <option name="LAST_COMMIT_MESSAGE" value="correction mise en page" />
+    <MESSAGE value="mise en place modal suppression sur toutes les pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="mise en place modal suppression sur toutes les pages" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1374,31 +1363,11 @@
           <properties />
           <option name="timeStamp" value="119" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModelesController.java</url>
-          <line>132</line>
-          <properties />
-          <option name="timeStamp" value="120" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="121" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/enchainementModules.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionUtilisateurs.xhtml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1424,13 +1393,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="23" column="183" selection-start-line="23" selection-start-column="183" selection-end-line="23" selection-end-column="183" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModeleVideController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="88" column="58" selection-start-line="88" selection-start-column="58" selection-end-line="88" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -1494,13 +1456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/cours.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1634,16 +1589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
           <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
-          <folding>
-            <element signature="e#949#950#0" expanded="true" />
-            <element signature="e#994#995#0" expanded="true" />
-            <element signature="e#1495#1496#0" expanded="true" />
-            <element signature="e#1549#1550#0" expanded="true" />
-            <element signature="e#1605#1606#0" expanded="true" />
-            <element signature="e#1653#1654#0" expanded="true" />
-            <element signature="e#1738#1739#0" expanded="true" />
-            <element signature="e#1791#1792#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1651,13 +1596,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
           <caret line="123" selection-start-line="123" selection-end-line="123" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/CALENDRIER">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1691,15 +1629,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionCompte.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
+        <state relative-caret-position="391">
           <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionUtilisateursController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionUtilisateurs.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionModulesIndependants.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="101" selection-start-line="51" selection-start-column="101" selection-end-line="51" selection-end-column="101" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModulesIndependantsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="136" column="33" selection-start-line="136" selection-start-column="33" selection-end-line="136" selection-end-column="33" />
+        <state relative-caret-position="1734">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
           <folding>
             <element signature="e#1245#1246#0" expanded="true" />
             <element signature="e#1261#1262#0" expanded="true" />
@@ -1709,24 +1668,125 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/CALENDRIER">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="200" column="36" selection-start-line="200" selection-start-column="36" selection-end-line="200" selection-end-column="36" />
+        <state relative-caret-position="2312">
+          <caret line="201" selection-start-line="201" selection-end-line="201" />
           <folding>
             <element signature="e#1947#1948#0" expanded="true" />
             <element signature="e#1963#1964#0" expanded="true" />
             <element signature="e#1993#1994#0" expanded="true" />
             <element signature="e#2012#2013#0" expanded="true" />
-            <element signature="e#2907#2908#0" expanded="true" />
-            <element signature="e#2930#2931#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModeleVideController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="349" column="33" selection-start-line="349" selection-start-column="33" selection-end-line="349" selection-end-column="33" />
+          <folding>
+            <element signature="e#18020#18021#0" expanded="true" />
+            <element signature="e#18046#18047#0" expanded="true" />
+            <element signature="e#18187#18188#0" expanded="true" />
+            <element signature="e#18226#18227#0" expanded="true" />
+            <element signature="e#18293#18294#0" expanded="true" />
+            <element signature="e#18333#18334#0" expanded="true" />
+            <element signature="e#18563#18564#0" expanded="true" />
+            <element signature="e#18601#18602#0" expanded="true" />
+            <element signature="e#18818#18819#0" expanded="true" />
+            <element signature="e#18857#18858#0" expanded="true" />
+            <element signature="e#19085#19086#0" expanded="true" />
+            <element signature="e#19122#19123#0" expanded="true" />
+            <element signature="e#19351#19352#0" expanded="true" />
+            <element signature="e#19385#19386#0" expanded="true" />
+            <element signature="e#19581#19582#0" expanded="true" />
+            <element signature="e#19606#19607#0" expanded="true" />
+            <element signature="e#19671#19672#0" expanded="true" />
+            <element signature="e#19708#19709#0" expanded="true" />
+            <element signature="e#19767#19768#0" expanded="true" />
+            <element signature="e#19797#19798#0" expanded="true" />
+            <element signature="e#19974#19975#0" expanded="true" />
+            <element signature="e#20004#20005#0" expanded="true" />
+            <element signature="e#20075#20076#0" expanded="true" />
+            <element signature="e#20122#20123#0" expanded="true" />
+            <element signature="e#20166#20167#0" expanded="true" />
+            <element signature="e#20195#20196#0" expanded="true" />
+            <element signature="e#20259#20260#0" expanded="true" />
+            <element signature="e#20304#20305#0" expanded="true" />
+            <element signature="e#20341#20342#0" expanded="true" />
+            <element signature="e#20368#20369#0" expanded="true" />
+            <element signature="e#20423#20424#0" expanded="true" />
+            <element signature="e#20464#20465#0" expanded="true" />
+            <element signature="e#20507#20508#0" expanded="true" />
+            <element signature="e#20531#20532#0" expanded="true" />
+            <element signature="e#20589#20590#0" expanded="true" />
+            <element signature="e#20624#20625#0" expanded="true" />
+            <element signature="e#20657#20658#0" expanded="true" />
+            <element signature="e#20676#20677#0" expanded="true" />
+            <element signature="e#20719#20720#0" expanded="true" />
+            <element signature="e#20744#20745#0" expanded="true" />
+            <element signature="e#20785#20786#0" expanded="true" />
+            <element signature="e#20816#20817#0" expanded="true" />
+            <element signature="e#20879#20880#0" expanded="true" />
+            <element signature="e#20928#20929#0" expanded="true" />
+            <element signature="e#20959#20960#0" expanded="true" />
+            <element signature="e#20982#20983#0" expanded="true" />
+            <element signature="e#21027#21028#0" expanded="true" />
+            <element signature="e#21060#21061#0" expanded="true" />
+            <element signature="e#21103#21104#0" expanded="true" />
+            <element signature="e#21136#21137#0" expanded="true" />
+            <element signature="e#21204#21205#0" expanded="true" />
+            <element signature="e#21257#21258#0" expanded="true" />
+            <element signature="e#21308#21309#0" expanded="true" />
+            <element signature="e#21344#21345#0" expanded="true" />
+            <element signature="e#21528#21529#0" expanded="true" />
+            <element signature="e#21562#21563#0" expanded="true" />
+            <element signature="e#21754#21755#0" expanded="true" />
+            <element signature="e#21797#21798#0" expanded="true" />
+            <element signature="e#22018#22019#0" expanded="true" />
+            <element signature="e#22053#22054#0" expanded="true" />
+            <element signature="e#22262#22263#0" expanded="true" />
+            <element signature="e#22301#22302#0" expanded="true" />
+            <element signature="e#22526#22527#0" expanded="true" />
+            <element signature="e#22553#22554#0" expanded="true" />
+            <element signature="e#22624#22625#0" expanded="true" />
+            <element signature="e#22665#22666#0" expanded="true" />
+            <element signature="e#22707#22708#0" expanded="true" />
+            <element signature="e#22734#22735#0" expanded="true" />
+            <element signature="e#22794#22795#0" expanded="true" />
+            <element signature="e#22835#22836#0" expanded="true" />
+            <element signature="e#22879#22880#0" expanded="true" />
+            <element signature="e#22910#22911#0" expanded="true" />
+            <element signature="e#22976#22977#0" expanded="true" />
+            <element signature="e#23025#23026#0" expanded="true" />
+            <element signature="e#23059#23060#0" expanded="true" />
+            <element signature="e#23085#23086#0" expanded="true" />
+            <element signature="e#23136#23137#0" expanded="true" />
+            <element signature="e#23175#23176#0" expanded="true" />
+            <element signature="e#23244#23245#0" expanded="true" />
+            <element signature="e#23279#23280#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9f26dcdb-f8d4-4967-ba19-4e14c0869081/database/EniEcole/schema/dbo/table/Cours">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModelesController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
+        <state relative-caret-position="641">
           <caret line="132" selection-start-line="132" selection-end-line="132" />
           <folding>
             <element signature="e#1158#1159#0" expanded="true" />
@@ -1737,44 +1797,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionUtilisateursController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/entities/Cours.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
+        <state relative-caret-position="918">
+          <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
           <folding>
-            <element signature="e#1281#1282#0" expanded="true" />
-            <element signature="e#1297#1298#0" expanded="true" />
-            <element signature="e#1327#1328#0" expanded="true" />
-            <element signature="e#1346#1347#0" expanded="true" />
+            <element signature="e#1600#1601#0" expanded="true" />
+            <element signature="e#1616#1617#0" expanded="true" />
+            <element signature="e#1788#1789#0" expanded="true" />
+            <element signature="e#1811#1812#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionUtilisateurs.xhtml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/cours.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="54" column="50" lean-forward="true" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionModulesIndependants.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="51" column="101" selection-start-line="51" selection-start-column="101" selection-end-line="51" selection-end-column="101" />
+        <state relative-caret-position="408">
+          <caret line="24" column="55" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="24" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionModeles.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="47" column="89" selection-start-line="47" selection-start-column="89" selection-end-line="47" selection-end-column="89" />
+        <state relative-caret-position="595">
+          <caret line="35" column="55" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="58" column="36" lean-forward="true" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
+        <state relative-caret-position="556">
+          <caret line="40" column="55" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
         </state>
       </provider>
     </entry>
