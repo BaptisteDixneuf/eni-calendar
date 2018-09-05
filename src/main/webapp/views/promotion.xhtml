@@ -12,6 +12,9 @@ xmlns:p="http://primefaces.org/ui">
     
         <h1>Liste des promotions de l'ENI</h1>
         <h:form>
+            <p:messages for="general" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
             <p:dataTable var="promotion" value="#{promotionController.promotions}" widgetVar="titreTable" emptyMessage="Auncune promotion ne correspond">
                 <p:column headerText="Code Promotion" sortBy="#{promotion.codePromotion}" filterBy="#{promotion.codePromotion}">
                     <h:outputText value="#{promotion.codePromotion}"/>

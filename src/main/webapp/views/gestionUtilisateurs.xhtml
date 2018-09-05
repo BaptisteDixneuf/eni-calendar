@@ -7,13 +7,12 @@
 
 <h:head>
 	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"/>
 </h:head>
 
 
 <body>
-	<ui:include src="menuBis.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"/>
 
     <!--<div>
     <p class="alert alert-success">Bandeau d’alerte - la classe success <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></p>
@@ -21,9 +20,15 @@
 
     <div class="container">
         <div>
+
 		<h1>Liste des utilisateurs de l'application</h1>
+
+                <p:messages for="general" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+            <h:form>
         <p:commandButton value="+ Créer un nouvel utilisateur" style="background-color: #2E9AFE" action="#{gestionUtilisateursController.ajoutUtilisateur('Création')}"/>
-        <h:form>
+
             <p:dataTable var="utilisateurs" value="#{gestionUtilisateursController.utilisateurs}" widgetVar="titreTable" emptyMessage="Auncun utilisateur ne correspond">
                 <p:column headerText="Nom" sortBy="#{utilisateurs.nom}" filterBy="#{utilisateurs.nom}">
                     <h:outputText value="#{utilisateurs.nom}"/>
@@ -39,16 +44,27 @@
                 </p:column>
                 <p:column headerText=""  >
                     <p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', utilisateurs.id)}"/>
-                    <p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{gestionUtilisateursController.supprimerUtilisateur(utilisateurs.id)}"/>
+                    <p:commandButton value="Supprimer" action="#{gestionUtilisateursController.setId(utilisateurs.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
                 </p:column>
 
+
           </p:dataTable>
-   
-    </h:form>
+
+                <p:dialog id="dlg2" header="Confirmation" widgetVar="dlg2" modal="true" height="100" style="text-align: center">
+                    <h:form>
+                        <h:outputText value="Etes vous sur de vouloir supprimer cet utilisateur? Cette action est définitive." /><br/><br/>
+                        <p:commandButton action="#{gestionUtilisateursController.supprimerUtilisateur}"
+                                         value="Supprimer" style="background-color: #FE2E2E">
+                        </p:commandButton>
+                    </h:form>
+                </p:dialog>
+
+
+            </h:form>
     </div>
 	</div>
 	
-	<ui:include src="footer.xhtml"></ui:include>
+	<ui:include src="footer.xhtml"/>
 	
 </body>
 </html>

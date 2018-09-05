@@ -22,25 +22,46 @@
 
 	<div class="container">
 		<div class="col-md-12">
+			<h:form>
 		<h1>Liste des modèles de calendrier</h1>
-		<p:commandButton value="+ Créer un nouvel modèle" style="background-color: #2E9AFE" action="#{gestionModelesController.ajoutModele('Création')}"/>
-		<h:form>
-			<p:dataTable var="modeles" value="#{gestionModelesController.modeles}" widgetVar="titreTable" emptyMessage="Auncun modele ne correspond">
-				<p:column headerText="Nom" sortBy="#{modeles.nomCalendrier}" filterBy="#{modeles.nomCalendrier}">
+			<p:messages for="general" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+		<p:commandButton value="+ Créer un nouveau modèle" style="background-color: #2E9AFE" action="#{gestionModelesController.ajoutModele('Création')}"/>
+
+			<p:dataTable var="modeles" value="#{gestionModelesController.modeles}" widgetVar="titreTable" emptyMessage="Auncun modele ne correspond"
+						 rows="15"
+						 paginator="true"
+						 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						 rowsPerPageTemplate="15,20,50">
+				<p:column headerText="Libelle" sortBy="#{modeles.nomCalendrier}" filterBy="#{modeles.nomCalendrier}">
 					<h:outputText value="#{modeles.nomCalendrier}"/>
 				</p:column>
-				<p:column headerText="Prenom" sortBy="#{modeles.dateCreation}" filterBy="#{modeles.dateCreation}">
-					<h:outputText value="#{modeles.dateCreation}"/>
+				<p:column headerText="Creation" sortBy="#{modeles.dateCreation}" filterBy="#{modeles.dateCreation}">
+					<h:outputText value="#{modeles.dateCreation}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
+				</h:outputText>
 				</p:column>
-				<p:column headerText="Email" sortBy="#{modeles.dateModification}" filterBy="#{modeles.dateModification}">
-					<h:outputText value="#{modeles.dateModification}"/>
+				<p:column headerText="Modification" sortBy="#{modeles.dateModification}" filterBy="#{modeles.dateModification}">
+					<h:outputText value="#{modeles.dateModification}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
+					</h:outputText>
 				</p:column>
 				<p:column headerText="">
-					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionModelesController.modificationModele('Modification', modeles.id)}"/>
-					<p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{gestionModelesController.supprimerModele(modeles.id)}"/>
+					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionModelesController.modificationModele('ModificationModele', modeles.id)}"/>
+					<p:commandButton value="Supprimer" action="#{gestionModelesController.setId(modeles.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
 				</p:column>
 
 			</p:dataTable>
+
+				<p:dialog id="dlg2" header="Confirmation" widgetVar="dlg2" modal="true" height="100" style="text-align: center">
+					<h:form>
+						<h:outputText value="Etes vous sur de vouloir supprimer ce modèle? Cette action est définitive." /><br/><br/>
+						<p:commandButton action="#{gestionModelesController.supprimerModele}"
+										 value="Supprimer" style="background-color: #FE2E2E">
+						</p:commandButton>
+					</h:form>
+				</p:dialog>
 
 		</h:form>
 		</div>

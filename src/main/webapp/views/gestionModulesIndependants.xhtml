@@ -23,24 +23,49 @@
 	<div class="container">
 		<div class="col-md-12">
 		<h1>Liste des modules indépendants</h1>
-		<p:commandButton value="+ Créer un nouvel module indépendant" style="background-color: #2E9AFE" action="#{gestionModulesIndependantsController.ajoutModule('Création')}"/>
+			<p:messages for="general" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+		<p:commandButton value="+ Créer un nouveau module indépendant" style="background-color: #2E9AFE" action="#{gestionModulesIndependantsController.ajoutModule('Création')}"/>
 		<h:form>
-			<p:dataTable var="modules" value="#{gestionModulesIndependantsController.modules}" widgetVar="titreTable" emptyMessage="Auncun module ne correspond">
+			<p:dataTable var="modules" value="#{gestionModulesIndependantsController.modules}" widgetVar="titreTable" emptyMessage="Auncun module ne correspond"
+						 rows="15"
+						 paginator="true"
+						 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						 rowsPerPageTemplate="15,20,50">
 				<p:column headerText="Libelle" sortBy="#{modules.libelle}" filterBy="#{modules.libelle}">
-					<h:outputText value="#{modules.libelle}"/>
+                    <h:outputText value="#{modules.libelle}">
+                    </h:outputText>
+				</p:column>
+				<p:column headerText="Lieu" sortBy="#{modules.lieuFormation}" filterBy="#{modules.lieuFormation}">
+					<h:outputText value="#{modules.lieuFormation}">
+					</h:outputText>
 				</p:column>
 				<p:column headerText="Debut" sortBy="#{modules.dateDebut}" filterBy="#{modules.dateDebut}">
-					<h:outputText value="#{modules.dateDebut}"/>
+					<h:outputText value="#{modules.dateDebut}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
 				</p:column>
 				<p:column headerText="Fin" sortBy="#{modules.dateFin}" filterBy="#{modules.dateFin}">
-					<h:outputText value="#{modules.dateFin}"/>
+					<h:outputText value="#{modules.dateFin}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
 				</p:column>
 				<p:column headerText="">
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionModulesIndependantsController.modificationModule('Modification', modules.id)}"/>
-					<p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{gestionModulesIndependantsController.supprimerModule(modules.id)}"/>
+					<p:commandButton value="Supprimer" action="#{gestionModulesIndependantsController.setId(modules.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
 				</p:column>
 
 			</p:dataTable>
+
+			<p:dialog id="dlg2" header="Confirmation" widgetVar="dlg2" modal="true" height="100" style="text-align: center">
+				<h:form>
+					<h:outputText value="Etes vous sur de vouloir supprimer ce module? Cette action est définitive." /><br/><br/>
+					<p:commandButton action="#{gestionModulesIndependantsController.supprimerModule}"
+									 value="Supprimer" style="background-color: #FE2E2E">
+					</p:commandButton>
+				</h:form>
+			</p:dialog>
 
 		</h:form>
 		</div>

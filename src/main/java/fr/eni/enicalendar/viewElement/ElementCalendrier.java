@@ -1,4 +1,4 @@
-package fr.eni.enicalendar.dto;
+package fr.eni.enicalendar.viewElement;
 
 import java.util.Date;
 
@@ -12,6 +12,8 @@ public class ElementCalendrier {
 
 	private String id;
 
+	private Integer idModule;
+
 	private Date dateDebut;
 
 	private Date dateFin;
@@ -19,6 +21,8 @@ public class ElementCalendrier {
 	private String libelle;
 
 	private ElementCalendrierType type;
+
+	private Boolean moduleProgramme;
 
 	public String getId() {
 		return id;
@@ -58,6 +62,22 @@ public class ElementCalendrier {
 
 	public void setType(ElementCalendrierType type) {
 		this.type = type;
+	}
+
+	public Integer getIdModule() {
+		return idModule;
+	}
+
+	public void setIdModule(Integer idModule) {
+		this.idModule = idModule;
+	}
+
+	public Boolean getModuleProgramme() {
+		return moduleProgramme;
+	}
+
+	public void setModuleProgramme(Boolean moduleProgramme) {
+		this.moduleProgramme = moduleProgramme;
 	}
 
 }

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+</h:head>
+
+
+<body>
+	<ui:include src="menuBis.xhtml"/>
+	
+	<div class="container">
+	<div class="col-md-6">
+		<h1>#{modificationModuleIndependantController.typeAction} d'un module indépendant</h1>
+    
+    <h:form>
+		<p:messages for="general" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+       		<div class="form-group col-md-6">
+				<p:outputLabel for="libelle" value="Libelle :" />
+				<p:inputText id="libelle" value="#{modificationModuleIndependantController.module.libelle}"  styleClass="form-control"/>
+				<p:messages for="libelle"/>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<p:outputLabel for="duree" value="Duree :" />
+				<p:inputText id="duree" value="#{modificationModuleIndependantController.module.duree}" disabled="true" styleClass="form-control"/>
+				<p:messages for="duree"/>
+			</div>
+       
+       		<div class="form-group col-md-6">
+				<p:outputLabel for="libelleCourt" value="Libelle court :" />
+				<p:inputText id="libelleCourt" value="#{modificationModuleIndependantController.module.libelleCourt}"  styleClass="form-control"/>
+				<p:messages for="libelleCourt"/>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<p:outputLabel for="lieu" value="Lieu :" />
+				<p:inputText id="lieu" value="#{modificationModuleIndependantController.module.lieuFormation}"  styleClass="form-control"/>
+				<p:messages for="lieu"/>
+			</div>
+
+		<div class="form-group col-md-6">
+			<p:outputLabel for="dateDebut" value="Date de début :"/><br/>
+			<p:calendar id="dateDebut" value="#{modificationModuleIndependantController.module.dateDebut}" locale="fr"
+						navigator="true" pattern="dd/MM/yyyy">
+			<p:ajax event="dateSelect" listener="#{modificationModuleIndependantController.calculDuree}" update="duree"/>
+			</p:calendar>
+			<p:messages for="dateDebut"/>
+		</div>
+
+		<div class="form-group col-md-6">
+			<p:outputLabel for="dateFin" value="Date de fin :"/><br/>
+			<p:calendar id="dateFin" value="#{modificationModuleIndependantController.module.dateFin}" locale="fr"
+						navigator="true" pattern="dd/MM/yyyy">
+			<p:ajax event="dateSelect" listener="#{modificationModuleIndependantController.calculDuree}" update="duree"/>
+			</p:calendar>
+			<p:messages for="dateFin"/>
+		</div>
+			
+			<p:commandButton action="#{modificationModuleIndependantController.modifierModule}" value="Valider" update="@form" styleClass="btn btn-primary"/>
+         	
+    </h:form>
+	</div>
+	</div>
+
+	<ui:include src="footer.xhtml"/>
+	
+</body>
+</html>

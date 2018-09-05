@@ -8,4 +8,5 @@ public interface FormationServiceInterface {
 
 	List<Formation> findAllFormations();
 
+	Formation findByCode(String code);
 }

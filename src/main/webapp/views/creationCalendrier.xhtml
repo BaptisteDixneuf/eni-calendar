@@ -21,9 +21,14 @@
 	<ui:include src="menuBis.xhtml"></ui:include>
 
 	<div class="container">
-		<div class="log-in">
-			<h:form>
+		<div>
+
 			<h1>Création d'un nouveau calendrier</h1>
+
+			<h:form>
+				<p:messages for="general" showDetail="true" closable="true">
+					<p:autoUpdate />
+				</p:messages>
 
 			<p:fieldset style="border-radius: 30px; border-width: medium; display: flex; justify-content: center">
 				Créer un calendrier :<br/><br/>

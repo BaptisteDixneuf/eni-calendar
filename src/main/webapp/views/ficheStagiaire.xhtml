@@ -7,17 +7,23 @@
 
 <h:head>
 	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"/>
+	<script type="text/javascript" src="#{request.contextPath}/style/app/js/jspdf.js"/>
+	<script type="text/javascript" src="#{request.contextPath}/style/app/js/pdfFromHTML.js"/>
 </h:head>
 
 
 <body>
-	<ui:include src="menuBis.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"/>
 	
 	<div class="container">
-		<h:form>
-		<p:messages for="general"></p:messages>
+	<div>
+		<div id="HTMLtoPDF">
 		<h1>Fiche stagiaire</h1>
+		<h:form>
+			<p:messages for="general" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
 
 			<div class="form-group col-md-12" style="display: flex; justify-content: center">
 				<h:outputText
@@ -26,22 +32,23 @@
 
 			<div class="form-group col-md-12" style="display: flex; justify-content: center">
 				<h:outputText
-						value="Entreprise: XXX TODO A COMPLETER"/>
+						value="Entreprise: TODO XXX"/>
 			</div>
 
 			<div style="margin-top: 4%">
+				<p:commandButton value="+ Créer un nouveau calendrier" style="background-color: #2E9AFE" action="#{ficheStagiaireController.creerCalendrier}"/>
 			<p:dataTable id="tbl" var="calendriers" value="#{ficheStagiaireController.calendriers}" widgetVar="titreTable" emptyMessage="Auncun calendrier pour ce stagiaire">
 				<p:column headerText="Nom" sortBy="#{calendriers.nomCalendrier}" filterBy="#{calendriers.nomCalendrier}">
 					<h:outputText value="#{calendriers.nomCalendrier}"/>
 				</p:column>
-				<p:column headerText="Date Creation" sortBy="#{calendriers.dateCreation }" filterBy="#{calendriers.dateCreation}">
+				<p:column headerText="Creation" sortBy="#{calendriers.dateCreation }" filterBy="#{calendriers.dateCreation}">
 					<h:outputText value="#{calendriers.dateCreation}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
-				<p:column headerText="Date Modification" sortBy="#{calendriers.dateModification}" filterBy="#{calendriers.dateModification}">
+				<p:column headerText="Modification" sortBy="#{calendriers.dateModification}" filterBy="#{calendriers.dateModification}">
 					<h:outputText value="#{calendriers.dateModification}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
 				<p:column headerText="Etat" sortBy="#{calendriers.etatCalendrier.libelleEtat}" filterBy="#{calendriers.etatCalendrier.libelleEtat}">
@@ -54,15 +61,27 @@
 						<p:dataExporter type="pdf" target="tbl" fileName="cars" preProcessor="#{ficheStagiaireController.preProcessPDF}" />
 					</h:commandLink>
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', calendriers.id)}"/>
-					<p:commandButton value="Supprimer" style="background-color: #FE2E2E" action="#{ficheStagiaireController.supprimerCalendrier(calendriers.id)}"/>
+					<p:commandButton value="Supprimer" action="#{ficheStagiaireController.setId(calendriers.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
 				</p:column>
 
 			</p:dataTable>
+
+				<p:dialog id="dlg2" header="Confirmation" widgetVar="dlg2" modal="true" height="100" style="text-align: center">
+					<h:form>
+						<h:outputText value="Etes vous sur de vouloir supprimer cet utilisateur? Cette action est définitive." /><br/><br/>
+						<p:commandButton action="#{ficheStagiaireController.supprimerCalendrier}"
+										 value="Supprimer" style="background-color: #FE2E2E">
+						</p:commandButton>
+					</h:form>
+				</p:dialog>
 			</div>
 		</h:form>
+		</div>
+		<button style="background-color: #1e7e34" onclick="HTMLtoPDF()">PDF</button>
+	</div>
 	</div>
 
 	
-	<ui:include src="footer.xhtml"></ui:include>
+	<ui:include src="footer.xhtml"/>
 </body>
 </html>

@@ -7,21 +7,57 @@
 
 <h:head>
 	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"/>
 </h:head>
 
 
 <body>
-	<ui:include src="menuBis.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"/>
 	
 	<div class="container">
-	<div class="col-md-12">
+	<div class="col-md-6">
 		<h1>Mon compte</h1>
-		#{gestionCompteController.utilisateur.nom} #{gestionCompteController.utilisateur.prenom}
+
+		<h:form>
+			<p:messages for="general" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+		<div class="form-group col-md-6">
+			<p:outputLabel for="nom" value="Nom" />
+			<p:inputText id="nom" value="#{gestionCompteController.utilisateur.nom}"  styleClass="form-control"/>
+			<p:messages for="nom"/>
+		</div>
+
+		<div class="form-group col-md-6">
+			<p:outputLabel for="prenom" value="Prenom" />
+			<p:inputText id="prenom" value="#{gestionCompteController.utilisateur.prenom}"  styleClass="form-control"/>
+			<p:messages for="prenom"/>
+		</div>
+
+		<div class="form-group col-md-6">
+			<p:outputLabel for="email" value="Email" />
+			<p:inputText id="email" value="#{gestionCompteController.utilisateur.email}"  styleClass="form-control"/>
+			<p:messages for="email"/>
+		</div>
+
+		<div class="form-group col-md-6">
+			<p:outputLabel for="oldPassword" value="Ancien mot de passe" />
+			<p:password id="oldPassword" value="#{gestionCompteController.oldPassword}"  styleClass="form-control"/>
+			<p:messages for="oldPassword"/>
+		</div>
+
+		<div class="form-group col-md-6">
+			<p:outputLabel for="newPassword" value="Nouveau mot de passe" />
+			<p:password id="newPassword" value="#{gestionCompteController.newPassword}"  styleClass="form-control"/>
+			<p:messages for="newPassword"/>
+		</div>
+
+		<p:commandButton action="#{gestionCompteController.modifierUtilisateur}" value="Valider" update="@form" styleClass="btn btn-primary"/>
+		</h:form>
 	</div>
 	</div>
 	
-	<ui:include src="footer.xhtml"></ui:include>
+	<ui:include src="footer.xhtml"/>
 	
 </body>
 </html>

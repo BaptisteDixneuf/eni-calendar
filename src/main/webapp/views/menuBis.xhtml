@@ -25,13 +25,17 @@
     <p:menubar>
         <p:menuitem>
           	<a href="#{request.contextPath}/views/rechercheStagiaire.xhtml">
-                <h:graphicImage url="/images/logo-eni.png"/>
+                <h:graphicImage url="/images/logo-eni.png" height="60"/>
             </a>
+        </p:menuitem>
+
+        <p:menuitem action="#{rechercheStagiaireController.verifStagiaire}" disabled="#{rechercheStagiaireController.presence}">
+                <h:graphicImage url="/images/user.PNG"/>
         </p:menuitem>
 
         <p:submenu label="Modèles de calendriers">
             <p:menuitem value="Gestion modèles" url="/views/gestionModeles.xhtml"/>
-            <p:menuitem value="Constitution modèle" url="/views/gestionModeles.xhtml"/>
+            <p:menuitem value="Constitution modèle" url="/views/modeleVide.xhtml"/>
         </p:submenu>
 
         <p:submenu label="Supervision">
@@ -43,7 +47,6 @@
         <p:submenu label="Modules">
             <p:menuitem value="Modules indépendants" url="/views/gestionModulesIndependants.xhtml"/>
             <p:menuitem value="Enchainement de modules" url="/views/enchainementModules.xhtml"/>
-            <p:menuitem value="Modules sécables" url="#"/>
         </p:submenu>
 
         <p:submenu label="Comparaison">
@@ -54,12 +57,6 @@
             <p:menuitem value="Mon compte" url="/views/gestionCompte.xhtml"/>
             <p:menuitem value="Se déconnecter" url="/views/logout.xhtml"/>
         </p:submenu>
-
-        <p:menuitem style="margin-left: 90% !important;" disabled="true">
-            <h:link outcome="#" >
-                <h:graphicImage url="/images/logo-user.png"/>
-            </h:link>
-        </p:menuitem>
 
     </p:menubar>
 </h:form>

@@ -30,7 +30,7 @@ public class Programmation implements Serializable {
 	private Integer idCalendrier;
 
 	@Column(name = "PR_ID_COURS_PLANIFIE_ERP")
-	private Integer idCoursPlanifieERP;
+	private String idCoursPlanifieERP;
 
 	/**
 	 * @return the id
@@ -80,7 +80,7 @@ public class Programmation implements Serializable {
 	/**
 	 * @return the idCoursPlanifieERP
 	 */
-	public Integer getIdCoursPlanifieERP() {
+	public String getIdCoursPlanifieERP() {
 		return idCoursPlanifieERP;
 	}
 
@@ -88,7 +88,7 @@ public class Programmation implements Serializable {
 	 * @param idCoursPlanifieERP
 	 *            the idCoursPlanifieERP to set
 	 */
-	public void setIdCoursPlanifieERP(Integer idCoursPlanifieERP) {
+	public void setIdCoursPlanifieERP(String idCoursPlanifieERP) {
 		this.idCoursPlanifieERP = idCoursPlanifieERP;
 	}
 

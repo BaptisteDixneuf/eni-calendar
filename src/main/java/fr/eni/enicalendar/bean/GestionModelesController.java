@@ -5,16 +5,19 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.service.ModeleServiceInterface;
+import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "gestionModelesController")
 @ViewScoped
@@ -33,6 +36,15 @@ public class GestionModelesController implements Serializable {
 	private List<ModeleCalendrier> modeles;
 	private ModeleCalendrier modele;
 	private String typeAction;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	@PostConstruct
 	public void setup() {
@@ -90,13 +102,12 @@ public class GestionModelesController implements Serializable {
 	 * @throws IOException
 	 */
 	public void modificationModele(String typeAction, Integer id) throws IOException {
-		/*
-		 * HttpSession session = SessionUtils.getSession();
-		 * session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
-		 * session.setAttribute(SessionUtils.SESSION_ID, id);
-		 * FacesContext.getCurrentInstance().getExternalContext()
-		 * .redirect("/eni-calendar/views/creation-modificationUtilisateur.xhtml");
-		 */
+		LOGGER.info("Type action" + typeAction + ", idModele : " + id);
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, typeAction);
+		session.setAttribute(SessionUtils.SESSION_ID, id);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/modeleVide.xhtml");
+
 	}
 
 	/**
@@ -113,10 +124,18 @@ public class GestionModelesController implements Serializable {
 	 *
 	 * @throws IOException
 	 */
-	public void supprimerModele(Integer id) throws IOException {
+	public void supprimerModele() throws IOException {
+
+		// Supprimer les Modules Indépendants
+
+		// Supprimer les programmations liées
+
 		modele = modeleService.findOne(id);
 		modeleService.delete(modele);
-
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage("general",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modèle supprimé!", ""));
+		context.getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
 	}
 }

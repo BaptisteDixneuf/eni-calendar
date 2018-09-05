@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -37,9 +38,19 @@ public class GestionUtilisateursController implements Serializable {
 
 	private Utilisateur utilisateur;
 
+
 	private String role;
 
 	private String typeAction;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	@PostConstruct
 	public void setup() {
@@ -123,10 +134,9 @@ public class GestionUtilisateursController implements Serializable {
 	 */
 	public void creerNouvelUtilisateur() throws IOException {
 		RoleUtilisateur role = new RoleUtilisateur();
-		//TODO enlever en dur
 		role.setId(1);
 		utilisateur.setRole(role);
-		utilisateur = utilisateurService.saveUtilisateur(utilisateur);
+		utilisateur = utilisateurService.sauverUtilisateur(utilisateur);
 
 	}
 
@@ -160,14 +170,15 @@ public class GestionUtilisateursController implements Serializable {
      *
      * @throws IOException
      */
-    public void supprimerUtilisateur(Integer id) throws IOException {
+    public void supprimerUtilisateur() throws IOException {
         HttpSession session = SessionUtils.getSession();
         session.setAttribute(SessionUtils.SESSION_ID, id);
-
         utilisateur = utilisateurService.findById(id);
         utilisateurService.deleteUtilisateur(utilisateur);
-
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage("general",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Utilisateur supprimé!", ""));
+		context.getExternalContext().redirect("/eni-calendar/views/gestionUtilisateurs.xhtml");
     }
 }

@@ -12,7 +12,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
+import fr.eni.enicalendar.utils.SessionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
@@ -193,7 +195,13 @@ public class CreationCalendrierVideController implements Serializable {
 	 * @throws IOException
 	 */
 	public void validationEtape() throws IOException {
-		// TODO: sauvegarde donnée de la page
+		HttpSession session = SessionUtils.getSession();
+
+		session.setAttribute(SessionUtils.SESSION_LIEU, codeLieuFormation);
+		session.setAttribute(SessionUtils.SESSION_FORMATION, codeFormation);
+		session.setAttribute(SessionUtils.SESSION_DATEDEBUT, date1);
+		session.setAttribute(SessionUtils.SESSION_DATEFIN, date2);
+
 		// Redirection
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/modeleVide.xhtml");
 	}
