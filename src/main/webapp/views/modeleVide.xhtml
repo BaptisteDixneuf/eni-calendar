@@ -290,9 +290,11 @@
 									completeMethod="#{modeleVideController.autocompleteModule}"  converter="moduleConverter"
 										var="moduleDispense" itemLabel="#{moduleDispense.libelle}" itemValue="#{moduleDispense}" forceSelection="true"/>
 								<p:messages for="moduleAutocomplete"></p:messages>	
-								<p:commandButton  id="ajouterDispense" value="Ajouter" action="#{modeleVideController.ajouterDispense}" update="tabDispenses"></p:commandButton>								
-							</h:panelGroup>			
-							<p:commandButton styleClass="m-l-25" id="enregistrerDispenses" value="Ajouter" action="#{modeleVideController.enregistrerDispenses}" update=":coursForm"></p:commandButton>
+								<p:commandButton styleClass="m-t-10" id="ajouterDispense" value="Ajouter" action="#{modeleVideController.ajouterDispense}" update="tabDispenses"></p:commandButton>								
+							</h:panelGroup>
+							<p>	
+								<p:commandButton styleClass="" id="enregistrerDispenses" value="Enregistrer" action="#{modeleVideController.enregistrerDispenses}" update=":coursForm"></p:commandButton>
+							</p>	
 						</p:tab>
 						
 						<!-- Les modules indépendants -->

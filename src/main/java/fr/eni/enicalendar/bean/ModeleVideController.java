@@ -498,7 +498,7 @@ public class ModeleVideController implements Serializable {
 	}
 
 	/**
-	 * Permet d'enregistrer l
+	 * Permet d'enregistrer les dispenses
 	 */
 	public void enregistrerDispenses() {
 
@@ -515,6 +515,7 @@ public class ModeleVideController implements Serializable {
 			Dispense dispense = new Dispense();
 			dispense.setIdModuleERP(dispenseElementView.getIdModuleERP());
 			dispense.setIdModeleCalendrier(modeleCalendrier.getId());
+			listDispensesEntities.add(dispense);
 		}
 
 		modeleCalendrier.setDispenses(listDispensesEntities);

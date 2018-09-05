@@ -49,15 +49,15 @@ public class ModeleCalendrier implements Serializable {
 	@Column(name = "MC_DATE_FIN_MAX")
 	private Date dateFinMax;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MC_ID")
 	private Collection<Programmation> programmations;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MC_ID")
 	private Collection<Contrainte> contraintes;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MC_ID")
 	private Collection<Dispense> dispenses;
 
