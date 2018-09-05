@@ -23,6 +23,12 @@ public class Dispense implements Serializable {
 	@Column(name = "DI_ID")
 	private Integer id;
 
+	@Column(name = "MC_ID")
+	private Integer idModeleCalendrier;
+
+	@Column(name = "CA_ID")
+	private Integer idCalendrier;
+
 	@Column(name = "DI_ID_MODULE_ERP")
 	private Integer idModuleERP;
 
@@ -54,6 +60,22 @@ public class Dispense implements Serializable {
 	 */
 	public void setIdModuleERP(Integer idModuleERP) {
 		this.idModuleERP = idModuleERP;
+	}
+
+	public Integer getIdModeleCalendrier() {
+		return idModeleCalendrier;
+	}
+
+	public void setIdModeleCalendrier(Integer idModeleCalendrier) {
+		this.idModeleCalendrier = idModeleCalendrier;
+	}
+
+	public Integer getIdCalendrier() {
+		return idCalendrier;
+	}
+
+	public void setIdCalendrier(Integer idCalendrier) {
+		this.idCalendrier = idCalendrier;
 	}
 
 }
