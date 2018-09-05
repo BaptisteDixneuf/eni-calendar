@@ -57,6 +57,10 @@ public class ModeleCalendrier implements Serializable {
 	@JoinColumn(name = "MC_ID")
 	private Collection<Contrainte> contraintes;
 
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "MC_ID")
+	private Collection<Dispense> dispenses;
+
 	/**
 	 * @return the id
 	 */
@@ -191,6 +195,14 @@ public class ModeleCalendrier implements Serializable {
 
 	public void setContraintes(Collection<Contrainte> contraintes) {
 		this.contraintes = contraintes;
+	}
+
+	public Collection<Dispense> getDispenses() {
+		return dispenses;
+	}
+
+	public void setDispenses(Collection<Dispense> dispenses) {
+		this.dispenses = dispenses;
 	}
 
 }

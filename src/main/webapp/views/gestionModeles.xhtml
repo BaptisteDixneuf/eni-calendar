@@ -27,8 +27,9 @@
 			<p:messages for="general" showDetail="true" closable="true">
 				<p:autoUpdate />
 			</p:messages>
-		<p:commandButton value="+ Créer un nouveau modèle" style="background-color: #2E9AFE" action="#{gestionModelesController.ajoutModele('Création')}"/>
-
+			<p>
+				<p:commandButton value="+ Créer un nouveau modèle" style="background-color: #2E9AFE" action="#{gestionModelesController.ajoutModele('Création')}"/>
+			</p>
 			<p:dataTable var="modeles" value="#{gestionModelesController.modeles}" widgetVar="titreTable" emptyMessage="Auncun modele ne correspond">
 				<p:column headerText="Libelle" sortBy="#{modeles.nomCalendrier}" filterBy="#{modeles.nomCalendrier}">
 					<h:outputText value="#{modeles.nomCalendrier}"/>
@@ -43,7 +44,7 @@
 					<f:convertDateTime pattern="dd/MM/yyyy HH'h'mm" />
 					</h:outputText>
 				</p:column>
-				<p:column headerText="">
+				<p:column headerText="Actions">
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionModelesController.modificationModele('ModificationModele', modeles.id)}"/>
 					<p:commandButton value="Supprimer" action="#{gestionModelesController.setId(modeles.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
 				</p:column>
