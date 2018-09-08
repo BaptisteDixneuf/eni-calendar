@@ -130,18 +130,68 @@ public class ModeleVideController implements Serializable {
 	public void setup() {
 		LOGGER.info("CoursController setup");
 
-		sdfDate = new SimpleDateFormat("dd-MM-yyyy");
+		try {
+			sdfDate = new SimpleDateFormat("dd-MM-yyyy");
+			droppedElementCalendrier = new ArrayList<ElementCalendrier>();
 
-		// On récupère les lieux et formations
-		lieux = lieuService.findAllLieux();
-		formations = formationService.findAllFormations();
-		// TODO: remettrre
-		// ensembleCours = coursService.findAllCours();
+			// On récupère les lieux et formations
+			lieux = lieuService.findAllLieux();
+			formations = formationService.findAllFormations();
+			// TODO: remettrre
+			// ensembleCours = coursService.findAllCours();
 
-		contraintesViewElement = new Contraintes();
-		dispensesViewElement = new Dispenses();
-		moduleIndependantsViewElement = new ModuleIndependants();
-		autreCoursViewElement = new AutreCours();
+			contraintesViewElement = new Contraintes();
+			dispensesViewElement = new Dispenses();
+			moduleIndependantsViewElement = new ModuleIndependants();
+			autreCoursViewElement = new AutreCours();
+			chargementAncienneDonnees();
+		} catch (FonctionnelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Dans le cas d'une modification, on recharge les données
+	 * 
+	 * @throws FonctionnelException
+	 */
+	public void chargementAncienneDonnees() throws FonctionnelException {
+		// On préremplie la colonne "Programmation" de la vue avec les données
+		// précédements enregistrés
+
+		if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
+				&& SessionUtils.getId() != null) {
+
+			Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
+			modeleCalendrier = modeleCalendrierService.findById(idModeleCalendrier);
+			selectedFormation = formationService
+					.findByCodeFormation(String.valueOf(modeleCalendrier.getIdFormationERP()));
+			codeFormation = selectedFormation.getCodeFormation();
+			selectedLieu = lieuService.findByCodeLieu(modeleCalendrier.getIdLieuFormationERP());
+			codeLieuFormation = String.valueOf(selectedLieu.getCodeLieu());
+			dateDebut = modeleCalendrier.getDateDebutMax();
+			preFormulaireValide = true;
+			chargermentDonnees();
+
+			// On charge les éléments programmées
+			List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
+			for (Programmation programmation : modeleCalendrier.getProgrammations()) {
+				ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
+				droppedElementCalendrierExistant.add(element);
+				droppedElementCalendrier.add(element);
+				elementDeplaceDansProgrammation(element);
+			}
+
+		}
+
+		Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
+
 	}
 
 	/**
@@ -214,10 +264,13 @@ public class ModeleVideController implements Serializable {
 		LOGGER.info("Début de l'enregistrement");
 		if (modeleCalendrier == null) {
 			modeleCalendrier = new ModeleCalendrier();
+			modeleCalendrier.setDateCreation(new Date());
 		}
 		modeleCalendrier.setNomCalendrier("TODO Nom");
-		modeleCalendrier.setDateCreation(new Date());
 		modeleCalendrier.setDateModification(new Date());
+		modeleCalendrier.setDateDebutMax(dateDebut);
+		modeleCalendrier.setIdLieuFormationERP(Integer.valueOf(codeLieuFormation.trim()));
+		modeleCalendrier.setIdFormationERP(codeFormation);
 
 		List<Programmation> listesProgramation = new ArrayList<>();
 		for (ElementCalendrier elementCalendrier : droppedElementCalendrier) {
@@ -316,32 +369,6 @@ public class ModeleVideController implements Serializable {
 			}
 		});
 
-		// On préremplie la colonne "Programmation" de la vue avec les données
-		// précédements enregistrés
-		droppedElementCalendrier = new ArrayList<ElementCalendrier>();
-
-		if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
-				&& SessionUtils.getId() != null) {
-
-			Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
-			List<Programmation> listProgrammationExistant = programmationService
-					.findProgrammationByModeleCalendrier(idModeleCalendrier);
-
-			List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
-			for (Programmation programmation : listProgrammationExistant) {
-				ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
-				droppedElementCalendrierExistant.add(element);
-				droppedElementCalendrier.add(element);
-				elementDeplaceDansProgrammation(element);
-			}
-
-		}
-
-		Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
-			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
-				return m1.getDateDebut().compareTo(m2.getDateFin());
-			}
-		});
 	}
 
 	/**
