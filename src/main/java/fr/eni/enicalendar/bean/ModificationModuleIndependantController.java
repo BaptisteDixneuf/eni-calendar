@@ -59,6 +59,7 @@ public class ModificationModuleIndependantController implements Serializable {
 					element.setId(programme.getId());
 					element.setDateDebut(programme.getDateDebut());
 					element.setDateFin(programme.getDateFin());
+					listProgrammeModuleIndependant.add(element);
 				}
 				gestionModuleIndependantView.setListProgrammeModuleIndependant(listProgrammeModuleIndependant);
 			}
