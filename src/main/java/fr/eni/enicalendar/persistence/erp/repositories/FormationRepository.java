@@ -10,4 +10,6 @@ import fr.eni.enicalendar.persistence.erp.entities.Formation;
  */
 public interface FormationRepository extends JpaRepository<Formation, String> {
 
+    Formation findByCodeFormation(String code);
+
 }

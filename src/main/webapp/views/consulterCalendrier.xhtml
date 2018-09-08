@@ -7,25 +7,71 @@
 
 <h:head>
 	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"/>
+	<script type="text/javascript" src="#{request.contextPath}/style/app/js/jspdf.js"/>
+	<script type="text/javascript" src="#{request.contextPath}/style/app/js/pdfFromHTML.js"/>
 </h:head>
 
 
 <body>
-	<ui:include src="menuBis.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"/>
 
 	<div class="container">
 
+		<div>
 		<h1>Consulter un calendrier</h1>
 
-			<div class="form-group col-md-12" style="display: flex; justify-content: center">
+			<div id="HTMLtoPDF" style="border: 2px solid black">
+				<h:form>
+				<a href="#{request.contextPath}/views/rechercheStagiaire.xhtml">
+					<h:graphicImage url="/images/logo-eni.png" height="60"/>
+				</a>
+					<div class="form-group col-md-12" style="display: flex; justify-content: center; font-weight: bold; font-size: large">
+						<h:outputText
+								value="#{consulterCalendrierController.formation.libelleLong}"/>
+					</div>
+					<div class="form-group col-md-12" style="display: flex; justify-content: left">
+						<h:outputText style="margin-left: 10%"
+								value="Date de debut: "/>
 
+						<h:outputText style="margin-left: 40%"
+								value="Date de fin: "/>
+					</div>
+					<div class="form-group col-md-12" style="display: flex; justify-content: left">
+						<h:outputText style="margin-left: 10%"
+								value="Nom Prénom: #{consulterCalendrierController.stagiaire.nom} #{consulterCalendrierController.stagiaire.prenom}"/>
+
+						<h:outputText style="margin-left: 40%"
+								value="Entreprise: #{consulterCalendrierController.entreprise.raisonSociale}"/>
+					</div>
+					<p:dataTable id="tbl" var="listeCours" value="#{consulterCalendrierController.listeCours}" widgetVar="titreTable">
+						<p:column headerText="DateDebut">
+							<h:outputText value="#{listeCours.dateDebut}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="DateFin">
+							<h:outputText value="#{listeCours.dateFin}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="Lieu">
+							<h:outputText value="#{listeCours.lieu.libelle}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="Programme">
+							<h:outputText value="#{listeCours.libelleCours}"/>
+						</p:column>
+
+					</p:dataTable>
+
+				</h:form>
 			</div>
-
-
+			<button style="background-color: #1e7e34" onclick="HTMLtoPDF()">PDF</button>
+			</div>
 	</div>
 
-
-	<ui:include src="footer.xhtml"></ui:include>
+	<ui:include src="footer.xhtml"/>
 </body>
 </html>

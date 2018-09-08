@@ -55,7 +55,7 @@
 					<h:outputText value="#{calendriers.etatCalendrier.libelleEtat}"/>
 				</p:column>
 				<p:column headerText="" style="width: 490px" >
-					<p:commandButton value="Consulter" action="#{ficheStagiaireController.consulterCalendrier}"/>
+					<p:commandButton value="Consulter" action="#{ficheStagiaireController.consulterCalendrier(calendriers.id)}"/>
 					<h:commandLink id="pdf">
 						<p:commandButton value="Exporter" />
 						<p:dataExporter type="pdf" target="tbl" fileName="cars" preProcessor="#{ficheStagiaireController.preProcessPDF}" />

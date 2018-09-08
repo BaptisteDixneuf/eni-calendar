@@ -278,7 +278,7 @@ public class ModeleVideController implements Serializable {
 			}
 
 			if (!hasError()) {
-				selectedFormation = formationService.findByCode(codeFormation);
+				selectedFormation = formationService.findByCodeFormation(codeFormation);
 				selectedLieu = lieuService.findByCodeLieu(Integer.valueOf(codeLieuFormation));
 				preFormulaireValide = true;
 				chargermentDonnees();
