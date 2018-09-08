@@ -2,7 +2,6 @@ package fr.eni.enicalendar.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -12,10 +11,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.enicalendar.persistence.erp.entities.Entreprise;
-import fr.eni.enicalendar.persistence.erp.entities.StagiaireParEntreprise;
-import fr.eni.enicalendar.service.EntrepriseServiceInterface;
-import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,23 +21,27 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.PageSize;
 
 import fr.eni.enicalendar.persistence.app.entities.Calendrier;
+import fr.eni.enicalendar.persistence.erp.entities.Entreprise;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
+import fr.eni.enicalendar.persistence.erp.entities.StagiaireParEntreprise;
 import fr.eni.enicalendar.service.CalendrierServiceInterface;
+import fr.eni.enicalendar.service.EntrepriseServiceInterface;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
+import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
 import fr.eni.enicalendar.utils.SessionUtils;
 
-@ManagedBean(name = "ficheStagiaireController")
+@ManagedBean(name = "consulterCalendrierController")
 @ViewScoped
-public class FicheStagiaireController implements Serializable {
+public class ConsulterCalendrierController implements Serializable {
 
 	/**
 	 * Serial UID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(FicheStagiaireController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConsulterCalendrierController.class);
 
 	@ManagedProperty(value = "#{stagiaireService}")
 	private StagiaireServiceInterface stagiaireService;
@@ -64,11 +63,18 @@ public class FicheStagiaireController implements Serializable {
 	private String codeFormation;
 	private String codeCalendrier;
 	private Calendrier calendrier;
-	private List<Formation> formations;
-	private List<Calendrier> calendriers;
+	private Formation formation;
 	private int id;
 	private StagiaireParEntreprise stagiaireEntreprise;
 	private Entreprise entreprise;
+
+	public Formation getFormation() {
+		return formation;
+	}
+
+	public void setFormation(Formation formation) {
+		this.formation = formation;
+	}
 
 	public EntrepriseServiceInterface getEntrepriseService() {
 		return entrepriseService;
@@ -126,28 +132,12 @@ public class FicheStagiaireController implements Serializable {
 		this.calendrier = calendrier;
 	}
 
-	public List<Calendrier> getCalendriers() {
-		return calendriers;
-	}
-
-	public void setCalendriers(List<Calendrier> calendriers) {
-		this.calendriers = calendriers;
-	}
-
 	public String getCodeFormation() {
 		return codeFormation;
 	}
 
 	public void setCodeFormation(String codeFormation) {
 		this.codeFormation = codeFormation;
-	}
-
-	public List<Formation> getFormations() {
-		return formations;
-	}
-
-	public void setFormations(List<Formation> formations) {
-		this.formations = formations;
 	}
 
 	public String getCodeStagiaire() {
@@ -166,18 +156,17 @@ public class FicheStagiaireController implements Serializable {
 		this.stagiaire = stagiaire;
 	}
 
-
 	@PostConstruct
 	public void setup() {
-		LOGGER.info("FicheStagiaireController setup");
+		LOGGER.info("ConsulterCalendrierController setup");
 		stagiaire = new Stagiaire();
 		HttpSession session = SessionUtils.getSession();
-		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
+		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(
+				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		stagiaire = stagiaireService.findBycodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		entreprise = entrepriseService.findByCodeEntreprise(4);
-		formations = formationService.findAllFormations();
-		calendriers = calendrierService.findCalendriersByStagiaire(stagiaire.getCodeStagiaire());
+		formation = formationService.findByCode("17CDI");
 	}
 
 	public FormationServiceInterface getFormationService() {
@@ -223,35 +212,6 @@ public class FicheStagiaireController implements Serializable {
 	 */
 	public void creerCalendrier() throws IOException {
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/creationCalendrier.xhtml");
-	}
-
-	/**
-	 * Consulter calendrier
-	 *
-	 * @throws IOException
-	 */
-	public void consulterCalendrier(Integer id) throws IOException {
-		HttpSession session = SessionUtils.getSession();
-		session.setAttribute(SessionUtils.SESSION_ID, id);
-		calendrier = calendrierService.findOne(id);
-		// TODO faire affichage du pdf du calendrier
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("/eni-calendar/views/consulterCalendrier.xhtml");
-	}
-
-	/**
-	 * Suppression calendrier
-	 *
-	 * @throws IOException
-	 */
-	public void supprimerCalendrier() throws IOException {
-		HttpSession session = SessionUtils.getSession();
-		session.setAttribute(SessionUtils.SESSION_ID, id);
-		calendrier = calendrierService.findOne(id);
-		calendrierService.deleteCalendrier(calendrier);
-		FacesContext.getCurrentInstance().addMessage("general",
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Calendrier supprimé!", ""));
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/ficheStagiaire.xhtml");
 	}
 
 	public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
