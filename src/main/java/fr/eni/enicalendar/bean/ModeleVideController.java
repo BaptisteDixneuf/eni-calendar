@@ -49,6 +49,7 @@ import fr.eni.enicalendar.viewElement.DispenseElement;
 import fr.eni.enicalendar.viewElement.Dispenses;
 import fr.eni.enicalendar.viewElement.ElementCalendrier;
 import fr.eni.enicalendar.viewElement.ElementCalendrierType;
+import fr.eni.enicalendar.viewElement.ModuleIndependantElement;
 import fr.eni.enicalendar.viewElement.ModuleIndependants;
 
 @ManagedBean(name = "modeleVideController")
@@ -494,6 +495,7 @@ public class ModeleVideController implements Serializable {
 			dispenseElement.setIdModuleERP(dispensesViewElement.getSelectedModule().getId());
 			dispenseElement.setLibelle(dispensesViewElement.getSelectedModule().getLibelle());
 			dispensesViewElement.getListDispenses().add(dispenseElement);
+			dispensesViewElement.setSelectedModule(null);
 		}
 	}
 
@@ -509,6 +511,68 @@ public class ModeleVideController implements Serializable {
 		if (dispensesViewElement.getListDispenses() == null) {
 			List<DispenseElement> list = new ArrayList<>();
 			dispensesViewElement.setListDispenses(list);
+		}
+		List<Dispense> listDispensesEntities = new ArrayList<>();
+		for (DispenseElement dispenseElementView : dispensesViewElement.getListDispenses()) {
+			Dispense dispense = new Dispense();
+			dispense.setIdModuleERP(dispenseElementView.getIdModuleERP());
+			dispense.setIdModeleCalendrier(modeleCalendrier.getId());
+			listDispensesEntities.add(dispense);
+		}
+
+		modeleCalendrier.setDispenses(listDispensesEntities);
+		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
+	}
+
+	/**
+	 * Permet d'ajouter un module à la liste des modules
+	 */
+	public void ajouterModule() {
+
+		if (moduleIndependantsViewElement.getListModuleIndependants() == null) {
+			List<ModuleIndependantElement> listModuleIndependants = new ArrayList<>();
+			moduleIndependantsViewElement.setListModuleIndependants(listModuleIndependants);
+		}
+
+		// Contrôle validé
+		if (moduleIndependantsViewElement.getSelectedModuleIndependant() == null) {
+			FacesContext.getCurrentInstance().addMessage("moduleIndependantAutocomplete",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez sélectionner un élément", ""));
+
+		} else {
+			for (ModuleIndependantElement moduleIndependantElement : moduleIndependantsViewElement
+					.getListModuleIndependants()) {
+				if (moduleIndependantElement.getIdModuleIndependant()
+						.equals(moduleIndependantsViewElement.getSelectedModuleIndependant().getId())) {
+					FacesContext.getCurrentInstance().addMessage("moduleIndependantAutocomplete",
+							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ce module indépendant est déjà ajouté", ""));
+				}
+			}
+		}
+
+		if (!hasError()) {
+			ModuleIndependantElement moduleIndependantElement = new ModuleIndependantElement();
+			moduleIndependantElement
+					.setIdModuleIndependant(moduleIndependantsViewElement.getSelectedModuleIndependant().getId());
+			moduleIndependantElement
+					.setLibelle(moduleIndependantsViewElement.getSelectedModuleIndependant().getLibelle());
+			moduleIndependantsViewElement.getListModuleIndependants().add(moduleIndependantElement);
+			moduleIndependantsViewElement.setSelectedModuleIndependant(null);
+		}
+	}
+
+	/**
+	 * Permet d'enregistrer les modules indépendants
+	 */
+	public void enregistrerModulesIndependants() {
+
+		if (modeleCalendrier == null || modeleCalendrier.getId() == null) {
+			save();
+		}
+
+		if (moduleIndependantsViewElement.getListModuleIndependants() == null) {
+			List<ModuleIndependantElement> list = new ArrayList<>();
+			moduleIndependantsViewElement.setListModuleIndependants(list);
 		}
 		List<Dispense> listDispensesEntities = new ArrayList<>();
 		for (DispenseElement dispenseElementView : dispensesViewElement.getListDispenses()) {
