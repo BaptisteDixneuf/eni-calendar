@@ -21,7 +21,7 @@
 		<div>
 		<h1>Consulter un calendrier</h1>
 
-			<div id="HTMLtoPDF" style="border: 2px solid black">
+			<div id="HTMLtoPDF" style="border: 2px solid black;">
 				<h:form>
 				<a href="#{request.contextPath}/views/rechercheStagiaire.xhtml">
 					<h:graphicImage url="/images/logo-eni.png" height="60"/>
@@ -68,7 +68,9 @@
 
 				</h:form>
 			</div>
-			<button style="background-color: #1e7e34" onclick="HTMLtoPDF()">PDF</button>
+			<div style="display: flex; justify-content: center; margin-top: 5%">
+			<input type="image" src="#{request.contextPath}/images/logo-pdf.png" onclick="HTMLtoPDF()"/>
+			</div>
 			</div>
 	</div>
 

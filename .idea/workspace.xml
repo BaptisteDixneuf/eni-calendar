@@ -7,11 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4429b4d1-4d13-4873-af38-70b819ae7b53" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/logo-pdf.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ConsulterCalendrierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ConsulterCalendrierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/entities/Cours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/entities/Cours.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml" afterDir="false" />
     </list>
     <ignored path="$APPLICATION_HOME_DIR$/ENI CALENDAR/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -88,8 +87,8 @@
       <file leaf-file-name="ficheStagiaire.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="93" />
+            <state relative-caret-position="850">
+              <caret line="59" column="156" selection-start-line="59" selection-start-column="156" selection-end-line="59" selection-end-column="156" />
             </state>
           </provider>
         </entry>
@@ -167,8 +166,8 @@
       <file leaf-file-name="consulterCalendrier.xhtml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="93" selection-start-line="11" selection-start-column="93" selection-end-line="11" selection-end-column="93" />
+            <state relative-caret-position="309">
+              <caret line="23" column="73" lean-forward="true" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -629,6 +628,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JeeWorkspace\eni-calendar\src\main\webapp\images" />
       <recent name="D:\JeeWorkspace\eni-calendar\bdd" />
       <recent name="D:\JeeWorkspace\eni-calendar\src\main\webapp\views" />
     </key>
@@ -906,14 +906,7 @@
       <workItem from="1536254403653" duration="1100000" />
       <workItem from="1536255534250" duration="1907000" />
       <workItem from="1536398565025" duration="2297000" />
-      <workItem from="1536404091567" duration="13800000" />
-    </task>
-    <task id="LOCAL-00006" summary="mise a jour maven + travail creation calendrier">
-      <created>1533750265572</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1533750265572</updated>
+      <workItem from="1536404091567" duration="15303000" />
     </task>
     <task id="LOCAL-00007" summary="ajout locales fr pour datepickers&#10;ajout du fonctionnement oneselectmenu&#10;suppression jquery causant conflit avec primefaces">
       <created>1533768063346</created>
@@ -1251,11 +1244,18 @@
       <option name="project" value="LOCAL" />
       <updated>1536421048530</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="debut travail consultation">
+      <created>1536423917845</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1536423917846</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="257848000" />
+    <option name="totallyTimeSpent" value="259351000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1342,7 +1342,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="divers" />
     <MESSAGE value="changement table et formatage datatable" />
     <MESSAGE value="corrections modules independants" />
     <MESSAGE value="corrections" />
@@ -1367,7 +1366,8 @@
     <MESSAGE value="probleme corrigé" />
     <MESSAGE value="probleme list" />
     <MESSAGE value="probleme comparable" />
-    <option name="LAST_COMMIT_MESSAGE" value="probleme comparable" />
+    <MESSAGE value="debut travail consultation" />
+    <option name="LAST_COMMIT_MESSAGE" value="debut travail consultation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1899,15 +1899,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="93" />
+        <state relative-caret-position="850">
+          <caret line="59" column="156" selection-start-line="59" selection-start-column="156" selection-end-line="59" selection-end-column="156" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="93" selection-start-line="11" selection-start-column="93" selection-end-line="11" selection-end-column="93" />
+        <state relative-caret-position="309">
+          <caret line="23" column="73" lean-forward="true" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="73" />
         </state>
       </provider>
     </entry>
