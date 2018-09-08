@@ -7,25 +7,44 @@
 
 <h:head>
 	<link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"/>
 </h:head>
 
 
 <body>
-	<ui:include src="menuBis.xhtml"></ui:include>
+	<ui:include src="menuBis.xhtml"/>
 
 	<div class="container">
 
 		<h1>Consulter un calendrier</h1>
 
 			<div class="form-group col-md-12" style="display: flex; justify-content: center">
+				<h:form>
+				<a href="#{request.contextPath}/views/rechercheStagiaire.xhtml">
+					<h:graphicImage url="/images/logo-eni.png" height="60"/>
+				</a>
+					<div class="form-group col-md-12" style="display: flex; justify-content: center">
+						<h:outputText
+								value="#{consulterCalendrierController.stagiaire.nom}"/>
+					</div>
+					<div class="form-group col-md-12" style="display: flex; justify-content: left">
+						<h:outputText
+								value="Nom Prénom: #{consulterCalendrierController.stagiaire.nom} #{consulterCalendrierController.stagiaire.prenom}"/>
+					</div>
 
+					<div class="form-group col-md-12" style="display: flex; justify-content: right">
+						<h:outputText
+								value="Entreprise: #{consulterCalendrierController.entreprise.raisonSociale}"/>
+					</div>
+
+
+				</h:form>
 			</div>
 
 
 	</div>
 
 
-	<ui:include src="footer.xhtml"></ui:include>
+	<ui:include src="footer.xhtml"/>
 </body>
 </html>

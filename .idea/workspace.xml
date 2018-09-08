@@ -7,7 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4429b4d1-4d13-4873-af38-70b819ae7b53" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ConsulterCalendrierController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/repositories/FormationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/repositories/FormationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/FormationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/FormationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml" afterDir="false" />
     </list>
     <ignored path="$APPLICATION_HOME_DIR$/ENI CALENDAR/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -42,6 +46,17 @@
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="EniCalendar" type="feb32156:DbDataSourceImpl" />
+        <item name="EniCalendar: database" type="bdf80c8a:MssqlImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="EniCalendar" type="feb32156:DbDataSourceImpl" />
+        <item name="EniCalendar: database" type="bdf80c8a:MssqlImplModel$Database" />
+        <item name="dbo: schema" type="3adcb6a6:MssqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="EniEcole" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
@@ -73,16 +88,16 @@
       <file leaf-file-name="ficheStagiaire.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="34" column="94" selection-start-line="34" selection-start-column="94" selection-end-line="34" selection-end-column="94" />
+            <state relative-caret-position="425">
+              <caret line="35" column="18" lean-forward="true" selection-start-line="27" selection-start-column="12" selection-end-line="35" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FicheStagiaireController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FicheStagiaireController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="17">
               <caret line="172" selection-start-line="172" selection-end-line="172" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -135,6 +150,61 @@
                 <element signature="e#5874#5875#0" expanded="true" />
                 <element signature="e#5905#5906#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="consulterCalendrier.xhtml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="85" selection-start-line="27" selection-start-column="85" selection-end-line="27" selection-end-column="85" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConsulterCalendrierController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ConsulterCalendrierController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="165" column="48" selection-start-line="165" selection-start-column="48" selection-end-line="165" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2485#2486#0" expanded="true" />
+                <element signature="e#2508#2509#0" expanded="true" />
+                <element signature="e#2558#2559#0" expanded="true" />
+                <element signature="e#2591#2592#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormationServiceInterface.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/FormationServiceInterface.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormationService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/FormationService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="24" column="38" lean-forward="true" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormationRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/repositories/FormationRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -196,10 +266,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/CreationCalendrierVideController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/menuBis.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/comparaisonCalendriers.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/comparerCalendriers.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/creation-modificationModuleIndependant.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/creationCalendrierDepuisStagiaire.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/enchainementModules.xhtml" />
@@ -242,11 +308,15 @@
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/EntrepriseService.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/repositories/EntrepriseRepository.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml" />
-        <option value="$PROJECT_DIR$/bdd/erp/INSERT_ALL.SQL" />
         <option value="$PROJECT_DIR$/bdd/20180824_alter_table_programmation.sql" />
         <option value="$PROJECT_DIR$/bdd/20180906_alter_table_dispenses.sql" />
         <option value="$PROJECT_DIR$/bdd/20180824_alter_table_module_independant.sql" />
         <option value="$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql" />
+        <option value="$PROJECT_DIR$/bdd/erp/INSERT_ALL.SQL" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/repositories/FormationRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/FormationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ConsulterCalendrierController.java" />
       </list>
     </option>
   </component>
@@ -301,8 +371,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -526,6 +595,36 @@
             </path>
             <path>
               <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.springframework.data:spring-data-commons:1.12.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.springframework.data:spring-data-commons:1.12.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="spring-data-commons-1.12.2.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.springframework.data:spring-data-commons:1.12.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="spring-data-commons-1.12.2.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.springframework.data:spring-data-commons:1.12.2.RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="spring-data-commons-1.12.2.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eni-calendar" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
             <path>
@@ -549,7 +648,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -564,23 +664,23 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JeeWorkspace\eni-calendar\bdd" />
+      <recent name="D:\JeeWorkspace\eni-calendar\src\main\webapp\views" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="fr.eni.enicalendar.bean" />
+      <recent name="fr.eni.enicalendar.persistence.erp.repositories" />
+      <recent name="fr.eni.enicalendar.service.impl" />
+      <recent name="fr.eni.enicalendar.service" />
+      <recent name="fr.eni.enicalendar.persistence.erp.entities" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\JeeWorkspace\eni-calendar\src\main\webapp\style\app\js" />
       <recent name="D:\JeeWorkspace\eni-calendar\src\main\webapp\images" />
       <recent name="D:\JeeWorkspace\eni-calendar\bdd\erp" />
       <recent name="D:\JeeWorkspace\eni-calendar\src\main\webapp\views" />
       <recent name="D:\JeeWorkspace\eni-calendar\src\main\webapp\views\public" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="fr.eni.enicalendar.persistence.erp.repositories" />
-      <recent name="fr.eni.enicalendar.service.impl" />
-      <recent name="fr.eni.enicalendar.service" />
-      <recent name="fr.eni.enicalendar.persistence.erp.entities" />
-      <recent name="fr.eni.enicalendar.bean" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\JeeWorkspace\eni-calendar\bdd" />
-      <recent name="D:\JeeWorkspace\eni-calendar\src\main\webapp\views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -841,14 +941,8 @@
       <workItem from="1536181771206" duration="524000" />
       <workItem from="1536254403653" duration="1100000" />
       <workItem from="1536255534250" duration="1907000" />
-      <workItem from="1536398565025" duration="1786000" />
-    </task>
-    <task id="LOCAL-00001" summary="test idea">
-      <created>1529573998274</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1529573998274</updated>
+      <workItem from="1536398565025" duration="2297000" />
+      <workItem from="1536404091567" duration="1457000" />
     </task>
     <task id="LOCAL-00002" summary="commit conf intelij">
       <created>1529575345921</created>
@@ -1186,11 +1280,18 @@
       <option name="project" value="LOCAL" />
       <updated>1536400145736</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="changement scripts">
+      <created>1536400567093</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1536400567094</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243537000" />
+    <option name="totallyTimeSpent" value="245505000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1227,12 +1328,11 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.43294615" />
       <window_info anchor="bottom" id="Spring" order="14" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32946146" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.74234426" visible="true" weight="0.15520833" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7412883" visible="true" weight="0.15520833" />
       <window_info anchor="bottom" id="Problems" order="15" />
       <window_info id="Web" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32946146" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info id="Favorites" order="5" sideWeight="0.25765577" side_tool="true" visible="true" weight="0.15520833" />
+      <window_info id="Favorites" order="5" sideWeight="0.25871173" side_tool="true" visible="true" weight="0.15520833" />
       <window_info anchor="right" id="Coverage" order="0" sideWeight="0.5029586" side_tool="true" visible="true" weight="0.13333334" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1240,6 +1340,7 @@
       <window_info anchor="bottom" id="Database Console" order="17" weight="0.16473073" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32946146" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32946146" />
       <window_info anchor="right" id="Commander" order="1" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
     </layout>
@@ -1330,164 +1431,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionUtilisateurs.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModulesIndependantsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="137" selection-start-line="137" selection-end-line="137" />
-          <folding>
-            <element signature="e#1245#1246#0" expanded="true" />
-            <element signature="e#1261#1262#0" expanded="true" />
-            <element signature="e#1291#1292#0" expanded="true" />
-            <element signature="e#1310#1311#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModeleVideController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="349" column="33" selection-start-line="349" selection-start-column="33" selection-end-line="349" selection-end-column="33" />
-          <folding>
-            <element signature="e#18020#18021#0" expanded="true" />
-            <element signature="e#18046#18047#0" expanded="true" />
-            <element signature="e#18187#18188#0" expanded="true" />
-            <element signature="e#18226#18227#0" expanded="true" />
-            <element signature="e#18293#18294#0" expanded="true" />
-            <element signature="e#18333#18334#0" expanded="true" />
-            <element signature="e#18563#18564#0" expanded="true" />
-            <element signature="e#18601#18602#0" expanded="true" />
-            <element signature="e#18818#18819#0" expanded="true" />
-            <element signature="e#18857#18858#0" expanded="true" />
-            <element signature="e#19085#19086#0" expanded="true" />
-            <element signature="e#19122#19123#0" expanded="true" />
-            <element signature="e#19351#19352#0" expanded="true" />
-            <element signature="e#19385#19386#0" expanded="true" />
-            <element signature="e#19581#19582#0" expanded="true" />
-            <element signature="e#19606#19607#0" expanded="true" />
-            <element signature="e#19671#19672#0" expanded="true" />
-            <element signature="e#19708#19709#0" expanded="true" />
-            <element signature="e#19767#19768#0" expanded="true" />
-            <element signature="e#19797#19798#0" expanded="true" />
-            <element signature="e#19974#19975#0" expanded="true" />
-            <element signature="e#20004#20005#0" expanded="true" />
-            <element signature="e#20075#20076#0" expanded="true" />
-            <element signature="e#20122#20123#0" expanded="true" />
-            <element signature="e#20166#20167#0" expanded="true" />
-            <element signature="e#20195#20196#0" expanded="true" />
-            <element signature="e#20259#20260#0" expanded="true" />
-            <element signature="e#20304#20305#0" expanded="true" />
-            <element signature="e#20341#20342#0" expanded="true" />
-            <element signature="e#20368#20369#0" expanded="true" />
-            <element signature="e#20423#20424#0" expanded="true" />
-            <element signature="e#20464#20465#0" expanded="true" />
-            <element signature="e#20507#20508#0" expanded="true" />
-            <element signature="e#20531#20532#0" expanded="true" />
-            <element signature="e#20589#20590#0" expanded="true" />
-            <element signature="e#20624#20625#0" expanded="true" />
-            <element signature="e#20657#20658#0" expanded="true" />
-            <element signature="e#20676#20677#0" expanded="true" />
-            <element signature="e#20719#20720#0" expanded="true" />
-            <element signature="e#20744#20745#0" expanded="true" />
-            <element signature="e#20785#20786#0" expanded="true" />
-            <element signature="e#20816#20817#0" expanded="true" />
-            <element signature="e#20879#20880#0" expanded="true" />
-            <element signature="e#20928#20929#0" expanded="true" />
-            <element signature="e#20959#20960#0" expanded="true" />
-            <element signature="e#20982#20983#0" expanded="true" />
-            <element signature="e#21027#21028#0" expanded="true" />
-            <element signature="e#21060#21061#0" expanded="true" />
-            <element signature="e#21103#21104#0" expanded="true" />
-            <element signature="e#21136#21137#0" expanded="true" />
-            <element signature="e#21204#21205#0" expanded="true" />
-            <element signature="e#21257#21258#0" expanded="true" />
-            <element signature="e#21308#21309#0" expanded="true" />
-            <element signature="e#21344#21345#0" expanded="true" />
-            <element signature="e#21528#21529#0" expanded="true" />
-            <element signature="e#21562#21563#0" expanded="true" />
-            <element signature="e#21754#21755#0" expanded="true" />
-            <element signature="e#21797#21798#0" expanded="true" />
-            <element signature="e#22018#22019#0" expanded="true" />
-            <element signature="e#22053#22054#0" expanded="true" />
-            <element signature="e#22262#22263#0" expanded="true" />
-            <element signature="e#22301#22302#0" expanded="true" />
-            <element signature="e#22526#22527#0" expanded="true" />
-            <element signature="e#22553#22554#0" expanded="true" />
-            <element signature="e#22624#22625#0" expanded="true" />
-            <element signature="e#22665#22666#0" expanded="true" />
-            <element signature="e#22707#22708#0" expanded="true" />
-            <element signature="e#22734#22735#0" expanded="true" />
-            <element signature="e#22794#22795#0" expanded="true" />
-            <element signature="e#22835#22836#0" expanded="true" />
-            <element signature="e#22879#22880#0" expanded="true" />
-            <element signature="e#22910#22911#0" expanded="true" />
-            <element signature="e#22976#22977#0" expanded="true" />
-            <element signature="e#23025#23026#0" expanded="true" />
-            <element signature="e#23059#23060#0" expanded="true" />
-            <element signature="e#23085#23086#0" expanded="true" />
-            <element signature="e#23136#23137#0" expanded="true" />
-            <element signature="e#23175#23176#0" expanded="true" />
-            <element signature="e#23244#23245#0" expanded="true" />
-            <element signature="e#23279#23280#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9f26dcdb-f8d4-4967-ba19-4e14c0869081/database/EniEcole/schema/dbo/table/Cours">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModelesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/cours.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="55" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="24" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionModeles.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="55" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/formations.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e08fc30f-dc33-4c39-9941-8925678f52f8/console_1.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="25" selection-start-column="25" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/CALENDRIER">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/style/app/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -1621,24 +1564,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/repositories/StagiaireRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/repositories/StagiaireEntrepriseRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/StagiaireService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="19" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -1705,20 +1634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="34" column="94" selection-start-line="34" selection-start-column="94" selection-end-line="34" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bdd/erp/INSERT_ALL.SQL">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="88" lean-forward="true" selection-start-line="31" selection-start-column="88" selection-end-line="31" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bdd/20180824_alter_table_contrainte.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1768,9 +1683,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bdd/erp/INSERT_ALL.SQL">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="720" column="51" selection-start-line="720" selection-start-column="51" selection-end-line="720" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
+        <state relative-caret-position="17">
           <caret line="172" selection-start-line="172" selection-end-line="172" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1822,6 +1744,107 @@
             <element signature="e#5605#5606#0" expanded="true" />
             <element signature="e#5874#5875#0" expanded="true" />
             <element signature="e#5905#5906#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/menuBis.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="28" column="16" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="28" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/ficheStagiaire.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="35" column="18" lean-forward="true" selection-start-line="27" selection-start-column="12" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/CALENDRIER">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="85" selection-start-line="27" selection-start-column="85" selection-end-line="27" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9f26dcdb-f8d4-4967-ba19-4e14c0869081/database/EniEcole/schema/dbo/table/Formation">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/CreationCalendrierVideController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-306">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.12.2.RELEASE/spring-data-commons-1.12.2.RELEASE-sources.jar!/org/springframework/data/repository/CrudRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/StagiaireService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="55" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/repositories/StagiaireRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/erp/repositories/FormationRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/FormationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="24" column="38" lean-forward="true" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/FormationServiceInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ConsulterCalendrierController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="165" column="48" selection-start-line="165" selection-start-column="48" selection-end-line="165" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2485#2486#0" expanded="true" />
+            <element signature="e#2508#2509#0" expanded="true" />
+            <element signature="e#2558#2559#0" expanded="true" />
+            <element signature="e#2591#2592#0" expanded="true" />
           </folding>
         </state>
       </provider>
