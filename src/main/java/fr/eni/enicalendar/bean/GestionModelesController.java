@@ -116,6 +116,9 @@ public class GestionModelesController implements Serializable {
 	 * @throws IOException
 	 */
 	public void ajoutModele(String typeAction) throws IOException {
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, null);
+		session.setAttribute(SessionUtils.SESSION_ID, null);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/modeleVide.xhtml");
 	}
 
@@ -134,8 +137,7 @@ public class GestionModelesController implements Serializable {
 		modeleService.delete(modele);
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getFlash().setKeepMessages(true);
-		context.addMessage("general",
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modèle supprimé!", ""));
+		context.addMessage("general", new FacesMessage(FacesMessage.SEVERITY_INFO, "Modèle supprimé!", ""));
 		context.getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
 	}
 

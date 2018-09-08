@@ -25,6 +25,11 @@ public class ModeleCalendrierService implements ModeleCalendrierServiceInterface
 	}
 
 	@Override
+	public ModeleCalendrier findById(Integer id) {
+		return modeleCalendrierRepository.findOne(id);
+	}
+
+	@Override
 	public ModeleCalendrier save(ModeleCalendrier modeleCalendrier) {
 		return modeleCalendrier = modeleCalendrierRepository.save(modeleCalendrier);
 	}

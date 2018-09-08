@@ -10,4 +10,6 @@ public interface ModeleCalendrierServiceInterface {
 
 	List<ModeleCalendrier> findAll();
 
+	ModeleCalendrier findById(Integer id);
+
 }
