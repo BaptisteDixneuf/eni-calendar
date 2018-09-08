@@ -61,6 +61,10 @@ public class ModeleCalendrier implements Serializable {
 	@JoinColumn(name = "MC_ID")
 	private Collection<Dispense> dispenses;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "MC_ID")
+	private Collection<ContrainteModuleIndependant> contrainteModuleIndependant;
+
 	/**
 	 * @return the id
 	 */
@@ -203,6 +207,14 @@ public class ModeleCalendrier implements Serializable {
 
 	public void setDispenses(Collection<Dispense> dispenses) {
 		this.dispenses = dispenses;
+	}
+
+	public Collection<ContrainteModuleIndependant> getContrainteModuleIndependant() {
+		return contrainteModuleIndependant;
+	}
+
+	public void setContrainteModuleIndependant(Collection<ContrainteModuleIndependant> contrainteModuleIndependant) {
+		this.contrainteModuleIndependant = contrainteModuleIndependant;
 	}
 
 }

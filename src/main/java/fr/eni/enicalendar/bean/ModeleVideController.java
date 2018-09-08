@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.exceptions.FonctionnelException;
 import fr.eni.enicalendar.persistence.app.entities.Contrainte;
+import fr.eni.enicalendar.persistence.app.entities.ContrainteModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Dispense;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
@@ -574,15 +575,16 @@ public class ModeleVideController implements Serializable {
 			List<ModuleIndependantElement> list = new ArrayList<>();
 			moduleIndependantsViewElement.setListModuleIndependants(list);
 		}
-		List<Dispense> listDispensesEntities = new ArrayList<>();
-		for (DispenseElement dispenseElementView : dispensesViewElement.getListDispenses()) {
-			Dispense dispense = new Dispense();
-			dispense.setIdModuleERP(dispenseElementView.getIdModuleERP());
-			dispense.setIdModeleCalendrier(modeleCalendrier.getId());
-			listDispensesEntities.add(dispense);
+		List<ContrainteModuleIndependant> listContrainteModuleIndependantEntities = new ArrayList<>();
+		for (ModuleIndependantElement moduleIndependantElementViewElement : moduleIndependantsViewElement
+				.getListModuleIndependants()) {
+			ContrainteModuleIndependant item = new ContrainteModuleIndependant();
+			item.setIdModuleIndependant(moduleIndependantElementViewElement.getIdModuleIndependant());
+			item.setIdModeleCalendrier(modeleCalendrier.getId());
+			listContrainteModuleIndependantEntities.add(item);
 		}
 
-		modeleCalendrier.setDispenses(listDispensesEntities);
+		modeleCalendrier.setContrainteModuleIndependant(listContrainteModuleIndependantEntities);
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 	}
 

@@ -98,13 +98,16 @@ public class ModificationModuleIndependantController implements Serializable {
 	public void modifierModule() throws IOException {
 
 		List<ProgrammeModuleIndependant> programmeModuleIndependantEntities = new ArrayList<>();
-		for (GestionModuleIndependantElement item : gestionModuleIndependantView.getListProgrammeModuleIndependant()) {
-			ProgrammeModuleIndependant element = new ProgrammeModuleIndependant();
-			element.setDateDebut(item.getDateDebut());
-			element.setDateFin(item.getDateFin());
-			programmeModuleIndependantEntities.add(element);
+		if (gestionModuleIndependantView.getListProgrammeModuleIndependant() != null) {
+			for (GestionModuleIndependantElement item : gestionModuleIndependantView
+					.getListProgrammeModuleIndependant()) {
+				ProgrammeModuleIndependant element = new ProgrammeModuleIndependant();
+				element.setDateDebut(item.getDateDebut());
+				element.setDateFin(item.getDateFin());
+				programmeModuleIndependantEntities.add(element);
+			}
+			module.setProgrammeModuleIndependant(programmeModuleIndependantEntities);
 		}
-		module.setProgrammeModuleIndependant(programmeModuleIndependantEntities);
 		moduleIndependantsService.saveModule(module);
 
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -134,6 +137,13 @@ public class ModificationModuleIndependantController implements Serializable {
 		if (gestionModuleIndependantView.getDateFin() == null) {
 			FacesContext.getCurrentInstance().addMessage("dateFin",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez saisir une date de fin", ""));
+
+		}
+
+		if (gestionModuleIndependantView.getDateDebut() != null && gestionModuleIndependantView.getDateFin() != null
+				&& gestionModuleIndependantView.getDateFin().before(gestionModuleIndependantView.getDateDebut())) {
+			FacesContext.getCurrentInstance().addMessage("dateFin",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "La date de fin doit après la date de début", ""));
 
 		}
 
