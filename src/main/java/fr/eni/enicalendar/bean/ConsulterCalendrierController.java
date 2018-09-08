@@ -2,6 +2,8 @@ package fr.eni.enicalendar.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,6 +18,7 @@ import com.lowagie.text.*;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
 import fr.eni.enicalendar.persistence.erp.entities.*;
 import fr.eni.enicalendar.service.*;
+import org.hibernate.mapping.Collection;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,7 +69,7 @@ public class ConsulterCalendrierController implements Serializable {
 	private StagiaireParEntreprise stagiaireEntreprise;
 	private Entreprise entreprise;
 	private List<Programmation> programmations;
-	private List<Cours> listeCours;
+	private List<Cours> listeCours = new ArrayList<>();
 	private Cours coursVoulu;
 
     public CoursServiceInterface getCoursService() {
@@ -205,6 +208,7 @@ public class ConsulterCalendrierController implements Serializable {
             coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
             listeCours.add(coursVoulu);
         }
+        listeCours.sort(listeCours, Cours);
 	}
 
 	public FormationServiceInterface getFormationService() {
