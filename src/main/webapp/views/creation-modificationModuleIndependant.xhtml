@@ -60,38 +60,49 @@
 			<div class="ui-g">
 				<div class="ui-g-12">
 					<p:outputLabel for="module" class="m-t-20" value="Les cours : " />
-						<p:dataTable var="module" value="#{modificationModuleIndependantController.gestionModuleIndependantView.listProgrammeModuleIndependant}" emptyMessage="Aucune dispense">
+						<p:dataTable id="module" var="module" value="#{modificationModuleIndependantController.gestionModuleIndependantView.listProgrammeModuleIndependant}" emptyMessage="Aucune date">
 							<p:column headerText="Date début">
-								<h:outputText value="#{module.dateDebut}"></h:outputText>
+								<h:outputText value="#{module.dateDebut}">
+								<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+								</h:outputText>
 							</p:column>
 							<p:column headerText="Date fin">
-								<h:outputText value="#{module.dateFin}"></h:outputText>
+								<h:outputText value="#{module.dateFin}">
+								<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+								</h:outputText>
 							</p:column>
 					</p:dataTable>
 				</div>
 			</div>
 			
 			
-			<div class="ui-g">
-				<div class="ui-g-6">
-					<p:outputLabel class="m-t-20" for="dateDebut" value="Date de début :"/><br/>
-					<p:calendar id="dateDebut" value="#{modificationModuleIndependantController.gestionModuleIndependantView.dateDebut}" locale="fr"
-								navigator="true" pattern="dd/MM/yyyy">		
-					</p:calendar>
-					<p:messages for="dateDebut"/>
-				</div>
-				
-				<div class="ui-g-6">
-					<p:outputLabel class="m-t-20" for="dateFin" value="Date de fin :"/><br/>
-					<p:calendar id="dateFin" value="#{modificationModuleIndependantController.gestionModuleIndependantView.dateFin}" locale="fr"
-								navigator="true" pattern="dd/MM/yyyy" >			
-					</p:calendar>
-					<p:messages for="dateFin"/>
-				</div>
+			<div class="ui-g">				
+					<div class="ui-g-6">
+						<p:outputLabel class="m-t-20" for="dateDebut" value="Date de début :"/><br/>
+						<p:calendar id="dateDebut" value="#{modificationModuleIndependantController.gestionModuleIndependantView.dateDebut}" locale="fr" showOn="button"
+									navigator="true" pattern="dd/MM/yyyy">		
+						</p:calendar>
+						<p:messages for="dateDebut"/>
+					</div>
+					
+					<div class="ui-g-6">
+						<p:outputLabel class="m-t-20" for="dateFin" value="Date de fin :"/><br/>
+						<p:calendar id="dateFin" value="#{modificationModuleIndependantController.gestionModuleIndependantView.dateFin}" locale="fr" showOn="button"
+									navigator="true" pattern="dd/MM/yyyy" >			
+						</p:calendar>
+						<p:messages for="dateFin"/>
+					</div>				
 			</div>
 			
-			<p:commandButton action="#{modificationModuleIndependantController.modifierModule}" value="Valider" update="@form" styleClass="btn btn-primary"/>
-         	
+			<div class="ui-g">
+				<p:commandButton action="#{modificationModuleIndependantController.ajouterModule}" value="Ajouter" update="@form" styleClass="btn btn-primary pull-r m-t-50"/>
+			</div>
+			
+			<div class="ui-g">
+				<div class="ui-g-12">			
+					<p:commandButton action="#{modificationModuleIndependantController.modifierModule}" value="Valider" update="@form" styleClass="btn btn-primary pull-r m-t-50"/>
+         		</div>
+         	</div>
     </h:form>
 	</div>
 	</div>

@@ -10,6 +10,8 @@ public class GestionModuleIndependantElement implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private Integer id;
+
 	private Date dateDebut;
 
 	private Date dateFin;
@@ -28,6 +30,14 @@ public class GestionModuleIndependantElement implements Serializable {
 
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }
