@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
 /* Created on:     20/06/2018 16:50:23                          */
@@ -1714,4 +1713,3 @@ go
 
 ALTER TABLE DISPENSE ALTER COLUMN CA_ID INT NULL;
 ALTER TABLE DISPENSE ALTER COLUMN MC_ID INT NULL;
->>>>>>> Stashed changes

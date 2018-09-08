@@ -15,57 +15,94 @@
 	<ui:include src="menuBis.xhtml"/>
 	
 	<div class="container">
-	<div class="col-md-6">
+	<div class="col-md-8">
 		<h1>#{modificationModuleIndependantController.typeAction} d'un module indépendant</h1>
     
     <h:form>
 		<p:messages for="general" showDetail="true" closable="true">
 			<p:autoUpdate />
 		</p:messages>
-       		<div class="form-group col-md-6">
-				<p:outputLabel for="libelle" value="Libelle :" />
-				<p:inputText id="libelle" value="#{modificationModuleIndependantController.module.libelle}"  styleClass="form-control"/>
-				<p:messages for="libelle"/>
+			
+       		<div class="ui-g">
+       			<div class="ui-g-12">
+					<p:outputLabel class="m-t-20" for="libelle" value="Libelle :" />
+					<p:inputText id="libelle" value="#{modificationModuleIndependantController.module.libelle}"  styleClass="form-control"/>
+					<p:messages for="libelle"/>
+				</div>
 			</div>
 			
-			<div class="form-group col-md-6">
-				<p:outputLabel for="duree" value="Duree :" />
-				<p:inputText id="duree" value="#{modificationModuleIndependantController.module.duree}" disabled="true" styleClass="form-control"/>
-				<p:messages for="duree"/>
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<p:outputLabel class="m-t-20" for="duree" value="Durée (en h):" />				
+					<p>
+						<p:spinner id="duree" value="#{modificationModuleIndependantController.module.duree}" min="0"/>
+					</p>
+					<p:messages for="duree"/>
+				</div>
 			</div>
        
-       		<div class="form-group col-md-6">
-				<p:outputLabel for="libelleCourt" value="Libelle court :" />
-				<p:inputText id="libelleCourt" value="#{modificationModuleIndependantController.module.libelleCourt}"  styleClass="form-control"/>
-				<p:messages for="libelleCourt"/>
+       		<div class="ui-g">
+       			<div class="ui-g-12">
+					<p:outputLabel class="m-t-20" for="libelleCourt" value="Libelle court :" />
+					<p:inputText id="libelleCourt" value="#{modificationModuleIndependantController.module.libelleCourt}"  styleClass="form-control"/>
+					<p:messages for="libelleCourt"/>
+				</div>
 			</div>
 			
-			<div class="form-group col-md-6">
-				<p:outputLabel for="lieu" value="Lieu :" />
-				<p:inputText id="lieu" value="#{modificationModuleIndependantController.module.lieuFormation}"  styleClass="form-control"/>
-				<p:messages for="lieu"/>
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<p:outputLabel for="lieu" value="Lieu :" />
+					<p:inputText id="lieu" value="#{modificationModuleIndependantController.module.lieuFormation}"  styleClass="form-control"/>
+					<p:messages for="lieu"/>
+				</div>
 			</div>
-
-		<div class="form-group col-md-6">
-			<p:outputLabel for="dateDebut" value="Date de début :"/><br/>
-			<p:calendar id="dateDebut" value="#{modificationModuleIndependantController.module.dateDebut}" locale="fr"
-						navigator="true" pattern="dd/MM/yyyy">
-			<p:ajax event="dateSelect" listener="#{modificationModuleIndependantController.calculDuree}" update="duree"/>
-			</p:calendar>
-			<p:messages for="dateDebut"/>
-		</div>
-
-		<div class="form-group col-md-6">
-			<p:outputLabel for="dateFin" value="Date de fin :"/><br/>
-			<p:calendar id="dateFin" value="#{modificationModuleIndependantController.module.dateFin}" locale="fr"
-						navigator="true" pattern="dd/MM/yyyy">
-			<p:ajax event="dateSelect" listener="#{modificationModuleIndependantController.calculDuree}" update="duree"/>
-			</p:calendar>
-			<p:messages for="dateFin"/>
-		</div>
 			
-			<p:commandButton action="#{modificationModuleIndependantController.modifierModule}" value="Valider" update="@form" styleClass="btn btn-primary"/>
-         	
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<p:outputLabel for="module" class="m-t-20" value="Les cours : " />
+						<p:dataTable id="module" var="module" value="#{modificationModuleIndependantController.gestionModuleIndependantView.listProgrammeModuleIndependant}" emptyMessage="Aucune date">
+							<p:column headerText="Date début">
+								<h:outputText value="#{module.dateDebut}">
+								<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Date fin">
+								<h:outputText value="#{module.dateFin}">
+								<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+								</h:outputText>
+							</p:column>
+					</p:dataTable>
+				</div>
+			</div>
+			
+			
+			<div class="ui-g">				
+					<div class="ui-g-6">
+						<p:outputLabel class="m-t-20" for="dateDebut" value="Date de début :"/><br/>
+						<p:calendar id="dateDebut" value="#{modificationModuleIndependantController.gestionModuleIndependantView.dateDebut}" locale="fr" showOn="button"
+									navigator="true" pattern="dd/MM/yyyy">		
+						</p:calendar>
+						<p:messages for="dateDebut"/>
+					</div>
+					
+					<div class="ui-g-6">
+						<p:outputLabel class="m-t-20" for="dateFin" value="Date de fin :"/><br/>
+						<p:calendar id="dateFin" value="#{modificationModuleIndependantController.gestionModuleIndependantView.dateFin}" locale="fr" showOn="button"
+									navigator="true" pattern="dd/MM/yyyy" >			
+						</p:calendar>
+						<p:messages for="dateFin"/>
+					</div>				
+			</div>
+			
+			<div class="ui-g">
+				<p:commandButton action="#{modificationModuleIndependantController.ajouterModule}" value="Ajouter" update="@form" styleClass="btn btn-primary pull-r m-t-50"/>
+			</div>
+			
+			<div class="ui-g">
+				<div class="ui-g-12">			
+					<p:commandButton action="#{modificationModuleIndependantController.modifierModule}" value="Valider" update="@form" styleClass="btn btn-primary pull-r m-t-50"/>
+         		</div>
+         	</div>
     </h:form>
 	</div>
 	</div>

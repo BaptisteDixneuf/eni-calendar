@@ -1,13 +1,17 @@
 package fr.eni.enicalendar.persistence.app.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -42,11 +46,9 @@ public class ModuleIndependant implements Serializable {
 	@Column(name = "MI_LIEU_FORMATION")
 	private String lieuFormation;
 
-	@Column(name = "MI_DATE_DEBUT")
-	private Date dateDebut;
-
-	@Column(name = "MI_DATE_FIN")
-	private Date dateFin;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "MI_ID")
+	private Collection<ProgrammeModuleIndependant> programmeModuleIndependant;
 
 	/**
 	 * @return the id
@@ -146,34 +148,12 @@ public class ModuleIndependant implements Serializable {
 		this.lieuFormation = lieuFormation;
 	}
 
-	/**
-	 * @return the dateDebut
-	 */
-	public Date getDateDebut() {
-		return dateDebut;
+	public Collection<ProgrammeModuleIndependant> getProgrammeModuleIndependant() {
+		return programmeModuleIndependant;
 	}
 
-	/**
-	 * @param dateDebut
-	 *            the dateDebut to set
-	 */
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-
-	/**
-	 * @return the dateFin
-	 */
-	public Date getDateFin() {
-		return dateFin;
-	}
-
-	/**
-	 * @param dateFin
-	 *            the dateFin to set
-	 */
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
+	public void setProgrammeModuleIndependant(Collection<ProgrammeModuleIndependant> programmeModuleIndependant) {
+		this.programmeModuleIndependant = programmeModuleIndependant;
 	}
 
 }
