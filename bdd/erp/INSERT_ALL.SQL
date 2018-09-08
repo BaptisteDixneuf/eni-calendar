@@ -1,5 +1,8 @@
-﻿INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('AL      ', 'ARCHITECTE LOGICIEL', 'Architecte Logiciel', 0, 0, 'I', '2009-01-28 00:00:00.000', '2009-02-07 00:00:00.000', null, null, null);
-INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('ASR     ', 'ASR', 'Administrateur Système et Réseau', 0, 0, 'II', '2015-11-11 00:00:00.000', '2015-11-20 00:00:00.000', 152, null, null);
+SET DATEFORMAT ymd
+SET IDENTITY_INSERT StagiaireParEntreprise ON
+
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('AL      ', 'ARCHITECTE LOGICIEL', 'Architecte Logiciel', 0, 0, 'I', '2009-01-28 00:00:00.000', '2009-02-07 00:00:00.000', null, null, null);
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('ASR     ', 'ASR', 'Administrateur Système et Réseau', 0, 0, 'II', '2015-05-05 00:00:00.000', '2015-05-05 00:00:00.000', 152, null, null);
 INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('AUCUN   ', 'PAS DE TITRE PRÉPARÉ', 'Pas de titre préparé', 0, 0, null, null, null, null, null, null);
 INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('CDI     ', 'CDI', 'Concepteur Développeur Informatique', 0, 0, 'II', '2015-11-09 00:00:00.000', '2015-11-09 00:00:00.000', 2015, 'TP-01281', '02');
 INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('DL      ', 'DL', 'Développeur Logiciel', 0, 0, 'III', '2015-11-09 00:00:00.000', '2015-11-09 00:00:00.000', 2015, 'TP-01280', '02');
@@ -9,6 +12,29 @@ INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niv
 INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('TAI     ', 'TAI', 'Technicien(ne) d''Assistance en Informatique', 0, 0, 'IV', '2009-01-28 00:00:00.000', '2009-02-07 00:00:00.000', null, null, null);
 INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('TSRIT   ', 'TSRIT', 'Technicien Supérieur en Réseaux Informatiques et Télécommunications', 0, 0, 'III', '2015-02-11 00:00:00.000', '2015-02-19 00:00:00.000', null, 'TP-00500', '06');
 INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('TSSI    ', 'TSSI', 'Technicien Supérieur de Support en Informatique', 0, 0, 'III', '2013-02-08 00:00:00.000', '2013-02-19 00:00:00.000', null, 'TP-00485', '08');
+
+INSERT INTO Stagiaire VALUES ('Mr ', 'Dupond', 'Jean', '2 rue Rondeau', null, null, '44200', 'Nantes', '02000000      ', '06000000      ', 'test@test.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);
+INSERT INTO Stagiaire VALUES ('Mr ', 'Smith', 'John', '2 rue Roubier', null, null, '44200', 'Nantes', '02000001      ', '06000001      ', 'test@smith.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);
+INSERT INTO Stagiaire VALUES ('Mr ', 'Dubois', 'Yvan', '2 rue Rabin', null, null, '44300', 'Nantes', '02000002      ', '06000002      ', 'test@dubois.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);
+INSERT INTO Stagiaire VALUES ('Mr ', 'Durand', 'Sylvain', '2 rue Rousse', null, null, '44300', 'Nantes', '02000002      ', '06000002      ', 'test@dubois.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);
+INSERT INTO Stagiaire VALUES ('Mr ', 'Durant', 'Albert', '10 bd Schuman', null, null, '44300', 'Nantes', '02000002      ', '06000002      ', 'test@dubois.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);
+INSERT INTO Stagiaire VALUES ('Mr ', 'Dupont', 'Pierre', '5 bd Republique', null, null, '44100', 'Nantes', '02000002      ', '06000002      ', 'test@dubois.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);
+
+
+INSERT INTO Entreprise VALUES ('Alter&Co', 'rue Sarbruck', null, null, '44000', 'Nantes', '0240020202    ', null, null, null, null, '1    ', '1 ', 1, null, 'A&Co', null, null, null);
+INSERT INTO Entreprise VALUES ('Assure&Co', 'rue Voltaire', null, null, '44400', 'Rezé', '0240020203    ', null, null, null, null, '1    ', '1 ', 1, null, 'AsCo', null, null, null);
+INSERT INTO Entreprise VALUES ('BtpProject', 'rue Rousseau', null, null, '44400', 'Rezé', '0240020204    ', null, null, null, null, '1    ', '1 ', 1, null, 'BTPP', null, null, null);
+INSERT INTO Entreprise VALUES ('Soprema', 'rue Candid', null, null, '44210', 'Pornic', '0240020205    ', null, null, null, null, '1    ', '1 ', 1, null, 'Soprema', null, null, null);
+INSERT INTO Entreprise VALUES ('Connector', 'rue Arsene Mona', null, null, '44300', 'Nantes', '0240020206    ', null, null, null, null, '1    ', '1 ', 1, null, 'Connector', null, null, null);
+INSERT INTO Entreprise VALUES ('CGD', 'rue des lylas', null, null, '44000', 'Nantes', '0240020207    ', null, null, null, null, '1    ', '1 ', 1, null, 'CGD', null, null, null);
+INSERT INTO Entreprise VALUES ('Etudia', 'rue Beaulieu', null, null, '49000', 'Angers', '0240020208    ', null, null, null, null, '1    ', '1 ', 1, null, 'Etudia', null, null, null);
+
+
+INSERT INTO StagiaireParEntreprise (CodeStagiaire, CodeEntreprise, DateLien, CodeTypeLien, DateDebutEnEts, DateFinEnEts, CodeFonction, Commentaire, NumLien, CodeTuteur, ResponsableEts, GererPar, Interruption, SujetStage, TitreVise, CodeContactEni) VALUES (11, 1, '2018-09-05 19:36:40.230', '1    ', '2018-08-05 19:35:56.413', '2019-09-05 19:36:02.797', null, null, 2, null, null, null, null, null, 'CDI  ', null);
+INSERT INTO StagiaireParEntreprise (CodeStagiaire, CodeEntreprise, DateLien, CodeTypeLien, DateDebutEnEts, DateFinEnEts, CodeFonction, Commentaire, NumLien, CodeTuteur, ResponsableEts, GererPar, Interruption, SujetStage, TitreVise, CodeContactEni) VALUES (10, 2, '2018-09-05 19:36:40.230', '1    ', '2018-08-05 19:35:56.413', '2019-09-05 19:36:02.797', null, null, 3, null, null, null, null, null, 'CDI  ', null);
+INSERT INTO StagiaireParEntreprise (CodeStagiaire, CodeEntreprise, DateLien, CodeTypeLien, DateDebutEnEts, DateFinEnEts, CodeFonction, Commentaire, NumLien, CodeTuteur, ResponsableEts, GererPar, Interruption, SujetStage, TitreVise, CodeContactEni) VALUES (12, 3, '2018-09-05 19:36:40.230', '1    ', '2018-08-05 19:35:56.413', '2019-09-05 19:36:02.797', null, null, 4, null, null, null, null, null, 'ASR  ', null);
+INSERT INTO StagiaireParEntreprise (CodeStagiaire, CodeEntreprise, DateLien, CodeTypeLien, DateDebutEnEts, DateFinEnEts, CodeFonction, Commentaire, NumLien, CodeTuteur, ResponsableEts, GererPar, Interruption, SujetStage, TitreVise, CodeContactEni) VALUES (13, 4, '2018-09-05 19:36:40.230', '1    ', '2018-08-05 19:35:56.413', '2019-09-05 19:36:02.797', null, null, 5, null, null, null, null, null, 'MS2I ', null);
+INSERT INTO StagiaireParEntreprise (CodeStagiaire, CodeEntreprise, DateLien, CodeTypeLien, DateDebutEnEts, DateFinEnEts, CodeFonction, Commentaire, NumLien, CodeTuteur, ResponsableEts, GererPar, Interruption, SujetStage, TitreVise, CodeContactEni) VALUES (14, 5, '2018-09-05 19:36:40.230', '1    ', '2018-08-05 19:35:56.413', '2019-09-05 19:36:02.797', null, null, 6, null, null, null, null, null, 'MS2I ', null);
 
 
 INSERT INTO Formation VALUES('17ASR','Administrateur Système Et Réseau','[2017]ASR',1680,0,'ASR',0,1120,560,32,16,48,0,NULL,1,NULL)
@@ -1273,8 +1299,3 @@ INSERT INTO Cours (Debut, Fin, DureeReelleEnHeures, CodePromotion, IdCours, Prix
 INSERT INTO Cours (Debut, Fin, DureeReelleEnHeures, CodePromotion, IdCours, PrixPublicAffecte, IdModule, LibelleCours, DureePrevueEnHeures, DateAdefinir, CodeSalle, CodeFormateur, CodeLieu) VALUES ('2019-04-15 00:00:00.000', '2019-04-26 00:00:00.000', 63, 'HCD17_76', '217BF397-CB75-430C-AE2A-FF76AEF2196F', 0, 34, 'J2EAV', 70, 0, null, null, 1);
 INSERT INTO Cours (Debut, Fin, DureeReelleEnHeures, CodePromotion, IdCours, PrixPublicAffecte, IdModule, LibelleCours, DureePrevueEnHeures, DateAdefinir, CodeSalle, CodeFormateur, CodeLieu) VALUES ('2019-03-18 00:00:00.000', '2019-05-10 00:00:00.000', 259, 'HASR_108', '77E75ED7-475A-4ED4-B4A3-FF9C2849215A', 0, 93, 'STAGE-ASR', 280, 0, null, null, 1);
 INSERT INTO Cours (Debut, Fin, DureeReelleEnHeures, CodePromotion, IdCours, PrixPublicAffecte, IdModule, LibelleCours, DureePrevueEnHeures, DateAdefinir, CodeSalle, CodeFormateur, CodeLieu) VALUES ('2018-05-22 00:00:00.000', '2018-06-01 00:00:00.000', 70, 'LRDL_002', '8B4BF1A0-9E34-4ACC-AB03-FFEC69085EDA', 0, 730, 'PRJ1-DEV17', 70, 0, null, null, 10);
-
-
-
-
-
