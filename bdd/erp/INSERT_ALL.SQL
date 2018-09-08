@@ -1,14 +1,14 @@
-﻿INSERT INTO TITRE VALUES('AL','ARCHITECTE LOGICIEL','Architecte Logiciel',0,0,'I','2009-01-28','2009-02-07',NULL,NULL,NULL)
-INSERT INTO TITRE VALUES('ASR','ASR','Administrateur Système et Réseau',0,0,'II','2015-11-11','2015-11-20',152,NULL,NULL)
-INSERT INTO TITRE VALUES('AUCUN','PAS DE TITRE PRÉPARÉ','Pas de titre préparé',0,0,NULL,NULL,NULL,NULL,NULL,null)
-INSERT INTO TITRE VALUES('CDI','CDI','Concepteur Développeur Informatique',0,0,'II','2015-11-09','2015-11-09',2015,'TP-01281','02')
-INSERT INTO TITRE VALUES('DL','DL','Développeur Logiciel',0,0,'III','2015-11-09','2015-11-09',2015,'TP-01280','02')
-INSERT INTO TITRE VALUES('EISI','EISI','Expert en Informatique et Système d''Information',0,0,'I','2012-04-05','2012-04-14',NULL,NULL,NULL)
-INSERT INTO TITRE VALUES('LICENCE ','LICENCE INFORMATIQUE','Licence informatique',0,0,'II','2015-11-12','2015-11-12',NULL,NULL,NULL)
-INSERT INTO TITRE VALUES('MS2I','MS2I','Manager des Systèmes d''Information et d''Infrastructure',0,0,'I','2012-04-05','2012-04-14',NULL,NULL,NULL)
-INSERT INTO TITRE VALUES('TAI','TAI','Technicien(ne) d''Assistance en Informatique',0,0,'IV','2009-01-28','2009-02-07',NULL,NULL,NULL)
-INSERT INTO TITRE VALUES('TSRIT','TSRIT','Technicien Supérieur en Réseaux Informatiques et Télécommunications',0,0,'III','2015-02-11','2015-02-19',NULL,'TP-00500','06')
-INSERT INTO TITRE VALUES('TSSI','TSSI','Technicien Supérieur de Support en Informatique',0,0,'III','2013-02-08','2013-02-19',NULL,'TP-00485','08')
+﻿INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('AL      ', 'ARCHITECTE LOGICIEL', 'Architecte Logiciel', 0, 0, 'I', '2009-01-28 00:00:00.000', '2009-02-07 00:00:00.000', null, null, null);
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('ASR     ', 'ASR', 'Administrateur Système et Réseau', 0, 0, 'II', '2015-11-11 00:00:00.000', '2015-11-20 00:00:00.000', 152, null, null);
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('AUCUN   ', 'PAS DE TITRE PRÉPARÉ', 'Pas de titre préparé', 0, 0, null, null, null, null, null, null);
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('CDI     ', 'CDI', 'Concepteur Développeur Informatique', 0, 0, 'II', '2015-11-09 00:00:00.000', '2015-11-09 00:00:00.000', 2015, 'TP-01281', '02');
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('DL      ', 'DL', 'Développeur Logiciel', 0, 0, 'III', '2015-11-09 00:00:00.000', '2015-11-09 00:00:00.000', 2015, 'TP-01280', '02');
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('EISI    ', 'EISI', 'Expert en Informatique et Système d''Information', 0, 0, 'I', '2012-04-05 00:00:00.000', '2012-04-14 00:00:00.000', null, null, null);
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('LICENCE ', 'LICENCE INFORMATIQUE', 'Licence informatique', 0, 0, 'II', '2015-11-12 00:00:00.000', '2015-11-12 00:00:00.000', null, null, null);
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('MS2I    ', 'MS2I', 'Manager des Systèmes d''Information et d''Infrastructure', 0, 0, 'I', '2012-04-05 00:00:00.000', '2012-04-14 00:00:00.000', null, null, null);
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('TAI     ', 'TAI', 'Technicien(ne) d''Assistance en Informatique', 0, 0, 'IV', '2009-01-28 00:00:00.000', '2009-02-07 00:00:00.000', null, null, null);
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('TSRIT   ', 'TSRIT', 'Technicien Supérieur en Réseaux Informatiques et Télécommunications', 0, 0, 'III', '2015-02-11 00:00:00.000', '2015-02-19 00:00:00.000', null, 'TP-00500', '06');
+INSERT INTO Titre (CodeTitre, LibelleCourt, LibelleLong, TitreENI, Archiver, Niveau, DateArrete, DateJO, NumeroJO, CodeAFPA, Millesime) VALUES ('TSSI    ', 'TSSI', 'Technicien Supérieur de Support en Informatique', 0, 0, 'III', '2013-02-08 00:00:00.000', '2013-02-19 00:00:00.000', null, 'TP-00485', '08');
 
 
 INSERT INTO Formation VALUES('17ASR','Administrateur Système Et Réseau','[2017]ASR',1680,0,'ASR',0,1120,560,32,16,48,0,NULL,1,NULL)
