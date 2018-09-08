@@ -834,6 +834,12 @@ ALTER TABLE PROGRAMMATION ALTER COLUMN PR_ID_COURS_PLANIFIE_ERP varchar(255);
 ALTER TABLE PROGRAMMATION ALTER COLUMN MC_ID int;
 ALTER TABLE PROGRAMMATION ALTER COLUMN CA_ID int;
 
+INSERT INTO ETAT_CALENDRIER (EC_ID, EC_LIBELLE_ETAT) VALUES (1, 'Actif');
+INSERT INTO ETAT_CALENDRIER (EC_ID, EC_LIBELLE_ETAT) VALUES (2, 'Inactif');
+INSERT INTO ETAT_CALENDRIER (EC_ID, EC_LIBELLE_ETAT) VALUES (3, 'Prévisionnel');
+INSERT INTO ETAT_CALENDRIER (EC_ID, EC_LIBELLE_ETAT) VALUES (4, 'Inscrit');
+
+INSERT INTO ROLE_UTILISATEUR (RU_ID, RU_LIBELLE_ROLE) VALUES (1, 'Utilisateur');
 
 INSERT INTO Stagiaire (CodeStagiaire, Civilite, Nom, Prenom, Adresse1, Adresse2, Adresse3, Codepostal, Ville, TelephoneFixe, TelephonePortable, Email, DateNaissance, CodeRegion, CodeNationalite, CodeOrigineMedia, DateDernierEnvoiDoc, DateCreation, Repertoire, Permis, Photo, EnvoiDocEnCours, Historique) VALUES (19, 'Mr ', 'TestNom', 'TestPrenom', 'TestAdresse1', 'TestAdresse2', 'TestAdresse3', '44200', 'Nantes', '02000000      ', '06000000      ', 'test@test.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);
 INSERT INTO Stagiaire (CodeStagiaire, Civilite, Nom, Prenom, Adresse1, Adresse2, Adresse3, Codepostal, Ville, TelephoneFixe, TelephonePortable, Email, DateNaissance, CodeRegion, CodeNationalite, CodeOrigineMedia, DateDernierEnvoiDoc, DateCreation, Repertoire, Permis, Photo, EnvoiDocEnCours, Historique) VALUES (20, 'Mr ', 'Smith', 'John', 'TestAdresse1', 'TestAdresse2', 'TestAdresse3', '44200', 'Nantes', '02000001      ', '06000001      ', 'test@smith.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);

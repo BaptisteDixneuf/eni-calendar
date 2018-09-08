@@ -3,6 +3,7 @@ package fr.eni.enicalendar.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -208,7 +209,16 @@ public class ConsulterCalendrierController implements Serializable {
             coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
             listeCours.add(coursVoulu);
         }
-        listeCours.sort(listeCours, Cours);
+		Collections.sort(listeCours, new Comparator<Cours>() {
+
+			@Override
+			public int compare(Cours o1, Cours o2) {
+
+				return o1.getDateDebut().compareTo(o2.getDateDebut());
+
+			}
+
+		});
 	}
 
 	public FormationServiceInterface getFormationService() {

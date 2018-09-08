@@ -18,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Cours")
-public class Cours implements Serializable, Comparable {
+public class Cours implements Serializable {
 
 	/**
 	 * Serial UID
@@ -164,12 +164,5 @@ public class Cours implements Serializable, Comparable {
 
 	public void setLieu(Lieu lieu) {
 		this.lieu = lieu;
-	}
-
-
-
-	public int compareTo(Cours cours1, Cours cours2) {
-
-		return cours1.getDateFin().compareTo(cours2.getDateDebut());
 	}
 }
