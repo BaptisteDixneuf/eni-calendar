@@ -2,6 +2,7 @@ package fr.eni.enicalendar.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -11,24 +12,15 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import com.lowagie.text.*;
+import fr.eni.enicalendar.persistence.app.entities.Programmation;
+import fr.eni.enicalendar.persistence.erp.entities.*;
+import fr.eni.enicalendar.service.*;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lowagie.text.BadElementException;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.PageSize;
-
 import fr.eni.enicalendar.persistence.app.entities.Calendrier;
-import fr.eni.enicalendar.persistence.erp.entities.Entreprise;
-import fr.eni.enicalendar.persistence.erp.entities.Formation;
-import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
-import fr.eni.enicalendar.persistence.erp.entities.StagiaireParEntreprise;
-import fr.eni.enicalendar.service.CalendrierServiceInterface;
-import fr.eni.enicalendar.service.EntrepriseServiceInterface;
-import fr.eni.enicalendar.service.FormationServiceInterface;
-import fr.eni.enicalendar.service.StagiaireServiceInterface;
 import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
 import fr.eni.enicalendar.utils.SessionUtils;
 
@@ -58,6 +50,12 @@ public class ConsulterCalendrierController implements Serializable {
 	@ManagedProperty(value = "#{entrepriseService}")
 	private EntrepriseServiceInterface entrepriseService;
 
+    @ManagedProperty(value = "#{programmationService}")
+    private ProgrammationServiceInterface programmationService;
+
+    @ManagedProperty(value = "#{coursService}")
+    private CoursServiceInterface coursService;
+
 	private Stagiaire stagiaire;
 	private String codeStagiaire;
 	private String codeFormation;
@@ -67,8 +65,43 @@ public class ConsulterCalendrierController implements Serializable {
 	private int id;
 	private StagiaireParEntreprise stagiaireEntreprise;
 	private Entreprise entreprise;
+	private List<Programmation> programmations;
+	private List<Cours> listeCours;
+	private Cours coursVoulu;
 
-	public Formation getFormation() {
+    public CoursServiceInterface getCoursService() {
+        return coursService;
+    }
+
+    public void setCoursService(CoursServiceInterface coursService) {
+        this.coursService = coursService;
+    }
+
+    public List<Cours> getListeCours() {
+        return listeCours;
+    }
+
+    public void setListeCours(List<Cours> listeCours) {
+        this.listeCours = listeCours;
+    }
+
+    public ProgrammationServiceInterface getProgrammationService() {
+        return programmationService;
+    }
+
+    public void setProgrammationService(ProgrammationServiceInterface programmationService) {
+        this.programmationService = programmationService;
+    }
+
+    public List<Programmation> getProgrammations() {
+        return programmations;
+    }
+
+    public void setProgrammations(List<Programmation> programmations) {
+        this.programmations = programmations;
+    }
+
+    public Formation getFormation() {
 		return formation;
 	}
 
@@ -165,8 +198,13 @@ public class ConsulterCalendrierController implements Serializable {
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		stagiaire = stagiaireService.findBycodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
-		entreprise = entrepriseService.findByCodeEntreprise(4);
+		entreprise = entrepriseService.findByCodeEntreprise(stagiaireEntreprise.getCodeEntreprise());
 		formation = formationService.findByCodeFormation("17CDI");
+		programmations = programmationService.findProgrammationByModeleCalendrier(65);
+        for (Programmation prog: programmations) {
+            coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
+            listeCours.add(coursVoulu);
+        }
 	}
 
 	public FormationServiceInterface getFormationService() {

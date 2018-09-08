@@ -36,7 +36,25 @@
 						<h:outputText
 								value="Entreprise: #{consulterCalendrierController.entreprise.raisonSociale}"/>
 					</div>
+					<p:dataTable id="tbl" var="programmations" value="#{consulterCalendrierController.programmations}" widgetVar="titreTable" emptyMessage="Auncun calendrier pour ce stagiaire">
+						<p:column headerText="DateDebut" sortBy="#{programmations.nomCalendrier}" filterBy="#{programmations.nomCalendrier}">
+							<h:outputText value="#{programmations.nomCalendrier}"/>
+						</p:column>
+						<p:column headerText="DateFin" sortBy="#{programmations.dateCreation }" filterBy="#{programmations.dateCreation}">
+							<h:outputText value="#{programmations.dateCreation}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="Lieu" sortBy="#{programmations.dateModification}" filterBy="#{programmations.dateModification}">
+							<h:outputText value="#{programmations.dateModification}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="Programme" sortBy="#{programmations.etatCalendrier.libelleEtat}" filterBy="#{programmations.etatCalendrier.libelleEtat}">
+							<h:outputText value="#{programmations.etatCalendrier.libelleEtat}"/>
+						</p:column>
 
+					</p:dataTable>
 
 				</h:form>
 			</div>

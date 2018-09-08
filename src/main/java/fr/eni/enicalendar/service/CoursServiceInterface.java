@@ -12,4 +12,6 @@ public interface CoursServiceInterface {
 
 	List<Cours> findCoursByFormationAndLieu(String codeFormation, Integer codeLieu);
 
+	Cours findCoursById(String id);
+
 }

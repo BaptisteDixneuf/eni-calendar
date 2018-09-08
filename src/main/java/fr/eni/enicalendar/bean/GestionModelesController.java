@@ -138,4 +138,17 @@ public class GestionModelesController implements Serializable {
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modèle supprimé!", ""));
 		context.getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
 	}
+
+	/**
+	 * Consulter calendrier
+	 *
+	 * @throws IOException
+	 */
+	public void consulterCalendrier(Integer id) throws IOException {
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute(SessionUtils.SESSION_ID, id);
+		// TODO faire affichage du pdf du calendrier
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/eni-calendar/views/consulterCalendrier.xhtml");
+	}
 }

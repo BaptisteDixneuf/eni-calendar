@@ -50,6 +50,7 @@
 					</h:outputText>
 				</p:column>
 				<p:column headerText="Actions">
+					<p:commandButton value="Consulter" action="#{gestionModelesController.consulterCalendrier(modeles.id)}"/>
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionModelesController.modificationModele('ModificationModele', modeles.id)}"/>
 					<p:commandButton value="Supprimer" action="#{gestionModelesController.setId(modeles.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
 				</p:column>
