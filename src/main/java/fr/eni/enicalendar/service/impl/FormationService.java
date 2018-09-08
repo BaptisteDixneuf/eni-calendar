@@ -22,7 +22,7 @@ public class FormationService implements FormationServiceInterface {
 
 	@Override
 	public Formation findByCode(String code) {
-		return formationRepository.findByCode(code);
+		return formationRepository.findByCodeFormation(code);
 	}
 
 }

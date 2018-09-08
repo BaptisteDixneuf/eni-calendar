@@ -1,9 +1,25 @@
 package fr.eni.enicalendar.bean;
 
+import java.io.IOException;
+import java.io.Serializable;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import org.primefaces.event.SelectEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.PageSize;
+
 import fr.eni.enicalendar.persistence.app.entities.Calendrier;
 import fr.eni.enicalendar.persistence.erp.entities.Entreprise;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
@@ -15,19 +31,6 @@ import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
 import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
 import fr.eni.enicalendar.utils.SessionUtils;
-import org.primefaces.event.SelectEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.Serializable;
 
 @ManagedBean(name = "consulterCalendrierController")
 @ViewScoped
@@ -153,17 +156,17 @@ public class ConsulterCalendrierController implements Serializable {
 		this.stagiaire = stagiaire;
 	}
 
-
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("ConsulterCalendrierController setup");
 		stagiaire = new Stagiaire();
 		HttpSession session = SessionUtils.getSession();
-		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
+		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(
+				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		stagiaire = stagiaireService.findBycodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		entreprise = entrepriseService.findByCodeEntreprise(4);
-		formation = formationService.findByCode('17CDI');
+		formation = formationService.findByCode("17CDI");
 	}
 
 	public FormationServiceInterface getFormationService() {
@@ -210,7 +213,6 @@ public class ConsulterCalendrierController implements Serializable {
 	public void creerCalendrier() throws IOException {
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/creationCalendrier.xhtml");
 	}
-
 
 	public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
 		Document pdf = (Document) document;
