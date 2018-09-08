@@ -163,7 +163,7 @@ public class ConsulterCalendrierController implements Serializable {
 		stagiaire = stagiaireService.findBycodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		entreprise = entrepriseService.findByCodeEntreprise(4);
-		formation = formationService.findByCode('17CDI');
+		formation = formationService.findByCodeFormation("17CDI");
 	}
 
 	public FormationServiceInterface getFormationService() {
