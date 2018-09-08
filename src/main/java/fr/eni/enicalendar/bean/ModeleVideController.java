@@ -165,7 +165,7 @@ public class ModeleVideController implements Serializable {
 				&& SessionUtils.getId() != null) {
 
 			Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
-			ModeleCalendrier modeleCalendrier = modeleCalendrierService.findById(idModeleCalendrier);
+			modeleCalendrier = modeleCalendrierService.findById(idModeleCalendrier);
 			selectedFormation = formationService
 					.findByCodeFormation(String.valueOf(modeleCalendrier.getIdFormationERP()));
 			codeFormation = selectedFormation.getCodeFormation();
