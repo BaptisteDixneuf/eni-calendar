@@ -824,15 +824,15 @@ ALTER TABLE CONTRAINTE ALTER COLUMN MC_ID int
 ALTER TABLE CONTRAINTE ALTER COLUMN CA_ID int
 go
 
-EXEC sp_rename 'EniCalendar.dbo.MODULE_INDEPENDANT.MI_ID_LIEU_FORMATION_ERP', MI_LIEU_FORMATION, 'COLUMN';
-ALTER TABLE EniCalendar.dbo.MODULE_INDEPENDANT ALTER COLUMN MI_LIEU_FORMATION varchar(255);
-ALTER TABLE EniCalendar.dbo.MODULE_INDEPENDANT ALTER COLUMN CA_ID int;
-ALTER TABLE EniCalendar.dbo.MODULE_INDEPENDANT ALTER COLUMN MC_ID int;
+-- EXEC sp_rename 'MODULE_INDEPENDANT.MI_ID_LIEU_FORMATION_ERP', MI_LIEU_FORMATION, 'COLUMN';
+-- ALTER TABLE MODULE_INDEPENDANT ALTER COLUMN MI_LIEU_FORMATION varchar(255);
+-- ALTER TABLE MODULE_INDEPENDANT ALTER COLUMN CA_ID int;
+-- ALTER TABLE MODULE_INDEPENDANT ALTER COLUMN MC_ID int;
 
 /** Changement du type de la colonne EM_ID_FORMATION_ERP en varchar(255) */
 ALTER TABLE PROGRAMMATION ALTER COLUMN PR_ID_COURS_PLANIFIE_ERP varchar(255);
-ALTER TABLE EniCalendar.dbo.PROGRAMMATION ALTER COLUMN MC_ID int;
-ALTER TABLE EniCalendar.dbo.PROGRAMMATION ALTER COLUMN CA_ID int;
+ALTER TABLE PROGRAMMATION ALTER COLUMN MC_ID int;
+ALTER TABLE PROGRAMMATION ALTER COLUMN CA_ID int;
 
 
 INSERT INTO Stagiaire (CodeStagiaire, Civilite, Nom, Prenom, Adresse1, Adresse2, Adresse3, Codepostal, Ville, TelephoneFixe, TelephonePortable, Email, DateNaissance, CodeRegion, CodeNationalite, CodeOrigineMedia, DateDernierEnvoiDoc, DateCreation, Repertoire, Permis, Photo, EnvoiDocEnCours, Historique) VALUES (19, 'Mr ', 'TestNom', 'TestPrenom', 'TestAdresse1', 'TestAdresse2', 'TestAdresse3', '44200', 'Nantes', '02000000      ', '06000000      ', 'test@test.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);
