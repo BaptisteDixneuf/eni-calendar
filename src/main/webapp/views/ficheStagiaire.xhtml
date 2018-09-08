@@ -18,7 +18,6 @@
 	
 	<div class="container">
 	<div>
-		<div id="HTMLtoPDF">
 		<h1>Fiche stagiaire</h1>
 		<h:form>
 			<p:messages for="general" showDetail="true" closable="true">
@@ -55,10 +54,10 @@
 					<h:outputText value="#{calendriers.etatCalendrier.libelleEtat}"/>
 				</p:column>
 				<p:column headerText="" style="width: 490px" >
-					<p:commandButton value="Consulter" action="#{ficheStagiaireController.consulterCalendrier}"/>
+					<p:commandButton value="Consulter" action="#{ficheStagiaireController.consulterCalendrier(calendriers.id)}"/>
 					<h:commandLink id="pdf">
 						<p:commandButton value="Exporter" />
-						<p:dataExporter type="pdf" target="tbl" fileName="cars" preProcessor="#{ficheStagiaireController.preProcessPDF}" />
+						<p:dataExporter type="pdf" target="tbl" fileName="cars" preProcessor="#{ficheStagiaireController.consulterCalendrier(calendriers.id)}" />
 					</h:commandLink>
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', calendriers.id)}"/>
 					<p:commandButton value="Supprimer" action="#{ficheStagiaireController.setId(calendriers.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
@@ -77,9 +76,8 @@
 			</div>
 		</h:form>
 		</div>
-		<button style="background-color: #1e7e34" onclick="HTMLtoPDF()">PDF</button>
 	</div>
-	</div>
+
 
 	
 	<ui:include src="footer.xhtml"/>

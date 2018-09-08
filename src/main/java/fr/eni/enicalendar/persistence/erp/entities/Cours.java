@@ -165,5 +165,4 @@ public class Cours implements Serializable {
 	public void setLieu(Lieu lieu) {
 		this.lieu = lieu;
 	}
-
 }

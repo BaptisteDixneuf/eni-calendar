@@ -30,4 +30,8 @@ public class CoursService implements CoursServiceInterface {
 		return coursRepository.findCoursByFormationAndLieu(codeFormation, codeLieu);
 	}
 
+	@Override
+	public Cours findCoursById(String id) {
+		return coursRepository.findOne(id);
+	}
 }
