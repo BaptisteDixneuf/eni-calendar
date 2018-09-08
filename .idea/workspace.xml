@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4429b4d1-4d13-4873-af38-70b819ae7b53" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql" afterDir="false" />
     </list>
     <ignored path="$APPLICATION_HOME_DIR$/ENI CALENDAR/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -80,7 +79,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FicheStagiaireController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FicheStagiaireController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
@@ -140,24 +139,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20180824_alter_table_module_independant.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bdd/20180824_alter_table_module_independant.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CREATE TABLES.SQL" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bdd/erp/CREATE TABLES.SQL">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="71" column="24" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -170,7 +151,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lieuService</find>
       <find>selectOneMenu</find>
       <find>prime</find>
       <find>oubli</find>
@@ -200,6 +180,7 @@
       <find>MI_ID_LIEU_FORMATION_ERP</find>
       <find>EniCalendar.dbo.</find>
       <find>lieu</find>
+      <find>salle</find>
     </findStrings>
     <replaceStrings>
       <replace>modificationUtilisateurController</replace>
@@ -860,7 +841,7 @@
       <workItem from="1536181771206" duration="524000" />
       <workItem from="1536254403653" duration="1100000" />
       <workItem from="1536255534250" duration="1907000" />
-      <workItem from="1536398565025" duration="1463000" />
+      <workItem from="1536398565025" duration="1786000" />
     </task>
     <task id="LOCAL-00001" summary="test idea">
       <created>1529573998274</created>
@@ -1198,11 +1179,18 @@
       <option name="project" value="LOCAL" />
       <updated>1536399320031</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="changement scripts">
+      <created>1536400145736</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1536400145736</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243214000" />
+    <option name="totallyTimeSpent" value="243537000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1759,6 +1747,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="845" column="141" selection-start-line="845" selection-start-column="137" selection-end-line="845" selection-end-column="141" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bdd/erp/CREATE TABLES.SQL">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="111" column="4" selection-start-line="111" selection-start-column="3" selection-end-line="111" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bdd/20180824_alter_table_module_independant.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1814,27 +1823,6 @@
             <element signature="e#5874#5875#0" expanded="true" />
             <element signature="e#5905#5906#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="845" column="141" selection-start-line="845" selection-start-column="137" selection-end-line="845" selection-end-column="141" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bdd/20180824_alter_table_module_independant.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bdd/erp/CREATE TABLES.SQL">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="71" column="24" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="24" />
         </state>
       </provider>
     </entry>
