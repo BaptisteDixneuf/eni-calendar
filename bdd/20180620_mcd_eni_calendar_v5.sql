@@ -556,12 +556,12 @@ go
 /*==============================================================*/
 create table MODULE_INDEPENDANT (
    MI_ID                int                  identity,
-   CA_ID                int                  not null,
-   MC_ID                int                  not null,
+   CA_ID                int                  null,
+   MC_ID                int                  null,
    MI_LIBELLE           varchar(255)         null,
    MI_DUREE             int                  null,
    MI_LIBELLE_COURT     varchar(255)         null,
-   MI_ID_LIEU_FORMATION_ERP int                  null,
+   MI_LIEU_FORMATION    varchar(255)         null,
    MI_DATE_DEBUT        datetime             null,
    MI_DATE_FIN          datetime             null,
    constraint PK_MODULE_INDEPENDANT primary key nonclustered (MI_ID)
