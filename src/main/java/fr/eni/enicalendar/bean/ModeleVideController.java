@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.exceptions.FonctionnelException;
 import fr.eni.enicalendar.persistence.app.entities.Contrainte;
+import fr.eni.enicalendar.persistence.app.entities.Dispense;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
@@ -44,6 +45,7 @@ import fr.eni.enicalendar.utils.SessionUtils;
 import fr.eni.enicalendar.utils.TypeContrainteEnum;
 import fr.eni.enicalendar.viewElement.AutreCours;
 import fr.eni.enicalendar.viewElement.Contraintes;
+import fr.eni.enicalendar.viewElement.DispenseElement;
 import fr.eni.enicalendar.viewElement.Dispenses;
 import fr.eni.enicalendar.viewElement.ElementCalendrier;
 import fr.eni.enicalendar.viewElement.ElementCalendrierType;
@@ -459,6 +461,64 @@ public class ModeleVideController implements Serializable {
 		}
 
 		modeleCalendrier.setContraintes(contrainteEntityList);
+		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
+	}
+
+	/**
+	 * Permet d'ajouter une dispense à la liste des dispenses
+	 * 
+	 */
+	public void ajouterDispense() {
+
+		if (dispensesViewElement.getListDispenses() == null) {
+			List<DispenseElement> list = new ArrayList<>();
+			dispensesViewElement.setListDispenses(list);
+		}
+
+		// Contrôle validé
+		if (dispensesViewElement.getSelectedModule() == null) {
+			FacesContext.getCurrentInstance().addMessage("moduleAutocomplete",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez sélectionner un élément", ""));
+
+		} else {
+			for (DispenseElement dispenseElement : dispensesViewElement.getListDispenses()) {
+				if (dispenseElement.getIdModuleERP().equals(dispensesViewElement.getSelectedModule().getId())) {
+					FacesContext.getCurrentInstance().addMessage("moduleAutocomplete",
+							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ce module est déjà dispensé", ""));
+				}
+			}
+		}
+
+		if (!hasError()) {
+			DispenseElement dispenseElement = new DispenseElement();
+			dispenseElement.setIdModuleERP(dispensesViewElement.getSelectedModule().getId());
+			dispenseElement.setLibelle(dispensesViewElement.getSelectedModule().getLibelle());
+			dispensesViewElement.getListDispenses().add(dispenseElement);
+		}
+	}
+
+	/**
+	 * Permet d'enregistrer les dispenses
+	 */
+	public void enregistrerDispenses() {
+
+		if (modeleCalendrier == null || modeleCalendrier.getId() == null) {
+			save();
+		}
+
+		if (dispensesViewElement.getListDispenses() == null) {
+			List<DispenseElement> list = new ArrayList<>();
+			dispensesViewElement.setListDispenses(list);
+		}
+		List<Dispense> listDispensesEntities = new ArrayList<>();
+		for (DispenseElement dispenseElementView : dispensesViewElement.getListDispenses()) {
+			Dispense dispense = new Dispense();
+			dispense.setIdModuleERP(dispenseElementView.getIdModuleERP());
+			dispense.setIdModeleCalendrier(modeleCalendrier.getId());
+			listDispensesEntities.add(dispense);
+		}
+
+		modeleCalendrier.setDispenses(listDispensesEntities);
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 	}
 

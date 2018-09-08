@@ -12,6 +12,10 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.enicalendar.persistence.erp.entities.Entreprise;
+import fr.eni.enicalendar.persistence.erp.entities.StagiaireParEntreprise;
+import fr.eni.enicalendar.service.EntrepriseServiceInterface;
+import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,11 +47,17 @@ public class FicheStagiaireController implements Serializable {
 	@ManagedProperty(value = "#{stagiaireService}")
 	private StagiaireServiceInterface stagiaireService;
 
+	@ManagedProperty(value = "#{stagiaireEntrepriseService}")
+	private StagiaireEntrepriseService stagiaireEntrepriseService;
+
 	@ManagedProperty(value = "#{formationService}")
 	private FormationServiceInterface formationService;
 
 	@ManagedProperty(value = "#{calendrierService}")
 	private CalendrierServiceInterface calendrierService;
+
+	@ManagedProperty(value = "#{entrepriseService}")
+	private EntrepriseServiceInterface entrepriseService;
 
 	private Stagiaire stagiaire;
 	private String codeStagiaire;
@@ -57,6 +67,40 @@ public class FicheStagiaireController implements Serializable {
 	private List<Formation> formations;
 	private List<Calendrier> calendriers;
 	private int id;
+	private StagiaireParEntreprise stagiaireEntreprise;
+	private Entreprise entreprise;
+
+	public EntrepriseServiceInterface getEntrepriseService() {
+		return entrepriseService;
+	}
+
+	public void setEntrepriseService(EntrepriseServiceInterface entrepriseService) {
+		this.entrepriseService = entrepriseService;
+	}
+
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
+	}
+
+	public StagiaireEntrepriseService getStagiaireEntrepriseService() {
+		return stagiaireEntrepriseService;
+	}
+
+	public void setStagiaireEntrepriseService(StagiaireEntrepriseService stagiaireEntrepriseService) {
+		this.stagiaireEntrepriseService = stagiaireEntrepriseService;
+	}
+
+	public StagiaireParEntreprise getStagiaireEntreprise() {
+		return stagiaireEntreprise;
+	}
+
+	public void setStagiaireEntreprise(StagiaireParEntreprise stagiaireEntreprise) {
+		this.stagiaireEntreprise = stagiaireEntreprise;
+	}
 
 	public int getId() {
 		return id;
@@ -125,11 +169,13 @@ public class FicheStagiaireController implements Serializable {
 
 	@PostConstruct
 	public void setup() {
-		LOGGER.info("CreationCalendrierDepuisModeleController setup");
+		LOGGER.info("FicheStagiaireController setup");
 		stagiaire = new Stagiaire();
 		HttpSession session = SessionUtils.getSession();
+		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		stagiaire = stagiaireService.findBycodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
+		entreprise = entrepriseService.findByCodeEntreprise(4);
 		formations = formationService.findAllFormations();
 		calendriers = calendrierService.findCalendriersByStagiaire(stagiaire.getCodeStagiaire());
 	}

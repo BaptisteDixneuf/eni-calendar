@@ -26,7 +26,7 @@ public class ModeleCalendrierService implements ModeleCalendrierServiceInterface
 
 	@Override
 	public ModeleCalendrier save(ModeleCalendrier modeleCalendrier) {
-		return modeleCalendrier = modeleCalendrierRepository.saveAndFlush(modeleCalendrier);
+		return modeleCalendrier = modeleCalendrierRepository.save(modeleCalendrier);
 	}
 
 }

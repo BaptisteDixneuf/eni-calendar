@@ -49,13 +49,17 @@ public class ModeleCalendrier implements Serializable {
 	@Column(name = "MC_DATE_FIN_MAX")
 	private Date dateFinMax;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MC_ID")
 	private Collection<Programmation> programmations;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MC_ID")
 	private Collection<Contrainte> contraintes;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "MC_ID")
+	private Collection<Dispense> dispenses;
 
 	/**
 	 * @return the id
@@ -191,6 +195,14 @@ public class ModeleCalendrier implements Serializable {
 
 	public void setContraintes(Collection<Contrainte> contraintes) {
 		this.contraintes = contraintes;
+	}
+
+	public Collection<Dispense> getDispenses() {
+		return dispenses;
+	}
+
+	public void setDispenses(Collection<Dispense> dispenses) {
+		this.dispenses = dispenses;
 	}
 
 }

@@ -87,7 +87,7 @@
 }
 
 .navbar-footer {
-  margin-top: 20%;
+  margin-top: 19%;
   display: flex;
   justify-content: center;
   background-color: #e1e1d0;
@@ -253,7 +253,7 @@ h3 {
 	padding: 15px;
 }
 
-/** FIN -gérer les popins dans les popins **/
+/** FIN -gï¿½rer les popins dans les popins **/
 
 .ui-widget-overlay {
 	background: rgba(255, 255, 255, 1);
