@@ -228,22 +228,23 @@
 							<div class="m-t-20">
 								<div class="ui-g">	
 									<div class="ui-g-4">	
-										<p:selectBooleanCheckbox id="periodeForteActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntreprise}" />
-										<p:outputLabel styleClass="m-l-20" for="periodeForteActiviteEntreprise" value="Périodes de forte activité en entreprise :  " />
-										
-										<p:dataTable var="forte" value="#{modeleVideController.contraintesViewElement.listPeriodeForteActiviteEntreprise}" 
-											rendered="#{not empty modeleVideController.contraintesViewElement.listPeriodeForteActiviteEntreprise}"
-										 	emptyMessage="Aucun enregistrement">
-											<p:column headerText="Date début">
-												#{modeleVideController.formatDate(forte.dateDebut)}										
-											</p:column>
-											<p:column headerText="Date fin">
-												#{modeleVideController.formatDate(forte.dateFin)}
-											</p:column>
-											<p:column headerText="Actions">
-																						
-											</p:column>
-										</p:dataTable>
+										<h:panelGroup id="tabPeriodeForteActiviteEntreprise">
+											<p:selectBooleanCheckbox id="periodeForteActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntreprise}" />
+											<p:outputLabel styleClass="m-l-20" for="periodeForteActiviteEntreprise" value="Périodes de forte activité en entreprise :  " />										
+											<p:dataTable var="forte" value="#{modeleVideController.contraintesViewElement.listPeriodeForteActiviteEntreprise}" 
+												rendered="#{not empty modeleVideController.contraintesViewElement.listPeriodeForteActiviteEntreprise}"
+											 	emptyMessage="Aucun enregistrement">
+												<p:column headerText="Date début">
+													#{modeleVideController.formatDate(forte.dateDebut)}										
+												</p:column>
+												<p:column headerText="Date fin">
+													#{modeleVideController.formatDate(forte.dateFin)}
+												</p:column>
+												<p:column headerText="Actions">
+																							
+												</p:column>
+											</p:dataTable>
+										</h:panelGroup>		
 									</div>
 								</div>
 								<div class="ui-g">				
@@ -258,63 +259,75 @@
 										<p:outputLabel class="m-t-10" for="periodeForteActiviteEntrepriseDateFin" value="Date de fin :"/>
 										<p:calendar id="periodeForteActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeForteActiviteEntrepriseDateFin}" showOn="button"/>
 										<p:messages for="periodeForteActiviteEntrepriseDateFin"/>
+									</div>
+									<div class="ui-g-3">
+										<p:commandButton value="Ajouter" action="#{modeleVideController.ajouterPeriodeForteActiviteEntreprise}" update="tabPeriodeForteActiviteEntreprise"></p:commandButton>	
 									</div>									
 								</div>
 							</div>
 							
 							<div class="m-t-20">
 								<div class="ui-g">	
-									<div class="ui-g-4">	
-										<p:selectBooleanCheckbox id="periodeFaibleActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntreprise}" />
-										<p:outputLabel styleClass="m-l-20" for="periodeFaibleActiviteEntreprise" value="Périodes de faible activité en entreprise :  " />
-										<p:dataTable var="faible" value="#{modeleVideController.contraintesViewElement.listPeriodeFaibleActiviteEntreprise}"   
-											rendered="#{not empty modeleVideController.contraintesViewElement.listPeriodeFaibleActiviteEntreprise}"
-											emptyMessage="Aucun enregistrement">
-											<p:column headerText="Date début">
-												#{modeleVideController.formatDate(faible.dateDebut)}
-											</p:column>
-											<p:column headerText="Date fin">
-												#{modeleVideController.formatDate(faible.dateFin)}
-											</p:column>
-											<p:column headerText="Actions">
-																						
-											</p:column>
-										</p:dataTable>
+									<div class="ui-g-4">
+										<h:panelGroup id="tabPeriodeFaibleActiviteEntreprise">
+											<p:selectBooleanCheckbox id="periodeFaibleActiviteEntreprise" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntreprise}" />
+											<p:outputLabel styleClass="m-l-20" for="periodeFaibleActiviteEntreprise" value="Périodes de faible activité en entreprise :  " />
+											<p:dataTable var="faible" value="#{modeleVideController.contraintesViewElement.listPeriodeFaibleActiviteEntreprise}"   
+												rendered="#{not empty modeleVideController.contraintesViewElement.listPeriodeFaibleActiviteEntreprise}"
+												emptyMessage="Aucun enregistrement">
+												<p:column headerText="Date début">
+													#{modeleVideController.formatDate(faible.dateDebut)}
+												</p:column>
+												<p:column headerText="Date fin">
+													#{modeleVideController.formatDate(faible.dateFin)}
+												</p:column>
+												<p:column headerText="Actions">
+																							
+												</p:column>
+											</p:dataTable>
+										</h:panelGroup>
 									</div>
 								</div>
 								<div class="ui-g">				
 									<div class="ui-g-3">
 										<p:outputLabel class="m-t-10" for="periodeFaibleActiviteEntrepriseDateDebut" value="Date de début :"/>
 										<p:calendar id="periodeFaibleActiviteEntrepriseDateDebut" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateDebut}" showOn="button" />
+										<p:messages for="periodeFaibleActiviteEntrepriseDateDebut"/>
 									</div>												
 									<div class="ui-g-3">
 										<p:outputLabel class="m-t-10" for="periodeFaibleActiviteEntrepriseDateFin" value="Date de fin :"/>
 										<p:calendar id="periodeFaibleActiviteEntrepriseDateFin" value="#{modeleVideController.contraintesViewElement.periodeFaibleActiviteEntrepriseDateFin}" showOn="button" />
+										<p:messages for="periodeFaibleActiviteEntrepriseDateFin"/>
+									</div>
+									<div class="ui-g-3">
+										<p:commandButton value="Ajouter" action="#{modeleVideController.ajouterPeriodeFaibleActiviteEntreprise}" update="tabPeriodeFaibleActiviteEntreprise"></p:commandButton>	
 									</div>
 								</div>
 							</div>
 							
 							<div class="m-t-20">
 								<div class="ui-g">	
-									<div class="ui-g-4">		
-										<p:selectBooleanCheckbox id="periodeNonDisponibiliteStagiaire" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaire}" />
-										<p:outputLabel styleClass="m-l-20" for="periodeNonDisponibiliteStagiaire" value="Périodes de non disponibilité du stagiaire ( Absences ) :" />
-										<p:dataTable var="absence" value="#{modeleVideController.contraintesViewElement.listPeriodeNonDisponibiliteStagiaire}"
-											rendered="#{not empty modeleVideController.contraintesViewElement.listPeriodeNonDisponibiliteStagiaire}" 
-											emptyMessage="Aucun enregistrement" >
-											<p:column headerText="Date début">
-												#{modeleVideController.formatDate(absence.dateDebut)}
-											</p:column>
-											<p:column headerText="Date fin">
-												#{modeleVideController.formatDate(absence.dateFin)}
-											</p:column>
-											<p:column headerText="Motif">
-												#{absence.motif}
-											</p:column>
-											<p:column headerText="Actions">
-																						
-											</p:column>
-										</p:dataTable>
+									<div class="ui-g-4">
+										<h:panelGroup id="tabPeriodeNonDisponibiliteStagiaire">		
+											<p:selectBooleanCheckbox id="periodeNonDisponibiliteStagiaire" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaire}" />
+											<p:outputLabel styleClass="m-l-20" for="periodeNonDisponibiliteStagiaire" value="Périodes de non disponibilité du stagiaire ( Absences ) :" />
+											<p:dataTable var="absence" value="#{modeleVideController.contraintesViewElement.listPeriodeNonDisponibiliteStagiaire}"
+												rendered="#{not empty modeleVideController.contraintesViewElement.listPeriodeNonDisponibiliteStagiaire}" 
+												emptyMessage="Aucun enregistrement" >
+												<p:column headerText="Date début">
+													#{modeleVideController.formatDate(absence.dateDebut)}
+												</p:column>
+												<p:column headerText="Date fin">
+													#{modeleVideController.formatDate(absence.dateFin)}
+												</p:column>
+												<p:column headerText="Motif">
+													#{absence.motif}
+												</p:column>
+												<p:column headerText="Actions">
+																							
+												</p:column>
+											</p:dataTable>
+										</h:panelGroup>
 									</div>
 								</div>							
 								<div class="ui-g">				
@@ -322,14 +335,20 @@
 										<p:outputLabel for="periodeNonDisponibiliteStagiaireMotif" value="Motif : " />
 										<p:inputText styleClass="m-l-20" id="periodeNonDisponibiliteStagiaireMotif" maxlength="255"
 										value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireMotif}"></p:inputText>
+										<p:messages for="periodeNonDisponibiliteStagiaireMotif"/>
 									</div>
 									<div class="ui-g-3">
 										<p:outputLabel class="m-t-10" for="periodeNonDisponibiliteStagiaireDateDebut" value="Date de début :"/>
 										<p:calendar id="periodeNonDisponibiliteStagiaireDateDebut" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateDebut}" showOn="button" />
+										<p:messages for="periodeNonDisponibiliteStagiaireDateDebut"/>
 									</div>
 									<div class="ui-g-3">
 										<p:outputLabel class="m-t-10" for="periodeNonDisponibiliteStagiaireDateFin" value="Date de fin :"/>
 										<p:calendar id="periodeNonDisponibiliteStagiaireDateFin" value="#{modeleVideController.contraintesViewElement.periodeNonDisponibiliteStagiaireDateFin}" showOn="button" />
+										<p:messages for="periodeNonDisponibiliteStagiaireDateFin"/>
+									</div>
+									<div class="ui-g-3">
+										<p:commandButton value="Ajouter" action="#{modeleVideController.ajouterPeriodeNonDisponibiliteStagiaire}" update="tabPeriodeNonDisponibiliteStagiaire"></p:commandButton>	
 									</div>
 								</div>
 							</div>
