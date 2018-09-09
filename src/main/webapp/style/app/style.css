@@ -335,3 +335,7 @@ span[id*="paveGroupeDeplier_title"] {
     
     margin: 0px;
 }
+
+.panelWithoutBorder {
+	border : 0px solid;
+}
