@@ -32,17 +32,16 @@
 					</div>
 					<div class="form-group col-md-12" style="display: flex; justify-content: left">
 						<h:outputText style="margin-left: 10%"
-								value="Date de debut: "/>
+									  value="Date de debut : "/>
+						<h:outputText value="#{consulterModeleController.dateDebut}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 
 						<h:outputText style="margin-left: 40%"
-								value="Date de fin: "/>
-					</div>
-					<div class="form-group col-md-12" style="display: flex; justify-content: left">
-						<h:outputText style="margin-left: 10%"
-								value="Nom Prénom: #{consulterModeleController.stagiaire.nom} #{consulterModeleController.stagiaire.prenom}"/>
-
-						<h:outputText style="margin-left: 40%"
-								value="Entreprise: #{consulterModeleController.entreprise.raisonSociale}"/>
+									  value="Date de fin : "/>
+						<h:outputText value="#{consulterModeleController.dateFin}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 					</div>
 					<p:dataTable id="tbl" var="listeCours" value="#{consulterModeleController.listeCours}" widgetVar="titreTable">
 						<p:column headerText="DateDebut">

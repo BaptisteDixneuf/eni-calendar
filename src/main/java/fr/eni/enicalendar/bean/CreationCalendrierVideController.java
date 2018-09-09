@@ -14,14 +14,14 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.enicalendar.persistence.erp.entities.*;
+import fr.eni.enicalendar.service.EntrepriseServiceInterface;
+import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.eni.enicalendar.persistence.erp.entities.Formation;
-import fr.eni.enicalendar.persistence.erp.entities.Lieu;
-import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
@@ -47,7 +47,15 @@ public class CreationCalendrierVideController implements Serializable {
 	@ManagedProperty(value = "#{formationService}")
 	private FormationServiceInterface formationService;
 
+	@ManagedProperty(value = "#{stagiaireEntrepriseService}")
+	private StagiaireEntrepriseService stagiaireEntrepriseService;
+
+	@ManagedProperty(value = "#{entrepriseService}")
+	private EntrepriseServiceInterface entrepriseService;
+
 	private Stagiaire stagiaire;
+	private StagiaireParEntreprise stagiaireEntreprise;
+	private Entreprise entreprise;
 	private Date date1;
 	private Date date2;
 	private String option;
@@ -55,6 +63,40 @@ public class CreationCalendrierVideController implements Serializable {
 	private List<Formation> formations;
 	private String codeLieuFormation;
 	private String codeFormation;
+
+
+
+	public StagiaireEntrepriseService getStagiaireEntrepriseService() {
+		return stagiaireEntrepriseService;
+	}
+
+	public void setStagiaireEntrepriseService(StagiaireEntrepriseService stagiaireEntrepriseService) {
+		this.stagiaireEntrepriseService = stagiaireEntrepriseService;
+	}
+
+	public EntrepriseServiceInterface getEntrepriseService() {
+		return entrepriseService;
+	}
+
+	public void setEntrepriseService(EntrepriseServiceInterface entrepriseService) {
+		this.entrepriseService = entrepriseService;
+	}
+
+	public StagiaireParEntreprise getStagiaireEntreprise() {
+		return stagiaireEntreprise;
+	}
+
+	public void setStagiaireEntreprise(StagiaireParEntreprise stagiaireEntreprise) {
+		this.stagiaireEntreprise = stagiaireEntreprise;
+	}
+
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
+	}
 
 	public List<Formation> getFormations() {
 		return formations;
@@ -123,9 +165,12 @@ public class CreationCalendrierVideController implements Serializable {
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("CreationCalendrierVideController setup");
+		HttpSession session = SessionUtils.getSession();
 		stagiaire = new Stagiaire();
-		// TODO changer valeur en dur
-		stagiaire = stagiaireService.findBycodeStagiaire(20);
+		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(
+				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
+		entreprise = entrepriseService.findByCodeEntreprise(stagiaireEntreprise.getCodeEntreprise());
+		stagiaire = stagiaireService.findBycodeStagiaire(stagiaireEntreprise.getCodeStagiaire());
 		lieux = lieuService.findAllLieux();
 		formations = formationService.findAllFormations();
 	}
