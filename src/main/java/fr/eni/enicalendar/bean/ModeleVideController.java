@@ -207,6 +207,12 @@ public class ModeleVideController implements Serializable {
 			chargementDonneesCreationCalendrier();
 		}
 
+		if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationCalendrier")
+				&& SessionUtils.getId() != null) {
+			isCalendrier = true;
+			chargementDonneesModificationCalendrier();
+		}
+
 	}
 
 	/**
@@ -290,6 +296,92 @@ public class ModeleVideController implements Serializable {
 		}
 	}
 
+	/**
+	 * Charge les données en cas de modification calendrier
+	 * 
+	 * @throws FonctionnelException
+	 */
+	private void chargementDonneesModificationCalendrier() throws FonctionnelException {
+		Integer idCalendrier = Integer.valueOf(SessionUtils.getId());
+
+		calendrier = calendrierService.findOne(idCalendrier);
+
+		stagiaire = stagiaireService.findBycodeStagiaire(calendrier.getIdStagiaireERP());
+		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(stagiaire.getCodeStagiaire());
+		dateFin = calendrier.getDateFinMax();
+
+		selectedFormation = formationService.findByCodeFormation(String.valueOf(calendrier.getIdFormationERP()));
+		codeFormation = selectedFormation.getCodeFormation();
+		selectedLieu = lieuService.findByCodeLieu(calendrier.getIdLieuFormationERP());
+		codeLieuFormation = String.valueOf(selectedLieu.getCodeLieu());
+		dateDebut = calendrier.getDateDebutMax();
+		nomCalendrier = calendrier.getNomCalendrier();
+		preFormulaireValide = true;
+		chargermentDonnees();
+
+		// On charge les éléments programmées
+		List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
+		for (Programmation programmation : calendrier.getProgrammations()) {
+			ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
+			droppedElementCalendrierExistant.add(element);
+			droppedElementCalendrier.add(element);
+			elementDeplaceDansProgrammation(element);
+		}
+
+		Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
+
+		// On charge les dispense
+		dispensesViewElement.setListDispenses(new ArrayList<>());
+		for (Dispense dispense : calendrier.getDispenses()) {
+			Module module = moduleService.findModuleById(dispense.getIdModuleERP());
+			dispense.setLibelle(module.getLibelle());
+			dispensesViewElement.getListDispenses().add(dispense);
+		}
+
+		// On charge les modules indépendants
+		moduleIndependantsViewElement.setListModuleIndependants(new ArrayList<>());
+		for (ContrainteModuleIndependant contrainteModuleIndependant : calendrier.getContrainteModuleIndependant()) {
+			ModuleIndependant moduleIndependant = moduleIndependantsService
+					.findById(contrainteModuleIndependant.getIdModuleIndependant());
+			moduleIndependantsViewElement.getListModuleIndependants().add(moduleIndependant);
+		}
+
+		// On charge les contraintes
+		contraintesViewElement.setListPeriodeFaibleActiviteEntreprise(new ArrayList<>());
+		contraintesViewElement.setListPeriodeForteActiviteEntreprise(new ArrayList<>());
+		contraintesViewElement.setListPeriodeNonDisponibiliteStagiaire(new ArrayList<>());
+		for (Contrainte contrainte : calendrier.getContraintes()) {
+			if (TypeContrainteEnum.SEMAINE_AFFILEE_ENTREPRISE.toString()
+					.equals(contrainte.getTypeContrainte().getLibelle())) {
+				contraintesViewElement.setSemaineAffileeEntreprise(Boolean.TRUE);
+				contraintesViewElement.setSemaineAffileeEntrepriseNombre(contrainte.getNombreDeSemaines());
+			}
+			if (TypeContrainteEnum.SEMAINE_AFFILEE_FORMATION.toString()
+					.equals(contrainte.getTypeContrainte().getLibelle())) {
+				contraintesViewElement.setSemaineAffileeFormation(Boolean.TRUE);
+				contraintesViewElement.setSemaineAffileeFormationNombre(contrainte.getNombreDeSemaines());
+			}
+			if (TypeContrainteEnum.FORTE_ACTIVITE_ENTREPRISE.toString()
+					.equals(contrainte.getTypeContrainte().getLibelle())) {
+				contraintesViewElement.setPeriodeForteActiviteEntreprise(Boolean.TRUE);
+				contraintesViewElement.getListPeriodeForteActiviteEntreprise().add(contrainte);
+			}
+			if (TypeContrainteEnum.FAIBLE_ACTIVITE_ENTREPRISE.toString()
+					.equals(contrainte.getTypeContrainte().getLibelle())) {
+				contraintesViewElement.setPeriodeFaibleActiviteEntreprise(Boolean.TRUE);
+				contraintesViewElement.getListPeriodeFaibleActiviteEntreprise().add(contrainte);
+			}
+			if (TypeContrainteEnum.NON_DISPONIBILITE.toString().equals(contrainte.getTypeContrainte().getLibelle())) {
+				contraintesViewElement.setPeriodeNonDisponibiliteStagiaire(Boolean.TRUE);
+				contraintesViewElement.getListPeriodeNonDisponibiliteStagiaire().add(contrainte);
+			}
+		}
+	}
+
 	public void chargementDonneesCreationCalendrier() throws FonctionnelException {
 		HttpSession session = SessionUtils.getSession();
 		codeFormation = session.getAttribute(SessionUtils.SESSION_FORMATION).toString();
@@ -297,7 +389,7 @@ public class ModeleVideController implements Serializable {
 		codeLieuFormation = session.getAttribute(SessionUtils.SESSION_LIEU).toString();
 		selectedLieu = lieuService.findByCodeLieu(Integer.valueOf(codeLieuFormation));
 		dateDebut = (Date) session.getAttribute(SessionUtils.SESSION_DATEDEBUT);
-		dateDebut = (Date) session.getAttribute(SessionUtils.SESSION_DATEFIN);
+		dateFin = (Date) session.getAttribute(SessionUtils.SESSION_DATEFIN);
 		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		stagiaire = stagiaireService.findBycodeStagiaire(
