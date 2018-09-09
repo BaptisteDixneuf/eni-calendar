@@ -1,12 +1,8 @@
 package fr.eni.enicalendar.utils;
 
-import fr.eni.enicalendar.persistence.erp.entities.Formation;
-import fr.eni.enicalendar.persistence.erp.entities.Lieu;
-
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 public class SessionUtils {
 
@@ -29,15 +25,15 @@ public class SessionUtils {
 
 	public static final String SESSION_ID_CALENDRIER2 = "id_cal2";
 
-	public static final String SESSION_FORMATION = "";
+	public static final String SESSION_FORMATION = "session_formation";
 
-	public static final String SESSION_LIEU = "";
+	public static final String SESSION_LIEU = "session_lieu";
 
-	public static final String SESSION_MODELE = "";
+	public static final String SESSION_MODELE = "session_modele";
 
-	public static final String SESSION_DATEDEBUT = "";
-	public static final String SESSION_DATEFIN = "";
+	public static final String SESSION_DATEDEBUT = "session_date_debut";
 
+	public static final String SESSION_DATEFIN = "session_date_fin";
 
 	public static String getSessionEmail() {
 		return SESSION_EMAIL;

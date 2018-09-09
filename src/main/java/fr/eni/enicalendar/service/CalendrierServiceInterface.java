@@ -1,8 +1,8 @@
 package fr.eni.enicalendar.service;
 
-import fr.eni.enicalendar.persistence.app.entities.Calendrier;
-
 import java.util.List;
+
+import fr.eni.enicalendar.persistence.app.entities.Calendrier;
 
 public interface CalendrierServiceInterface {
 
@@ -13,5 +13,7 @@ public interface CalendrierServiceInterface {
 	List<Calendrier> findByNomCalendrier(String libelle);
 
 	void deleteCalendrier(Calendrier calendrier);
+
+	Calendrier save(Calendrier calendrier);
 
 }

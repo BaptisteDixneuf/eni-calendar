@@ -4,7 +4,17 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "CALENDRIER")
@@ -47,27 +57,25 @@ public class Calendrier implements Serializable {
 	@Column(name = "CA_DATE_FIN_MAX")
 	private Date dateFinMax;
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "CA_ID")
+	private Set<Programmation> programmations;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "CA_ID")
+	private Set<Contrainte> contraintes;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "CA_ID")
+	private Set<Dispense> dispenses;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "CA_ID")
+	private Set<ContrainteModuleIndependant> contrainteModuleIndependant;
+
 	@ManyToOne
 	@JoinColumn(name = "EC_ID")
 	private EtatCalendrier etatCalendrier;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
-	@JoinColumn(name = "MC_ID")
-
-	private Set<Programmation> programmations;    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
-	@JoinColumn(name = "MC_ID")
-
-	private Set<Contrainte> contraintes;    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
-	@JoinColumn(name = "MC_ID")
-
-	private Set<Dispense> dispenses;    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
-	@JoinColumn(name = "MC_ID")
-
-	private Set<ContrainteModuleIndependant> contrainteModuleIndependant;
 
 	public Set<Programmation> getProgrammations() {
 		return programmations;
