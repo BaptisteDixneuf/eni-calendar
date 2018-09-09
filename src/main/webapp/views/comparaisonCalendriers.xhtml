@@ -7,40 +7,75 @@
 
 <h:head>
     <link href="#{request.contextPath}/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-    <script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"/>
 </h:head>
 
 
 <body>
-<ui:include src="menuBis.xhtml"></ui:include>
+<ui:include src="menuBis.xhtml"/>
 
 <div class="container">
-    <div class="col-md-12">
+    <div style="width: 100%;">
+        <h1>Comparaison</h1>
+
         <h:form>
             <p:messages for="general" showDetail="true" closable="true">
                 <p:autoUpdate />
             </p:messages>
 
-            <h1>Comparaison</h1>
-
-            <div style="columns: 2">
+            <div style="columns: 2;">
                 <div style="border-right: solid; padding-right: 5%;">
-                    <p:fieldset style="border-radius: 30px; border-width: medium; height: 400px">
-
-
+                    <p:fieldset style="border-radius: 30px; border-width: medium;">
+                        <p:dataTable id="tbl" var="listeCours" value="#{comparaisonCalendriersController.listeCours}" widgetVar="titreTable">
+                            <p:column headerText="DateDebut">
+                                <h:outputText value="#{listeCours.dateDebut}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="DateFin">
+                                <h:outputText value="#{listeCours.dateFin}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Lieu">
+                                <h:outputText value="#{listeCours.lieu.libelle}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Programme">
+                                <h:outputText value="#{listeCours.libelleCours}"/>
+                            </p:column>
+                        </p:dataTable>
                     </p:fieldset>
                 </div>
 
                 <div style="border-left: solid; padding-left: 5%;">
-                    <p:fieldset style="border-radius: 30px; border-width: medium; height: 400px;">
-
-
+                    <p:fieldset style="border-radius: 30px; border-width: medium;">
+                        <p:dataTable id="tbl2" var="listeCours2" value="#{comparaisonCalendriersController.listeCours2}" widgetVar="titreTable">
+                            <p:column headerText="DateDebut">
+                                <h:outputText value="#{listeCours2.dateDebut}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="DateFin">
+                                <h:outputText value="#{listeCours2.dateFin}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Lieu">
+                                <h:outputText value="#{listeCours2.lieu.libelle}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Programme">
+                                <h:outputText value="#{listeCours2.libelleCours}"/>
+                            </p:column>
+                        </p:dataTable>
                     </p:fieldset>
                 </div>
             </div>
 
             <div class="form-group" style="display: flex; justify-content: center; margin-top: 5%;">
-                <p:commandButton action="#{comparerCalendriersController.validationEtape}" value="Valider" update="@form" styleClass="btn btn-primary"/>
             </div>
 
         </h:form>

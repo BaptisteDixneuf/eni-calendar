@@ -19,7 +19,6 @@ import com.lowagie.text.*;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
 import fr.eni.enicalendar.persistence.erp.entities.*;
 import fr.eni.enicalendar.service.*;
-import org.hibernate.mapping.Collection;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -204,8 +203,8 @@ public class ConsulterCalendrierController implements Serializable {
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		entreprise = entrepriseService.findByCodeEntreprise(stagiaireEntreprise.getCodeEntreprise());
 		formation = formationService.findByCodeFormation("17CDI");
-		programmations = programmationService.findProgrammationByModeleCalendrier(65);
-        for (Programmation prog: programmations) {
+		programmations = programmationService.findProgrammationByModeleCalendrier(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER1).toString()));
+        for (Programmation prog : programmations) {
             coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
             listeCours.add(coursVoulu);
         }

@@ -25,6 +25,10 @@ public class SessionUtils {
 
 	public static final String SESSION_ID_MODELE2 = "id_modele2";
 
+	public static final String SESSION_ID_CALENDRIER1 = "";
+
+	public static final String SESSION_ID_CALENDRIER2 = "";
+
 	public static final String SESSION_FORMATION = "";
 
 	public static final String SESSION_LIEU = "";
@@ -35,6 +39,57 @@ public class SessionUtils {
 	public static final String SESSION_DATEFIN = "";
 
 
+	public static String getSessionEmail() {
+		return SESSION_EMAIL;
+	}
+
+	public static String getSessionTypeAction() {
+		return SESSION_TYPE_ACTION;
+	}
+
+	public static String getSessionId() {
+		return SESSION_ID;
+	}
+
+	public static String getSessionIdStagiaire() {
+		return SESSION_ID_STAGIAIRE;
+	}
+
+	public static String getSessionIdModele1() {
+		return SESSION_ID_MODELE1;
+	}
+
+	public static String getSessionIdModele2() {
+		return SESSION_ID_MODELE2;
+	}
+
+	public static String getSessionIdCalendrier1() {
+		return SESSION_ID_CALENDRIER1;
+	}
+
+	public static String getSessionIdCalendrier2() {
+		return SESSION_ID_CALENDRIER2;
+	}
+
+	public static String getSessionFormation() {
+		return SESSION_FORMATION;
+	}
+
+	public static String getSessionLieu() {
+		return SESSION_LIEU;
+	}
+
+	public static String getSessionModele() {
+		return SESSION_MODELE;
+	}
+
+	public static String getSessionDatedebut() {
+		return SESSION_DATEDEBUT;
+	}
+
+	public static String getSessionDatefin() {
+		return SESSION_DATEFIN;
+	}
 
 	public static HttpSession getSession() {
 		return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
