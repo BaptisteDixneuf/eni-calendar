@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.exceptions.FonctionnelException;
+import fr.eni.enicalendar.persistence.app.entities.Calendrier;
 import fr.eni.enicalendar.persistence.app.entities.Contrainte;
 import fr.eni.enicalendar.persistence.app.entities.ContrainteModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Dispense;
@@ -97,6 +98,11 @@ public class ModeleVideController implements Serializable {
 	/** Entité de sauvegarde du modèle du calendrier */
 	private ModeleCalendrier modeleCalendrier;
 
+	/**
+	 * Entité de sauvegarde du calendrier
+	 */
+	private Calendrier calendrier;
+
 	/** Liste des cours disponibles pour cette formation */
 	private List<Cours> coursDisponible = new ArrayList<>();
 
@@ -142,7 +148,7 @@ public class ModeleVideController implements Serializable {
 			// On récupère les lieux et formations
 			lieux = lieuService.findAllLieux();
 			formations = formationService.findAllFormations();
-			// TODO: remettrre
+			// FIXME : problème de performance
 			// ensembleCours = coursService.findAllCours();
 
 			contraintesViewElement = new Contraintes();
@@ -150,9 +156,9 @@ public class ModeleVideController implements Serializable {
 			moduleIndependantsViewElement = new ModuleIndependants();
 			autreCoursViewElement = new AutreCours();
 			chargementAncienneDonnees();
+
 		} catch (FonctionnelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage());
 		}
 
 	}
@@ -504,44 +510,29 @@ public class ModeleVideController implements Serializable {
 
 		// Période de forte activité en entreprise
 		if (contraintesViewElement.isPeriodeForteActiviteEntreprise()) {
-			Contrainte contrainteForteActiviteEntreprise = new Contrainte();
-			contrainteForteActiviteEntreprise
-					.setDateDebut(contraintesViewElement.getPeriodeForteActiviteEntrepriseDateDebut());
-			contrainteForteActiviteEntreprise
-					.setDateFin(contraintesViewElement.getPeriodeForteActiviteEntrepriseDateFin());
-			contrainteForteActiviteEntreprise.setIdModeleCalendrier(modeleCalendrier.getId());
-			TypeContrainte forteActviteEntreprise = typeContrainteService
-					.findByLibelle(TypeContrainteEnum.FORTE_ACTIVITE_ENTREPRISE.toString());
-			contrainteForteActiviteEntreprise.setTypeContrainte(forteActviteEntreprise);
-			contrainteEntityList.add(contrainteForteActiviteEntreprise);
+			for (Contrainte contrainteForteActiviteEntreprise : contraintesViewElement
+					.getListPeriodeForteActiviteEntreprise()) {
+				contrainteForteActiviteEntreprise.setIdModeleCalendrier(modeleCalendrier.getId());
+				contrainteEntityList.add(contrainteForteActiviteEntreprise);
+			}
 		}
 
 		// Période de faible activité en entreprise
 		if (contraintesViewElement.isPeriodeFaibleActiviteEntreprise()) {
-			Contrainte contrainteFaibleActiviteEntreprise = new Contrainte();
-			contrainteFaibleActiviteEntreprise
-					.setDateDebut(contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateDebut());
-			contrainteFaibleActiviteEntreprise
-					.setDateFin(contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateFin());
-			contrainteFaibleActiviteEntreprise.setIdModeleCalendrier(modeleCalendrier.getId());
-			TypeContrainte faibleActviteEntreprise = typeContrainteService
-					.findByLibelle(TypeContrainteEnum.FAIBLE_ACTIVITE_ENTREPRISE.toString());
-			contrainteFaibleActiviteEntreprise.setTypeContrainte(faibleActviteEntreprise);
-			contrainteEntityList.add(contrainteFaibleActiviteEntreprise);
+			for (Contrainte contrainteFaibleActiviteEntreprise : contraintesViewElement
+					.getListPeriodeFaibleActiviteEntreprise()) {
+				contrainteFaibleActiviteEntreprise.setIdModeleCalendrier(modeleCalendrier.getId());
+				contrainteEntityList.add(contrainteFaibleActiviteEntreprise);
+			}
 		}
 
 		// Période de non disponibilité
 		if (contraintesViewElement.isPeriodeNonDisponibiliteStagiaire()) {
-			Contrainte contrainteNonDisponibilite = new Contrainte();
-			contrainteNonDisponibilite
-					.setDateDebut(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateDebut());
-			contrainteNonDisponibilite.setDateFin(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateFin());
-			contrainteNonDisponibilite.setMotif(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireMotif());
-			contrainteNonDisponibilite.setIdModeleCalendrier(modeleCalendrier.getId());
-			TypeContrainte nonDisponibilite = typeContrainteService
-					.findByLibelle(TypeContrainteEnum.NON_DISPONIBILITE.toString());
-			contrainteNonDisponibilite.setTypeContrainte(nonDisponibilite);
-			contrainteEntityList.add(contrainteNonDisponibilite);
+			for (Contrainte contrainteNonDisponibiliteStagiaire : contraintesViewElement
+					.getListPeriodeNonDisponibiliteStagiaire()) {
+				contrainteNonDisponibiliteStagiaire.setIdModeleCalendrier(modeleCalendrier.getId());
+				contrainteEntityList.add(contrainteNonDisponibiliteStagiaire);
+			}
 		}
 
 		Set<Contrainte> setContrainteEntityList = new HashSet<Contrainte>(contrainteEntityList);
@@ -666,6 +657,136 @@ public class ModeleVideController implements Serializable {
 				listContrainteModuleIndependantEntities);
 		modeleCalendrier.setContrainteModuleIndependant(setListContrainteModuleIndependantEntities);
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
+	}
+
+	/**
+	 * Ajout de PeriodeForteActiviteEntreprise
+	 */
+	public void ajouterPeriodeForteActiviteEntreprise() {
+
+		if (contraintesViewElement.getListPeriodeForteActiviteEntreprise() == null) {
+			List<Contrainte> listPeriodeForteActiviteEntreprise = new ArrayList<>();
+			contraintesViewElement.setListPeriodeForteActiviteEntreprise(listPeriodeForteActiviteEntreprise);
+		}
+
+		// Contrôle validé
+		if (contraintesViewElement.getPeriodeForteActiviteEntrepriseDateDebut() == null) {
+			FacesContext.getCurrentInstance().addMessage("periodeForteActiviteEntrepriseDateDebut",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Date de début obligatoire", ""));
+
+		}
+		if (contraintesViewElement.getPeriodeForteActiviteEntrepriseDateFin() == null) {
+			FacesContext.getCurrentInstance().addMessage("periodeForteActiviteEntrepriseDateFin",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Date de fin obligatoire", ""));
+
+		}
+		if (contraintesViewElement.getPeriodeForteActiviteEntrepriseDateFin() != null
+				&& contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateFin() != null
+				&& contraintesViewElement.getPeriodeForteActiviteEntrepriseDateFin()
+						.before(contraintesViewElement.getPeriodeForteActiviteEntrepriseDateDebut())) {
+			FacesContext.getCurrentInstance().addMessage("periodeForteActiviteEntrepriseDateFin",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur saisie date", ""));
+
+		}
+
+		if (!hasError()) {
+			Contrainte contrainte = new Contrainte();
+			contrainte.setDateDebut(contraintesViewElement.getPeriodeForteActiviteEntrepriseDateFin());
+			contrainte.setDateFin(contraintesViewElement.getPeriodeForteActiviteEntrepriseDateFin());
+			TypeContrainte type = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.FORTE_ACTIVITE_ENTREPRISE.toString());
+			contrainte.setTypeContrainte(type);
+			contraintesViewElement.getListPeriodeForteActiviteEntreprise().add(contrainte);
+			contraintesViewElement.setPeriodeForteActiviteEntrepriseDateDebut(null);
+			contraintesViewElement.setPeriodeForteActiviteEntrepriseDateFin(null);
+		}
+
+	}
+
+	/**
+	 * Ajout de PeriodeFaibleActiviteEntreprise
+	 */
+	public void ajouterPeriodeFaibleActiviteEntreprise() {
+
+		if (contraintesViewElement.getListPeriodeFaibleActiviteEntreprise() == null) {
+			List<Contrainte> listPeriodeFaibleActiviteEntreprise = new ArrayList<>();
+			contraintesViewElement.setListPeriodeFaibleActiviteEntreprise(listPeriodeFaibleActiviteEntreprise);
+		}
+
+		// Contrôle validé
+		if (contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateDebut() == null) {
+			FacesContext.getCurrentInstance().addMessage("periodeFaibleActiviteEntrepriseDateDebut",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Date de début obligatoire", ""));
+
+		}
+		if (contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateFin() == null) {
+			FacesContext.getCurrentInstance().addMessage("periodeFaibleActiviteEntrepriseDateFin",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Date de fin obligatoire", ""));
+
+		}
+		if (contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateFin() != null
+				&& contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateFin() != null
+				&& contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateFin()
+						.before(contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateDebut())) {
+			FacesContext.getCurrentInstance().addMessage("periodeFaibleActiviteEntrepriseDateFin",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur saisie date", ""));
+
+		}
+
+		if (!hasError()) {
+			Contrainte contrainte = new Contrainte();
+			contrainte.setDateDebut(contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateFin());
+			contrainte.setDateFin(contraintesViewElement.getPeriodeFaibleActiviteEntrepriseDateFin());
+			TypeContrainte type = typeContrainteService
+					.findByLibelle(TypeContrainteEnum.FAIBLE_ACTIVITE_ENTREPRISE.toString());
+			contrainte.setTypeContrainte(type);
+			contraintesViewElement.getListPeriodeFaibleActiviteEntreprise().add(contrainte);
+			contraintesViewElement.setPeriodeFaibleActiviteEntrepriseDateDebut(null);
+			contraintesViewElement.setPeriodeFaibleActiviteEntrepriseDateFin(null);
+		}
+	}
+
+	/**
+	 * Ajout de Periode Non disponibilite
+	 */
+	public void ajouterPeriodeNonDisponibiliteStagiaire() {
+
+		if (contraintesViewElement.getListPeriodeNonDisponibiliteStagiaire() == null) {
+			List<Contrainte> listPeriodeNonDisponibiliteStagiaire = new ArrayList<>();
+			contraintesViewElement.setListPeriodeForteActiviteEntreprise(listPeriodeNonDisponibiliteStagiaire);
+		}
+
+		// Contrôle validé
+		if (contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateDebut() == null) {
+			FacesContext.getCurrentInstance().addMessage("periodeNonDisponibiliteStagiaireDateDebut",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Date de début obligatoire", ""));
+
+		}
+		if (contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateFin() == null) {
+			FacesContext.getCurrentInstance().addMessage("periodeNonDisponibiliteStagiaireDateFin",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Date de fin obligatoire", ""));
+
+		}
+		if (contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateDebut() != null
+				&& contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateFin() != null
+				&& contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateFin()
+						.before(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateDebut())) {
+			FacesContext.getCurrentInstance().addMessage("periodeNonDisponibiliteStagiaireDateFin",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur saisie date", ""));
+
+		}
+
+		if (!hasError()) {
+			Contrainte contrainte = new Contrainte();
+			contrainte.setDateDebut(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateDebut());
+			contrainte.setDateFin(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireDateFin());
+			contrainte.setMotif(contraintesViewElement.getPeriodeNonDisponibiliteStagiaireMotif());
+			TypeContrainte type = typeContrainteService.findByLibelle(TypeContrainteEnum.NON_DISPONIBILITE.toString());
+			contrainte.setTypeContrainte(type);
+			contraintesViewElement.getListPeriodeNonDisponibiliteStagiaire().add(contrainte);
+			contraintesViewElement.setPeriodeNonDisponibiliteStagiaireDateDebut(null);
+			contraintesViewElement.setPeriodeNonDisponibiliteStagiaireDateFin(null);
+		}
 	}
 
 	/**
