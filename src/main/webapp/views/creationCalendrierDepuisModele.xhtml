@@ -32,8 +32,9 @@
 
         <p:fieldset style="border-radius: 30px; border-width: medium; min-height: 150px">
             <p:outputLabel value="Choisissez un modèle de calendrier :" for="themePojo" />
-            <p:autoComplete id="themePojo" minQueryLength="3" value="#{creationCalendrierDepuisModeleController.codeModele}" completeMethod="#{creationCalendrierDepuisModeleController.autocompleteText}" style="display: flex; justify-content: center;"
-                            var="modele" itemLabel="#{modele.nomCalendrier}" itemValue="#{modele.id}" forceSelection="true" />
+            <p:autoComplete id="themePojo" minQueryLength="3" value="#{creationCalendrierDepuisModeleController.codeModele}" 
+            	completeMethod="#{creationCalendrierDepuisModeleController.autocompleteText}" style="display: flex; justify-content: center;"
+            	converter="moduleConverter" var="modele" itemLabel="#{modele.nomCalendrier}" itemValue="#{modele}" forceSelection="true" />
         </p:fieldset><br/><br/>
 
         <p:fieldset style="border-radius: 30px; border-width: medium;">

@@ -1,5 +1,24 @@
 package fr.eni.enicalendar.bean;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.SelectEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
@@ -9,24 +28,6 @@ import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.ModeleServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
-import org.primefaces.PrimeFaces;
-import org.primefaces.event.SelectEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @ManagedBean(name = "creationCalendrierDepuisModeleController")
 @ViewScoped
@@ -58,18 +59,9 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	private List<Lieu> lieux;
 	private String txt2;
 	private String codeLieuFormation;
-	private String codeModele;
 	private String codeFormation;
 	private List<Formation> formations;
 	private ModeleCalendrier modele;
-
-	public String getCodeModele() {
-		return codeModele;
-	}
-
-	public void setCodeModele(String codeModele) {
-		this.codeModele = codeModele;
-	}
 
 	public ModeleCalendrier getModele() {
 		return modele;
@@ -163,7 +155,7 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	public void setup() {
 		LOGGER.info("CreationCalendrierDepuisModeleController setup");
 		stagiaire = new Stagiaire();
-		//TODO changer valeur en dur
+		// TODO changer valeur en dur
 		stagiaire = stagiaireService.findBycodeStagiaire(20);
 		lieux = lieuService.findAllLieux();
 		formations = formationService.findAllFormations();
@@ -211,7 +203,8 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	public void onDateSelect(SelectEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+		facesContext.addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
 	}
 
 	public void click() {
@@ -228,7 +221,8 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	}
 
 	public void onItemSelect(SelectEvent event) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Item Selected", event.getObject().toString()));
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage("Item Selected", event.getObject().toString()));
 	}
 
 	/**
@@ -237,8 +231,7 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	 * @throws IOException
 	 */
 	public void retour() throws IOException {
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("/eni-calendar/views/creationCalendrier.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/creationCalendrier.xhtml");
 	}
 
 	/**
@@ -249,13 +242,13 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	public void validationEtape() throws IOException {
 		HttpSession session = SessionUtils.getSession();
 
-		session.setAttribute(SessionUtils.SESSION_MODELE, codeModele);
+		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, "CalendrierDepuisModele");
+		session.setAttribute(SessionUtils.SESSION_MODELE, modele.getId());
 		session.setAttribute(SessionUtils.SESSION_LIEU, codeLieuFormation);
 		session.setAttribute(SessionUtils.SESSION_FORMATION, codeFormation);
 		session.setAttribute(SessionUtils.SESSION_DATEDEBUT, date1);
 		session.setAttribute(SessionUtils.SESSION_DATEFIN, date2);
-		modele = modeleService.findOne(Integer.valueOf(codeModele));
-
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/modeleVide.xhtml");
 	}
 
 }
