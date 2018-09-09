@@ -179,12 +179,31 @@ public class ComparaisonCalendriersController implements Serializable {
 	public void setup() {
 		LOGGER.info("ComparaisonCalendriersController setup");
 		HttpSession session = SessionUtils.getSession();
+
+		//pour celui de gauche
 		programmations = programmationService.findProgrammationByModeleCalendrier(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER1).toString()));
 		for (Programmation prog : programmations) {
 			coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
 			listeCours.add(coursVoulu);
 		}
 		Collections.sort(listeCours, new Comparator<Cours>() {
+
+			@Override
+			public int compare(Cours o1, Cours o2) {
+
+				return o1.getDateDebut().compareTo(o2.getDateDebut());
+
+			}
+
+		});
+
+		//pour celui de droite
+		programmations = programmationService.findProgrammationByModeleCalendrier(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER2).toString()));
+		for (Programmation prog : programmations) {
+			coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
+			listeCours2.add(coursVoulu);
+		}
+		Collections.sort(listeCours2, new Comparator<Cours>() {
 
 			@Override
 			public int compare(Cours o1, Cours o2) {
@@ -216,6 +235,6 @@ public class ComparaisonCalendriersController implements Serializable {
 	public void recupereCalendriersDeux() {
 		LOGGER.info("recupereCalendriersDeux");
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		calendriers2 = calendrierService.findOne(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER_2).toString()));
+		calendriers2 = calendrierService.findOne(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER2).toString()));
 	}
 }

@@ -2,15 +2,9 @@ package fr.eni.enicalendar.persistence.app.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "CALENDRIER")
@@ -56,6 +50,56 @@ public class Calendrier implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "EC_ID")
 	private EtatCalendrier etatCalendrier;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+	@JoinColumn(name = "MC_ID")
+
+	private Set<Programmation> programmations;    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+	@JoinColumn(name = "MC_ID")
+
+	private Set<Contrainte> contraintes;    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+	@JoinColumn(name = "MC_ID")
+
+	private Set<Dispense> dispenses;    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+	@JoinColumn(name = "MC_ID")
+
+	private Set<ContrainteModuleIndependant> contrainteModuleIndependant;
+
+	public Set<Programmation> getProgrammations() {
+		return programmations;
+	}
+
+	public void setProgrammations(Set<Programmation> programmations) {
+		this.programmations = programmations;
+	}
+
+	public Set<Contrainte> getContraintes() {
+		return contraintes;
+	}
+
+	public void setContraintes(Set<Contrainte> contraintes) {
+		this.contraintes = contraintes;
+	}
+
+	public Set<Dispense> getDispenses() {
+		return dispenses;
+	}
+
+	public void setDispenses(Set<Dispense> dispenses) {
+		this.dispenses = dispenses;
+	}
+
+	public Set<ContrainteModuleIndependant> getContrainteModuleIndependant() {
+		return contrainteModuleIndependant;
+	}
+
+	public void setContrainteModuleIndependant(Set<ContrainteModuleIndependant> contrainteModuleIndependant) {
+		this.contrainteModuleIndependant = contrainteModuleIndependant;
+	}
 
 	/**
 	 * @return the nomCalendrier
