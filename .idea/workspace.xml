@@ -6,16 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4429b4d1-4d13-4873-af38-70b819ae7b53" name="Default" comment="session">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ConsulterModeleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/consulterModele.xhtml" afterDir="false" />
+    <list default="true" id="4429b4d1-4d13-4873-af38-70b819ae7b53" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ConsulterCalendrierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ConsulterCalendrierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModelesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionModelesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/app/repositories/ProgrammationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/persistence/app/repositories/ProgrammationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/ProgrammationServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/ProgrammationServiceInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/ProgrammationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/service/impl/ProgrammationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/consulterCalendrier.xhtml" afterDir="false" />
     </list>
     <ignored path="$APPLICATION_HOME_DIR$/ENI CALENDAR/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -982,14 +974,7 @@
       <workItem from="1536398565025" duration="2297000" />
       <workItem from="1536404091567" duration="16133000" />
       <workItem from="1536481303600" duration="1347000" />
-      <workItem from="1536493479992" duration="12240000" />
-    </task>
-    <task id="LOCAL-00018" summary="création fiche stagiaire">
-      <created>1534252472981</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1534252472981</updated>
+      <workItem from="1536493479992" duration="13178000" />
     </task>
     <task id="LOCAL-00019" summary="correction autocomplete">
       <created>1534257221044</created>
@@ -1327,11 +1312,18 @@
       <option name="project" value="LOCAL" />
       <updated>1536505475270</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="comparaison calendriers&#10;et consulter calendrier">
+      <created>1536506543525</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1536506543526</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="273768000" />
+    <option name="totallyTimeSpent" value="274706000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1418,7 +1410,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ajout raccourci fiche stagiaire" />
     <MESSAGE value="changement menu" />
     <MESSAGE value="gestion compte et correction messageFaces" />
     <MESSAGE value="perfectionnement messages flash" />
@@ -1443,7 +1434,8 @@
     <MESSAGE value="changement données" />
     <MESSAGE value="comparaison calendriers" />
     <MESSAGE value="session" />
-    <option name="LAST_COMMIT_MESSAGE" value="session" />
+    <MESSAGE value="comparaison calendriers&#10;et consulter calendrier" />
+    <option name="LAST_COMMIT_MESSAGE" value="comparaison calendriers&#10;et consulter calendrier" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
