@@ -158,11 +158,12 @@
 	
 							<!-- Libelle de la barre fixe-->
 							<h:panelGroup styleClass="informationGroupeTitreGui  m-l-10">							
-							 		#{modeleVideController.selectedFormation.libelleCourt} - #{modeleVideController.selectedLieu.libelle} - #{modeleVideController.formatDate(modeleVideController.dateDebut)}	 		
+							 		<p:outputLabel>#{modeleVideController.selectedFormation.libelleCourt} - #{modeleVideController.selectedLieu.libelle} - #{modeleVideController.formatDate(modeleVideController.dateDebut)}</p:outputLabel>	 		
 								</h:panelGroup>
 						</h:panelGroup>
-						
-						<p:commandButton styleClass="m-l-25" id="enregistrer" value="Enregistrer" action="#{modeleVideController.save}" update=":coursForm:panelCalendrier"></p:commandButton>
+						<p:outputLabel styleClass="m-l-20">Nom du calendrier : </p:outputLabel>
+						<p:inputText styleClass="m-l-5" id="nomCalendrier" value="#{modeleVideController.nomCalendrier}"  ></p:inputText>
+						<p:commandButton styleClass="m-l-50" id="enregistrer" value="Enregistrer" action="#{modeleVideController.save}" update=":coursForm"></p:commandButton>
 					</div>
 				</div>
 			</div>
