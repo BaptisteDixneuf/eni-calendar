@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "DISPENSE")
@@ -31,6 +32,9 @@ public class Dispense implements Serializable {
 
 	@Column(name = "DI_ID_MODULE_ERP")
 	private Integer idModuleERP;
+
+	@Transient
+	private String libelle;
 
 	/**
 	 * @return the id
@@ -76,6 +80,14 @@ public class Dispense implements Serializable {
 
 	public void setIdCalendrier(Integer idCalendrier) {
 		this.idCalendrier = idCalendrier;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
 }

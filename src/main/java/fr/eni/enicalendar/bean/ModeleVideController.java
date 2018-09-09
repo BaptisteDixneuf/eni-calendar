@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -46,11 +48,9 @@ import fr.eni.enicalendar.utils.SessionUtils;
 import fr.eni.enicalendar.utils.TypeContrainteEnum;
 import fr.eni.enicalendar.viewElement.AutreCours;
 import fr.eni.enicalendar.viewElement.Contraintes;
-import fr.eni.enicalendar.viewElement.DispenseElement;
 import fr.eni.enicalendar.viewElement.Dispenses;
 import fr.eni.enicalendar.viewElement.ElementCalendrier;
 import fr.eni.enicalendar.viewElement.ElementCalendrierType;
-import fr.eni.enicalendar.viewElement.ModuleIndependantElement;
 import fr.eni.enicalendar.viewElement.ModuleIndependants;
 
 @ManagedBean(name = "modeleVideController")
@@ -184,13 +184,29 @@ public class ModeleVideController implements Serializable {
 				elementDeplaceDansProgrammation(element);
 			}
 
-		}
+			Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
+				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+					return m1.getDateDebut().compareTo(m2.getDateFin());
+				}
+			});
 
-		Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
-			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
-				return m1.getDateDebut().compareTo(m2.getDateFin());
+			// On charge les dispense
+			dispensesViewElement.setListDispenses(new ArrayList<>());
+			for (Dispense dispense : modeleCalendrier.getDispenses()) {
+				Module module = moduleService.findModuleById(dispense.getIdModuleERP());
+				dispense.setLibelle(module.getLibelle());
+				dispensesViewElement.getListDispenses().add(dispense);
 			}
-		});
+
+			// On charge les modules indépendants
+			moduleIndependantsViewElement.setListModuleIndependants(new ArrayList<>());
+			for (ContrainteModuleIndependant contrainteModuleIndependant : modeleCalendrier
+					.getContrainteModuleIndependant()) {
+				ModuleIndependant moduleIndependant = moduleIndependantsService
+						.findById(contrainteModuleIndependant.getIdModuleIndependant());
+				moduleIndependantsViewElement.getListModuleIndependants().add(moduleIndependant);
+			}
+		}
 
 	}
 
@@ -279,7 +295,8 @@ public class ModeleVideController implements Serializable {
 			programmation.setIdCoursPlanifieERP(elementCalendrier.getId());
 			listesProgramation.add(programmation);
 		}
-		modeleCalendrier.setProgrammations(listesProgramation);
+		Set<Programmation> setlistesProgramation = new HashSet<Programmation>(listesProgramation);
+		modeleCalendrier.setProgrammations(setlistesProgramation);
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 
 		LOGGER.info("Fin de l'enregistrement");
@@ -489,7 +506,8 @@ public class ModeleVideController implements Serializable {
 			contrainteEntityList.add(contrainteNonDisponibilite);
 		}
 
-		modeleCalendrier.setContraintes(contrainteEntityList);
+		Set<Contrainte> setContrainteEntityList = new HashSet<Contrainte>(contrainteEntityList);
+		modeleCalendrier.setContraintes(setContrainteEntityList);
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 	}
 
@@ -500,7 +518,7 @@ public class ModeleVideController implements Serializable {
 	public void ajouterDispense() {
 
 		if (dispensesViewElement.getListDispenses() == null) {
-			List<DispenseElement> list = new ArrayList<>();
+			List<Dispense> list = new ArrayList<>();
 			dispensesViewElement.setListDispenses(list);
 		}
 
@@ -510,8 +528,8 @@ public class ModeleVideController implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez sélectionner un élément", ""));
 
 		} else {
-			for (DispenseElement dispenseElement : dispensesViewElement.getListDispenses()) {
-				if (dispenseElement.getIdModuleERP().equals(dispensesViewElement.getSelectedModule().getId())) {
+			for (Dispense dispense : dispensesViewElement.getListDispenses()) {
+				if (dispense.getIdModuleERP().equals(dispensesViewElement.getSelectedModule().getId())) {
 					FacesContext.getCurrentInstance().addMessage("moduleAutocomplete",
 							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ce module est déjà dispensé", ""));
 				}
@@ -519,10 +537,11 @@ public class ModeleVideController implements Serializable {
 		}
 
 		if (!hasError()) {
-			DispenseElement dispenseElement = new DispenseElement();
-			dispenseElement.setIdModuleERP(dispensesViewElement.getSelectedModule().getId());
-			dispenseElement.setLibelle(dispensesViewElement.getSelectedModule().getLibelle());
-			dispensesViewElement.getListDispenses().add(dispenseElement);
+			Dispense dispense = new Dispense();
+			dispense.setIdModuleERP(dispensesViewElement.getSelectedModule().getId());
+			dispense.setLibelle(dispensesViewElement.getSelectedModule().getLibelle());
+			dispense.setIdModeleCalendrier(modeleCalendrier.getId());
+			dispensesViewElement.getListDispenses().add(dispense);
 			dispensesViewElement.setSelectedModule(null);
 		}
 	}
@@ -537,18 +556,13 @@ public class ModeleVideController implements Serializable {
 		}
 
 		if (dispensesViewElement.getListDispenses() == null) {
-			List<DispenseElement> list = new ArrayList<>();
+			List<Dispense> list = new ArrayList<>();
 			dispensesViewElement.setListDispenses(list);
 		}
-		List<Dispense> listDispensesEntities = new ArrayList<>();
-		for (DispenseElement dispenseElementView : dispensesViewElement.getListDispenses()) {
-			Dispense dispense = new Dispense();
-			dispense.setIdModuleERP(dispenseElementView.getIdModuleERP());
-			dispense.setIdModeleCalendrier(modeleCalendrier.getId());
-			listDispensesEntities.add(dispense);
-		}
+		List<Dispense> listDispensesEntities = dispensesViewElement.getListDispenses();
 
-		modeleCalendrier.setDispenses(listDispensesEntities);
+		Set<Dispense> setListDispensesEntities = new HashSet<Dispense>(listDispensesEntities);
+		modeleCalendrier.setDispenses(setListDispensesEntities);
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 	}
 
@@ -558,7 +572,7 @@ public class ModeleVideController implements Serializable {
 	public void ajouterModule() {
 
 		if (moduleIndependantsViewElement.getListModuleIndependants() == null) {
-			List<ModuleIndependantElement> listModuleIndependants = new ArrayList<>();
+			List<ModuleIndependant> listModuleIndependants = new ArrayList<>();
 			moduleIndependantsViewElement.setListModuleIndependants(listModuleIndependants);
 		}
 
@@ -568,9 +582,9 @@ public class ModeleVideController implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez sélectionner un élément", ""));
 
 		} else {
-			for (ModuleIndependantElement moduleIndependantElement : moduleIndependantsViewElement
+			for (ModuleIndependant moduleIndependantElement : moduleIndependantsViewElement
 					.getListModuleIndependants()) {
-				if (moduleIndependantElement.getIdModuleIndependant()
+				if (moduleIndependantElement.getId()
 						.equals(moduleIndependantsViewElement.getSelectedModuleIndependant().getId())) {
 					FacesContext.getCurrentInstance().addMessage("moduleIndependantAutocomplete",
 							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ce module indépendant est déjà ajouté", ""));
@@ -579,9 +593,8 @@ public class ModeleVideController implements Serializable {
 		}
 
 		if (!hasError()) {
-			ModuleIndependantElement moduleIndependantElement = new ModuleIndependantElement();
-			moduleIndependantElement
-					.setIdModuleIndependant(moduleIndependantsViewElement.getSelectedModuleIndependant().getId());
+			ModuleIndependant moduleIndependantElement = new ModuleIndependant();
+			moduleIndependantElement.setId(moduleIndependantsViewElement.getSelectedModuleIndependant().getId());
 			moduleIndependantElement
 					.setLibelle(moduleIndependantsViewElement.getSelectedModuleIndependant().getLibelle());
 			moduleIndependantsViewElement.getListModuleIndependants().add(moduleIndependantElement);
@@ -599,19 +612,21 @@ public class ModeleVideController implements Serializable {
 		}
 
 		if (moduleIndependantsViewElement.getListModuleIndependants() == null) {
-			List<ModuleIndependantElement> list = new ArrayList<>();
+			List<ModuleIndependant> list = new ArrayList<>();
 			moduleIndependantsViewElement.setListModuleIndependants(list);
 		}
 		List<ContrainteModuleIndependant> listContrainteModuleIndependantEntities = new ArrayList<>();
-		for (ModuleIndependantElement moduleIndependantElementViewElement : moduleIndependantsViewElement
+		for (ModuleIndependant moduleIndependantElementViewElement : moduleIndependantsViewElement
 				.getListModuleIndependants()) {
 			ContrainteModuleIndependant item = new ContrainteModuleIndependant();
-			item.setIdModuleIndependant(moduleIndependantElementViewElement.getIdModuleIndependant());
+			item.setIdModuleIndependant(moduleIndependantElementViewElement.getId());
 			item.setIdModeleCalendrier(modeleCalendrier.getId());
 			listContrainteModuleIndependantEntities.add(item);
 		}
 
-		modeleCalendrier.setContrainteModuleIndependant(listContrainteModuleIndependantEntities);
+		Set<ContrainteModuleIndependant> setListContrainteModuleIndependantEntities = new HashSet<ContrainteModuleIndependant>(
+				listContrainteModuleIndependantEntities);
+		modeleCalendrier.setContrainteModuleIndependant(setListContrainteModuleIndependantEntities);
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 	}
 

@@ -3,7 +3,9 @@ package fr.eni.enicalendar.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -13,6 +15,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,24 +100,51 @@ public class ModificationModuleIndependantController implements Serializable {
 	 */
 	public void modifierModule() throws IOException {
 
-		List<ProgrammeModuleIndependant> programmeModuleIndependantEntities = new ArrayList<>();
-		if (gestionModuleIndependantView.getListProgrammeModuleIndependant() != null) {
-			for (GestionModuleIndependantElement item : gestionModuleIndependantView
-					.getListProgrammeModuleIndependant()) {
-				ProgrammeModuleIndependant element = new ProgrammeModuleIndependant();
-				element.setDateDebut(item.getDateDebut());
-				element.setDateFin(item.getDateFin());
-				programmeModuleIndependantEntities.add(element);
-			}
-			module.setProgrammeModuleIndependant(programmeModuleIndependantEntities);
+		// Contrôle validé
+		if (module.getLibelle() == null || StringUtils.isBlank(module.getLibelle())) {
+			FacesContext.getCurrentInstance().addMessage("libelle",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Le libellé est obligatoire", ""));
 		}
-		moduleIndependantsService.saveModule(module);
+		if (module.getDuree() == null || module.getDuree() < 0) {
+			FacesContext.getCurrentInstance().addMessage("duree",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Le durée est obligatoire", ""));
+		}
+		if (module.getLibelleCourt() == null || StringUtils.isBlank(module.getLibelleCourt())) {
+			FacesContext.getCurrentInstance().addMessage("libelleCourt",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Le libellé court est obligatoire", ""));
+		}
+		if (module.getLieuFormation() == null || StringUtils.isBlank(module.getLieuFormation())) {
+			FacesContext.getCurrentInstance().addMessage("lieu",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Le lieu est obligatoire", ""));
+		}
 
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getFlash().setKeepMessages(true);
-		context.addMessage("general",
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Les informations ont bien été enregistrées!", ""));
-		context.getExternalContext().redirect("/eni-calendar/views/gestionModulesIndependants.xhtml");
+		if (module == null || module.getId() == null) {
+			module = moduleIndependantsService.saveModule(module);
+		}
+		if (!hasError()) {
+			List<ProgrammeModuleIndependant> programmeModuleIndependantEntities = new ArrayList<>();
+			if (gestionModuleIndependantView.getListProgrammeModuleIndependant() != null) {
+				for (GestionModuleIndependantElement item : gestionModuleIndependantView
+						.getListProgrammeModuleIndependant()) {
+					ProgrammeModuleIndependant element = new ProgrammeModuleIndependant();
+					element.setDateDebut(item.getDateDebut());
+					element.setDateFin(item.getDateFin());
+					element.setIdModuleIndependant(module.getId());
+					programmeModuleIndependantEntities.add(element);
+				}
+
+				Set<ProgrammeModuleIndependant> setProgrammeModuleIndependantEntities = new HashSet<ProgrammeModuleIndependant>(
+						programmeModuleIndependantEntities);
+				module.setProgrammeModuleIndependant(setProgrammeModuleIndependantEntities);
+			}
+			moduleIndependantsService.saveModule(module);
+
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().getFlash().setKeepMessages(true);
+			context.addMessage("general",
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Les informations ont bien été enregistrées!", ""));
+			context.getExternalContext().redirect("/eni-calendar/views/gestionModulesIndependants.xhtml");
+		}
 	}
 
 	/**

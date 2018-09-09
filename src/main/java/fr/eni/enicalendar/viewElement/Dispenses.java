@@ -3,6 +3,7 @@ package fr.eni.enicalendar.viewElement;
 import java.io.Serializable;
 import java.util.List;
 
+import fr.eni.enicalendar.persistence.app.entities.Dispense;
 import fr.eni.enicalendar.persistence.erp.entities.Module;
 
 public class Dispenses implements Serializable {
@@ -12,7 +13,7 @@ public class Dispenses implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private List<DispenseElement> listDispenses;
+	private List<Dispense> listDispenses;
 
 	private Module selectedModule;
 
@@ -20,11 +21,11 @@ public class Dispenses implements Serializable {
 		super();
 	}
 
-	public List<DispenseElement> getListDispenses() {
+	public List<Dispense> getListDispenses() {
 		return listDispenses;
 	}
 
-	public void setListDispenses(List<DispenseElement> listDispenses) {
+	public void setListDispenses(List<Dispense> listDispenses) {
 		this.listDispenses = listDispenses;
 	}
 
