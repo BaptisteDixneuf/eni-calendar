@@ -231,10 +231,10 @@ public class ComparerCalendriersController implements Serializable {
 
 		if (codeModele2 != null) {
 			session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER2, codeModele2);
-			session.setAttribute(SessionUtils.SESSION_TYPE_CALENDRIER1, "MODELE");
+			session.setAttribute(SessionUtils.SESSION_TYPE_CALENDRIER2, "MODELE");
 		} else {
 			session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER2, selectedCodeCalendrier2);
-			session.setAttribute(SessionUtils.SESSION_TYPE_CALENDRIER1, "CALENDRIER");
+			session.setAttribute(SessionUtils.SESSION_TYPE_CALENDRIER2, "CALENDRIER");
 		}
 
 		FacesContext.getCurrentInstance().getExternalContext()

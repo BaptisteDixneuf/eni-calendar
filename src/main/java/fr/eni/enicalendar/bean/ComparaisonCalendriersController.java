@@ -207,13 +207,13 @@ public class ComparaisonCalendriersController implements Serializable {
 
 		// pour celui de droite
 		if (session.getAttribute(SessionUtils.SESSION_TYPE_CALENDRIER2).toString().equals("MODELE")) {
-			programmations = programmationService.findProgrammationByModeleCalendrier(
+			programmations2 = programmationService.findProgrammationByModeleCalendrier(
 					Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER2).toString()));
 		} else {
-			programmations = programmationService.findProgrammationByCalendrier(
+			programmations2 = programmationService.findProgrammationByCalendrier(
 					Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER2).toString()));
 		}
-		for (Programmation prog : programmations) {
+		for (Programmation prog : programmations2) {
 			coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
 			listeCours2.add(coursVoulu);
 		}
