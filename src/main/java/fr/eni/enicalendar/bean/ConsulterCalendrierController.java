@@ -2,7 +2,10 @@ package fr.eni.enicalendar.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,15 +16,28 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import com.lowagie.text.*;
-import fr.eni.enicalendar.persistence.app.entities.Programmation;
-import fr.eni.enicalendar.persistence.erp.entities.*;
-import fr.eni.enicalendar.service.*;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.PageSize;
+
 import fr.eni.enicalendar.persistence.app.entities.Calendrier;
+import fr.eni.enicalendar.persistence.app.entities.Programmation;
+import fr.eni.enicalendar.persistence.erp.entities.Cours;
+import fr.eni.enicalendar.persistence.erp.entities.Entreprise;
+import fr.eni.enicalendar.persistence.erp.entities.Formation;
+import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
+import fr.eni.enicalendar.persistence.erp.entities.StagiaireParEntreprise;
+import fr.eni.enicalendar.service.CalendrierServiceInterface;
+import fr.eni.enicalendar.service.CoursServiceInterface;
+import fr.eni.enicalendar.service.EntrepriseServiceInterface;
+import fr.eni.enicalendar.service.FormationServiceInterface;
+import fr.eni.enicalendar.service.ProgrammationServiceInterface;
+import fr.eni.enicalendar.service.StagiaireServiceInterface;
 import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
 import fr.eni.enicalendar.utils.SessionUtils;
 
@@ -51,11 +67,11 @@ public class ConsulterCalendrierController implements Serializable {
 	@ManagedProperty(value = "#{entrepriseService}")
 	private EntrepriseServiceInterface entrepriseService;
 
-    @ManagedProperty(value = "#{programmationService}")
-    private ProgrammationServiceInterface programmationService;
+	@ManagedProperty(value = "#{programmationService}")
+	private ProgrammationServiceInterface programmationService;
 
-    @ManagedProperty(value = "#{coursService}")
-    private CoursServiceInterface coursService;
+	@ManagedProperty(value = "#{coursService}")
+	private CoursServiceInterface coursService;
 
 	private Stagiaire stagiaire;
 	private String codeStagiaire;
@@ -97,38 +113,38 @@ public class ConsulterCalendrierController implements Serializable {
 	}
 
 	public CoursServiceInterface getCoursService() {
-        return coursService;
-    }
+		return coursService;
+	}
 
-    public void setCoursService(CoursServiceInterface coursService) {
-        this.coursService = coursService;
-    }
+	public void setCoursService(CoursServiceInterface coursService) {
+		this.coursService = coursService;
+	}
 
-    public List<Cours> getListeCours() {
-        return listeCours;
-    }
+	public List<Cours> getListeCours() {
+		return listeCours;
+	}
 
-    public void setListeCours(List<Cours> listeCours) {
-        this.listeCours = listeCours;
-    }
+	public void setListeCours(List<Cours> listeCours) {
+		this.listeCours = listeCours;
+	}
 
-    public ProgrammationServiceInterface getProgrammationService() {
-        return programmationService;
-    }
+	public ProgrammationServiceInterface getProgrammationService() {
+		return programmationService;
+	}
 
-    public void setProgrammationService(ProgrammationServiceInterface programmationService) {
-        this.programmationService = programmationService;
-    }
+	public void setProgrammationService(ProgrammationServiceInterface programmationService) {
+		this.programmationService = programmationService;
+	}
 
-    public List<Programmation> getProgrammations() {
-        return programmations;
-    }
+	public List<Programmation> getProgrammations() {
+		return programmations;
+	}
 
-    public void setProgrammations(List<Programmation> programmations) {
-        this.programmations = programmations;
-    }
+	public void setProgrammations(List<Programmation> programmations) {
+		this.programmations = programmations;
+	}
 
-    public Formation getFormation() {
+	public Formation getFormation() {
 		return formation;
 	}
 
@@ -221,23 +237,24 @@ public class ConsulterCalendrierController implements Serializable {
 		LOGGER.info("ConsulterCalendrierController setup");
 		stagiaire = new Stagiaire();
 		HttpSession session = SessionUtils.getSession();
-		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(
-				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
-		stagiaire = stagiaireService.findBycodeStagiaire(
-				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
+		calendrier = calendrierService
+				.findOne(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER1).toString()));
+		programmations = new ArrayList<>();
+		programmations.addAll(calendrier.getProgrammations());
+		formation = formationService.findByCodeFormation(calendrier.getIdFormationERP());
+		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(calendrier.getIdStagiaireERP());
+		stagiaire = stagiaireService.findBycodeStagiaire(calendrier.getIdStagiaireERP());
 		entreprise = entrepriseService.findByCodeEntreprise(stagiaireEntreprise.getCodeEntreprise());
-		formation = formationService.findByCodeFormation("17CDI");
-		programmations = programmationService.findProgrammationByCalendrier(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER1).toString()));
 		int i = 1;
 		for (Programmation prog : programmations) {
-            coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
-            if (i == 1) {
+			coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
+			if (i == 1) {
 				dateDebut = coursVoulu.getDateDebut();
 
 				i++;
 			}
-            listeCours.add(coursVoulu);
-        }
+			listeCours.add(coursVoulu);
+		}
 		Collections.sort(listeCours, new Comparator<Cours>() {
 
 			@Override
@@ -248,8 +265,12 @@ public class ConsulterCalendrierController implements Serializable {
 			}
 
 		});
-		coursVoulu = listeCours.get(listeCours.size()-1);
-		dateFin = coursVoulu.getDateFin();
+		if (listeCours != null && !listeCours.isEmpty()) {
+			coursVoulu = listeCours.get(listeCours.size() - 1);
+			dateFin = coursVoulu.getDateFin();
+		} else {
+			dateFin = null;
+		}
 	}
 
 	public FormationServiceInterface getFormationService() {

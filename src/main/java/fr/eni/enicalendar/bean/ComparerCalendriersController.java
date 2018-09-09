@@ -223,17 +223,22 @@ public class ComparerCalendriersController implements Serializable {
 
 		if (codeModele != null) {
 			session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER1, codeModele);
+			session.setAttribute(SessionUtils.SESSION_TYPE_CALENDRIER1, "MODELE");
 		} else {
 			session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER1, selectedCodeCalendrier);
+			session.setAttribute(SessionUtils.SESSION_TYPE_CALENDRIER2, "CALENDRIER");
 		}
 
 		if (codeModele2 != null) {
 			session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER2, codeModele2);
+			session.setAttribute(SessionUtils.SESSION_TYPE_CALENDRIER1, "MODELE");
 		} else {
 			session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER2, selectedCodeCalendrier2);
+			session.setAttribute(SessionUtils.SESSION_TYPE_CALENDRIER1, "CALENDRIER");
 		}
 
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/comparaisonCalendriers.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("/eni-calendar/views/comparaisonCalendriers.xhtml");
 	}
 
 	public void recupereCalendriersUn() {
