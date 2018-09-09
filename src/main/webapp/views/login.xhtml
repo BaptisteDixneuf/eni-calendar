@@ -11,8 +11,8 @@
 	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/style/app/style.css" />
 	
 	<!-- JS -->
-	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="#{request.contextPath}/style/app/js/menu.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/style/bootstrap/js/bootstrap.min.js"/>
+	<script type="text/javascript" src="#{request.contextPath}/style/app/js/menu.js"/>
 </h:head>
 
 <body>
@@ -29,18 +29,18 @@
 			</p:messages>
 			
 			<div class="form-group m-t-50">
-				<p:outputLabel for="email" value="Email" />
-				<p:inputText id="email" value="#{loginController.email}"  styleClass="form-control"></p:inputText>
-				<p:messages for="email"></p:messages>
+				<p:outputLabel for="email" value="Login" />
+				<p:inputText id="email" value="#{loginController.email}"  styleClass="form-control"/>
+				<p:messages for="email"/>
 			</div>
 			
 			<div class="form-group">
 				<p:outputLabel for="password" value="Mot de passe" />
-				<p:password id="password" value="#{loginController.password}"  styleClass="form-control"></p:password>
-				<p:messages for="password"></p:messages>
+				<p:password id="password" value="#{loginController.password}"  styleClass="form-control"/>
+				<p:messages for="password"/>
 			</div>
 			
-			<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" update="@form" styleClass="btn btn-primary"></p:commandButton>	
+			<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" update="@form" styleClass="btn btn-primary"/>
 		</h:form>
 		
 		</div>
