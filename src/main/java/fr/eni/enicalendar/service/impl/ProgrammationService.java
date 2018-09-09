@@ -33,4 +33,9 @@ public class ProgrammationService implements ProgrammationServiceInterface {
 	public List<Programmation> findProgrammationByModeleCalendrier(Integer idModeleCalendrier) {
 		return programmationRepository.findProgrammationByModeleCalendrier(idModeleCalendrier);
 	}
+
+	@Override
+	public List<Programmation> findProgrammationByCalendrier(Integer idCalendrier) {
+		return programmationRepository.findProgrammationByCalendrier(idCalendrier);
+	}
 }

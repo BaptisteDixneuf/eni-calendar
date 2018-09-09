@@ -148,9 +148,8 @@ public class GestionModelesController implements Serializable {
 	 */
 	public void consulterCalendrier(Integer id) throws IOException {
 		HttpSession session = SessionUtils.getSession();
-		session.setAttribute(SessionUtils.SESSION_ID, id);
-		// TODO faire affichage du pdf du calendrier
+		session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER1, id);
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("/eni-calendar/views/consulterCalendrier.xhtml");
+				.redirect("/eni-calendar/views/consulterModele.xhtml");
 	}
 }

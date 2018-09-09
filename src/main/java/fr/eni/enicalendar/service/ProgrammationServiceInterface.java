@@ -12,4 +12,6 @@ public interface ProgrammationServiceInterface {
 
 	List<Programmation> findProgrammationByModeleCalendrier(Integer idModeleCalendrier);
 
+	List<Programmation> findProgrammationByCalendrier(Integer idCalendrier);
+
 }

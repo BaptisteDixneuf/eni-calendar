@@ -12,4 +12,7 @@ public interface ProgrammationRepository extends JpaRepository<Programmation, In
 
 	@Query("select p from Programmation p WHERE p.idModeleCalendrier = :idModeleCalendrier")
 	List<Programmation> findProgrammationByModeleCalendrier(@Param("idModeleCalendrier") Integer idModeleCalendrier);
+
+	@Query("select p from Programmation p WHERE p.idCalendrier = :idCalendrier")
+	List<Programmation> findProgrammationByCalendrier(@Param("idCalendrier") Integer idCalendrier);
 }
