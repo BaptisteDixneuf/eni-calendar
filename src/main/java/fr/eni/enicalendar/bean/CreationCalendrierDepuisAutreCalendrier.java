@@ -19,8 +19,8 @@ import fr.eni.enicalendar.persistence.app.entities.Calendrier;
 import fr.eni.enicalendar.persistence.app.entities.Contrainte;
 import fr.eni.enicalendar.persistence.app.entities.ContrainteModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Dispense;
-import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
+import fr.eni.enicalendar.persistence.erp.entities.Entreprise;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
@@ -33,10 +33,9 @@ import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.ModeleServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
 import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
-import fr.eni.enicalendar.utils.EtatCalendrierEnum;
 import fr.eni.enicalendar.utils.SessionUtils;
 
-@ManagedBean(name = "creationCalendrierDepuisModeleController")
+@ManagedBean(name = "creationCalendrierDepuisAutreCalendrier")
 @ViewScoped
 public class CreationCalendrierDepuisAutreCalendrier implements Serializable {
 
@@ -83,8 +82,7 @@ public class CreationCalendrierDepuisAutreCalendrier implements Serializable {
 	private String codeLieuFormation;
 	private String codeFormation;
 	private List<Formation> formations;
-	private ModeleCalendrier modele;
-
+	private Entreprise entreprise;
 	private Calendrier calendrier;
 
 	@PostConstruct
@@ -93,6 +91,7 @@ public class CreationCalendrierDepuisAutreCalendrier implements Serializable {
 		HttpSession session = SessionUtils.getSession();
 		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
+		entreprise = entrepriseService.findByCodeEntreprise(stagiaireEntreprise.getCodeEntreprise());
 		stagiaire = stagiaireService.findBycodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		lieux = lieuService.findAllLieux();
@@ -121,11 +120,19 @@ public class CreationCalendrierDepuisAutreCalendrier implements Serializable {
 		return liste;
 	}
 
+	/**
+	 * Autocomplete sur le modele
+	 */
+	public List<Calendrier> autocompleteTextCalendrier(String query) {
+		List<Calendrier> liste = calendrierService.findByNomCalendrier(query);
+		return liste;
+	}
+
 	public void recupereCalendriersUn() {
-		codeFormation = modele.getIdFormationERP();
-		codeLieuFormation = modele.getIdLieuFormationERP().toString();
-		dateDebutMax = modele.getDateDebutMax();
-		dateFinMin = modele.getDateFinMax();
+		codeFormation = calendrier.getIdFormationERP();
+		codeLieuFormation = calendrier.getIdLieuFormationERP().toString();
+		dateDebutMax = calendrier.getDateDebutMax();
+		dateFinMin = calendrier.getDateFinMax();
 	}
 
 	/**
@@ -143,51 +150,41 @@ public class CreationCalendrierDepuisAutreCalendrier implements Serializable {
 	 * @throws IOException
 	 */
 	public void validationEtape() throws IOException {
+		Calendrier calendrierCopie = new Calendrier();
 
-		if (calendrier == null) {
-			calendrier = new Calendrier();
-			calendrier.setDateCreation(new Date());
-		}
-		calendrier.setNomCalendrier(modele.getNomCalendrier());
-		calendrier.setDateModification(new Date());
-		calendrier.setDateDebutMax(dateDebut);
-		calendrier.setDateFinMax(dateFin);
-		calendrier.setIdLieuFormationERP(Integer.valueOf(codeLieuFormation.trim()));
-		calendrier.setIdFormationERP(codeFormation);
-		calendrier.setEtatCalendrier(etatCalendrierService.findByLibelle(EtatCalendrierEnum.ACTIF.toString()));
+		calendrierCopie.setIdEntrepriseERP(entreprise.getCodeEntreprise());
+		calendrierCopie.setIdStagiaireERP(stagiaire.getCodeStagiaire());
 
-		calendrier.setIdStagiaireERP(stagiaire.getCodeStagiaire());
-		calendrier.setIdEntrepriseERP(stagiaireEntreprise.getCodeEntreprise());
-
-		for (Contrainte contrainte : modele.getContraintes()) {
+		for (Contrainte contrainte : calendrier.getContraintes()) {
 			contrainte.setId(null);
 			contrainte.setIdModeleCalendrier(null);
-			contrainte.setIdCalendrier(calendrier.getId());
+			contrainte.setIdCalendrier(calendrierCopie.getId());
 		}
 
-		for (Dispense dispenses : modele.getDispenses()) {
+		for (Dispense dispenses : calendrier.getDispenses()) {
 			dispenses.setId(null);
 			dispenses.setIdModeleCalendrier(null);
-			dispenses.setIdCalendrier(calendrier.getId());
+			dispenses.setIdCalendrier(calendrierCopie.getId());
 		}
 
-		for (ContrainteModuleIndependant modulesInde : modele.getContrainteModuleIndependant()) {
+		for (ContrainteModuleIndependant modulesInde : calendrier.getContrainteModuleIndependant()) {
 			modulesInde.setId(null);
 			modulesInde.setIdModeleCalendrier(null);
-			modulesInde.setIdCalendrier(calendrier.getId());
+			modulesInde.setIdCalendrier(calendrierCopie.getId());
 		}
 
-		for (Programmation programmation : modele.getProgrammations()) {
+		for (Programmation programmation : calendrier.getProgrammations()) {
 			programmation.setId(null);
 			programmation.setIdModeleCalendrier(null);
-			programmation.setIdCalendrier(calendrier.getId());
+			programmation.setIdCalendrier(calendrierCopie.getId());
 		}
 
-		calendrier.setContraintes(modele.getContraintes());
-		calendrier.setDispenses(modele.getDispenses());
-		calendrier.setContrainteModuleIndependant(modele.getContrainteModuleIndependant());
-		calendrier.setProgrammations(modele.getProgrammations());
-		calendrier = calendrierService.save(calendrier);
+		calendrierCopie.setContraintes(calendrier.getContraintes());
+		calendrierCopie.setDispenses(calendrier.getDispenses());
+		calendrierCopie.setContrainteModuleIndependant(calendrier.getContrainteModuleIndependant());
+		calendrierCopie.setProgrammations(calendrier.getProgrammations());
+
+		calendrierCopie = calendrierService.save(calendrierCopie);
 
 		HttpSession session = SessionUtils.getSession();
 		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, "ModificationCalendrier");
@@ -307,14 +304,6 @@ public class CreationCalendrierDepuisAutreCalendrier implements Serializable {
 		this.formations = formations;
 	}
 
-	public ModeleCalendrier getModele() {
-		return modele;
-	}
-
-	public void setModele(ModeleCalendrier modele) {
-		this.modele = modele;
-	}
-
 	public Calendrier getCalendrier() {
 		return calendrier;
 	}
@@ -365,6 +354,14 @@ public class CreationCalendrierDepuisAutreCalendrier implements Serializable {
 
 	public void setStagiaireEntreprise(StagiaireParEntreprise stagiaireEntreprise) {
 		this.stagiaireEntreprise = stagiaireEntreprise;
+	}
+
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
 	}
 
 }

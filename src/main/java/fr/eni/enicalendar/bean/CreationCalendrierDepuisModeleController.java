@@ -21,6 +21,7 @@ import fr.eni.enicalendar.persistence.app.entities.ContrainteModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Dispense;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.Programmation;
+import fr.eni.enicalendar.persistence.erp.entities.Entreprise;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Lieu;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
@@ -84,6 +85,7 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	private String codeFormation;
 	private List<Formation> formations;
 	private ModeleCalendrier modele;
+	private Entreprise entreprise;
 
 	private Calendrier calendrier;
 
@@ -93,6 +95,7 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 		HttpSession session = SessionUtils.getSession();
 		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
+		entreprise = entrepriseService.findByCodeEntreprise(stagiaireEntreprise.getCodeEntreprise());
 		stagiaire = stagiaireService.findBycodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		lieux = lieuService.findAllLieux();
@@ -360,6 +363,14 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 
 	public void setStagiaireEntreprise(StagiaireParEntreprise stagiaireEntreprise) {
 		this.stagiaireEntreprise = stagiaireEntreprise;
+	}
+
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
 	}
 
 }
