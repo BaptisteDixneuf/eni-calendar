@@ -26,8 +26,9 @@
 	</script>
 
 	<h:form id="coursForm">
-		
-		<h:panelGroup id="preFormulaire">
+		<p:messages for="general" showDetail="true" closable="true"/>
+
+		<h:panelGroup id="preFormulaire" rendered="#{!modeleVideController.preFormulaireValide}">
 			<p:messages for="general"/>
 
 			<!-- Début du préformulaire -->
