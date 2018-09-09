@@ -79,7 +79,7 @@
 			<!-- Fin du préformualire -->
 		</h:panelGroup>
 		
-		<h:panelGroup id="panelCalendrier">	
+		<h:panelGroup id="panelCalendrier" layout="block" style="margin-bottom : 100px;">	
 			<h:panelGroup rendered="#{modeleVideController.preFormulaireValide}">
 				<!-- Tableau de programmation -->
 				<div class="ui-g">
@@ -88,11 +88,11 @@
 						<p:dataTable id="availableElementCalendrier" var="element"
 							value="#{modeleVideController.availableElementCalendrier}">	
 	
-							<p:column rendered="#{!element.moduleProgramme}">
+							<p:column rendered="#{!element.moduleProgramme}" headerText="Cours disponibles">
 								<p:panel id="gpnl">
 									<h:outputText value="#{element.libelle}"></h:outputText> - 
-				               		<h:outputText value="#{element.dateDebut}"></h:outputText> -
-				               		<h:outputText value="#{element.dateFin}"></h:outputText>
+				               		<h:outputText value="#{modeleVideController.formatDate(element.dateDebut)}"></h:outputText> -
+				               		<h:outputText value="#{modeleVideController.formatDate(element.dateFin)}"></h:outputText>
 	
 								</p:panel>
 								<p:draggable for="gpnl" revert="true" helper="clone"
@@ -105,18 +105,18 @@
 	
 					<!-- Listes des cours sélectionnées -->
 					<div class="ui-g-6">
-						<p:fieldset id="selectedElementCalendrier">
+						<p:fieldset id="selectedElementCalendrier" >
 							<p:outputPanel id="dropArea">
-								<h:outputText value="Aucun éléments"
+								<h:outputText value="Aucun éléments => Glisser-Déposer les cours dans cette zone"
 									rendered="#{empty modeleVideController.droppedElementCalendrier}"
 									style="font-size:24px;" />
-								<p:dataTable id="selectedCoursTable" var="element"
+								<p:dataTable id="selectedCoursTable" var="element" 
 									value="#{modeleVideController.droppedElementCalendrier}"
 									rendered="#{not empty modeleVideController.droppedElementCalendrier}">
-									<p:column>
+									<p:column headerText="Calendrier">
 										<h:outputText value="#{element.libelle}"></h:outputText> - 
-		               			<h:outputText value="#{element.dateDebut}"></h:outputText> -
-		               			<h:outputText value="#{element.dateFin}"></h:outputText>
+				               			<h:outputText value="#{modeleVideController.formatDate(element.dateDebut)}"></h:outputText> -
+				               			<h:outputText value="#{modeleVideController.formatDate(element.dateFin)}"></h:outputText>
 										<p:commandButton id="deprogrammer" value="Déprogrammer"
 											action="#{modeleVideController.deprogrammer(element)}"
 											update=":coursForm:panelCalendrier"></p:commandButton>
