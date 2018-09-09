@@ -2,9 +2,7 @@ package fr.eni.enicalendar.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -71,8 +69,34 @@ public class ConsulterCalendrierController implements Serializable {
 	private List<Programmation> programmations;
 	private List<Cours> listeCours = new ArrayList<>();
 	private Cours coursVoulu;
+	private Date dateDebut;
+	private Date dateFin;
 
-    public CoursServiceInterface getCoursService() {
+	public Cours getCoursVoulu() {
+		return coursVoulu;
+	}
+
+	public void setCoursVoulu(Cours coursVoulu) {
+		this.coursVoulu = coursVoulu;
+	}
+
+	public Date getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
+
+	public CoursServiceInterface getCoursService() {
         return coursService;
     }
 
@@ -204,8 +228,14 @@ public class ConsulterCalendrierController implements Serializable {
 		entreprise = entrepriseService.findByCodeEntreprise(stagiaireEntreprise.getCodeEntreprise());
 		formation = formationService.findByCodeFormation("17CDI");
 		programmations = programmationService.findProgrammationByCalendrier(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER1).toString()));
-        for (Programmation prog : programmations) {
+		int i = 1;
+		for (Programmation prog : programmations) {
             coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
+            if (i == 1) {
+				dateDebut = coursVoulu.getDateDebut();
+
+				i++;
+			}
             listeCours.add(coursVoulu);
         }
 		Collections.sort(listeCours, new Comparator<Cours>() {
@@ -218,6 +248,8 @@ public class ConsulterCalendrierController implements Serializable {
 			}
 
 		});
+		coursVoulu = listeCours.get(listeCours.size()-1);
+		dateFin = coursVoulu.getDateFin();
 	}
 
 	public FormationServiceInterface getFormationService() {
