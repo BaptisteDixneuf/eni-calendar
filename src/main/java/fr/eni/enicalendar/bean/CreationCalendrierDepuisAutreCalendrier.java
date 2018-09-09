@@ -33,6 +33,7 @@ import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.ModeleServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
 import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
+import fr.eni.enicalendar.utils.EtatCalendrierEnum;
 import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "creationCalendrierDepuisAutreCalendrier")
@@ -154,6 +155,14 @@ public class CreationCalendrierDepuisAutreCalendrier implements Serializable {
 
 		calendrierCopie.setIdEntrepriseERP(entreprise.getCodeEntreprise());
 		calendrierCopie.setIdStagiaireERP(stagiaire.getCodeStagiaire());
+		calendrierCopie.setNomCalendrier(calendrier.getNomCalendrier());
+		calendrierCopie.setDateCreation(new Date());
+		calendrierCopie.setDateModification(new Date());
+		calendrierCopie.setDateDebutMax(dateDebut);
+		calendrierCopie.setDateFinMax(dateFin);
+		calendrierCopie.setIdLieuFormationERP(Integer.valueOf(codeLieuFormation.trim()));
+		calendrierCopie.setIdFormationERP(codeFormation);
+		calendrierCopie.setEtatCalendrier(etatCalendrierService.findByLibelle(EtatCalendrierEnum.ACTIF.toString()));
 
 		for (Contrainte contrainte : calendrier.getContraintes()) {
 			contrainte.setId(null);
