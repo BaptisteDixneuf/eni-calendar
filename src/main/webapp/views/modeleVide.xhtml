@@ -26,7 +26,9 @@
 	</script>
 
 	<h:form id="coursForm">
-		<p:messages for="general" showDetail="true" closable="true"/>
+		<p:messages for="general" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
 
 		<h:panelGroup id="preFormulaire" rendered="#{!modeleVideController.preFormulaireValide}">
 			<p:messages for="general"/>

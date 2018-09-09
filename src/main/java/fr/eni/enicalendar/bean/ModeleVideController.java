@@ -494,6 +494,10 @@ public class ModeleVideController implements Serializable {
 			Set<Programmation> setlistesProgramation = new HashSet<Programmation>(listesProgramation);
 			calendrier.setProgrammations(setlistesProgramation);
 			calendrier = calendrierService.save(calendrier);
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().getFlash().setKeepMessages(true);
+			context.addMessage("general",
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le calendrier est enregistré", ""));
 		} else {
 			if (modeleCalendrier == null) {
 				modeleCalendrier = new ModeleCalendrier();
@@ -515,8 +519,10 @@ public class ModeleVideController implements Serializable {
 			Set<Programmation> setlistesProgramation = new HashSet<Programmation>(listesProgramation);
 			modeleCalendrier.setProgrammations(setlistesProgramation);
 			modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
-			FacesContext.getCurrentInstance().addMessage("formation",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le calendrier est enregistré", ""));
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().getFlash().setKeepMessages(true);
+			context.addMessage("general",
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le modèle de calendrier est enregistré", ""));
 		}
 
 		LOGGER.info("Fin de l'enregistrement");
@@ -578,12 +584,14 @@ public class ModeleVideController implements Serializable {
 
 		} catch (NumberFormatException e) {
 			LOGGER.error(e.getMessage(), e);
-			FacesContext.getCurrentInstance().addMessage("general",
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().getFlash().setKeepMessages(true);
+			context.addMessage("general", new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		} catch (FonctionnelException e) {
 			LOGGER.error(e.getMessage(), e);
-			FacesContext.getCurrentInstance().addMessage("general",
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().getFlash().setKeepMessages(true);
+			context.addMessage("general", new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
 	}
 
@@ -746,7 +754,9 @@ public class ModeleVideController implements Serializable {
 			modeleCalendrier.setContraintes(setContrainteEntityList);
 			modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 		}
-		FacesContext.getCurrentInstance().addMessage("formation",
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage("general",
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Le(s) contrainte(s) sont enregistrées", ""));
 
 	}
@@ -819,7 +829,9 @@ public class ModeleVideController implements Serializable {
 			modeleCalendrier.setDispenses(setListDispensesEntities);
 			modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 		}
-		FacesContext.getCurrentInstance().addMessage("formation",
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage("general",
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Le(s) dispenses(s) sont enregistrées", ""));
 	}
 
@@ -900,8 +912,10 @@ public class ModeleVideController implements Serializable {
 			modeleCalendrier.setContrainteModuleIndependant(setListContrainteModuleIndependantEntities);
 			modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 		}
-		FacesContext.getCurrentInstance().addMessage("formation",
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Le(s) modules indépendants(s) sont enregistrées", ""));
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage("general",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Le(s) modules indépendants(s) sont enregistrés", ""));
 	}
 
 	/**
