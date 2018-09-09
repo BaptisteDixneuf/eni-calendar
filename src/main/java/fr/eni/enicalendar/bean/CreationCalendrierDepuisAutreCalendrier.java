@@ -38,14 +38,14 @@ import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "creationCalendrierDepuisModeleController")
 @ViewScoped
-public class CreationCalendrierDepuisModeleController implements Serializable {
+public class CreationCalendrierDepuisAutreCalendrier implements Serializable {
 
 	/**
 	 * Serial UID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CreationCalendrierDepuisModeleController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CreationCalendrierDepuisAutreCalendrier.class);
 
 	@ManagedProperty(value = "#{stagiaireService}")
 	private StagiaireServiceInterface stagiaireService;
@@ -109,10 +109,15 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 	}
 
 	/**
-	 * Autocomplete sur le modele
+	 * Autocomplete sur le stagiaire
 	 */
-	public List<ModeleCalendrier> autocompleteText(String query) {
-		List<ModeleCalendrier> liste = modeleService.findByNomCalendrier(query);
+	public List<Stagiaire> autocompleteText(String query) {
+		// enlever l'espace devant la chaine
+		query = query.trim();
+		// mettre la première lettre du mot en maj (comme en bdd)
+		query = query.substring(0, 1).toUpperCase() + query.substring(1).toLowerCase();
+
+		List<Stagiaire> liste = stagiaireService.findByNom(query);
 		return liste;
 	}
 

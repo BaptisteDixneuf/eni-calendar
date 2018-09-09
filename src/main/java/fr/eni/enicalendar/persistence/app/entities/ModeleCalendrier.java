@@ -1,7 +1,6 @@
 package fr.eni.enicalendar.persistence.app.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -173,7 +172,7 @@ public class ModeleCalendrier implements Serializable {
 		this.dateFinMax = dateFinMax;
 	}
 
-	public Collection<Programmation> getProgrammations() {
+	public Set<Programmation> getProgrammations() {
 		return programmations;
 	}
 

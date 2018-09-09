@@ -27,7 +27,13 @@
 			</p:messages>
 
 		<h1>Application d'un calendrier d'un autre stagiaire</h1>
-
+		<div class="form-group col-md-12">
+			<p:outputLabel value="Saisissez un stagiaire :" for="themePojo" style="display: flex; justify-content: center;"/>
+			<p:autoComplete id="themePojo" minQueryLength="3" value="#{creationCalendrierDepuisModeleController.stagiaire}" 
+				completeMethod="#{rechercheStagiaireController.autocompleteText}" style="display: flex; justify-content: center;" converter=""
+				var="stagiaire" itemLabel="#{stagiaire.nom} #{stagiaire}" itemValue="#{stagiaire.codeStagiaire}" forceSelection="true"/>
+		</div>	
+		
 		</h:form>
 	</div>
 	
