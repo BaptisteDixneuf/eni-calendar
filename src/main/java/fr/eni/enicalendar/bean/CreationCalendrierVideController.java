@@ -14,7 +14,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.enicalendar.utils.SessionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
@@ -26,6 +25,7 @@ import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.LieuServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
+import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "creationCalendrierVideController")
 @ViewScoped
@@ -197,6 +197,7 @@ public class CreationCalendrierVideController implements Serializable {
 	public void validationEtape() throws IOException {
 		HttpSession session = SessionUtils.getSession();
 
+		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, "CreationCalendrier");
 		session.setAttribute(SessionUtils.SESSION_LIEU, codeLieuFormation);
 		session.setAttribute(SessionUtils.SESSION_FORMATION, codeFormation);
 		session.setAttribute(SessionUtils.SESSION_DATEDEBUT, date1);

@@ -1,17 +1,15 @@
 package fr.eni.enicalendar.service.impl;
 
-import fr.eni.enicalendar.persistence.app.entities.Calendrier;
-import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
-import fr.eni.enicalendar.persistence.app.repositories.CalendrierRepository;
-import fr.eni.enicalendar.persistence.app.repositories.ModeleRepository;
-import fr.eni.enicalendar.service.CalendrierServiceInterface;
-import fr.eni.enicalendar.service.ModeleServiceInterface;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import fr.eni.enicalendar.persistence.app.entities.Calendrier;
+import fr.eni.enicalendar.persistence.app.repositories.CalendrierRepository;
+import fr.eni.enicalendar.service.CalendrierServiceInterface;
 
 @Service
 public class CalendrierService implements CalendrierServiceInterface {
@@ -26,7 +24,7 @@ public class CalendrierService implements CalendrierServiceInterface {
 		return calendrierRepository.findCalendriersByStagiaire(id);
 	}
 
-	public Calendrier findOne (Integer id) {
+	public Calendrier findOne(Integer id) {
 		return calendrierRepository.findOne(id);
 	}
 
@@ -37,6 +35,11 @@ public class CalendrierService implements CalendrierServiceInterface {
 
 	public void deleteCalendrier(Calendrier calendrier) {
 		calendrierRepository.delete(calendrier);
+	}
+
+	@Override
+	public Calendrier save(Calendrier calendrier) {
+		return calendrier = calendrierRepository.save(calendrier);
 	}
 
 }
