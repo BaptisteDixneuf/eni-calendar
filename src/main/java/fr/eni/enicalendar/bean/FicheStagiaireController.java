@@ -232,9 +232,8 @@ public class FicheStagiaireController implements Serializable {
 	 */
 	public void consulterCalendrier(Integer id) throws IOException {
 		HttpSession session = SessionUtils.getSession();
-		session.setAttribute(SessionUtils.SESSION_ID, id);
+		session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER1, id);
 		calendrier = calendrierService.findOne(id);
-		// TODO faire affichage du pdf du calendrier
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("/eni-calendar/views/consulterCalendrier.xhtml");
 	}

@@ -25,6 +25,10 @@ public class SessionUtils {
 
 	public static final String SESSION_ID_MODELE2 = "id_modele2";
 
+	public static final String SESSION_ID_CALENDRIER1 = "id_calendrier1";
+
+	public static final String SESSION_ID_CALENDRIER_2 = "id_calendrier2";
+
 	public static final String SESSION_FORMATION = "";
 
 	public static final String SESSION_LIEU = "";

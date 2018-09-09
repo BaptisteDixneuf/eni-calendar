@@ -220,10 +220,10 @@ public class ComparerCalendriersController implements Serializable {
 	 */
 	public void validationEtape() throws IOException {
 		HttpSession session = SessionUtils.getSession();
-		session.setAttribute(SessionUtils.SESSION_ID_MODELE1, codeModele);
-		session.setAttribute(SessionUtils.SESSION_ID_MODELE2, codeModele2);
+		session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER1, codeModele);
+		session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER_2, codeModele2);
 
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/comparaisonCalendrier.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/comparaisonCalendriers.xhtml");
 	}
 
 	public void recupereCalendriersUn() {

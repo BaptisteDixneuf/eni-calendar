@@ -15,24 +15,44 @@
 <ui:include src="menuBis.xhtml"></ui:include>
 
 <div class="container">
-    <div class="col-md-12">
+    <div style="width: 100%;">
+        <h1>Comparaison</h1>
+
         <h:form>
             <p:messages for="general" showDetail="true" closable="true">
                 <p:autoUpdate />
             </p:messages>
 
-            <h1>Comparaison</h1>
-
-            <div style="columns: 2">
+            <div style="columns: 2;">
                 <div style="border-right: solid; padding-right: 5%;">
-                    <p:fieldset style="border-radius: 30px; border-width: medium; height: 400px">
+                    <p:fieldset style="border-radius: 30px; border-width: medium;">
+                        <p:dataTable id="tbl" var="listeCours" value="#{comparaisonCalendriersController.listeCours}" widgetVar="titreTable">
+                            <p:column headerText="DateDebut">
+                                <h:outputText value="#{listeCours.dateDebut}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="DateFin">
+                                <h:outputText value="#{listeCours.dateFin}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Lieu">
+                                <h:outputText value="#{listeCours.lieu.libelle}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Programme">
+                                <h:outputText value="#{listeCours.libelleCours}"/>
+                            </p:column>
 
+                        </p:dataTable>
 
                     </p:fieldset>
                 </div>
 
                 <div style="border-left: solid; padding-left: 5%;">
-                    <p:fieldset style="border-radius: 30px; border-width: medium; height: 400px;">
+                    <p:fieldset style="border-radius: 30px; border-width: medium;">
 
 
                     </p:fieldset>

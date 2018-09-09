@@ -2,10 +2,9 @@ package fr.eni.enicalendar.bean;
 
 import fr.eni.enicalendar.persistence.app.entities.Calendrier;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
-import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
-import fr.eni.enicalendar.service.CalendrierServiceInterface;
-import fr.eni.enicalendar.service.ModeleServiceInterface;
-import fr.eni.enicalendar.service.StagiaireServiceInterface;
+import fr.eni.enicalendar.persistence.app.entities.Programmation;
+import fr.eni.enicalendar.persistence.erp.entities.Cours;
+import fr.eni.enicalendar.service.*;
 import fr.eni.enicalendar.utils.SessionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +15,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-@ManagedBean(name = "comparerCalendriersController")
+@ManagedBean(name = "comparaisonCalendriersController")
 @ViewScoped
 public class ComparaisonCalendriersController implements Serializable {
 
@@ -31,20 +32,17 @@ public class ComparaisonCalendriersController implements Serializable {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ComparaisonCalendriersController.class);
 
-	@ManagedProperty(value = "#{stagiaireService}")
-	private StagiaireServiceInterface stagiaireService;
-
 	@ManagedProperty(value = "#{modeleService}")
 	private ModeleServiceInterface modeleService;
 
 	@ManagedProperty(value = "#{calendrierService}")
 	private CalendrierServiceInterface calendrierService;
 
-	private Stagiaire selectedStagiaire;
-	private Stagiaire selectedStagiaire2;
+	@ManagedProperty(value = "#{programmationService}")
+	private ProgrammationServiceInterface programmationService;
 
-	private String selectedCodeCalendrier;
-	private String selectedCodeCalendrier2;
+	@ManagedProperty(value = "#{coursService}")
+	private CoursServiceInterface coursService;
 
 	private String codeModele;
 	private String codeModele2;
@@ -52,19 +50,72 @@ public class ComparaisonCalendriersController implements Serializable {
 	private ModeleCalendrier modele;
 	private ModeleCalendrier modele2;
 
-	private String txt;
-	private String txt2;
+	private Calendrier calendriers;
+	private Calendrier calendriers2;
 
-	private List<Calendrier> calendriers;
-	private List<Calendrier> calendriers2;
+	private List<Cours> listeCours = new ArrayList<>();
+	private List<Cours> listeCours2 = new ArrayList<>();
 
-	public String getTxt() {
-		return txt;
+	private List<Programmation> programmations;
+	private List<Programmation> programmations2;
+	private Cours coursVoulu;
+
+	public Cours getCoursVoulu() {
+		return coursVoulu;
 	}
 
-	public void setTxt(String txt) {
-		this.txt = txt;
+	public void setCoursVoulu(Cours coursVoulu) {
+		this.coursVoulu = coursVoulu;
 	}
+
+	public List<Programmation> getProgrammations() {
+		return programmations;
+	}
+
+	public void setProgrammations(List<Programmation> programmations) {
+		this.programmations = programmations;
+	}
+
+	public List<Programmation> getProgrammations2() {
+		return programmations2;
+	}
+
+	public void setProgrammations2(List<Programmation> programmations2) {
+		this.programmations2 = programmations2;
+	}
+
+	public List<Cours> getListeCours() {
+		return listeCours;
+	}
+
+	public void setListeCours(List<Cours> listeCours) {
+		this.listeCours = listeCours;
+	}
+
+	public List<Cours> getListeCours2() {
+		return listeCours2;
+	}
+
+	public void setListeCours2(List<Cours> listeCours2) {
+		this.listeCours2 = listeCours2;
+	}
+
+	public Calendrier getCalendriers() {
+		return calendriers;
+	}
+
+	public void setCalendriers(Calendrier calendriers) {
+		this.calendriers = calendriers;
+	}
+
+	public Calendrier getCalendriers2() {
+		return calendriers2;
+	}
+
+	public void setCalendriers2(Calendrier calendriers2) {
+		this.calendriers2 = calendriers2;
+	}
+
 
 	public String getCodeModele2() {
 		return codeModele2;
@@ -82,13 +133,6 @@ public class ComparaisonCalendriersController implements Serializable {
 		this.modele2 = modele2;
 	}
 
-	public List<Calendrier> getCalendriers() {
-		return calendriers;
-	}
-
-	public void setCalendriers(List<Calendrier> calendriers) {
-		this.calendriers = calendriers;
-	}
 
 	public ModeleServiceInterface getModeleService() {
 		return modeleService;
@@ -114,65 +158,44 @@ public class ComparaisonCalendriersController implements Serializable {
 		this.modele = modele;
 	}
 
-	public String getTxt2() {
-		return txt2;
+
+	public ProgrammationServiceInterface getProgrammationService() {
+		return programmationService;
 	}
 
-	public void setTxt2(String txt2) {
-		this.txt2 = txt2;
+	public void setProgrammationService(ProgrammationServiceInterface programmationService) {
+		this.programmationService = programmationService;
 	}
 
-	public String getSelectedCodeCalendrier() {
-		return selectedCodeCalendrier;
+	public CoursServiceInterface getCoursService() {
+		return coursService;
 	}
 
-	public void setSelectedCodeCalendrier(String selectedCodeCalendrier) {
-		this.selectedCodeCalendrier = selectedCodeCalendrier;
-	}
-
-	public String getSelectedCodeCalendrier2() {
-		return selectedCodeCalendrier2;
-	}
-
-	public void setSelectedCodeCalendrier2(String selectedCodeCalendrier2) {
-		this.selectedCodeCalendrier2 = selectedCodeCalendrier2;
-	}
-
-	public Stagiaire getSelectedStagiaire() {
-		return selectedStagiaire;
-	}
-
-	public void setSelectedStagiaire(Stagiaire selectedStagiaire) {
-		this.selectedStagiaire = selectedStagiaire;
-	}
-
-	public Stagiaire getSelectedStagiaire2() {
-		return selectedStagiaire2;
-	}
-
-	public void setSelectedStagiaire2(Stagiaire selectedStagiaire2) {
-		this.selectedStagiaire2 = selectedStagiaire2;
+	public void setCoursService(CoursServiceInterface coursService) {
+		this.coursService = coursService;
 	}
 
 	@PostConstruct
 	public void setup() {
-		LOGGER.info("ComparerCalendriersController setup");
+		LOGGER.info("ComparaisonCalendriersController setup");
+		HttpSession session = SessionUtils.getSession();
+		programmations = programmationService.findProgrammationByModeleCalendrier(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER1).toString()));
+		for (Programmation prog : programmations) {
+			coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
+			listeCours.add(coursVoulu);
+		}
+		Collections.sort(listeCours, new Comparator<Cours>() {
+
+			@Override
+			public int compare(Cours o1, Cours o2) {
+
+				return o1.getDateDebut().compareTo(o2.getDateDebut());
+
+			}
+
+		});
 	}
 
-	/**
-	 * @return the stagiaireService
-	 */
-	public StagiaireServiceInterface getStagiaireService() {
-		return stagiaireService;
-	}
-
-	/**
-	 * @param stagiaireService
-	 *            the stagiaireService to set
-	 */
-	public void setStagiaireService(StagiaireServiceInterface stagiaireService) {
-		this.stagiaireService = stagiaireService;
-	}
 
 	public CalendrierServiceInterface getCalendrierService() {
 		return calendrierService;
@@ -182,55 +205,17 @@ public class ComparaisonCalendriersController implements Serializable {
 		this.calendrierService = calendrierService;
 	}
 
-	public List<Calendrier> getCalendriers2() {
-		return calendriers2;
-	}
 
-	public void setCalendriers2(List<Calendrier> calendriers2) {
-		this.calendriers2 = calendriers2;
-	}
-
-	/**
-	 * Autocomplete sur le stagiaire
-	 */
-	public List<Stagiaire> autocompleteText(String query) {
-		// enlever l'espace devant la chaine
-		query = query.trim();
-		// mettre la première lettre du mot en maj (comme en bdd)
-		query = query.substring(0, 1).toUpperCase() + query.substring(1).toLowerCase();
-
-		List<Stagiaire> listeStagiaires = stagiaireService.findByNom(query);
-		return listeStagiaires;
-	}
-
-	/**
-	 * Autocomplete sur le modele
-	 */
-	public List<ModeleCalendrier> autocompleteModele(String query) {
-		List<ModeleCalendrier> liste = modeleService.findByNomCalendrier(query);
-		return liste;
-	}
-
-	/**
-	 * Permet de passer à l'etape constitution calendrier
-	 *
-	 * @throws IOException
-	 */
-	public void validationEtape() throws IOException {
-		HttpSession session = SessionUtils.getSession();
-		session.setAttribute(SessionUtils.SESSION_ID_MODELE1, codeModele);
-		session.setAttribute(SessionUtils.SESSION_ID_MODELE2, codeModele2);
-
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/comparaisonCalendrier.xhtml");
-	}
 
 	public void recupereCalendriersUn() {
 		LOGGER.info("recupereCalendriersUn");
-		calendriers = calendrierService.findCalendriersByStagiaire(selectedStagiaire.getCodeStagiaire());
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		calendriers = calendrierService.findOne(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER1).toString()));
 	}
 
 	public void recupereCalendriersDeux() {
 		LOGGER.info("recupereCalendriersDeux");
-		calendriers2 = calendrierService.findCalendriersByStagiaire(selectedStagiaire2.getCodeStagiaire());
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		calendriers2 = calendrierService.findOne(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER_2).toString()));
 	}
 }
