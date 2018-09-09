@@ -117,8 +117,8 @@
 										<h:outputText value="#{element.libelle}"></h:outputText> - 
 				               			<h:outputText value="#{modeleVideController.formatDate(element.dateDebut)}"></h:outputText> -
 				               			<h:outputText value="#{modeleVideController.formatDate(element.dateFin)}"></h:outputText>
-										<p:commandButton id="deprogrammer" value="Déprogrammer"
-											action="#{modeleVideController.deprogrammer(element)}"
+										<p:commandButton id="deprogrammer" styleClass="pull-r"
+											action="#{modeleVideController.deprogrammer(element)}" value="&#x2716;"
 											update=":coursForm:panelCalendrier"></p:commandButton>
 									</p:column>
 								</p:dataTable>
