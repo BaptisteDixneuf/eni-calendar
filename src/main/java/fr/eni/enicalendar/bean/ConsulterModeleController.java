@@ -1,11 +1,18 @@
 package fr.eni.enicalendar.bean;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.PageSize;
+import fr.eni.enicalendar.persistence.app.entities.Calendrier;
+import fr.eni.enicalendar.persistence.app.entities.Programmation;
+import fr.eni.enicalendar.persistence.erp.entities.*;
+import fr.eni.enicalendar.service.*;
+import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
+import fr.eni.enicalendar.utils.SessionUtils;
+import org.primefaces.event.SelectEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -14,29 +21,23 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-import com.lowagie.text.*;
-import fr.eni.enicalendar.persistence.app.entities.Programmation;
-import fr.eni.enicalendar.persistence.erp.entities.*;
-import fr.eni.enicalendar.service.*;
-import org.primefaces.event.SelectEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import fr.eni.enicalendar.persistence.app.entities.Calendrier;
-import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
-import fr.eni.enicalendar.utils.SessionUtils;
-
-@ManagedBean(name = "consulterCalendrierController")
+@ManagedBean(name = "consulterModeleController")
 @ViewScoped
-public class ConsulterCalendrierController implements Serializable {
+public class ConsulterModeleController implements Serializable {
 
 	/**
 	 * Serial UID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ConsulterCalendrierController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConsulterModeleController.class);
 
 	@ManagedProperty(value = "#{stagiaireService}")
 	private StagiaireServiceInterface stagiaireService;
@@ -194,7 +195,7 @@ public class ConsulterCalendrierController implements Serializable {
 
 	@PostConstruct
 	public void setup() {
-		LOGGER.info("ConsulterCalendrierController setup");
+		LOGGER.info("ConsulterModeleController setup");
 		stagiaire = new Stagiaire();
 		HttpSession session = SessionUtils.getSession();
 		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(
@@ -203,7 +204,7 @@ public class ConsulterCalendrierController implements Serializable {
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		entreprise = entrepriseService.findByCodeEntreprise(stagiaireEntreprise.getCodeEntreprise());
 		formation = formationService.findByCodeFormation("17CDI");
-		programmations = programmationService.findProgrammationByCalendrier(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER1).toString()));
+		programmations = programmationService.findProgrammationByModeleCalendrier(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_CALENDRIER1).toString()));
         for (Programmation prog : programmations) {
             coursVoulu = coursService.findCoursById(prog.getIdCoursPlanifieERP());
             listeCours.add(coursVoulu);
@@ -249,25 +250,5 @@ public class ConsulterCalendrierController implements Serializable {
 
 	public void setCalendrierService(CalendrierServiceInterface calendrierService) {
 		this.calendrierService = calendrierService;
-	}
-
-	public void onItemSelect(SelectEvent event) {
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Item Selected", event.getObject().toString()));
-	}
-
-	/**
-	 * créer calendrier
-	 *
-	 * @throws IOException
-	 */
-	public void creerCalendrier() throws IOException {
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/creationCalendrier.xhtml");
-	}
-
-	public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
-		Document pdf = (Document) document;
-		pdf.open();
-		pdf.setPageSize(PageSize.A4);
 	}
 }
