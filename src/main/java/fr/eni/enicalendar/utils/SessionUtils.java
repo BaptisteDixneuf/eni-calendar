@@ -23,7 +23,11 @@ public class SessionUtils {
 
 	public static final String SESSION_ID_CALENDRIER1 = "id_cal1";
 
+	public static final String SESSION_TYPE_CALENDRIER1 = "type_cal1";
+
 	public static final String SESSION_ID_CALENDRIER2 = "id_cal2";
+
+	public static final String SESSION_TYPE_CALENDRIER2 = "type_cal2";
 
 	public static final String SESSION_FORMATION = "session_formation";
 
