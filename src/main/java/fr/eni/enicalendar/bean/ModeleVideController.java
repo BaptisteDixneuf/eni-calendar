@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.exceptions.FonctionnelException;
+import fr.eni.enicalendar.persistence.app.entities.Calendrier;
 import fr.eni.enicalendar.persistence.app.entities.Contrainte;
 import fr.eni.enicalendar.persistence.app.entities.ContrainteModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Dispense;
@@ -97,6 +98,11 @@ public class ModeleVideController implements Serializable {
 	/** Entité de sauvegarde du modèle du calendrier */
 	private ModeleCalendrier modeleCalendrier;
 
+	/**
+	 * Entité de sauvegarde du calendrier
+	 */
+	private Calendrier calendrier;
+
 	/** Liste des cours disponibles pour cette formation */
 	private List<Cours> coursDisponible = new ArrayList<>();
 
@@ -142,7 +148,7 @@ public class ModeleVideController implements Serializable {
 			// On récupère les lieux et formations
 			lieux = lieuService.findAllLieux();
 			formations = formationService.findAllFormations();
-			// TODO: remettrre
+			// FIXME : problème de performance
 			// ensembleCours = coursService.findAllCours();
 
 			contraintesViewElement = new Contraintes();
@@ -150,9 +156,9 @@ public class ModeleVideController implements Serializable {
 			moduleIndependantsViewElement = new ModuleIndependants();
 			autreCoursViewElement = new AutreCours();
 			chargementAncienneDonnees();
+
 		} catch (FonctionnelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage());
 		}
 
 	}
