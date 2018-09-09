@@ -33,7 +33,7 @@
                                 <p:selectOneRadio id="type1" value="#{comparerCalendriersController.txt}">
                                     <f:selectItem itemLabel="Calendrier de stagiaire" itemValue="1"/>
                                     <f:selectItem itemLabel="Modèle de calendrier" itemValue="2"/>
-                                    <p:ajax event="change" update="panel1"></p:ajax>
+                                    <p:ajax event="change" update="panel1"/>
                                 </p:selectOneRadio>
                             </h:panelGrid>
                         </div>
@@ -49,7 +49,7 @@
                                                     style="display: flex; justify-content: center;" converter="stagiaireConverter"
                                                     var="stagiaire" itemLabel="#{stagiaire.nom} #{stagiaire.prenom}"
                                                     itemValue="#{stagiaire}" forceSelection="true">
-                                        <p:ajax event="itemSelect" listener="#{comparerCalendriersController.recupereCalendriersUn}"  process="@form" update="panelCalendrier1"></p:ajax>
+                                        <p:ajax event="itemSelect" listener="#{comparerCalendriersController.recupereCalendriersUn}"  process="@form" update="panelCalendrier1"/>
                                     </p:autoComplete>
                                 </div>
 
@@ -64,7 +64,7 @@
 	                                                           itemLabel="#{calendrier.nomCalendrier}"
 	                                                           itemValue="#{calendrier.id}"/>
 	                                        </p:selectOneMenu>
-	                                        <p:messages for="calendrier1"></p:messages>
+	                                        <p:messages for="calendrier1"/>
 	                                    </div>
                                 </h:panelGroup>
 
@@ -96,7 +96,7 @@
                                 <p:selectOneRadio id="type2" value="#{comparerCalendriersController.txt2}">
                                     <f:selectItem itemLabel="Calendrier de stagiaire" itemValue="1"/>
                                     <f:selectItem itemLabel="Modèle de calendrier" itemValue="2"/>
-                                    <p:ajax event="change" update="panel2"></p:ajax>
+                                    <p:ajax event="change" update="panel2"/>
                                 </p:selectOneRadio>
                             </h:panelGrid>
                         </div>
@@ -113,7 +113,7 @@
                                                     style="display: flex; justify-content: center;" converter="stagiaireConverter"
                                                     var="stagiaire2" itemLabel="#{stagiaire2.nom} #{stagiaire2.prenom}"
                                                     itemValue="#{stagiaire2}" forceSelection="true">
-                                        <p:ajax event="itemSelect" listener="#{comparerCalendriersController.recupereCalendriersDeux}"  process="@form" update="panelCalendrier2"></p:ajax>
+                                        <p:ajax event="itemSelect" listener="#{comparerCalendriersController.recupereCalendriersDeux}"  process="@form" update="panelCalendrier2"/>
                                     </p:autoComplete>
                                 </div>
 
@@ -127,7 +127,7 @@
                                                        itemLabel="#{calendrier2.nomCalendrier}"
                                                        itemValue="#{calendrier2.id}"/>
                                     </p:selectOneMenu>
-                                    <p:messages for="calendrier2"></p:messages>
+                                    <p:messages for="calendrier2"/>
                                 </div>
                                 </h:panelGroup>
                             </h:panelGroup>
@@ -153,7 +153,7 @@
             </div>
 
             <div class="form-group" style="display: flex; justify-content: center; margin-top: 5%;">
-                <p:commandButton action="#{comparerCalendriersController.validationEtape}" value="Valider" update="@form" styleClass="btn btn-primary"></p:commandButton>
+                <p:commandButton action="#{comparerCalendriersController.validationEtape}" value="Valider" update="@form" styleClass="btn btn-primary"/>
             </div>
 
         </h:form>
