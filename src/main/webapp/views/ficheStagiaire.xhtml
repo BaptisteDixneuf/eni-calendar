@@ -59,7 +59,7 @@
 						<p:commandButton value="Exporter" />
 						<p:dataExporter type="pdf" target="tbl" fileName="cars" preProcessor="#{ficheStagiaireController.consulterCalendrier(calendriers.id)}" />
 					</h:commandLink>
-					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionUtilisateursController.modificationUtilisateur('Modification', calendriers.id)}"/>
+					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{ficheStagiaireController.modificationCalendrier(calendriers.id)}"/>
 					<p:commandButton value="Supprimer" action="#{ficheStagiaireController.setId(calendriers.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>
 				</p:column>
 
