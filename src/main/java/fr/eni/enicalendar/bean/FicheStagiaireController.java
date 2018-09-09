@@ -12,10 +12,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.enicalendar.persistence.erp.entities.Entreprise;
-import fr.eni.enicalendar.persistence.erp.entities.StagiaireParEntreprise;
-import fr.eni.enicalendar.service.EntrepriseServiceInterface;
-import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
 import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,11 +22,15 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.PageSize;
 
 import fr.eni.enicalendar.persistence.app.entities.Calendrier;
+import fr.eni.enicalendar.persistence.erp.entities.Entreprise;
 import fr.eni.enicalendar.persistence.erp.entities.Formation;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
+import fr.eni.enicalendar.persistence.erp.entities.StagiaireParEntreprise;
 import fr.eni.enicalendar.service.CalendrierServiceInterface;
+import fr.eni.enicalendar.service.EntrepriseServiceInterface;
 import fr.eni.enicalendar.service.FormationServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
+import fr.eni.enicalendar.service.impl.StagiaireEntrepriseService;
 import fr.eni.enicalendar.utils.SessionUtils;
 
 @ManagedBean(name = "ficheStagiaireController")
@@ -166,13 +166,13 @@ public class FicheStagiaireController implements Serializable {
 		this.stagiaire = stagiaire;
 	}
 
-
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("FicheStagiaireController setup");
 		stagiaire = new Stagiaire();
 		HttpSession session = SessionUtils.getSession();
-		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
+		stagiaireEntreprise = stagiaireEntrepriseService.findByCodeStagiaire(
+				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		stagiaire = stagiaireService.findBycodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		entreprise = entrepriseService.findByCodeEntreprise(4);
@@ -235,6 +235,13 @@ public class FicheStagiaireController implements Serializable {
 		session.setAttribute(SessionUtils.SESSION_ID_CALENDRIER1, id);
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("/eni-calendar/views/consulterCalendrier.xhtml");
+	}
+
+	public void modificationCalendrier(Integer id) throws IOException {
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute(SessionUtils.SESSION_TYPE_ACTION, "ModificationCalendrier");
+		session.setAttribute(SessionUtils.SESSION_ID, id);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/eni-calendar/views/modeleVide.xhtml");
 	}
 
 	/**
