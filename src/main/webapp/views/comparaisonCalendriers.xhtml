@@ -27,7 +27,7 @@
           		<div class="ui-g-6">
                 <div style="border-right: solid; padding-right: 5%;">
                     <p:fieldset style="border-radius: 30px; border-width: medium;">
-                        <p:dataTable id="tbl" var="listeCours" value="#{comparaisonCalendriersController.listeCours}" widgetVar="titreTable">
+                        <p:dataTable id="tbl" var="listeCours" value="#{comparaisonCalendriersController.listeCours}" widgetVar="titreTable" emptyMessage="Aucune donnée">
                             <p:column headerText="DateDebut">
                                 <h:outputText value="#{listeCours.dateDebut}">
                                     <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -53,7 +53,7 @@
 				<div class="ui-g-6">
                 <div style="border-left: solid; padding-left: 5%;">
                     <p:fieldset style="border-radius: 30px; border-width: medium;">
-                        <p:dataTable id="tbl2" var="listeCours2" value="#{comparaisonCalendriersController.listeCours2}" widgetVar="titreTable">
+                        <p:dataTable id="tbl2" var="listeCours2" value="#{comparaisonCalendriersController.listeCours2}" widgetVar="titreTable" emptyMessage="Aucune donnée">
                             <p:column headerText="DateDebut">
                                 <h:outputText value="#{listeCours2.dateDebut}">
                                     <f:convertDateTime pattern="dd/MM/yyyy" />
