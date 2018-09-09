@@ -126,6 +126,11 @@ public class ModeleVideController implements Serializable {
 	 */
 	private SimpleDateFormat sdfDate;
 
+	/**
+	 * Le nom du calendrier
+	 */
+	private String nomCalendrier;
+
 	@PostConstruct
 	public void setup() {
 		LOGGER.info("CoursController setup");
@@ -172,6 +177,7 @@ public class ModeleVideController implements Serializable {
 			selectedLieu = lieuService.findByCodeLieu(modeleCalendrier.getIdLieuFormationERP());
 			codeLieuFormation = String.valueOf(selectedLieu.getCodeLieu());
 			dateDebut = modeleCalendrier.getDateDebutMax();
+			nomCalendrier = modeleCalendrier.getNomCalendrier();
 			preFormulaireValide = true;
 			chargermentDonnees();
 
@@ -205,6 +211,38 @@ public class ModeleVideController implements Serializable {
 				ModuleIndependant moduleIndependant = moduleIndependantsService
 						.findById(contrainteModuleIndependant.getIdModuleIndependant());
 				moduleIndependantsViewElement.getListModuleIndependants().add(moduleIndependant);
+			}
+
+			// On charge les contraintes
+			contraintesViewElement.setListPeriodeFaibleActiviteEntreprise(new ArrayList<>());
+			contraintesViewElement.setListPeriodeForteActiviteEntreprise(new ArrayList<>());
+			contraintesViewElement.setListPeriodeNonDisponibiliteStagiaire(new ArrayList<>());
+			for (Contrainte contrainte : modeleCalendrier.getContraintes()) {
+				if (TypeContrainteEnum.SEMAINE_AFFILEE_ENTREPRISE.toString()
+						.equals(contrainte.getTypeContrainte().getLibelle())) {
+					contraintesViewElement.setSemaineAffileeEntreprise(Boolean.TRUE);
+					contraintesViewElement.setSemaineAffileeEntrepriseNombre(contrainte.getNombreDeSemaines());
+				}
+				if (TypeContrainteEnum.SEMAINE_AFFILEE_FORMATION.toString()
+						.equals(contrainte.getTypeContrainte().getLibelle())) {
+					contraintesViewElement.setSemaineAffileeFormation(Boolean.TRUE);
+					contraintesViewElement.setSemaineAffileeFormationNombre(contrainte.getNombreDeSemaines());
+				}
+				if (TypeContrainteEnum.FORTE_ACTIVITE_ENTREPRISE.toString()
+						.equals(contrainte.getTypeContrainte().getLibelle())) {
+					contraintesViewElement.setPeriodeForteActiviteEntreprise(Boolean.TRUE);
+					contraintesViewElement.getListPeriodeForteActiviteEntreprise().add(contrainte);
+				}
+				if (TypeContrainteEnum.FAIBLE_ACTIVITE_ENTREPRISE.toString()
+						.equals(contrainte.getTypeContrainte().getLibelle())) {
+					contraintesViewElement.setPeriodeFaibleActiviteEntreprise(Boolean.TRUE);
+					contraintesViewElement.getListPeriodeFaibleActiviteEntreprise().add(contrainte);
+				}
+				if (TypeContrainteEnum.NON_DISPONIBILITE.toString()
+						.equals(contrainte.getTypeContrainte().getLibelle())) {
+					contraintesViewElement.setPeriodeNonDisponibiliteStagiaire(Boolean.TRUE);
+					contraintesViewElement.getListPeriodeNonDisponibiliteStagiaire().add(contrainte);
+				}
 			}
 		}
 
@@ -282,7 +320,7 @@ public class ModeleVideController implements Serializable {
 			modeleCalendrier = new ModeleCalendrier();
 			modeleCalendrier.setDateCreation(new Date());
 		}
-		modeleCalendrier.setNomCalendrier("TODO Nom");
+		modeleCalendrier.setNomCalendrier(nomCalendrier);
 		modeleCalendrier.setDateModification(new Date());
 		modeleCalendrier.setDateDebutMax(dateDebut);
 		modeleCalendrier.setIdLieuFormationERP(Integer.valueOf(codeLieuFormation.trim()));
@@ -843,6 +881,14 @@ public class ModeleVideController implements Serializable {
 
 	public void setTypeContrainteService(TypeContrainteServiceInterface typeContrainteService) {
 		this.typeContrainteService = typeContrainteService;
+	}
+
+	public String getNomCalendrier() {
+		return nomCalendrier;
+	}
+
+	public void setNomCalendrier(String nomCalendrier) {
+		this.nomCalendrier = nomCalendrier;
 	}
 
 }

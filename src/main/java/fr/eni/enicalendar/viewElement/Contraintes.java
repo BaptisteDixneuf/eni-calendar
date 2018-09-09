@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import fr.eni.enicalendar.persistence.app.entities.Contrainte;
+
 public class Contraintes implements Serializable {
 
 	/**
@@ -17,17 +19,17 @@ public class Contraintes implements Serializable {
 	private Integer semaineAffileeFormationNombre;
 
 	private boolean periodeFaibleActiviteEntreprise;
-	private List<ContraintePeriodeFaibleActiviteEntreprise> listPeriodeFaibleActiviteEntreprise;
+	private List<Contrainte> listPeriodeFaibleActiviteEntreprise;
 	private Date periodeFaibleActiviteEntrepriseDateDebut;
 	private Date periodeFaibleActiviteEntrepriseDateFin;
 
 	private boolean periodeForteActiviteEntreprise;
-	private List<ContraintePeriodeForteActiviteEntreprise> listPeriodeForteActiviteEntreprise;
+	private List<Contrainte> listPeriodeForteActiviteEntreprise;
 	private Date periodeForteActiviteEntrepriseDateDebut;
 	private Date periodeForteActiviteEntrepriseDateFin;
 
 	private boolean periodeNonDisponibiliteStagiaire;
-	private List<ContraintePeriodeNonDisponibiliteStagiaire> listPeriodeNonDisponibiliteStagiaire;
+	private List<Contrainte> listPeriodeNonDisponibiliteStagiaire;
 	private Date periodeNonDisponibiliteStagiaireDateDebut;
 	private Date periodeNonDisponibiliteStagiaireDateFin;
 	private String periodeNonDisponibiliteStagiaireMotif;
@@ -88,37 +90,6 @@ public class Contraintes implements Serializable {
 		return periodeNonDisponibiliteStagiaire;
 	}
 
-	public void setPeriodeNonDisponibiliteStagiaire(boolean periodeNonDisponibiliteStagiaire) {
-		this.periodeNonDisponibiliteStagiaire = periodeNonDisponibiliteStagiaire;
-	}
-
-	public List<ContraintePeriodeFaibleActiviteEntreprise> getListPeriodeFaibleActiviteEntreprise() {
-		return listPeriodeFaibleActiviteEntreprise;
-	}
-
-	public void setListPeriodeFaibleActiviteEntreprise(
-			List<ContraintePeriodeFaibleActiviteEntreprise> listPeriodeFaibleActiviteEntreprise) {
-		this.listPeriodeFaibleActiviteEntreprise = listPeriodeFaibleActiviteEntreprise;
-	}
-
-	public List<ContraintePeriodeForteActiviteEntreprise> getListPeriodeForteActiviteEntreprise() {
-		return listPeriodeForteActiviteEntreprise;
-	}
-
-	public void setListPeriodeForteActiviteEntreprise(
-			List<ContraintePeriodeForteActiviteEntreprise> listPeriodeForteActiviteEntreprise) {
-		this.listPeriodeForteActiviteEntreprise = listPeriodeForteActiviteEntreprise;
-	}
-
-	public List<ContraintePeriodeNonDisponibiliteStagiaire> getListPeriodeNonDisponibiliteStagiaire() {
-		return listPeriodeNonDisponibiliteStagiaire;
-	}
-
-	public void setListPeriodeNonDisponibiliteStagiaire(
-			List<ContraintePeriodeNonDisponibiliteStagiaire> listPeriodeNonDisponibiliteStagiaire) {
-		this.listPeriodeNonDisponibiliteStagiaire = listPeriodeNonDisponibiliteStagiaire;
-	}
-
 	public Date getPeriodeFaibleActiviteEntrepriseDateDebut() {
 		return periodeFaibleActiviteEntrepriseDateDebut;
 	}
@@ -173,6 +144,34 @@ public class Contraintes implements Serializable {
 
 	public void setPeriodeNonDisponibiliteStagiaireMotif(String periodeNonDisponibiliteStagiaireMotif) {
 		this.periodeNonDisponibiliteStagiaireMotif = periodeNonDisponibiliteStagiaireMotif;
+	}
+
+	public List<Contrainte> getListPeriodeFaibleActiviteEntreprise() {
+		return listPeriodeFaibleActiviteEntreprise;
+	}
+
+	public void setListPeriodeFaibleActiviteEntreprise(List<Contrainte> listPeriodeFaibleActiviteEntreprise) {
+		this.listPeriodeFaibleActiviteEntreprise = listPeriodeFaibleActiviteEntreprise;
+	}
+
+	public List<Contrainte> getListPeriodeForteActiviteEntreprise() {
+		return listPeriodeForteActiviteEntreprise;
+	}
+
+	public void setListPeriodeForteActiviteEntreprise(List<Contrainte> listPeriodeForteActiviteEntreprise) {
+		this.listPeriodeForteActiviteEntreprise = listPeriodeForteActiviteEntreprise;
+	}
+
+	public List<Contrainte> getListPeriodeNonDisponibiliteStagiaire() {
+		return listPeriodeNonDisponibiliteStagiaire;
+	}
+
+	public void setListPeriodeNonDisponibiliteStagiaire(List<Contrainte> listPeriodeNonDisponibiliteStagiaire) {
+		this.listPeriodeNonDisponibiliteStagiaire = listPeriodeNonDisponibiliteStagiaire;
+	}
+
+	public void setPeriodeNonDisponibiliteStagiaire(boolean periodeNonDisponibiliteStagiaire) {
+		this.periodeNonDisponibiliteStagiaire = periodeNonDisponibiliteStagiaire;
 	}
 
 }
