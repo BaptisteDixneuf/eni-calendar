@@ -1,7 +1,7 @@
 package fr.eni.enicalendar.persistence.app.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -48,7 +48,7 @@ public class ModuleIndependant implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "MI_ID")
-	private Collection<ProgrammeModuleIndependant> programmeModuleIndependant;
+	private Set<ProgrammeModuleIndependant> programmeModuleIndependant;
 
 	/**
 	 * @return the id
@@ -148,11 +148,11 @@ public class ModuleIndependant implements Serializable {
 		this.lieuFormation = lieuFormation;
 	}
 
-	public Collection<ProgrammeModuleIndependant> getProgrammeModuleIndependant() {
+	public Set<ProgrammeModuleIndependant> getProgrammeModuleIndependant() {
 		return programmeModuleIndependant;
 	}
 
-	public void setProgrammeModuleIndependant(Collection<ProgrammeModuleIndependant> programmeModuleIndependant) {
+	public void setProgrammeModuleIndependant(Set<ProgrammeModuleIndependant> programmeModuleIndependant) {
 		this.programmeModuleIndependant = programmeModuleIndependant;
 	}
 
