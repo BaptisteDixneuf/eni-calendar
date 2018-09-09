@@ -26,7 +26,9 @@
 			<p:messages for="general" showDetail="true" closable="true">
 				<p:autoUpdate />
 			</p:messages>
-		<p:commandButton value="+ Créer un nouveau module indépendant" style="background-color: #2E9AFE" action="#{gestionModulesIndependantsController.ajoutModule('Création')}"/>
+		<p>
+			<p:commandButton value="Créer un nouveau module indépendant" style="background-color: #2E9AFE" action="#{gestionModulesIndependantsController.ajoutModule('Création')}"/>
+		</p>
 		<h:form>
 			<p:dataTable var="modules" value="#{gestionModulesIndependantsController.modules}" widgetVar="titreTable" emptyMessage="Auncun module ne correspond"
 						 rows="15"
@@ -40,17 +42,7 @@
 				<p:column headerText="Lieu" sortBy="#{modules.lieuFormation}" filterBy="#{modules.lieuFormation}">
 					<h:outputText value="#{modules.lieuFormation}">
 					</h:outputText>
-				</p:column>
-				<p:column headerText="Debut" sortBy="#{modules.dateDebut}" filterBy="#{modules.dateDebut}">
-					<h:outputText value="#{modules.dateDebut}">
-                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:outputText>
-				</p:column>
-				<p:column headerText="Fin" sortBy="#{modules.dateFin}" filterBy="#{modules.dateFin}">
-					<h:outputText value="#{modules.dateFin}">
-                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:outputText>
-				</p:column>
+				</p:column>				
 				<p:column headerText="">
 					<p:commandButton value="Modifier" style="background-color: #FE9A2E" action="#{gestionModulesIndependantsController.modificationModule('Modification', modules.id)}"/>
 					<p:commandButton value="Supprimer" action="#{gestionModulesIndependantsController.setId(modules.id)}" style="background-color: #FE2E2E" onclick="PF('dlg2').show();"/>

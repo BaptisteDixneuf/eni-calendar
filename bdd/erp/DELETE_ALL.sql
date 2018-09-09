@@ -6,4 +6,6 @@ DELETE FROM Salle;
 DELETE FROM Formation;
 DELETE FROM TITRE;
 DELETE FROM Lieu;
-
+DELETE FROM Stagiaire;
+DELETE FROM Entreprise;
+DELETE FROM StagiaireParEntreprise;

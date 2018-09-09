@@ -45,7 +45,7 @@ public class Calendrier implements Serializable {
 	private Integer idLieuFormationERP;
 
 	@Column(name = "CA_ID_FORMATION_ERP")
-	private Integer idFormationERP;
+	private String idFormationERP;
 
 	@Column(name = "CA_DATE_DEBUT_MAX")
 	private Date dateDebutMax;
@@ -192,18 +192,11 @@ public class Calendrier implements Serializable {
 		this.idLieuFormationERP = idLieuFormationERP;
 	}
 
-	/**
-	 * @return the idFormationERP
-	 */
-	public Integer getIdFormationERP() {
+	public String getIdFormationERP() {
 		return idFormationERP;
 	}
 
-	/**
-	 * @param idFormationERP
-	 *            the idFormationERP to set
-	 */
-	public void setIdFormationERP(Integer idFormationERP) {
+	public void setIdFormationERP(String idFormationERP) {
 		this.idFormationERP = idFormationERP;
 	}
 

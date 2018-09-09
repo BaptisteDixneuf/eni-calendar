@@ -1,3 +1,13 @@
+SET DATEFORMAT ymd
+SET IDENTITY_INSERT CALENDRIER ON
+
+INSERT INTO ETAT_CALENDRIER VALUES ('Actif');
+INSERT INTO ETAT_CALENDRIER VALUES ('Inactif');
+INSERT INTO ETAT_CALENDRIER VALUES ('Prévisionnel');
+INSERT INTO ETAT_CALENDRIER VALUES ('Inscrit');
+
+INSERT INTO ROLE_UTILISATEUR VALUES ('Utilisateur');
+
 INSERT INTO Stagiaire (CodeStagiaire, Civilite, Nom, Prenom, Adresse1, Adresse2, Adresse3, Codepostal, Ville, TelephoneFixe, TelephonePortable, Email, DateNaissance, CodeRegion, CodeNationalite, CodeOrigineMedia, DateDernierEnvoiDoc, DateCreation, Repertoire, Permis, Photo, EnvoiDocEnCours, Historique) VALUES (19, 'Mr ', 'Dupond', 'Jean', '2 rue Rondeau', null, null, '44200', 'Nantes', '02000000      ', '06000000      ', 'test@test.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);
 INSERT INTO Stagiaire (CodeStagiaire, Civilite, Nom, Prenom, Adresse1, Adresse2, Adresse3, Codepostal, Ville, TelephoneFixe, TelephonePortable, Email, DateNaissance, CodeRegion, CodeNationalite, CodeOrigineMedia, DateDernierEnvoiDoc, DateCreation, Repertoire, Permis, Photo, EnvoiDocEnCours, Historique) VALUES (20, 'Mr ', 'Smith', 'John', '2 rue Roubier', null, null, '44200', 'Nantes', '02000001      ', '06000001      ', 'test@smith.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);
 INSERT INTO Stagiaire (CodeStagiaire, Civilite, Nom, Prenom, Adresse1, Adresse2, Adresse3, Codepostal, Ville, TelephoneFixe, TelephonePortable, Email, DateNaissance, CodeRegion, CodeNationalite, CodeOrigineMedia, DateDernierEnvoiDoc, DateCreation, Repertoire, Permis, Photo, EnvoiDocEnCours, Historique) VALUES (21, 'Mr ', 'Dubois', 'Yvan', '2 rue Rabin', null, null, '44300', 'Nantes', '02000002      ', '06000002      ', 'test@dubois.fr', null, null, null, null, null, '1995-08-08 09:27:19.330', null, 0, null, 0, null);

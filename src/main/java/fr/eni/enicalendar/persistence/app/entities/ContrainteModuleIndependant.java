@@ -1,18 +1,15 @@
 package fr.eni.enicalendar.persistence.app.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
-@Table(name = "DISPENSE")
-public class Dispense implements Serializable {
+@Table(name = "CONTRAINTE_MODULE_INDEPENDANT")
+public class ContrainteModuleIndependant {
 
 	/**
 	 * Serial UID
@@ -21,7 +18,7 @@ public class Dispense implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "DI_ID")
+	@Column(name = "CM_ID")
 	private Integer id;
 
 	@Column(name = "MC_ID")
@@ -30,40 +27,15 @@ public class Dispense implements Serializable {
 	@Column(name = "CA_ID")
 	private Integer idCalendrier;
 
-	@Column(name = "DI_ID_MODULE_ERP")
-	private Integer idModuleERP;
+	@Column(name = "MI_ID")
+	private Integer idModuleIndependant;
 
-	@Transient
-	private String libelle;
-
-	/**
-	 * @return the id
-	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/**
-	 * @param id
-	 *            the id to set
-	 */
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	/**
-	 * @return the idModuleERP
-	 */
-	public Integer getIdModuleERP() {
-		return idModuleERP;
-	}
-
-	/**
-	 * @param idModuleERP
-	 *            the idModuleERP to set
-	 */
-	public void setIdModuleERP(Integer idModuleERP) {
-		this.idModuleERP = idModuleERP;
 	}
 
 	public Integer getIdModeleCalendrier() {
@@ -82,12 +54,12 @@ public class Dispense implements Serializable {
 		this.idCalendrier = idCalendrier;
 	}
 
-	public String getLibelle() {
-		return libelle;
+	public Integer getIdModuleIndependant() {
+		return idModuleIndependant;
 	}
 
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+	public void setIdModuleIndependant(Integer idModuleIndependant) {
+		this.idModuleIndependant = idModuleIndependant;
 	}
 
 }

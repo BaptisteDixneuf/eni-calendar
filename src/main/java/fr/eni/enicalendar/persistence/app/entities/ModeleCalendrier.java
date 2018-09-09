@@ -3,10 +3,12 @@ package fr.eni.enicalendar.persistence.app.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,7 +43,7 @@ public class ModeleCalendrier implements Serializable {
 	private Integer idLieuFormationERP;
 
 	@Column(name = "MC_ID_FORMATION_ERP")
-	private Integer idFormationERP;
+	private String idFormationERP;
 
 	@Column(name = "MC_DATE_DEBUT_MAX")
 	private Date dateDebutMax;
@@ -49,17 +51,21 @@ public class ModeleCalendrier implements Serializable {
 	@Column(name = "MC_DATE_FIN_MAX")
 	private Date dateFinMax;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "MC_ID")
-	private Collection<Programmation> programmations;
+	private Set<Programmation> programmations;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "MC_ID")
-	private Collection<Contrainte> contraintes;
+	private Set<Contrainte> contraintes;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "MC_ID")
-	private Collection<Dispense> dispenses;
+	private Set<Dispense> dispenses;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "MC_ID")
+	private Set<ContrainteModuleIndependant> contrainteModuleIndependant;
 
 	/**
 	 * @return the id
@@ -121,33 +127,19 @@ public class ModeleCalendrier implements Serializable {
 		this.dateModification = dateModification;
 	}
 
-	/**
-	 * @return the idLieuFormationERP
-	 */
 	public Integer getIdLieuFormationERP() {
 		return idLieuFormationERP;
 	}
 
-	/**
-	 * @param idLieuFormationERP
-	 *            the idLieuFormationERP to set
-	 */
 	public void setIdLieuFormationERP(Integer idLieuFormationERP) {
 		this.idLieuFormationERP = idLieuFormationERP;
 	}
 
-	/**
-	 * @return the idFormationERP
-	 */
-	public Integer getIdFormationERP() {
+	public String getIdFormationERP() {
 		return idFormationERP;
 	}
 
-	/**
-	 * @param idFormationERP
-	 *            the idFormationERP to set
-	 */
-	public void setIdFormationERP(Integer idFormationERP) {
+	public void setIdFormationERP(String idFormationERP) {
 		this.idFormationERP = idFormationERP;
 	}
 
@@ -185,24 +177,32 @@ public class ModeleCalendrier implements Serializable {
 		return programmations;
 	}
 
-	public void setProgrammations(Collection<Programmation> programmations) {
-		this.programmations = programmations;
-	}
-
-	public Collection<Contrainte> getContraintes() {
+	public Set<Contrainte> getContraintes() {
 		return contraintes;
 	}
 
-	public void setContraintes(Collection<Contrainte> contraintes) {
+	public void setContraintes(Set<Contrainte> contraintes) {
 		this.contraintes = contraintes;
 	}
 
-	public Collection<Dispense> getDispenses() {
+	public Set<Dispense> getDispenses() {
 		return dispenses;
 	}
 
-	public void setDispenses(Collection<Dispense> dispenses) {
+	public void setDispenses(Set<Dispense> dispenses) {
 		this.dispenses = dispenses;
+	}
+
+	public Set<ContrainteModuleIndependant> getContrainteModuleIndependant() {
+		return contrainteModuleIndependant;
+	}
+
+	public void setContrainteModuleIndependant(Set<ContrainteModuleIndependant> contrainteModuleIndependant) {
+		this.contrainteModuleIndependant = contrainteModuleIndependant;
+	}
+
+	public void setProgrammations(Set<Programmation> programmations) {
+		this.programmations = programmations;
 	}
 
 }

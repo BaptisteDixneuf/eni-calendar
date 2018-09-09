@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -24,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import fr.eni.enicalendar.exceptions.FonctionnelException;
 import fr.eni.enicalendar.persistence.app.entities.Contrainte;
+import fr.eni.enicalendar.persistence.app.entities.ContrainteModuleIndependant;
 import fr.eni.enicalendar.persistence.app.entities.Dispense;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.app.entities.ModuleIndependant;
@@ -45,7 +48,6 @@ import fr.eni.enicalendar.utils.SessionUtils;
 import fr.eni.enicalendar.utils.TypeContrainteEnum;
 import fr.eni.enicalendar.viewElement.AutreCours;
 import fr.eni.enicalendar.viewElement.Contraintes;
-import fr.eni.enicalendar.viewElement.DispenseElement;
 import fr.eni.enicalendar.viewElement.Dispenses;
 import fr.eni.enicalendar.viewElement.ElementCalendrier;
 import fr.eni.enicalendar.viewElement.ElementCalendrierType;
@@ -128,18 +130,84 @@ public class ModeleVideController implements Serializable {
 	public void setup() {
 		LOGGER.info("CoursController setup");
 
-		sdfDate = new SimpleDateFormat("dd-MM-yyyy");
+		try {
+			sdfDate = new SimpleDateFormat("dd-MM-yyyy");
+			droppedElementCalendrier = new ArrayList<ElementCalendrier>();
 
-		// On récupère les lieux et formations
-		lieux = lieuService.findAllLieux();
-		formations = formationService.findAllFormations();
-		// TODO: remettrre
-		// ensembleCours = coursService.findAllCours();
+			// On récupère les lieux et formations
+			lieux = lieuService.findAllLieux();
+			formations = formationService.findAllFormations();
+			// TODO: remettrre
+			// ensembleCours = coursService.findAllCours();
 
-		contraintesViewElement = new Contraintes();
-		dispensesViewElement = new Dispenses();
-		moduleIndependantsViewElement = new ModuleIndependants();
-		autreCoursViewElement = new AutreCours();
+			contraintesViewElement = new Contraintes();
+			dispensesViewElement = new Dispenses();
+			moduleIndependantsViewElement = new ModuleIndependants();
+			autreCoursViewElement = new AutreCours();
+			chargementAncienneDonnees();
+		} catch (FonctionnelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Dans le cas d'une modification, on recharge les données
+	 * 
+	 * @throws FonctionnelException
+	 */
+	public void chargementAncienneDonnees() throws FonctionnelException {
+		// On préremplie la colonne "Programmation" de la vue avec les données
+		// précédements enregistrés
+
+		if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
+				&& SessionUtils.getId() != null) {
+
+			Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
+			modeleCalendrier = modeleCalendrierService.findById(idModeleCalendrier);
+			selectedFormation = formationService
+					.findByCodeFormation(String.valueOf(modeleCalendrier.getIdFormationERP()));
+			codeFormation = selectedFormation.getCodeFormation();
+			selectedLieu = lieuService.findByCodeLieu(modeleCalendrier.getIdLieuFormationERP());
+			codeLieuFormation = String.valueOf(selectedLieu.getCodeLieu());
+			dateDebut = modeleCalendrier.getDateDebutMax();
+			preFormulaireValide = true;
+			chargermentDonnees();
+
+			// On charge les éléments programmées
+			List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
+			for (Programmation programmation : modeleCalendrier.getProgrammations()) {
+				ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
+				droppedElementCalendrierExistant.add(element);
+				droppedElementCalendrier.add(element);
+				elementDeplaceDansProgrammation(element);
+			}
+
+			Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
+				public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+					return m1.getDateDebut().compareTo(m2.getDateFin());
+				}
+			});
+
+			// On charge les dispense
+			dispensesViewElement.setListDispenses(new ArrayList<>());
+			for (Dispense dispense : modeleCalendrier.getDispenses()) {
+				Module module = moduleService.findModuleById(dispense.getIdModuleERP());
+				dispense.setLibelle(module.getLibelle());
+				dispensesViewElement.getListDispenses().add(dispense);
+			}
+
+			// On charge les modules indépendants
+			moduleIndependantsViewElement.setListModuleIndependants(new ArrayList<>());
+			for (ContrainteModuleIndependant contrainteModuleIndependant : modeleCalendrier
+					.getContrainteModuleIndependant()) {
+				ModuleIndependant moduleIndependant = moduleIndependantsService
+						.findById(contrainteModuleIndependant.getIdModuleIndependant());
+				moduleIndependantsViewElement.getListModuleIndependants().add(moduleIndependant);
+			}
+		}
+
 	}
 
 	/**
@@ -212,10 +280,13 @@ public class ModeleVideController implements Serializable {
 		LOGGER.info("Début de l'enregistrement");
 		if (modeleCalendrier == null) {
 			modeleCalendrier = new ModeleCalendrier();
+			modeleCalendrier.setDateCreation(new Date());
 		}
 		modeleCalendrier.setNomCalendrier("TODO Nom");
-		modeleCalendrier.setDateCreation(new Date());
 		modeleCalendrier.setDateModification(new Date());
+		modeleCalendrier.setDateDebutMax(dateDebut);
+		modeleCalendrier.setIdLieuFormationERP(Integer.valueOf(codeLieuFormation.trim()));
+		modeleCalendrier.setIdFormationERP(codeFormation);
 
 		List<Programmation> listesProgramation = new ArrayList<>();
 		for (ElementCalendrier elementCalendrier : droppedElementCalendrier) {
@@ -224,7 +295,8 @@ public class ModeleVideController implements Serializable {
 			programmation.setIdCoursPlanifieERP(elementCalendrier.getId());
 			listesProgramation.add(programmation);
 		}
-		modeleCalendrier.setProgrammations(listesProgramation);
+		Set<Programmation> setlistesProgramation = new HashSet<Programmation>(listesProgramation);
+		modeleCalendrier.setProgrammations(setlistesProgramation);
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 
 		LOGGER.info("Fin de l'enregistrement");
@@ -314,32 +386,6 @@ public class ModeleVideController implements Serializable {
 			}
 		});
 
-		// On préremplie la colonne "Programmation" de la vue avec les données
-		// précédements enregistrés
-		droppedElementCalendrier = new ArrayList<ElementCalendrier>();
-
-		if (SessionUtils.getAction() != null && SessionUtils.getAction().equals("ModificationModele")
-				&& SessionUtils.getId() != null) {
-
-			Integer idModeleCalendrier = Integer.valueOf(SessionUtils.getId());
-			List<Programmation> listProgrammationExistant = programmationService
-					.findProgrammationByModeleCalendrier(idModeleCalendrier);
-
-			List<ElementCalendrier> droppedElementCalendrierExistant = new ArrayList<>();
-			for (Programmation programmation : listProgrammationExistant) {
-				ElementCalendrier element = convertProgrammationToElementCalendrier(programmation);
-				droppedElementCalendrierExistant.add(element);
-				droppedElementCalendrier.add(element);
-				elementDeplaceDansProgrammation(element);
-			}
-
-		}
-
-		Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
-			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
-				return m1.getDateDebut().compareTo(m2.getDateFin());
-			}
-		});
 	}
 
 	/**
@@ -460,7 +506,8 @@ public class ModeleVideController implements Serializable {
 			contrainteEntityList.add(contrainteNonDisponibilite);
 		}
 
-		modeleCalendrier.setContraintes(contrainteEntityList);
+		Set<Contrainte> setContrainteEntityList = new HashSet<Contrainte>(contrainteEntityList);
+		modeleCalendrier.setContraintes(setContrainteEntityList);
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 	}
 
@@ -471,7 +518,7 @@ public class ModeleVideController implements Serializable {
 	public void ajouterDispense() {
 
 		if (dispensesViewElement.getListDispenses() == null) {
-			List<DispenseElement> list = new ArrayList<>();
+			List<Dispense> list = new ArrayList<>();
 			dispensesViewElement.setListDispenses(list);
 		}
 
@@ -481,8 +528,8 @@ public class ModeleVideController implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez sélectionner un élément", ""));
 
 		} else {
-			for (DispenseElement dispenseElement : dispensesViewElement.getListDispenses()) {
-				if (dispenseElement.getIdModuleERP().equals(dispensesViewElement.getSelectedModule().getId())) {
+			for (Dispense dispense : dispensesViewElement.getListDispenses()) {
+				if (dispense.getIdModuleERP().equals(dispensesViewElement.getSelectedModule().getId())) {
 					FacesContext.getCurrentInstance().addMessage("moduleAutocomplete",
 							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ce module est déjà dispensé", ""));
 				}
@@ -490,10 +537,12 @@ public class ModeleVideController implements Serializable {
 		}
 
 		if (!hasError()) {
-			DispenseElement dispenseElement = new DispenseElement();
-			dispenseElement.setIdModuleERP(dispensesViewElement.getSelectedModule().getId());
-			dispenseElement.setLibelle(dispensesViewElement.getSelectedModule().getLibelle());
-			dispensesViewElement.getListDispenses().add(dispenseElement);
+			Dispense dispense = new Dispense();
+			dispense.setIdModuleERP(dispensesViewElement.getSelectedModule().getId());
+			dispense.setLibelle(dispensesViewElement.getSelectedModule().getLibelle());
+			dispense.setIdModeleCalendrier(modeleCalendrier.getId());
+			dispensesViewElement.getListDispenses().add(dispense);
+			dispensesViewElement.setSelectedModule(null);
 		}
 	}
 
@@ -507,18 +556,77 @@ public class ModeleVideController implements Serializable {
 		}
 
 		if (dispensesViewElement.getListDispenses() == null) {
-			List<DispenseElement> list = new ArrayList<>();
+			List<Dispense> list = new ArrayList<>();
 			dispensesViewElement.setListDispenses(list);
 		}
-		List<Dispense> listDispensesEntities = new ArrayList<>();
-		for (DispenseElement dispenseElementView : dispensesViewElement.getListDispenses()) {
-			Dispense dispense = new Dispense();
-			dispense.setIdModuleERP(dispenseElementView.getIdModuleERP());
-			dispense.setIdModeleCalendrier(modeleCalendrier.getId());
-			listDispensesEntities.add(dispense);
+		List<Dispense> listDispensesEntities = dispensesViewElement.getListDispenses();
+
+		Set<Dispense> setListDispensesEntities = new HashSet<Dispense>(listDispensesEntities);
+		modeleCalendrier.setDispenses(setListDispensesEntities);
+		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
+	}
+
+	/**
+	 * Permet d'ajouter un module à la liste des modules
+	 */
+	public void ajouterModule() {
+
+		if (moduleIndependantsViewElement.getListModuleIndependants() == null) {
+			List<ModuleIndependant> listModuleIndependants = new ArrayList<>();
+			moduleIndependantsViewElement.setListModuleIndependants(listModuleIndependants);
 		}
 
-		modeleCalendrier.setDispenses(listDispensesEntities);
+		// Contrôle validé
+		if (moduleIndependantsViewElement.getSelectedModuleIndependant() == null) {
+			FacesContext.getCurrentInstance().addMessage("moduleIndependantAutocomplete",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez sélectionner un élément", ""));
+
+		} else {
+			for (ModuleIndependant moduleIndependantElement : moduleIndependantsViewElement
+					.getListModuleIndependants()) {
+				if (moduleIndependantElement.getId()
+						.equals(moduleIndependantsViewElement.getSelectedModuleIndependant().getId())) {
+					FacesContext.getCurrentInstance().addMessage("moduleIndependantAutocomplete",
+							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ce module indépendant est déjà ajouté", ""));
+				}
+			}
+		}
+
+		if (!hasError()) {
+			ModuleIndependant moduleIndependantElement = new ModuleIndependant();
+			moduleIndependantElement.setId(moduleIndependantsViewElement.getSelectedModuleIndependant().getId());
+			moduleIndependantElement
+					.setLibelle(moduleIndependantsViewElement.getSelectedModuleIndependant().getLibelle());
+			moduleIndependantsViewElement.getListModuleIndependants().add(moduleIndependantElement);
+			moduleIndependantsViewElement.setSelectedModuleIndependant(null);
+		}
+	}
+
+	/**
+	 * Permet d'enregistrer les modules indépendants
+	 */
+	public void enregistrerModulesIndependants() {
+
+		if (modeleCalendrier == null || modeleCalendrier.getId() == null) {
+			save();
+		}
+
+		if (moduleIndependantsViewElement.getListModuleIndependants() == null) {
+			List<ModuleIndependant> list = new ArrayList<>();
+			moduleIndependantsViewElement.setListModuleIndependants(list);
+		}
+		List<ContrainteModuleIndependant> listContrainteModuleIndependantEntities = new ArrayList<>();
+		for (ModuleIndependant moduleIndependantElementViewElement : moduleIndependantsViewElement
+				.getListModuleIndependants()) {
+			ContrainteModuleIndependant item = new ContrainteModuleIndependant();
+			item.setIdModuleIndependant(moduleIndependantElementViewElement.getId());
+			item.setIdModeleCalendrier(modeleCalendrier.getId());
+			listContrainteModuleIndependantEntities.add(item);
+		}
+
+		Set<ContrainteModuleIndependant> setListContrainteModuleIndependantEntities = new HashSet<ContrainteModuleIndependant>(
+				listContrainteModuleIndependantEntities);
+		modeleCalendrier.setContrainteModuleIndependant(setListContrainteModuleIndependantEntities);
 		modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
 	}
 

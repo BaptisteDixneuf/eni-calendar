@@ -282,35 +282,51 @@
 							<h:panelGroup id="tabDispenses">
 								<h:outputText value="Les dispenses : " />
 								<p:dataTable var="dispense" value="#{modeleVideController.dispensesViewElement.listDispenses}" emptyMessage="Aucune dispense">
-									<p:column>
+									<p:column headerText="Libellé">
 										<h:outputText value="#{dispense.libelle}"></h:outputText>
 									</p:column>
+									<p:column headerText="Actions">
+									
+									</p:column>
 								</p:dataTable>
-								<p:autoComplete id="moduleAutocomplete" minQueryLength="3" value="#{modeleVideController.dispensesViewElement.selectedModule}" size="200"
-									completeMethod="#{modeleVideController.autocompleteModule}"  converter="moduleConverter"
-										var="moduleDispense" itemLabel="#{moduleDispense.libelle}" itemValue="#{moduleDispense}" forceSelection="true"/>
-								<p:messages for="moduleAutocomplete"></p:messages>	
+								<p:outputLabel styleClass="m-t-20" for="moduleAutocomplete">Ajouter une dispense (autocomplétion): </p:outputLabel>
+								<p>
+									<p:autoComplete id="moduleAutocomplete" minQueryLength="3" value="#{modeleVideController.dispensesViewElement.selectedModule}" size="120"
+										completeMethod="#{modeleVideController.autocompleteModule}"  converter="moduleConverter"
+											var="moduleDispense" itemLabel="#{moduleDispense.libelle}" itemValue="#{moduleDispense}" forceSelection="true"/>
+									<p:messages for="moduleAutocomplete"></p:messages>	
+								</p>
 								<p:commandButton styleClass="m-t-10" id="ajouterDispense" value="Ajouter" action="#{modeleVideController.ajouterDispense}" update="tabDispenses"></p:commandButton>								
 							</h:panelGroup>
 							<p>	
-								<p:commandButton styleClass="" id="enregistrerDispenses" value="Enregistrer" action="#{modeleVideController.enregistrerDispenses}" update=":coursForm"></p:commandButton>
+								<p:commandButton styleClass="pull-r" id="enregistrerDispenses" value="Enregistrer" action="#{modeleVideController.enregistrerDispenses}" update=":coursForm"></p:commandButton>
 							</p>	
 						</p:tab>
 						
 						<!-- Les modules indépendants -->
 						<p:tab title="Modules indépendants">
-							<h:outputText value="Les modules indépendants : " />
-							<p:dataTable var="moduleIndependant" value="#{modeleVideController.moduleIndependantsViewElement.listModuleIndependants}" emptyMessage="Aucun module indépendant">
-								<p:column headerText="Libellé">
-									<h:outputText value="#{moduleIndependant.libelle}"></h:outputText>
-								</p:column>
-								<p:column headerText="Actions">
-									
-								</p:column>
-							</p:dataTable>
-							<p:autoComplete id="moduleIndependantAutocomplete" minQueryLength="3" value="#{modeleVideController.moduleIndependantsViewElement.selectedModuleIndependant}" size="500"
-							completeMethod="#{modeleVideController.autocompleteModuleIndependant}"  converter="moduleIndependantConverter"
-									var="moduleIndependant" itemLabel="#{moduleIndependant.libelle}" itemValue="#{moduleIndependant}" forceSelection="true"/>
+							<h:panelGroup id="tabModules">
+								<h:outputText value="Les modules indépendants : " />
+								<p:dataTable var="moduleIndependant" value="#{modeleVideController.moduleIndependantsViewElement.listModuleIndependants}" emptyMessage="Aucun module indépendant">
+									<p:column headerText="Libellé">
+										<h:outputText value="#{moduleIndependant.libelle}"></h:outputText>
+									</p:column>
+									<p:column headerText="Actions">
+										
+									</p:column>
+								</p:dataTable>
+								<p:outputLabel styleClass="m-t-20"  for="moduleIndependantAutocomplete">Ajouter un module indépendant (autocomplétion): </p:outputLabel>
+								<p>
+									<p:autoComplete id="moduleIndependantAutocomplete" minQueryLength="3" value="#{modeleVideController.moduleIndependantsViewElement.selectedModuleIndependant}" size="120"
+									completeMethod="#{modeleVideController.autocompleteModuleIndependant}"  converter="moduleIndependantConverter"
+											var="moduleIndependant" itemLabel="#{moduleIndependant.libelle}" itemValue="#{moduleIndependant}" forceSelection="true"/>
+									<p:messages for="moduleIndependantAutocomplete"></p:messages>
+								</p>
+								<p:commandButton styleClass="m-t-10" id="ajouterModule" value="Ajouter" action="#{modeleVideController.ajouterModule}" update="tabModules"></p:commandButton>
+							</h:panelGroup>
+							<p>	
+								<p:commandButton styleClass="pull-r" id="enregistrerModulesIndependants" value="Enregistrer" action="#{modeleVideController.enregistrerModulesIndependants}" update=":coursForm"></p:commandButton>
+							</p>
 						</p:tab>
 						
 						<!-- Les autres cours -->
