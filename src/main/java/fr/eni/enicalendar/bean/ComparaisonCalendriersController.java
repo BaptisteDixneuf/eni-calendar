@@ -1,19 +1,5 @@
 package fr.eni.enicalendar.bean;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import fr.eni.enicalendar.persistence.app.entities.Calendrier;
 import fr.eni.enicalendar.persistence.app.entities.ModeleCalendrier;
 import fr.eni.enicalendar.persistence.erp.entities.Stagiaire;
@@ -21,17 +7,29 @@ import fr.eni.enicalendar.service.CalendrierServiceInterface;
 import fr.eni.enicalendar.service.ModeleServiceInterface;
 import fr.eni.enicalendar.service.StagiaireServiceInterface;
 import fr.eni.enicalendar.utils.SessionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
 
 @ManagedBean(name = "comparerCalendriersController")
 @ViewScoped
-public class ComparerCalendriersController implements Serializable {
+public class ComparaisonCalendriersController implements Serializable {
 
 	/**
 	 * Serial UID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ComparerCalendriersController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ComparaisonCalendriersController.class);
 
 	@ManagedProperty(value = "#{stagiaireService}")
 	private StagiaireServiceInterface stagiaireService;

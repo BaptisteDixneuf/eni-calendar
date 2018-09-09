@@ -21,6 +21,10 @@ public class SessionUtils {
 
 	public static final String SESSION_ID_STAGIAIRE = "id_stagiaire";
 
+	public static final String SESSION_ID_MODELE1 = "id_modele1";
+
+	public static final String SESSION_ID_MODELE2 = "id_modele2";
+
 	public static final String SESSION_FORMATION = "";
 
 	public static final String SESSION_LIEU = "";
@@ -29,6 +33,8 @@ public class SessionUtils {
 
 	public static final String SESSION_DATEDEBUT = "";
 	public static final String SESSION_DATEFIN = "";
+
+
 
 	public static HttpSession getSession() {
 		return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
