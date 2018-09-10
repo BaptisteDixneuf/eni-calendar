@@ -1,5 +1,6 @@
 package fr.eni.enicalendar.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -483,7 +484,7 @@ public class ModeleVideController implements Serializable {
 	/**
 	 * Méthode d'enregistrement
 	 */
-	public void save() {
+	public void save() throws IOException  {
 		LOGGER.info("Début de l'enregistrement");
 
 		if (isCalendrier) {
@@ -512,10 +513,12 @@ public class ModeleVideController implements Serializable {
 			Set<Programmation> setlistesProgramation = new HashSet<Programmation>(listesProgramation);
 			calendrier.setProgrammations(setlistesProgramation);
 			calendrier = calendrierService.save(calendrier);
+
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.getExternalContext().getFlash().setKeepMessages(true);
 			context.addMessage("general",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le calendrier est enregistré", ""));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le calendrier est enregistré.", ""));
+			context.getExternalContext().redirect("/eni-calendar/views/ficheStagiaire.xhtml");
 		} else {
 			if (modeleCalendrier == null) {
 				modeleCalendrier = new ModeleCalendrier();
@@ -537,10 +540,12 @@ public class ModeleVideController implements Serializable {
 			Set<Programmation> setlistesProgramation = new HashSet<Programmation>(listesProgramation);
 			modeleCalendrier.setProgrammations(setlistesProgramation);
 			modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
+
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.getExternalContext().getFlash().setKeepMessages(true);
 			context.addMessage("general",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le modèle de calendrier est enregistré", ""));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le modèle de calendrier est enregistré.", ""));
+			context.getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
 		}
 
 		LOGGER.info("Fin de l'enregistrement");
@@ -678,7 +683,7 @@ public class ModeleVideController implements Serializable {
 	/**
 	 * Méthode qui permet d'enregistrer les contraintes
 	 */
-	public void enregistrerContraintes() {
+	public void enregistrerContraintes() throws IOException{
 
 		// TODO: faire de la validation de données
 
@@ -822,7 +827,7 @@ public class ModeleVideController implements Serializable {
 	/**
 	 * Permet d'enregistrer les dispenses
 	 */
-	public void enregistrerDispenses() {
+	public void enregistrerDispenses() throws IOException{
 
 		if (isCalendrier) {
 			if (calendrier == null || calendrier.getId() == null) {
@@ -893,7 +898,7 @@ public class ModeleVideController implements Serializable {
 	/**
 	 * Permet d'enregistrer les modules indépendants
 	 */
-	public void enregistrerModulesIndependants() {
+	public void enregistrerModulesIndependants() throws IOException {
 
 		if (isCalendrier) {
 			if (calendrier == null || calendrier.getId() == null) {
