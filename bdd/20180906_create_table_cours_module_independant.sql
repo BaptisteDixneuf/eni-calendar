@@ -1,35 +1,35 @@
-DROP TABLE IF EXISTS CONTRAINTE_MODULE_INDEPENDANT;
-DROP TABLE IF EXISTS PROGRAMME_MODULE_INDEPENDANT;
-
-CREATE TABLE PROGRAMME_MODULE_INDEPENDANT (
-	PM_ID INT identity,
-	PM_DATE_DEBUT DATETIME NULL,
-	PM_DATE_FIN DATETIME NULL,
-	MI_ID INT NULL,
-	PRIMARY KEY (PM_ID)
-);
-
-alter table PROGRAMME_MODULE_INDEPENDANT
-   add constraint FK_PROGRAMME_MODULE_INDEPENDANT_TO_MODULE_INDEPENDANT foreign key (MI_ID)
-      references MODULE_INDEPENDANT (MI_ID)
-      
-create table CONTRAINTE_MODULE_INDEPENDANT (
-   CM_ID                int                  identity,
-   CA_ID                int                  null,
-   MC_ID                int                  null,
-   MI_ID                int                  null,
-  PRIMARY KEY (CM_ID)
-)
-
-alter table CONTRAINTE_MODULE_INDEPENDANT
-   add constraint FK_CONTRAINTE_MODULE_INDEPENDANT_COMPORTER_CALENDRI foreign key (CA_ID)
-      references CALENDRIER (CA_ID)
-
-alter table CONTRAINTE_MODULE_INDEPENDANT
-   add constraint FK_CONTRAINTE_MODULE_INDEPENDANT_CONSTITUE_MODELE_C foreign key (MC_ID)
-      references MODELE_CALENDRIER (MC_ID)
-      
-alter table CONTRAINTE_MODULE_INDEPENDANT
-   add constraint FK_CONTRAINTE_MODULE_INDEPENDANT_TO_PROGRAMME_MODULE_INDEPENDANT foreign key (MI_ID)
-      references MODULE_INDEPENDANT (MI_ID)
+-- DROP TABLE IF EXISTS CONTRAINTE_MODULE_INDEPENDANT;
+-- DROP TABLE IF EXISTS PROGRAMME_MODULE_INDEPENDANT;
+--
+-- CREATE TABLE PROGRAMME_MODULE_INDEPENDANT (
+-- 	PM_ID INT identity,
+-- 	PM_DATE_DEBUT DATETIME NULL,
+-- 	PM_DATE_FIN DATETIME NULL,
+-- 	MI_ID INT NULL,
+-- 	PRIMARY KEY (PM_ID)
+-- );
+--
+-- alter table PROGRAMME_MODULE_INDEPENDANT
+--    add constraint FK_PROGRAMME_MODULE_INDEPENDANT_TO_MODULE_INDEPENDANT foreign key (MI_ID)
+--       references MODULE_INDEPENDANT (MI_ID)
+--
+-- create table CONTRAINTE_MODULE_INDEPENDANT (
+--    CM_ID                int                  identity,
+--    CA_ID                int                  null,
+--    MC_ID                int                  null,
+--    MI_ID                int                  null,
+--   PRIMARY KEY (CM_ID)
+-- )
+--
+-- alter table CONTRAINTE_MODULE_INDEPENDANT
+--    add constraint FK_CONTRAINTE_MODULE_INDEPENDANT_COMPORTER_CALENDRI foreign key (CA_ID)
+--       references CALENDRIER (CA_ID)
+--
+-- alter table CONTRAINTE_MODULE_INDEPENDANT
+--    add constraint FK_CONTRAINTE_MODULE_INDEPENDANT_CONSTITUE_MODELE_C foreign key (MC_ID)
+--       references MODELE_CALENDRIER (MC_ID)
+--
+-- alter table CONTRAINTE_MODULE_INDEPENDANT
+--    add constraint FK_CONTRAINTE_MODULE_INDEPENDANT_TO_PROGRAMME_MODULE_INDEPENDANT foreign key (MI_ID)
+--       references MODULE_INDEPENDANT (MI_ID)
       
