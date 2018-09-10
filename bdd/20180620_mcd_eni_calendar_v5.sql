@@ -3,6 +3,10 @@
 /* Created on:     20/06/2018 16:50:23                          */
 /*==============================================================*/
 
+CREATE DATABASE EniCalendar;
+go
+use EniCalendar;
+
 
 if exists (select 1
            from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
@@ -873,7 +877,7 @@ go
 
 USE [master]
 GO
-CREATE LOGIN [sollivier] WITH PASSWORD=N'eni44' MUST_CHANGE, DEFAULT_DATABASE=[master], CHECK_EXPIRATION=ON, CHECK_POLICY=ON
+CREATE LOGIN [sollivier] WITH PASSWORD=N'EcoleENI-44' MUST_CHANGE, DEFAULT_DATABASE=[master], CHECK_EXPIRATION=ON, CHECK_POLICY=ON
 GO
 ALTER SERVER ROLE [sysadmin] ADD MEMBER [sollivier]
 GO

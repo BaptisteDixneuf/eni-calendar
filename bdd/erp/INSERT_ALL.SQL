@@ -1,3 +1,4 @@
+use EniEcole;
 SET DATEFORMAT ymd
 SET IDENTITY_INSERT StagiaireParEntreprise ON
 
