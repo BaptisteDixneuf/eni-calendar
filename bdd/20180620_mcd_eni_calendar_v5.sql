@@ -450,7 +450,7 @@ create table CONTRAINTE (
   CO_ID                int                  identity,
   TC_ID                int                  null,
   CA_ID                int                  null,
-  MC_ID                int                  not null,
+  MC_ID                int                  null,
   CO_LIBELLE           varchar(255)         null,
   CO_MOTIF             varchar(255)         null default NULL,
   CO_NB_SEMAINES       int                  null default NULL,
@@ -792,7 +792,7 @@ go
 
 alter table PERMETTRE
   add constraint FK_PERMETTR_PERMETTRE_PROGRAMM foreign key (PR_ID)
-references PROGRAMMATION (PR_ID)
+references PROGRAMMATION (PR_ID)mo
 go
 
 alter table PERMETTRE

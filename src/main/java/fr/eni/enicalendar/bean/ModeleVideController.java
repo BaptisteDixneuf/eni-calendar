@@ -520,12 +520,9 @@ public class ModeleVideController implements Serializable {
 			Set<Programmation> setlistesProgramation = new HashSet<Programmation>(listesProgramation);
 			calendrier.setProgrammations(setlistesProgramation);
 			calendrier = calendrierService.save(calendrier);
-
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.getExternalContext().getFlash().setKeepMessages(true);
 			context.addMessage("general",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le calendrier est enregistré.", ""));
-			context.getExternalContext().redirect("/eni-calendar/views/ficheStagiaire.xhtml");
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le calendrier est enregistré", ""));
 		} else {
 			if (modeleCalendrier == null) {
 				modeleCalendrier = new ModeleCalendrier();
@@ -547,12 +544,9 @@ public class ModeleVideController implements Serializable {
 			Set<Programmation> setlistesProgramation = new HashSet<Programmation>(listesProgramation);
 			modeleCalendrier.setProgrammations(setlistesProgramation);
 			modeleCalendrier = modeleCalendrierService.save(modeleCalendrier);
-
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.getExternalContext().getFlash().setKeepMessages(true);
 			context.addMessage("general",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le modèle de calendrier est enregistré.", ""));
-			context.getExternalContext().redirect("/eni-calendar/views/gestionModeles.xhtml");
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Le modèle de calendrier est enregistré", ""));
 		}
 
 		LOGGER.info("Fin de l'enregistrement");
