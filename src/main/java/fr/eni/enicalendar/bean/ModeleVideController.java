@@ -416,13 +416,15 @@ public class ModeleVideController implements Serializable {
 	}
 
 	private void calculOverlap() {
-		for (ElementCalendrier elementCalendrier : availableElementCalendrier) {
-			for (ElementCalendrier dropped : droppedElementCalendrier) {
-				Interval interval = new Interval(new DateTime(elementCalendrier.getDateDebut()),
-						new DateTime(elementCalendrier.getDateFin()));
-				Interval interval2 = new Interval(new DateTime(dropped.getDateDebut()),
-						new DateTime(dropped.getDateFin()));
-				elementCalendrier.setOverlap(interval.overlaps(interval2));
+		if (availableElementCalendrier != null && droppedElementCalendrier != null) {
+			for (ElementCalendrier elementCalendrier : availableElementCalendrier) {
+				for (ElementCalendrier dropped : droppedElementCalendrier) {
+					Interval interval = new Interval(new DateTime(elementCalendrier.getDateDebut()),
+							new DateTime(elementCalendrier.getDateFin()));
+					Interval interval2 = new Interval(new DateTime(dropped.getDateDebut()),
+							new DateTime(dropped.getDateFin()));
+					elementCalendrier.setOverlap(interval.overlaps(interval2));
+				}
 			}
 		}
 	}
