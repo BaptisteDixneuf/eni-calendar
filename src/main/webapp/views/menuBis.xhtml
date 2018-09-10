@@ -25,12 +25,12 @@
     <p:menubar>
         <p:menuitem>
           	<a href="#{request.contextPath}/views/rechercheStagiaire.xhtml">
-                <h:graphicImage url="/images/logo-eni.png" height="60"/>
+                <h:graphicImage title="Accueil/Rechercher stagiaire" url="/images/logo-eni.png" height="60"/>
             </a>
         </p:menuitem>
 
         <p:menuitem action="#{rechercheStagiaireController.verifStagiaire}" disabled="#{rechercheStagiaireController.presence}">
-                <h:graphicImage url="/images/user.PNG"/>
+                <h:graphicImage title="Fiche stagiaire" url="/images/user.PNG"/>
         </p:menuitem>
 
         <p:submenu label="Modèles de calendriers">
