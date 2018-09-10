@@ -175,7 +175,7 @@ public class FicheStagiaireController implements Serializable {
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
 		stagiaire = stagiaireService.findBycodeStagiaire(
 				Integer.valueOf(session.getAttribute(SessionUtils.SESSION_ID_STAGIAIRE).toString()));
-		entreprise = entrepriseService.findByCodeEntreprise(4);
+		entreprise = entrepriseService.findByCodeEntreprise(stagiaireEntreprise.getCodeEntreprise());
 		formations = formationService.findAllFormations();
 		calendriers = calendrierService.findCalendriersByStagiaire(stagiaire.getCodeStagiaire());
 	}
