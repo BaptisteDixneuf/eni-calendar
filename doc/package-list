@@ -1,0 +1,14 @@
+fr.eni.enicalendar.bean
+fr.eni.enicalendar.converter
+fr.eni.enicalendar.exceptions
+fr.eni.enicalendar.filter
+fr.eni.enicalendar.persistence.app
+fr.eni.enicalendar.persistence.app.entities
+fr.eni.enicalendar.persistence.app.repositories
+fr.eni.enicalendar.persistence.erp
+fr.eni.enicalendar.persistence.erp.entities
+fr.eni.enicalendar.persistence.erp.repositories
+fr.eni.enicalendar.service
+fr.eni.enicalendar.service.impl
+fr.eni.enicalendar.utils
+fr.eni.enicalendar.viewElement
