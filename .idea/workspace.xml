@@ -9,7 +9,6 @@
     <list default="true" id="4429b4d1-4d13-4873-af38-70b819ae7b53" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModeleVideController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModeleVideController.java" afterDir="false" />
     </list>
     <ignored path="$APPLICATION_HOME_DIR$/ENI CALENDAR/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -83,16 +82,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="20180620_mcd_eni_calendar_v5.sql" pinned="false" current-in-tab="false">
+      <file leaf-file-name="20180620_mcd_eni_calendar_v5.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="794" column="34" selection-start-line="794" selection-start-column="34" selection-end-line="794" selection-end-column="34" />
+            <state relative-caret-position="353">
+              <caret line="798" column="32" lean-forward="true" selection-start-line="798" selection-start-column="32" selection-end-line="798" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModeleVideController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ModeleVideController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModeleVideController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="459">
@@ -116,8 +115,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>salle</find>
-      <find>border</find>
       <find>utilisateur</find>
       <find>CA_ID,</find>
       <find>MC_ID,</find>
@@ -146,6 +143,8 @@
       <find>Table: CONTRAINTE</find>
       <find>CONTRAINTE</find>
       <find>CA_ID</find>
+      <find>table contrai</find>
+      <find>permet</find>
     </findStrings>
     <replaceStrings>
       <replace>modificationUtilisateurController</replace>
@@ -211,8 +210,8 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9f26dcdb-f8d4-4967-ba19-4e14c0869081/console_1.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/e08fc30f-dc33-4c39-9941-8925678f52f8/console_1.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/e08fc30f-dc33-4c39-9941-8925678f52f8/console_4.sql" />
-        <option value="$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql" />
         <option value="$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModeleVideController.java" />
+        <option value="$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql" />
       </list>
     </option>
   </component>
@@ -930,14 +929,7 @@
       <workItem from="1536515605682" duration="1861000" />
       <workItem from="1536562971167" duration="445000" />
       <workItem from="1536563465115" duration="2985000" />
-      <workItem from="1536566657382" duration="7780000" />
-    </task>
-    <task id="LOCAL-00032" summary="ajout menu fiche">
-      <created>1535572417579</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1535572417579</updated>
+      <workItem from="1536566657382" duration="8408000" />
     </task>
     <task id="LOCAL-00033" summary="ajout raccourci fiche stagiaire">
       <created>1535574107982</created>
@@ -1275,11 +1267,18 @@
       <option name="project" value="LOCAL" />
       <updated>1536573991607</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="modifs données">
+      <created>1536575454550</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1536575454550</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="291377000" />
+    <option name="totallyTimeSpent" value="292005000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1307,7 +1306,7 @@
       <window_info anchor="right" id="JSF" order="10" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info active="true" anchor="bottom" id="Debug" order="4" visible="true" weight="0.2851109" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.2851109" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32946146" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3284055" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
@@ -1318,13 +1317,13 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.25765577" />
       <window_info anchor="bottom" id="Spring" order="15" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32946146" />
-      <window_info anchor="bottom" id="Database Console" order="18" weight="0.45300952" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.72968984" visible="true" weight="0.15520833" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="18" visible="true" weight="0.45300952" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7297297" visible="true" weight="0.15520833" />
       <window_info anchor="bottom" id="Problems" order="16" />
       <window_info id="Web" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32946146" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info id="Favorites" order="5" sideWeight="0.2703102" side_tool="true" visible="true" weight="0.15520833" />
+      <window_info id="Favorites" order="5" sideWeight="0.27027026" side_tool="true" visible="true" weight="0.15520833" />
       <window_info anchor="right" id="Coverage" order="0" sideWeight="0.5029586" side_tool="true" visible="true" weight="0.13333334" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
@@ -1426,75 +1425,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/FicheStagiaireController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2805">
-          <caret line="244" column="5" selection-start-line="244" selection-start-column="5" selection-end-line="244" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9f26dcdb-f8d4-4967-ba19-4e14c0869081/database/EniEcole/schema/dbo/table/Module">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9f26dcdb-f8d4-4967-ba19-4e14c0869081/database/EniEcole/schema/dbo/table/Cours">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="IdCours = '65116793-3D80-4B78-BBA2-63AB94BFE4C6'" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9f26dcdb-f8d4-4967-ba19-4e14c0869081/database/EniEcole/schema/dbo/table/Entreprise">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/modeleVide.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2839">
-          <caret line="167" column="131" selection-start-line="167" selection-start-column="131" selection-end-line="167" selection-end-column="131" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/creation-modificationUtilisateur.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="85" selection-start-line="26" selection-start-column="85" selection-end-line="26" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/ModificationUtilisateurController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="116" column="56" selection-start-line="116" selection-start-column="38" selection-end-line="116" selection-end-column="56" />
-          <folding>
-            <element signature="e#2220#2221#0" expanded="true" />
-            <element signature="e#2254#2255#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/eni/enicalendar/bean/GestionCompteController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="e#1179#1180#0" expanded="true" />
-            <element signature="e#1204#1205#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/gestionCompte.xhtml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -1525,13 +1455,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bdd/20180824_alter_table_module_independant.sql">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bdd/20180824_alter_table_contrainte.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-start-column="3" selection-end-line="1" selection-end-column="49" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bdd/20180708_alter_table_enchainement_module.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -1767,17 +1690,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e08fc30f-dc33-4c39-9941-8925678f52f8/console_4.sql">
+    <entry file="file://$PROJECT_DIR$/bdd/20180824_alter_table_contrainte.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="20" lean-forward="true" selection-start-line="15" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="794" column="34" selection-start-line="794" selection-start-column="34" selection-end-line="794" selection-end-column="34" />
+        <state relative-caret-position="17">
+          <caret line="1" column="29" lean-forward="true" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1788,6 +1704,76 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/DISPENSE">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/DISPENSE">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/DISPENSE">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/DISPENSE">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/DISPENSE">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/DISPENSE">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/DISPENSE">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e08fc30f-dc33-4c39-9941-8925678f52f8/database/EniCalendar/schema/dbo/table/DISPENSE">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e08fc30f-dc33-4c39-9941-8925678f52f8/console_4.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="20" lean-forward="true" selection-start-line="15" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bdd/20180620_mcd_eni_calendar_v5.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="798" column="32" lean-forward="true" selection-start-line="798" selection-start-column="32" selection-end-line="798" selection-end-column="32" />
         </state>
       </provider>
     </entry>

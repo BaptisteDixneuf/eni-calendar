@@ -796,7 +796,7 @@ go
 
 alter table PERMETTRE
   add constraint FK_PERMETTR_PERMETTRE_PROGRAMM foreign key (PR_ID)
-references PROGRAMMATION (PR_ID)mo
+references PROGRAMMATION (PR_ID)
 go
 
 alter table PERMETTRE
