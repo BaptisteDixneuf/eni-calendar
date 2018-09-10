@@ -1693,3 +1693,39 @@ DELETE FROM MODELE_CALENDRIER;
 DELETE FROM CALENDRIER;
 
 
+USE [master]
+GO
+CREATE LOGIN [sollivier] WITH PASSWORD=N'eni44' MUST_CHANGE, DEFAULT_DATABASE=[master], CHECK_EXPIRATION=ON, CHECK_POLICY=ON
+GO
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [sollivier]
+GO
+use [EniCalendar]
+
+GO
+use [EniEcole]
+
+GO
+USE [EniCalendar]
+GO
+CREATE USER [sollivier] FOR LOGIN [sollivier]
+GO
+USE [EniCalendar]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [sollivier]
+GO
+use [EniEcole]
+
+GO
+use [EniCalendar]
+
+GO
+USE [EniEcole]
+GO
+CREATE USER [sollivier] FOR LOGIN [sollivier]
+GO
+USE [EniEcole]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [sollivier]
+GO
+
+
