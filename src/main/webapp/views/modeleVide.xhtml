@@ -92,11 +92,10 @@
 							value="#{modeleVideController.availableElementCalendrier}">	
 	
 							<p:column rendered="#{!element.moduleProgramme}" headerText="Cours disponibles">
-								<p:panel id="gpnl">
+								<p:panel id="gpnl" styleClass="#{element.overlap ? 'red' : ''}" >
 									<h:outputText value="#{element.libelle}"></h:outputText> - 
 				               		<h:outputText value="#{modeleVideController.formatDate(element.dateDebut)}"></h:outputText> -
 				               		<h:outputText value="#{modeleVideController.formatDate(element.dateFin)}"></h:outputText>
-	
 								</p:panel>
 								<p:draggable for="gpnl" revert="true" helper="clone"
 									disabled="#{element.moduleProgramme}" />

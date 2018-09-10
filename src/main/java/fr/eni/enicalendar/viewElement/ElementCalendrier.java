@@ -24,6 +24,8 @@ public class ElementCalendrier {
 
 	private Boolean moduleProgramme;
 
+	private Boolean overlap;
+
 	public String getId() {
 		return id;
 	}
@@ -78,6 +80,14 @@ public class ElementCalendrier {
 
 	public void setModuleProgramme(Boolean moduleProgramme) {
 		this.moduleProgramme = moduleProgramme;
+	}
+
+	public Boolean getOverlap() {
+		return overlap;
+	}
+
+	public void setOverlap(Boolean overlap) {
+		this.overlap = overlap;
 	}
 
 }

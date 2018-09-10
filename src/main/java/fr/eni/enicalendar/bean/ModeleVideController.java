@@ -1,6 +1,7 @@
 package fr.eni.enicalendar.bean;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.Interval;
 import org.primefaces.event.DragDropEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -409,6 +412,19 @@ public class ModeleVideController implements Serializable {
 		ElementCalendrier elementDeplace = ((ElementCalendrier) ddEvent.getData());
 		droppedElementCalendrier.add(elementDeplace);
 		elementDeplaceDansProgrammation(elementDeplace);
+		calculOverlap();
+	}
+
+	private void calculOverlap() {
+		for (ElementCalendrier elementCalendrier : availableElementCalendrier) {
+			for (ElementCalendrier dropped : droppedElementCalendrier) {
+				Interval interval = new Interval(new DateTime(elementCalendrier.getDateDebut()),
+						new DateTime(elementCalendrier.getDateFin()));
+				Interval interval2 = new Interval(new DateTime(dropped.getDateDebut()),
+						new DateTime(dropped.getDateFin()));
+				elementCalendrier.setOverlap(interval.overlaps(interval2));
+			}
+		}
 	}
 
 	/**
@@ -613,6 +629,7 @@ public class ModeleVideController implements Serializable {
 				return m1.getDateDebut().compareTo(m2.getDateFin());
 			}
 		});
+		calculOverlap();
 
 	}
 
@@ -1046,6 +1063,11 @@ public class ModeleVideController implements Serializable {
 			contraintesViewElement.setPeriodeNonDisponibiliteStagiaireDateDebut(null);
 			contraintesViewElement.setPeriodeNonDisponibiliteStagiaireDateFin(null);
 		}
+	}
+
+	private Boolean overlap(Timestamp startA, Timestamp endA, Timestamp startB, Timestamp endB) {
+		return (endB == null || startA == null || !startA.after(endB))
+				&& (endA == null || startB == null || !endA.before(startB));
 	}
 
 	/**

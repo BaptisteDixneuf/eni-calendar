@@ -339,3 +339,7 @@ span[id*="paveGroupeDeplier_title"] {
 .panelWithoutBorder {
 	border : 0px solid;
 }
+
+.red{
+	background-color: #ef9696;
+}
