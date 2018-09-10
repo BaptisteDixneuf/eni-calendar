@@ -29,8 +29,6 @@ public class ModuleSecable implements Serializable {
 	@Column(name = "MS_ID_MODULE_ERP")
 	private Integer idModuleERP;
 
-	// TODO DI-ID: Bizarre, cette identifiant ne devrait pas être dans cette table
-
 	@Column(name = "MS_POSITION")
 	private Integer position;
 

@@ -37,8 +37,6 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 		Utilisateur utilisateur = utilisateurRepository.findByEmail(email);
 
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		// TODO : à revoir
-		LOGGER.info(passwordEncoder.encode(password));
 		if (utilisateur != null && passwordEncoder.matches(password, utilisateur.getPassword())) {
 			retour = true;
 		}
@@ -51,11 +49,10 @@ public class UtilisateurService implements UtilisateurServiceInterface, Serializ
 	}
 
 	@Override
-	public Utilisateur findById (Integer id) {
+	public Utilisateur findById(Integer id) {
 		return utilisateurRepository.findById(id);
 	}
-	
-	
+
 	public Utilisateur sauverUtilisateur(Utilisateur utilisateur) {
 		return utilisateurRepository.save(utilisateur);
 	}

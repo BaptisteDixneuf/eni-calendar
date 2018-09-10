@@ -416,7 +416,8 @@ public class ModeleVideController implements Serializable {
 	}
 
 	private void calculOverlap() {
-		if (availableElementCalendrier != null && droppedElementCalendrier != null) {
+		if (availableElementCalendrier != null && droppedElementCalendrier != null
+				&& !droppedElementCalendrier.isEmpty()) {
 			for (ElementCalendrier elementCalendrier : availableElementCalendrier) {
 				for (ElementCalendrier dropped : droppedElementCalendrier) {
 					Interval interval = new Interval(new DateTime(elementCalendrier.getDateDebut()),
@@ -424,6 +425,12 @@ public class ModeleVideController implements Serializable {
 					Interval interval2 = new Interval(new DateTime(dropped.getDateDebut()),
 							new DateTime(dropped.getDateFin()));
 					elementCalendrier.setOverlap(interval.overlaps(interval2));
+				}
+			}
+		} else {
+			if (availableElementCalendrier != null && droppedElementCalendrier.isEmpty()) {
+				for (ElementCalendrier elementCalendrier : availableElementCalendrier) {
+					elementCalendrier.setOverlap(false);
 				}
 			}
 		}
@@ -617,7 +624,8 @@ public class ModeleVideController implements Serializable {
 	private void chargermentDonnees() throws FonctionnelException {
 		// On récupère les cours disponible pour cette formation, ce lieu et cette date
 		// de début
-		coursDisponible = coursService.findCoursByFormationAndLieu(codeFormation, Integer.valueOf(codeLieuFormation));
+		coursDisponible = coursService.findCoursByFormationAndLieuAndDate(codeFormation,
+				Integer.valueOf(codeLieuFormation), dateDebut);
 
 		// On transforme les élements calendriers en object ElementCalendrier ( Dans la
 		// vue, on ne manipule pas d'élément de types Entité car à terme plusieurs type

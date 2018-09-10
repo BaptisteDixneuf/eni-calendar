@@ -1,5 +1,6 @@
 package fr.eni.enicalendar.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class CoursService implements CoursServiceInterface {
 	@Override
 	public List<Cours> findCoursByFormationAndLieu(String codeFormation, Integer codeLieu) {
 		return coursRepository.findCoursByFormationAndLieu(codeFormation, codeLieu);
+	}
+
+	@Override
+	public List<Cours> findCoursByFormationAndLieuAndDate(String codeFormation, Integer codeLieu, Date dateDebut) {
+		return coursRepository.findCoursByFormationAndLieuAndDate(codeFormation, codeLieu, dateDebut);
 	}
 
 	@Override
