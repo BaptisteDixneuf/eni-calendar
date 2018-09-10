@@ -393,9 +393,9 @@ go
 /*==============================================================*/
 create table AUTRE_COURS (
   AC_ID                int                  identity,
-  MC_ID                int                  not null,
-  CA_ID                int                  not null,
-  AC_ID_AUTRES_COURS_ERP int                  null,
+  MC_ID                int                  null,
+  CA_ID                int                  null,
+  AC_ID_AUTRES_COURS_ERP int                null,
   constraint PK_AUTRE_COURS primary key nonclustered (AC_ID)
 )
 go
@@ -448,8 +448,8 @@ go
 /*==============================================================*/
 create table CONTRAINTE (
   CO_ID                int                  identity,
-  TC_ID                int                  not null,
-  CA_ID                int                  not null,
+  TC_ID                int                  null,
+  CA_ID                int                  null,
   MC_ID                int                  not null,
   CO_LIBELLE           varchar(255)         null,
   CO_MOTIF             varchar(255)         null default NULL,
@@ -638,8 +638,8 @@ go
 /*==============================================================*/
 create table PROGRAMMATION (
   PR_ID                int                  identity,
-  MC_ID                int                  not null,
-  CA_ID                int                  not null,
+  MC_ID                int                  null,
+  CA_ID                int                  null,
   PR_ID_COURS_PLANIFIE_ERP varchar(255)      null,
   constraint PK_PROGRAMMATION primary key nonclustered (PR_ID)
 )
