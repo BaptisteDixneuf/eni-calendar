@@ -35,7 +35,7 @@
             <p:autoComplete id="themePojo" minQueryLength="3" value="#{creationCalendrierDepuisModeleController.modele}" 
             	completeMethod="#{creationCalendrierDepuisModeleController.autocompleteText}" style="display: flex; justify-content: center;"
             	converter="modeleConverter" var="modele" itemLabel="#{modele.nomCalendrier}" itemValue="#{modele}" forceSelection="true" >
-            	  <p:ajax event="change" listener="#{creationCalendrierDepuisModeleController.recupereCalendriersUn}" update="zone"/>
+            	  <p:ajax event="itemSelect" listener="#{creationCalendrierDepuisModeleController.recupereCalendriersUn}" update="zone"/>
             	 </p:autoComplete>
         </p:fieldset><br/><br/>
 		
