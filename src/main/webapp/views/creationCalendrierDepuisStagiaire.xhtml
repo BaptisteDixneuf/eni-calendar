@@ -30,20 +30,11 @@
 				<p:autoUpdate />
 			</p:messages>
 
-			<h1>Application d'un calendrier d'un autre stagiaire</h1>
+			<h1>Application d'un autre calendrier</h1>
+
 
 			<div class="form-group col-md-12">
-				<p:outputLabel value="Saisissez un stagiaire :" for="stagiaire" />
-				<p:autoComplete id="stagiaire" minQueryLength="3"
-					value="#{creationCalendrierDepuisAutreCalendrier.stagiaire}"
-					completeMethod="#{creationCalendrierDepuisAutreCalendrier.autocompleteText}"
-					converter="stagiaireConverter" var="stagiaire"
-					itemLabel="#{stagiaire.nom} #{stagiaire.prenom}" itemValue="#{stagiaire}"
-					forceSelection="true" />
-			</div>
-
-			<div class="form-group col-md-12">
-				<p:outputLabel value="Choisissez un modèle de calendrier :"
+				<p:outputLabel value="Choisissez un calendrier :"
 					for="calendrier" />
 	
 				<p:autoComplete id="calendrier" minQueryLength="1"
@@ -51,7 +42,7 @@
 					completeMethod="#{creationCalendrierDepuisAutreCalendrier.autocompleteTextCalendrier}"
 					converter="calendrierConverter" var="calendrier"
 					itemLabel="#{calendrier.nomCalendrier}" itemValue="#{calendrier}" forceSelection="true">
-					<p:ajax event="change"	listener="#{creationCalendrierDepuisAutreCalendrier.recupereCalendriersUn}"
+					<p:ajax event="itemSelect"	listener="#{creationCalendrierDepuisAutreCalendrier.recupereCalendriersUn}"
 						process="@form" update="@form" />
 				</p:autoComplete>
 			</div>
