@@ -491,7 +491,7 @@ public class ModeleVideController implements Serializable {
 	/**
 	 * Méthode d'enregistrement
 	 */
-	public void save() throws IOException  {
+	public void save() throws IOException {
 		LOGGER.info("Début de l'enregistrement");
 
 		if (isCalendrier) {
@@ -566,6 +566,18 @@ public class ModeleVideController implements Serializable {
 				elementCalendrier.setModuleProgramme(Boolean.TRUE);
 			}
 		}
+
+		Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
+
+		Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
 	}
 
 	private void elementDeprogramme(ElementCalendrier elementDeplace) {
@@ -575,6 +587,18 @@ public class ModeleVideController implements Serializable {
 				elementCalendrier.setModuleProgramme(Boolean.FALSE);
 			}
 		}
+
+		Collections.sort(availableElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
+
+		Collections.sort(droppedElementCalendrier, new Comparator<ElementCalendrier>() {
+			public int compare(ElementCalendrier m1, ElementCalendrier m2) {
+				return m1.getDateDebut().compareTo(m2.getDateFin());
+			}
+		});
 	}
 
 	/**
@@ -685,7 +709,7 @@ public class ModeleVideController implements Serializable {
 	/**
 	 * Méthode qui permet d'enregistrer les contraintes
 	 */
-	public void enregistrerContraintes() throws IOException{
+	public void enregistrerContraintes() throws IOException {
 
 		// TODO: faire de la validation de données
 
@@ -829,7 +853,7 @@ public class ModeleVideController implements Serializable {
 	/**
 	 * Permet d'enregistrer les dispenses
 	 */
-	public void enregistrerDispenses() throws IOException{
+	public void enregistrerDispenses() throws IOException {
 
 		if (isCalendrier) {
 			if (calendrier == null || calendrier.getId() == null) {
