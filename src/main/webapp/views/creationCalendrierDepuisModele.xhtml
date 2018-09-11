@@ -35,61 +35,63 @@
             <p:autoComplete id="themePojo" minQueryLength="3" value="#{creationCalendrierDepuisModeleController.modele}" 
             	completeMethod="#{creationCalendrierDepuisModeleController.autocompleteText}" style="display: flex; justify-content: center;"
             	converter="modeleConverter" var="modele" itemLabel="#{modele.nomCalendrier}" itemValue="#{modele}" forceSelection="true" >
-            	  <p:ajax event="change" listener="#{creationCalendrierDepuisModeleController.recupereCalendriersUn}"  process="@form" update="@form"/>
+            	  <p:ajax event="change" listener="#{creationCalendrierDepuisModeleController.recupereCalendriersUn}" update="zone"/>
             	 </p:autoComplete>
         </p:fieldset><br/><br/>
-
-        <p:fieldset style="border-radius: 30px; border-width: medium;">
-            <div class="form-group col-md-12">
-                <h:outputText value="Nom Prénom: #{creationCalendrierDepuisModeleController.stagiaire.nom} #{creationCalendrierDepuisModeleController.stagiaire.prenom}"/>
-            </div>
-
-            <div class="form-group col-md-12">
-                <h:outputText
-                        value="Entreprise: #{creationCalendrierDepuisModeleController.entreprise.raisonSociale}"/>
-            </div>
-
-            <div class="form-group col-md-6">
-                <p:outputLabel for="lieuFormation" value="Lieu de formation:"/><br/>
-                <p:selectOneMenu id="lieuFormation" value="#{creationCalendrierDepuisModeleController.codeLieuFormation}"  disabled="true">
-                    <f:selectItem itemLabel="Selectionner un lieu" itemValue=""/>
-                    <f:selectItems value="#{creationCalendrierDepuisModeleController.lieux}" var="lieu"
-                                   itemLabel="#{lieu.libelle}" itemValue="#{lieu.codeLieu}"/>                   
-                </p:selectOneMenu>
-                <p:messages for="lieuFormation"></p:messages>
-            </div>
-
-            <div class="form-group col-md-6">
-                <p:outputLabel for="formation" value="Formation :"/><br/>
-                <p:selectOneMenu id="formation" value="#{creationCalendrierDepuisModeleController.codeFormation}" disabled="true">
-                    <f:selectItem itemLabel="Selectionner une formation" itemValue=""/>
-                    <f:selectItems value="#{creationCalendrierDepuisModeleController.formations}" var="formation"
-                                   itemLabel="#{formation.libelleLong}" itemValue="#{formation.codeFormation}"/>
-                    
-                </p:selectOneMenu>
-                <p:messages for="formation"></p:messages>
-            </div>
-			
-            <div class="form-group col-md-6">
-                <p:outputLabel for="dateDebut" value="Date de début"/><br/>
-                <p:calendar id="dateDebut" value="#{creationCalendrierDepuisModeleController.dateDebut}" maxdate="#{creationCalendrierDepuisModeleController.dateDebutMax}" locale="fr" navigator="true" pattern="dd/MM/yyyy"/>
-                <p:messages for="dateDebut"></p:messages>
-            </div>
-
-            <div class="form-group col-md-6">
-                <p:outputLabel for="dateFin" value="Date de fin (maximale)"/><br/>
-                <p:calendar id="dateFin" value="#{creationCalendrierDepuisModeleController.dateFin}" mindate="#{creationCalendrierDepuisModeleController.dateFinMin}" locale="fr" navigator="true" pattern="dd/MM/yyyy"/>
-                <p:messages for="dateFin"></p:messages>
-            </div>
-
-            <p:dialog header="Values" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
-                <p:panelGrid columns="2" id="display" columnClasses="label,value">
-                    <h:outputText value="Lieu de formation:"/>
-                    <h:outputText value="#{creationCalendrierDepuisModeleController.option}"/>
-                </p:panelGrid>
-            </p:dialog>
-        </p:fieldset>
-
+		
+		<h:panelGroup id="zone">
+	        <p:fieldset style="border-radius: 30px; border-width: medium;">
+	            <div class="form-group col-md-12">
+	                <h:outputText value="Nom Prénom: #{creationCalendrierDepuisModeleController.stagiaire.nom} #{creationCalendrierDepuisModeleController.stagiaire.prenom}"/>
+	            </div>
+	
+	            <div class="form-group col-md-12">
+	                <h:outputText
+	                        value="Entreprise: #{creationCalendrierDepuisModeleController.entreprise.raisonSociale}"/>
+	            </div>
+	
+	            <div class="form-group col-md-6">
+	                <p:outputLabel for="lieuFormation" value="Lieu de formation:"/><br/>
+	                <p:selectOneMenu id="lieuFormation" value="#{creationCalendrierDepuisModeleController.codeLieuFormation}"  disabled="true">
+	                    <f:selectItem itemLabel="Selectionner un lieu" itemValue=""/>
+	                    <f:selectItems value="#{creationCalendrierDepuisModeleController.lieux}" var="lieu"
+	                                   itemLabel="#{lieu.libelle}" itemValue="#{lieu.codeLieu}"/>                   
+	                </p:selectOneMenu>
+	                <p:messages for="lieuFormation"></p:messages>
+	            </div>
+	
+	            <div class="form-group col-md-6">
+	                <p:outputLabel for="formation" value="Formation :"/><br/>
+	                <p:selectOneMenu id="formation" value="#{creationCalendrierDepuisModeleController.codeFormation}" disabled="true">
+	                    <f:selectItem itemLabel="Selectionner une formation" itemValue=""/>
+	                    <f:selectItems value="#{creationCalendrierDepuisModeleController.formations}" var="formation"
+	                                   itemLabel="#{formation.libelleLong}" itemValue="#{formation.codeFormation}"/>
+	                    
+	                </p:selectOneMenu>
+	                <p:messages for="formation"></p:messages>
+	            </div>
+				
+	            <div class="form-group col-md-6">
+	                <p:outputLabel for="dateDebut" value="Date de début"/><br/>
+	                <p:calendar id="dateDebut" value="#{creationCalendrierDepuisModeleController.dateDebut}" maxdate="#{creationCalendrierDepuisModeleController.dateDebutMax}" locale="fr" navigator="true" pattern="dd/MM/yyyy"/>
+	                <p:messages for="dateDebut"></p:messages>
+	            </div>
+	
+	            <div class="form-group col-md-6">
+	                <p:outputLabel for="dateFin" value="Date de fin (maximale)"/><br/>
+	                <p:calendar id="dateFin" value="#{creationCalendrierDepuisModeleController.dateFin}" mindate="#{creationCalendrierDepuisModeleController.dateFinMin}" locale="fr" navigator="true" pattern="dd/MM/yyyy"/>
+	                <p:messages for="dateFin"></p:messages>
+	            </div>
+	
+	            <p:dialog header="Values" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
+	                <p:panelGrid columns="2" id="display" columnClasses="label,value">
+	                    <h:outputText value="Lieu de formation:"/>
+	                    <h:outputText value="#{creationCalendrierDepuisModeleController.option}"/>
+	                </p:panelGrid>
+	            </p:dialog>
+	        </p:fieldset>
+		</h:panelGroup>
+		
         <div class="form-group" style="display: flex; justify-content: center; margin-top: 3%;">
             <p:commandButton action="#{creationCalendrierDepuisModeleController.retour}" value="Précédent" update="@form" styleClass="btn btn-primary"></p:commandButton>
 
