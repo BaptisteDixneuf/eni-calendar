@@ -2,8 +2,13 @@ package fr.eni.enicalendar.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -157,34 +162,56 @@ public class CreationCalendrierDepuisModeleController implements Serializable {
 		calendrier.setIdStagiaireERP(stagiaire.getCodeStagiaire());
 		calendrier.setIdEntrepriseERP(stagiaireEntreprise.getCodeEntreprise());
 
-		for (Contrainte contrainte : modele.getContraintes()) {
+		List<Contrainte> contraintes = Arrays.asList(new Contrainte[modele.getContraintes().size()]);
+		List<Contrainte> listContraintes = new ArrayList<Contrainte>(modele.getContraintes());
+		Collections.copy(contraintes, listContraintes);
+
+		for (Contrainte contrainte : contraintes) {
 			contrainte.setId(null);
 			contrainte.setIdModeleCalendrier(null);
 			contrainte.setIdCalendrier(calendrier.getId());
 		}
 
-		for (Dispense dispenses : modele.getDispenses()) {
-			dispenses.setId(null);
-			dispenses.setIdModeleCalendrier(null);
-			dispenses.setIdCalendrier(calendrier.getId());
+		List<Dispense> dispenses = Arrays.asList(new Dispense[modele.getDispenses().size()]);
+		List<Dispense> listDispenses = new ArrayList<Dispense>(modele.getDispenses());
+		Collections.copy(dispenses, listDispenses);
+
+		for (Dispense dispense : dispenses) {
+			dispense.setId(null);
+			dispense.setIdModeleCalendrier(null);
+			dispense.setIdCalendrier(calendrier.getId());
 		}
 
-		for (ContrainteModuleIndependant modulesInde : modele.getContrainteModuleIndependant()) {
+		List<ContrainteModuleIndependant> modulesIndes = Arrays
+				.asList(new ContrainteModuleIndependant[modele.getContrainteModuleIndependant().size()]);
+		List<ContrainteModuleIndependant> listModulesInde = new ArrayList<ContrainteModuleIndependant>(
+				modele.getContrainteModuleIndependant());
+		Collections.copy(modulesIndes, listModulesInde);
+
+		for (ContrainteModuleIndependant modulesInde : modulesIndes) {
 			modulesInde.setId(null);
 			modulesInde.setIdModeleCalendrier(null);
 			modulesInde.setIdCalendrier(calendrier.getId());
 		}
 
-		for (Programmation programmation : modele.getProgrammations()) {
+		List<Programmation> programmations = Arrays.asList(new Programmation[modele.getProgrammations().size()]);
+		List<Programmation> listProgrammation = new ArrayList<Programmation>(modele.getProgrammations());
+		Collections.copy(programmations, listProgrammation);
+		for (Programmation programmation : programmations) {
 			programmation.setId(null);
 			programmation.setIdModeleCalendrier(null);
 			programmation.setIdCalendrier(calendrier.getId());
 		}
 
-		calendrier.setContraintes(modele.getContraintes());
-		calendrier.setDispenses(modele.getDispenses());
-		calendrier.setContrainteModuleIndependant(modele.getContrainteModuleIndependant());
-		calendrier.setProgrammations(modele.getProgrammations());
+		Set<Contrainte> setlistesContraintes = new HashSet<Contrainte>(contraintes);
+		calendrier.setContraintes(setlistesContraintes);
+		Set<Dispense> setlistesDispenses = new HashSet<Dispense>(dispenses);
+		calendrier.setDispenses(setlistesDispenses);
+		Set<ContrainteModuleIndependant> setlistesContraintesINDES = new HashSet<ContrainteModuleIndependant>(
+				modulesIndes);
+		calendrier.setContrainteModuleIndependant(setlistesContraintesINDES);
+		Set<Programmation> setlistesProgrmmation = new HashSet<Programmation>(programmations);
+		calendrier.setProgrammations(setlistesProgrmmation);
 		calendrier = calendrierService.save(calendrier);
 
 		HttpSession session = SessionUtils.getSession();
